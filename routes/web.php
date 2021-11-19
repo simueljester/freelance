@@ -25,6 +25,25 @@ Route::group(['prefix' => 'examination', 'as' => 'examination.'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'ExaminationController@index']);
 });
 
+Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function() {
+    Route::get('/', ['as' => 'index', 'uses' => 'QuestionBankController@index']);
+    Route::get('/my-questions', ['as' => 'my-questions', 'uses' => 'QuestionBankController@myQuestionBank']);
+
+    Route::group(['prefix' => 'create', 'as' => 'create.'], function() {
+        Route::get('/mcq', ['as' => 'mcq', 'uses' => 'QuestionBankController@createMcq']);
+        Route::get('/tf', ['as' => 'tf', 'uses' => 'QuestionBankController@createTf']);
+        Route::get('/sa', ['as' => 'sa', 'uses' => 'QuestionBankController@createSa']);
+        Route::get('/essay', ['as' => 'essay', 'uses' => 'QuestionBankController@createEssay']);
+    });
+
+    Route::post('/save', ['as' => 'save', 'uses' => 'QuestionBankController@save']);
+    Route::get('/show/{question}', ['as' => 'show', 'uses' => 'QuestionBankController@show']);
+    Route::get('/edit/{question}', ['as' => 'edit', 'uses' => 'QuestionBankController@edit']);
+    Route::post('/update', ['as' => 'update', 'uses' => 'QuestionBankController@update']);
+    Route::get('/delete/{question}', ['as' => 'delete', 'uses' => 'QuestionBankController@delete']);
+});
+
+
 Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'GroupController@index']);
     Route::get('/create', ['as' => 'create', 'uses' => 'GroupController@create']);
@@ -47,6 +66,12 @@ Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], functi
     Route::get('/edit/{user}', ['as' => 'edit', 'uses' => 'UserController@edit']);
     Route::post('/update', ['as' => 'update', 'uses' => 'UserController@update']);
     Route::post('/delete', ['as' => 'delete', 'uses' => 'UserController@delete']);
+});
+
+
+
+Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
+    Route::get('/{question_attachment}', ['as' => 'question-attachment', 'uses' => 'DownloadController@questionAttachment']);
 });
 
 

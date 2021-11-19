@@ -41,6 +41,12 @@
                     <span>Dashboard</span></a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('question-bank.index')}}">
+                    <i class="fas fa-globe text-white"></i>
+                    <span>Question Bank</span></a>
+            </li>
+
   
             <li class="nav-item">
                 <a class="nav-link" href="{{route('examination.index')}}">

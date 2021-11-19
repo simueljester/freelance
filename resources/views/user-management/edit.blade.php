@@ -51,7 +51,7 @@
 
 <div class="card mt-2 " style="background:transparent;border:none;">
     <div class="card-body text-right">
-        <form action="{{route('user-management.delete')}}" method="POST" onclick="return confirm('Are you sure you want to search Google?')">
+        <form action="{{route('user-management.delete')}}" method="POST" onclick="return confirm('Are you sure you want to delete this User?')">
             @csrf
             @method('POST')
 
