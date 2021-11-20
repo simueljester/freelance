@@ -17,24 +17,44 @@
     </nav>
 </div>
 
-<div class="card shadow-sm mt-3">
-    <div class="card-body">
-        <strong class="text-muted"> Create New Question </strong> -  <span class="badge badge-warning text-dark p-1"> Essay </span>
-        <hr>
-        <div class="form-group mt-3">
-            <span> <i class="fas fa-question-circle"></i>  Instruction </span>
-            <textarea name="instruction" id="instruction" cols="30" rows="10" class="instruction"></textarea>
+
+<form action="{{route('question-bank.save')}}" method="POST" enctype="multipart/form-data">
+    @csrf
+    @method('POST')
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+
+            <input type="hidden" name="question_type" id="question_type" value="essay">
+
+            <strong class="text-muted"> Create New Question </strong> -  <span class="badge badge-warning text-dark p-1"> Essay </span>
+            <hr>
+            <div class="form-group mt-3">
+                <span> <i class="fas fa-question-circle"></i>  Instruction </span>
+                <textarea name="instruction" id="instruction" cols="30" rows="10" class="instruction"></textarea>
+            </div>
+
+            <div class="form-group mt-3">
+                <span> <i class="fas fa-paperclip"></i> Attachment </span> <br>
+                <input type="file" name="attachment" id="attachment" class="mt-3">
+            </div>
+
+            <div class="mt-5">
+                
+                <div class="form-group mt-3">
+                    <span>  Maximum points </span> - <small> Set maximum points then set points after reviewing the exam </small>
+                    <br>
+                    <input type="number" name="max_points" id="max_points" max="100" min="1" class="form-control" value="1" required>
+                </div>
+
+            </div>
+            
+            <div class="mt-5">
+                <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
+                <button class="btn btn-info"> Save Question</button>
+            </div>
         </div>
-
-        <div class="form-group mt-3">
-            <span> <i class="fas fa-paperclip"></i> Attachment </span> <br>
-            <input type="file" name="attachment" id="attachment" class="mt-3">
-        </div>
-
-       
-
     </div>
-</div>
+</form>
 
 @include('layouts.scripts') 
 

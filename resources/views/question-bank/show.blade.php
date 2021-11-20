@@ -20,7 +20,7 @@
 <div class="card shadow-sm mt-3">
     <div class="card-body">
         <div class="p-3 border rounded">
-            <strong> Instruction </strong>
+            <strong> Instruction - </strong> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span>
             <p class="mt-3"> {!! $question->instruction !!} </p>
             <hr>
             <small> <i class="fas fa-circle"></i>  Points: {{$question->max_points}}</small>
@@ -33,33 +33,36 @@
                 <a href="{{route('downloads.question-attachment',$question->attachment)}}" class="text-info"> <i class="fas fa-download"></i> Download Attached File </a>
             @endif
         </div>
-        <div class="p-3 border mt-3 rounded">
-            <strong> Options </strong>
-            <ol type="a">
-                @if ($question->option_1)
-                    <li> {{$question->option_1}} </li>
-                @endif
-                @if ($question->option_2)
-                    <li> {{$question->option_2}} </li>
-                @endif
-                @if ($question->option_3)
-                    <li> {{$question->option_3}} </li>
-                @endif
-                @if ($question->option_4)
-                    <li> {{$question->option_4}} </li>
-                @endif
-                @if ($question->option_5)
-                    <li> {{$question->option_5}} </li>
-                @endif
-                @if ($question->option_6)
-                    <li> {{$question->option_6}} </li>
-                @endif
-            </ol>
-        </div>
+
+        @if ($question->question_type == 'mcq' || $question->question_type == 'tf')
+            <div class="p-3 border mt-3 rounded">
+                <strong> Options </strong>
+                <ol type="a">
+                    @if ($question->option_1)
+                        <li> {{$question->option_1}} </li>
+                    @endif
+                    @if ($question->option_2)
+                        <li> {{$question->option_2}} </li>
+                    @endif
+                    @if ($question->option_3)
+                        <li> {{$question->option_3}} </li>
+                    @endif
+                    @if ($question->option_4)
+                        <li> {{$question->option_4}} </li>
+                    @endif
+                    @if ($question->option_5)
+                        <li> {{$question->option_5}} </li>
+                    @endif
+                    @if ($question->option_6)
+                        <li> {{$question->option_6}} </li>
+                    @endif
+                </ol>
+            </div>
+        @endif
 
         <div class="p-3 border mt-3 rounded">
             <strong> Correct Answer : </strong>
-            {{$question->answer}}
+            {{$question->answer ?? 'Not Available'}}
         </div>
     </div>
 </div>

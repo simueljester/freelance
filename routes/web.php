@@ -21,10 +21,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'examination', 'as' => 'examination.'], function() {
-    Route::get('/', ['as' => 'index', 'uses' => 'ExaminationController@index']);
-});
-
+//Question Bank Routes
 Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'QuestionBankController@index']);
     Route::get('/my-questions', ['as' => 'my-questions', 'uses' => 'QuestionBankController@myQuestionBank']);
@@ -44,12 +41,14 @@ Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function()
 });
 
 
+//Groups Routes
 Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'GroupController@index']);
     Route::get('/create', ['as' => 'create', 'uses' => 'GroupController@create']);
     Route::post('/save', ['as' => 'save', 'uses' => 'GroupController@save']);
     Route::get('/edit/{group}', ['as' => 'edit', 'uses' => 'GroupController@edit']);
     Route::post('/update', ['as' => 'update', 'uses' => 'GroupController@update']);
+    Route::get('/show/{group}', ['as' => 'show', 'uses' => 'GroupController@show']);
 
     Route::group(['prefix' => 'group-assignment', 'as' => 'group-assignment.'], function() {
         Route::get('/{group}', ['as' => 'index', 'uses' => 'GroupAssignmentController@index']);
@@ -59,6 +58,25 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     });
 });
 
+
+//Examination Routes
+Route::group(['prefix' => 'examination', 'as' => 'examination.'], function() {
+    Route::get('/', ['as' => 'index', 'uses' => 'ExaminationController@index']);
+    Route::get('/create', ['as' => 'create', 'uses' => 'ExaminationController@create']);
+    Route::post('/save', ['as' => 'save', 'uses' => 'ExaminationController@save']);
+    Route::get('/show/{exam}', ['as' => 'show', 'uses' => 'ExaminationController@show']);
+    Route::get('/edit/{exam}', ['as' => 'edit', 'uses' => 'ExaminationController@edit']);
+    Route::post('/update', ['as' => 'update', 'uses' => 'ExaminationController@update']);
+    Route::get('/delete/{exam}', ['as' => 'delete', 'uses' => 'ExaminationController@delete']);
+
+    Route::group(['prefix' => 'examination-assignment', 'as' => 'examination-assignment.'], function() {
+        Route::get('/{exam}', ['as' => 'index', 'uses' => 'QuestionAssignmentController@index']);
+        Route::post('/assign-questions', ['as' => 'assign-questions', 'uses' => 'QuestionAssignmentController@assignQuestions']);
+        Route::post('/unassign-questions', ['as' => 'unassign-questions', 'uses' => 'QuestionAssignmentController@unassignQuestions']);
+    });
+});
+
+//User Managament Routes
 Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], function() {
     Route::get('/', ['as' => 'index', 'uses' => 'UserController@index']);
     Route::get('/create', ['as' => 'create', 'uses' => 'UserController@create']);
@@ -68,8 +86,7 @@ Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], functi
     Route::post('/delete', ['as' => 'delete', 'uses' => 'UserController@delete']);
 });
 
-
-
+// Other Routes
 Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
     Route::get('/{question_attachment}', ['as' => 'question-attachment', 'uses' => 'DownloadController@questionAttachment']);
 });

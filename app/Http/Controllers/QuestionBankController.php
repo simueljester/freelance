@@ -16,12 +16,12 @@ class QuestionBankController extends Controller
     }
 
     public function index(){
-        $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator')->orderBy('created_at','DESC')->get();
+        $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator')->orderBy('created_at','DESC')->paginate(10);
         return view('question-bank.all-questions',compact('all_questions'));
     }
 
     public function myQuestionBank(){
-        $my_questions = app(QuestionBankRepository::class)->query()->with('user_creator')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->get();
+        $my_questions = app(QuestionBankRepository::class)->query()->with('user_creator')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->paginate(10);
         return view('question-bank.my-questions',compact('my_questions'));
     }
 
@@ -43,6 +43,7 @@ class QuestionBankController extends Controller
 
     public function save(Request $request){
 
+        
         $request->validate([
             'instruction' => 'required',
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
@@ -62,7 +63,7 @@ class QuestionBankController extends Controller
             'option_5'          => $request->option_5,
             'option_6'          => $request->option_6,
             'answer'            => $request->correct_answer,
-            'max_points'        => 1,
+            'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id
         ];
@@ -105,7 +106,7 @@ class QuestionBankController extends Controller
             'option_5'          => $request->option_5,
             'option_6'          => $request->option_6,
             'answer'            => $request->correct_answer,
-            'max_points'        => 1,
+            'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id
         ];

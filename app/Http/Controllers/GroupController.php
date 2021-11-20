@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exam;
 use App\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Repositories\GroupRepository;
+use App\Http\Repositories\GroupAssignmentRepository;
 
 class GroupController extends Controller
 {
@@ -17,7 +19,7 @@ class GroupController extends Controller
 
     public function index(){
         
-        $groups = app(GroupRepository::class)->query()->whereCreatorId(Auth::user()->id)->get();
+        $groups = app(GroupRepository::class)->query()->with('user_creator')->whereCreatorId(Auth::user()->id)->get();
       
         return view('groups.index',compact('groups'));
 
@@ -70,6 +72,13 @@ class GroupController extends Controller
 
     }
 
+    public function show(Group $group){
+
+        $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
+        $created_exam = Exam::whereGroupId($group->id)->get();
+       
+        return view('groups.show',compact('group','assigned_users','created_exam'));
+    }
     
 
     

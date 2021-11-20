@@ -24,7 +24,9 @@
         @endforelse
     </tbody>
 </table>
-
+<div>
+    {{ $my_questions->links() }}
+</div>
 
 
 @endsection

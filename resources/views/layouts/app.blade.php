@@ -36,35 +36,60 @@
 
          
             <li class="nav-item">
-                <a class="nav-link active" href="{{route('home')}}">
+                <a class="nav-link " href="{{route('home')}}">
                     <i class="fas fa-tachometer-alt text-white"></i>
-                    <span>Dashboard</span></a>
+                    @if(request()->is(['home', 'home/*']))
+                        <span class="text-warning"> <strong> Dashboard </strong> </span>
+                    @else
+                        <span> Dashboard </span>
+                    @endif 
+                </a>
             </li>
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('question-bank.index')}}">
                     <i class="fas fa-globe text-white"></i>
-                    <span>Question Bank</span></a>
+                    @if(request()->is(['question-bank', 'question-bank/*']))
+                        <span class="text-warning"> <strong> Question Bank </strong>  </span>
+                    @else
+                        <span>Question Bank</span>
+                    @endif
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('groups.index')}}">
+                    <i class="fas fa-cubes text-white"></i>
+                 
+                    @if(request()->is(['groups', 'groups/*']))
+                        <span class="text-warning"> <strong> Groups </strong>  </span>
+                    @else
+                    <span>Groups</span>
+                @endif
+                </a>
             </li>
 
   
             <li class="nav-item">
                 <a class="nav-link" href="{{route('examination.index')}}">
                     <i class="fas fa-paste text-white"></i>
-                    <span>Examination</span></a>
+                    @if(request()->is(['examination', 'examination/*']))
+                        <span class="text-warning"> <strong> Examination </strong> </span>
+                    @else
+                        <span>Examination</span>
+                    @endif
+                </a>
             </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('groups.index')}}">
-                    <i class="fas fa-cubes text-white"></i>
-                    <span>Groups</span></a>
-            </li>
-
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('user-management.index')}}">
                     <i class="fas fa-users text-white"></i>
-                    <span>User Management</span></a>
+                    @if(request()->is(['user-management', 'user-management/*']))
+                        <span class="text-warning"> <strong> User Management </strong> </span>
+                    @else
+                        <span> User Management </span>
+                    @endif
+                </a>
             </li>
 
          

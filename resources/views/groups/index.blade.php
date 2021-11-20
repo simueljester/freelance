@@ -26,8 +26,11 @@
         <div class="col-sm-3">
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
-                    <a href="{{route('groups.group-assignment.index',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a>
+                    <a href="{{route('groups.show',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a> 
+                    {{-- <a href="{{route('groups.group-assignment.index',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a> --}}
                     <a href="{{route('groups.edit',$group)}}" class="float-right"> <i class="fas fa-edit text-info"></i> </a>
+                    <br>
+                    <span> {{$group->user_creator->name}} </span>
                     <hr>
                     <small> {!! $group->description !!} </small>
                 </div>

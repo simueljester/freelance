@@ -38,7 +38,7 @@ class GroupAssignmentController extends Controller
 
         $data = app(GroupAssignmentRepository::class)->assignUsers($request);
  
-        return redirect()->route('groups.group-assignment.index',$request->group_id)->with('success', 'Users successfully assigned to Group');
+        return redirect()->route('groups.show',$request->group_id)->with('success', 'Users successfully assigned to Group');
    
     }
 
@@ -50,12 +50,11 @@ class GroupAssignmentController extends Controller
                 $assignment->delete();
             }
     
-            return redirect()->route('groups.group-assignment.index',$request->group_id)->with('success', 'Users successfully unassigned to Group');
+            return redirect()->route('groups.show',$request->group_id)->with('success', 'Users successfully unassigned to Group');
 
         }else{
-            return redirect()->route('groups.group-assignment.index',$request->group_id)->with('error', 'Must select user to assign');
+            return redirect()->route('groups.show',$request->group_id)->with('error', 'Must select user to unassign');
         }
         
-
     }
 }

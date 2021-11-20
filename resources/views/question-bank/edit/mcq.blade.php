@@ -35,7 +35,7 @@
             </div>
     
             <div class="form-group mt-3">
-                <span> <i class="fas fa-paperclip"></i> New Attachment </span>  
+                <span> <i class="fas fa-paperclip"></i> Attachment </span>  
                 @if ($question->attachment)
                     - <a href="{{route('downloads.question-attachment',$question->attachment)}}" class="text-info"> {{$question->attachment}} </a>
                 @endif

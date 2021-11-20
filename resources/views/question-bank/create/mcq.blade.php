@@ -107,7 +107,7 @@
             </div> 
     
             <div>
-                <a href="#" class="btn btn-outline-secondary"> Cancel </a>
+                <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
                 <button class="btn btn-info"> Save Question</button>
             </div>
         </div>

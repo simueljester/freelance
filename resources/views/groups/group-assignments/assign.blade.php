@@ -12,7 +12,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
-            <li class="breadcrumb-item"><a href="{{route('groups.group-assignment.index',$group->id)}}"> {{$group->name}}  </a></li>
+            <li class="breadcrumb-item"><a href="{{route('groups.show',$group->id)}}"> {{$group->name}}  </a></li>
             <li class="breadcrumb-item active" aria-current="page"> Assign Users </li>
         </ol>
     </nav>
@@ -25,8 +25,8 @@
     <div class="card shadow-sm mt-3 p-1"> 
         <div class="card-body">
             
-            <strong> Available Users </strong>
-    
+            <strong> Available Users </strong> <br>
+            <small> Assign users to this group </small>
             <table class="table table-hover mt-3">
                 <thead>
                     <th> Name </th>
@@ -55,7 +55,7 @@
                 </tbody>
             </table>
             <hr>
-            <a href="{{route('groups.group-assignment.index',$group->id)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
+            <a href="{{route('groups.show',$group->id)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             <button class="btn btn-info btn-sm"> Assign User </button>
         </div>
     </div>

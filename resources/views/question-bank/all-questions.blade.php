@@ -25,7 +25,9 @@
     </tbody>
 </table>
 
-
+<div>
+    {{ $all_questions->links() }}
+</div>
 
 @endsection
 
