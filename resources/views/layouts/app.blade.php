@@ -46,6 +46,7 @@
                 </a>
             </li>
 
+            @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{route('question-bank.index')}}">
                     <i class="fas fa-globe text-white"></i>
@@ -56,7 +57,9 @@
                     @endif
                 </a>
             </li>
+            @endif
 
+            @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{route('groups.index')}}">
                     <i class="fas fa-cubes text-white"></i>
@@ -64,12 +67,25 @@
                     @if(request()->is(['groups', 'groups/*']))
                         <span class="text-warning"> <strong> Groups </strong>  </span>
                     @else
-                    <span>Groups</span>
-                @endif
+                        <span>Groups</span>
+                    @endif
                 </a>
             </li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('groups.user-group.user-group')}}">
+                        <i class="fas fa-cubes text-white"></i>
+                    
+                        @if(request()->is(['groups', 'groups/*']))
+                            <span class="text-warning"> <strong> My Groups </strong>  </span>
+                        @else
+                            <span> My Groups</span>
+                        @endif
+                    </a>
+                </li>
+            @endif
 
-  
+            {{-- @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{route('examination.index')}}">
                     <i class="fas fa-paste text-white"></i>
@@ -80,22 +96,26 @@
                     @endif
                 </a>
             </li>
+            @endif --}}
 
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('user-management.index')}}">
-                    <i class="fas fa-users text-white"></i>
-                    @if(request()->is(['user-management', 'user-management/*']))
-                        <span class="text-warning"> <strong> User Management </strong> </span>
-                    @else
-                        <span> User Management </span>
-                    @endif
-                </a>
-            </li>
+            @if (Auth::user()->user_instance->role_id == 1)
+                <li class="nav-item" >
+                    <a class="nav-link" href="{{route('user-management.index')}}">
+                        <i class="fas fa-users text-white"></i>
+                        @if(request()->is(['user-management', 'user-management/*']))
+                            <span class="text-warning"> <strong> User Management </strong> </span>
+                        @else
+                            <span> User Management </span>
+                        @endif
+                    </a>
+                </li>
+            @endif
+          
 
          
             <li class="nav-item">
              
-                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault();
+                <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                 </a>

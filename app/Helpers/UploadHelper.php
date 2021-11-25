@@ -11,4 +11,10 @@ class UploadHelper {
         $att->move(public_path('/attachments'), $name);
         return $name;
     }
+
+    public static function uploadWebShot($att,$file_name)
+    {
+        $att->move(public_path('/shots'), $file_name);
+        return $file_name;
+    }
 }

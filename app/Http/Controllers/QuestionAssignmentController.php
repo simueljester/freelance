@@ -23,7 +23,7 @@ class QuestionAssignmentController extends Controller
     
         $data = app(QuestionAssignmentRepository::class)->assignQuestions($request);
  
-        return redirect()->route('examination.show',$request->exam_id)->with('success', 'Questions successfully assigned to Exam');
+        return redirect()->route('groups.exam.show',$request->exam_id)->with('success', 'Questions successfully assigned to Exam');
     }
 
     public function unassignQuestions(Request $request){
@@ -36,10 +36,10 @@ class QuestionAssignmentController extends Controller
             }
     
             app(QuestionAssignmentRepository::class)->updateExamTotalScore($request->exam_id);
-            return redirect()->route('examination.show',$request->exam_id)->with('success', 'Questions successfully unassigned to Exam');
+            return redirect()->route('groups.exam.show',$request->exam_id)->with('success', 'Questions successfully unassigned to Exam');
 
         }else{
-            return redirect()->route('examination.show',$request->exam_id)->with('error', 'Must select questions to unassign');
+            return redirect()->route('groups.exam.show',$request->exam_id)->with('error', 'Must select questions to unassign');
         }
 
     }

@@ -15,24 +15,22 @@
         </ol>
     </nav>
 </div>
-
-<div class="mt-3">
-    <a href="{{route('groups.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New Group </a>
-</div>
  
 
 <div class="row">
-    @forelse ($groups as $group)
+    @forelse ($my_group_assignments as $assignment)
         <div class="col-sm-3">
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
-                    <a href="{{route('groups.show',$group)}}"> <strong class="text-info" style="font-size:18px;"> <i class="fas fa-cube"></i> {{$group->name}} </strong> </a> 
-                    {{-- <a href="{{route('groups.group-assignment.index',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a> --}}
-                    <a href="{{route('groups.edit',$group)}}" class="float-right"> <i class="fas fa-edit text-info"></i> </a>
+                    <a href="{{route('groups.user-group.show',$assignment->group)}}">
+                        <strong class="text-info" style="font-size:18px;"> 
+                            <i class="fas fa-cube"></i> {{$assignment->group->name}} 
+                        </strong>
+                    </a>
                     <br>
-                    <span> {{$group->user_creator->name}} </span>
+                    <span> {{$assignment->group->user_creator->name}} </span>
                     <hr>
-                    <small> {!! $group->description !!} </small>
+                    <small> {!! $assignment->group->description ?? 'No description' !!} </small>
                 </div>
             </div>
         </div>

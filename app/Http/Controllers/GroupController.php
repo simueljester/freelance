@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\User;
 use App\Group;
+use App\Folder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Repositories\GroupRepository;
+use App\Http\Repositories\FolderRepository;
+use App\Http\Repositories\GroupModuleRepository;
+use App\Http\Repositories\ExamAssignmentRepository;
 use App\Http\Repositories\GroupAssignmentRepository;
 
 class GroupController extends Controller
@@ -75,12 +80,75 @@ class GroupController extends Controller
     public function show(Group $group){
 
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
-        $created_exam = Exam::whereGroupId($group->id)->get();
-       
-        return view('groups.show',compact('group','assigned_users','created_exam'));
-    }
+        $folders = app(FolderRepository::class)->query()->whereGroupId($group->id)->whereParentId(0)->get();
+        $this_folder = null;
+        $group_modules = app(GroupModuleRepository::class)->query()->with('exam')->whereGroupId($group->id)->whereFolderId(0)->get();
     
+        return view('groups.folder-content',compact('group','assigned_users','this_folder','folders','group_modules'));
+
+    }
+
+    public function showFolder(Folder $folder){
+    
+        $this_folder = $folder->load('group','recursiveChildFolders','parent');
+        $get_depth = collect($this->getTopParentArray($this_folder,$arr = []));
+        $get_depth =  $get_depth->sortBy('id');
+        $group = $this_folder->group;
+
+        $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($this_folder->group_id)->get();
+        $created_exam = Exam::whereGroupId($this_folder->group_id)->get();
+
+        $group_modules = app(GroupModuleRepository::class)->query()->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
+        
+        return view('groups.folder-content',compact('group','this_folder','assigned_users','created_exam','get_depth','group_modules'));
+    }
+
+ 
+
+    public function getTopParentArray($this_folder,$arr){
+        
+        if ($this_folder->parent_id == null){
+            return $arr;
+        }
+
+        $parent = Folder::find($this_folder->parent_id);
+        $arr[] = (object)[
+            'id' => $parent->id,
+            'name' => $parent->name
+        ];
+
+        return $this->getTopParentArray($parent, $arr);
+    }  
+
+
+    public function userGroup(){
+
+        $my_group_assignments =  app(GroupAssignmentRepository::class)->query()->with('group')->whereUserId(Auth::user()->id)->get();
+        return view('groups.user.index',compact('my_group_assignments'));
+    
+    }
+
+    public function showUserGroup(Group $group){
+       
+        $my_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
+       
+        return view('groups.user.show',compact('group','assigned_users','my_exam_assignments'));
+      
+    }
+
+
+    public function userExamAssignments(Group $group, User $user){
+        
+        $user_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereGroupId($group->id)->whereUserId($user->id)->get();
+        return view('groups.user.exam.assignments',compact('user_exam_assignments','group','user'));
+   
+    }
+
+
 
     
+    
+
 
 }

@@ -27,7 +27,7 @@
               <a class="dropdown-item" href="{{route('question-bank.create.mcq')}}"> Add Multiple Choice</a>
               <a class="dropdown-item" href="{{route('question-bank.create.tf')}}"> Add True or False</a>
               <a class="dropdown-item" href="{{route('question-bank.create.sa')}}"> Add Identification </a>
-              <a class="dropdown-item" href="{{route('question-bank.create.essay')}}"> Add Essay </a>
+              {{-- <a class="dropdown-item" href="{{route('question-bank.create.essay')}}"> Add Essay </a> --}}
             </div>
         </div>
 

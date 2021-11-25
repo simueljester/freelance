@@ -32,4 +32,14 @@ class ExamAssignment extends Model
     {
         return $this->belongsTo('App\GroupAssignment', 'group_assignment_id', 'id');
     }
+
+    public function user_answers()
+    {
+        return $this->HasMany('App\ExamAnswers', 'exam_assignment_id', 'id');
+    }
+
+    public function webShots()
+    {
+        return $this->HasMany('App\ExamAssignmentWebShot', 'exam_assignment_id', 'id');
+    }
 }

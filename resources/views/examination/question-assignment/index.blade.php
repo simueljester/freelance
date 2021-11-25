@@ -11,15 +11,18 @@
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('examination.index')}}">Examination</a></li>
-            <li class="breadcrumb-item"><a href="{{route('examination.show',$exam)}}"> {{$exam->name}} </a></li>
-            <li class="breadcrumb-item active" aria-current="page"> Assign Questions </li>
+            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
+            <li class="breadcrumb-item"><a href="{{route('groups.show',$exam->group)}}"> {{$exam->group->name}} </a></li>
+            <li class="breadcrumb-item active" aria-current="page"> <a href="{{route('groups.exam.show',$exam)}}"> {{$exam->name}} </a> </li>
+            <li class="breadcrumb-item active" aria-current="page"> Edit</li>
+
+    
         </ol>
     </nav>
 </div>
 
 
-<form action="{{route('examination.examination-assignment.assign-questions')}}" method="POST">
+<form action="{{route('groups.exam.examination-assignment.assign-questions')}}" method="POST">
     @csrf
     @method('POST')
     <div class="card shadow-sm mt-3">
@@ -29,7 +32,7 @@
         
             <div class="mt-4">
                 <button class="btn btn-info btn-sm"> Assign Selected Questions </button>
-                <a href="{{route('examination.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
+                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             </div>
             <table class="table table-hover mt-3">
                 <thead>
@@ -58,7 +61,7 @@
             </table>
             <div class="mt-3">
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
-                <a href="{{route('examination.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
+                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
                 <button class="btn btn-info btn-sm"> Assign Selected Questions </button>
             </div>
         </div>
