@@ -46,6 +46,17 @@
                 </a>
             </li>
 
+            <li class="nav-item">
+                <a class="nav-link " href="{{route('subjects.index')}}">
+                    <i class="fas fa-book-reader text-white"></i>
+                    @if(request()->is(['subjects', 'subjects/*']))
+                        <span class="text-warning"> <strong> Subjects </strong> </span>
+                    @else
+                        <span> Subjects </span>
+                    @endif 
+                </a>
+            </li>
+
             @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{route('question-bank.index')}}">

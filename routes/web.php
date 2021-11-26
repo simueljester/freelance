@@ -16,10 +16,19 @@ Route::get('/', function () {
 });
 
 
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Subjects
+
+Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {
+    Route::get('/',                 ['as' => 'index',       'uses' => 'SubjectController@index']);
+    Route::get('/create',           ['as' => 'create',      'uses' => 'SubjectController@create']);
+    Route::post('/save',            ['as' => 'save',        'uses' => 'SubjectController@save']);
+    Route::get('/show/{subject}',   ['as' => 'show',        'uses' => 'SubjectController@show']);
+    Route::post('/update',          ['as' => 'update',      'uses' => 'SubjectController@update']);
+});
 
 //Question Bank Routes
 Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function() {
