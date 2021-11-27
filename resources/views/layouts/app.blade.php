@@ -20,7 +20,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center">
@@ -37,33 +37,41 @@
          
             <li class="nav-item">
                 <a class="nav-link " href="{{route('home')}}">
-                    <i class="fas fa-tachometer-alt text-white"></i>
+                    
                     @if(request()->is(['home', 'home/*']))
-                        <span class="text-warning"> <strong> Dashboard </strong> </span>
+                        <i class="fas fa-tachometer-alt text-info"></i>
+                        <span class="text-info"> <strong> Dashboard </strong> </span>
                     @else
+                        <i class="fas fa-tachometer-alt text-white"></i>
                         <span> Dashboard </span>
                     @endif 
                 </a>
             </li>
 
-            <li class="nav-item">
-                <a class="nav-link " href="{{route('subjects.index')}}">
-                    <i class="fas fa-book-reader text-white"></i>
-                    @if(request()->is(['subjects', 'subjects/*']))
-                        <span class="text-warning"> <strong> Subjects </strong> </span>
-                    @else
-                        <span> Subjects </span>
-                    @endif 
-                </a>
-            </li>
+            @if (Auth::user()->user_instance->role_id == 1)
+                <li class="nav-item">
+                    <a class="nav-link " href="{{route('subjects.index')}}">
+                    
+                        @if(request()->is(['subjects', 'subjects/*']))
+                            <i class="fas fa-book-reader text-info"></i>
+                            <span class="text-info"> <strong> Subjects </strong> </span>
+                        @else
+                            <i class="fas fa-book-reader text-white"></i>
+                            <span> Subjects </span>
+                        @endif 
+                    </a>
+                </li>
+            @endif
 
             @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{route('question-bank.index')}}">
-                    <i class="fas fa-globe text-white"></i>
+                
                     @if(request()->is(['question-bank', 'question-bank/*']))
-                        <span class="text-warning"> <strong> Question Bank </strong>  </span>
+                        <i class="fas fa-globe text-info"></i>
+                        <span class="text-info"> <strong> Question Bank </strong>  </span>
                     @else
+                        <i class="fas fa-globe text-white"></i>
                         <span>Question Bank</span>
                     @endif
                 </a>
@@ -73,11 +81,13 @@
             @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">
                 <a class="nav-link" href="{{route('groups.index')}}">
-                    <i class="fas fa-cubes text-white"></i>
+                    
                  
                     @if(request()->is(['groups', 'groups/*']))
-                        <span class="text-warning"> <strong> Groups </strong>  </span>
+                        <i class="fas fa-cubes text-info"></i>
+                        <span class="text-info"> <strong> Groups </strong>  </span>
                     @else
+                        <i class="fas fa-cubes text-white"></i>
                         <span>Groups</span>
                     @endif
                 </a>
@@ -85,11 +95,13 @@
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('groups.user-group.user-group')}}">
-                        <i class="fas fa-cubes text-white"></i>
+                     
                     
                         @if(request()->is(['groups', 'groups/*']))
-                            <span class="text-warning"> <strong> My Groups </strong>  </span>
+                            <i class="fas fa-cubes text-info"></i>
+                            <span class="text-info"> <strong> My Groups </strong>  </span>
                         @else
+                            <i class="fas fa-cubes text-white"></i>
                             <span> My Groups</span>
                         @endif
                     </a>
@@ -112,10 +124,11 @@
             @if (Auth::user()->user_instance->role_id == 1)
                 <li class="nav-item" >
                     <a class="nav-link" href="{{route('user-management.index')}}">
-                        <i class="fas fa-users text-white"></i>
                         @if(request()->is(['user-management', 'user-management/*']))
-                            <span class="text-warning"> <strong> User Management </strong> </span>
+                            <i class="fas fa-users text-info"></i>
+                            <span class="text-info"> <strong> User Management </strong> </span>
                         @else
+                            <i class="fas fa-users text-white"></i>
                             <span> User Management </span>
                         @endif
                     </a>
@@ -144,8 +157,8 @@
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
-            <div id="content " class="p-3">
-
+            <div id="content" class="p-3">
+                
                 @if(session()->has('success'))
                     <div class="alert alert-success" role="alert">
                         <i class="fas fa-check-circle"></i> {{ session()->get('success') }}

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Subject;
 use App\Question;
 use Illuminate\Http\Request;
 use App\Helpers\UploadHelper;
@@ -15,30 +16,52 @@ class QuestionBankController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator')->orderBy('created_at','DESC')->paginate(10);
-        return view('question-bank.all-questions',compact('all_questions'));
+    public function index(Request $request){
+     
+        $subject_filter = $request->subject_filter ?? 0;
+
+        $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
+        ->when($subject_filter != 0, function ($query) use ($subject_filter) {
+            $query->where('subject_id', $subject_filter);
+        })
+        ->orderBy('created_at','DESC')
+        ->paginate(10);
+        
+        $all_subjects = Subject::all();
+        return view('question-bank.all-questions',compact('all_questions','all_subjects'));
     }
 
-    public function myQuestionBank(){
-        $my_questions = app(QuestionBankRepository::class)->query()->with('user_creator')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->paginate(10);
-        return view('question-bank.my-questions',compact('my_questions'));
+    public function myQuestionBank(Request $request){
+        $subject_filter = $request->subject_filter ?? 0;
+        $my_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
+        ->when($subject_filter != 0, function ($query) use ($subject_filter) {
+            $query->where('subject_id', $subject_filter);
+        })
+        ->whereCreator(Auth::user()->id)
+        ->orderBy('created_at','DESC')
+        ->paginate(10);
+        $all_subjects = Subject::all();
+        return view('question-bank.my-questions',compact('my_questions','all_subjects'));
     }
 
     public function createMcq(){
-        return view('question-bank.create.mcq');
+        $subjects = Subject::all();
+        return view('question-bank.create.mcq',compact('subjects'));
     }
 
     public function createTf(){
-        return view('question-bank.create.tf');
+        $subjects = Subject::all();
+        return view('question-bank.create.tf',compact('subjects'));
     }
 
     public function createSa(){
-        return view('question-bank.create.sa');
+        $subjects = Subject::all();
+        return view('question-bank.create.sa',compact('subjects'));
     }
 
     public function createEssay(){
-        return view('question-bank.create.essay');
+        $subjects = Subject::all();
+        return view('question-bank.create.essay',compact('subjects'));
     }
 
     public function save(Request $request){
@@ -48,7 +71,8 @@ class QuestionBankController extends Controller
             'instruction' => 'required',
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
             'option_1' => 'required_if:question_type,mcq',
-            'option_2' => 'required_if:question_type,mcq'
+            'option_2' => 'required_if:question_type,mcq',
+            'subject'   => 'required'
         ]);
 
         $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : null;
@@ -65,7 +89,8 @@ class QuestionBankController extends Controller
             'answer'            => $request->correct_answer,
             'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
             'attachment'        => $attachment,
-            'creator'           => Auth::user()->id
+            'creator'           => Auth::user()->id,
+            'subject_id'        => $request->subject
         ];
 
         $saved = app(QuestionBankRepository::class)->save($data);

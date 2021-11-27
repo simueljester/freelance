@@ -30,7 +30,9 @@
                     {{-- <a href="{{route('groups.group-assignment.index',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a> --}}
                     <a href="{{route('groups.edit',$group)}}" class="float-right"> <i class="fas fa-edit text-info"></i> </a>
                     <br>
-                    <span> {{$group->user_creator->name}} </span>
+                    <small> <i class="fas fa-book-reader"></i> {{$group->subject->name}} </small>
+                    &nbsp&nbsp
+                    <small> <i class="fas fa-user"></i> {{$group->user_creator->name}} </small>
                     <hr>
                     <small> {!! $group->description !!} </small>
                 </div>

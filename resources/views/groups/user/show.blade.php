@@ -27,8 +27,37 @@
     </div>
 </div>
 
+<div class="card shadow-sm mt-3">
+    <div class="card-body">
+        <strong> {{$group->name}} Resources </strong>
+        <ul class="nav nav-tabs mt-3" role="tablist">
+       
+            <li class="nav-item">
+                <a class="nav-link {{Route::is('groups.user-group.list-exam') ? 'active' : ''}}" href="{{route('groups.user-group.list-exam',$group)}}" > <i class="fas fa-copy text-primary"></i> Assessments </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" > <i class="fas fa-link text-danger"></i> Links </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="#" > <i class="fas fa-file-signature text-warning"></i> Learning Materials </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link {{Route::is('groups.user-group.list-discussion') ? 'active' : ''}}" href="{{route('groups.user-group.list-discussion',$group)}}" > <i class="fas fa-comment text-success"></i>  Discussions </a>
+            </li>
+          
+          </ul>
+          
+          <!-- Tab panes -->
+          <div class="tab-content border p-3 bg-light">
+            @yield('sub_content')
+          </div>
+    </div>
+</div>
 
-<div class="row">
+
+
+
+{{-- <div class="row">
     <div class="col-sm-8">
         <div class="card shadow-sm mt-3">
             <div class="card-body">
@@ -86,7 +115,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 

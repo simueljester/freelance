@@ -22,13 +22,16 @@
         <div class="col-sm-3">
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
-                    <a href="{{route('groups.user-group.show',$assignment->group)}}">
+                    <a href="{{route('groups.user-group.list-exam',$assignment->group)}}">
                         <strong class="text-info" style="font-size:18px;"> 
                             <i class="fas fa-cube"></i> {{$assignment->group->name}} 
                         </strong>
                     </a>
                     <br>
-                    <span> {{$assignment->group->user_creator->name}} </span>
+                    <small> <i class="fas fa-book-reader"></i> {{$assignment->group->subject->name}} </small>
+                    &nbsp&nbsp
+                    <small> <i class="fas fa-user"></i> {{$assignment->group->user_creator->name}}</small>
+                 
                     <hr>
                     <small> {!! $assignment->group->description ?? 'No description' !!} </small>
                 </div>

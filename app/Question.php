@@ -21,11 +21,17 @@ class Question extends Model
         'answer',
         'max_points',
         'attachment',
-        'creator'
+        'creator',
+        'subject_id'
     ];
 
     public function user_creator()
     {
         return $this->belongsTo('App\User', 'creator', 'id');
+    }
+
+    public function subject()
+    {
+        return $this->belongsTo('App\Subject', 'subject_id', 'id');
     }
 }

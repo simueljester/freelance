@@ -36,17 +36,12 @@
 @yield('folder')
 
 
-
-
-
-
-
 <!-- Modal members -->
 <form action="{{route('groups.group-assignment.unassign-users')}}" method="POST">
     @csrf
     @method("POST")
     
-    <div class="modal fade" id="assignUsers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="assignUsers" tabindex="-1" role="dialog" >
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

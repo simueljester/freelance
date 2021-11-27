@@ -17,6 +17,10 @@ class GroupModule extends Model
     {
         return $this->hasOne('App\Exam', 'id','module_specific_id');
     }
+    public function discussion()
+    {
+        return $this->hasOne('App\Discussion', 'id','module_specific_id');
+    }
 
     public function group()
     {

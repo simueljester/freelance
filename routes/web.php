@@ -28,6 +28,7 @@ Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {
     Route::post('/save',            ['as' => 'save',        'uses' => 'SubjectController@save']);
     Route::get('/show/{subject}',   ['as' => 'show',        'uses' => 'SubjectController@show']);
     Route::post('/update',          ['as' => 'update',      'uses' => 'SubjectController@update']);
+    Route::get('/delete/{subject}', ['as' => 'delete',      'uses' => 'SubjectController@delete']);
 });
 
 //Question Bank Routes
@@ -68,14 +69,17 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     });
 
     Route::group(['prefix' => 'user-group', 'as' => 'user-group.'], function() {
-        Route::get('/',                                     ['as' => 'user-group',      'uses' => 'GroupController@userGroup']);
-        Route::get('/show/{group}',                         ['as' => 'show',            'uses' => 'GroupController@showUserGroup']);
-        Route::get('/start-exam/{exam_assignment}',         ['as' => 'start-exam',      'uses' => 'ExaminationController@start']);
-        Route::post('/save-exam',                           ['as' => 'save-exam',       'uses' => 'ExaminationController@saveFinishedExam']);
-        Route::get('/view-exam-result/{exam_assignment}',   ['as' => 'view-exam-result','uses' => 'ExaminationController@viewExamResult']);
-        
-        Route::post('/exam/save-webshot',                   ['as' => 'save-webshot',       'uses' => 'WebshotController@save']);
+        Route::get('/',                                     ['as' => 'user-group',              'uses' => 'GroupController@userGroup']);
+
+        Route::get('/list-exam/{group}',                    ['as' => 'list-exam',               'uses' => 'GroupController@listExam']);
+        Route::get('/start-exam/{exam_assignment}',         ['as' => 'start-exam',              'uses' => 'ExaminationController@start']);
+        Route::post('/save-exam',                           ['as' => 'save-exam',               'uses' => 'ExaminationController@saveFinishedExam']);
+        Route::get('/view-exam-result/{exam_assignment}',   ['as' => 'view-exam-result',        'uses' => 'ExaminationController@viewExamResult']);
+        Route::post('/exam/save-webshot',                   ['as' => 'save-webshot',            'uses' => 'WebshotController@save']);
     
+        Route::get('/list-discussion/{group}',              ['as' => 'list-discussion',         'uses' => 'GroupController@listDiscussion']);
+        Route::get('/start-discussion/{discussion}',        ['as' => 'start-discussion',        'uses' => 'DiscussionController@start']);
+        Route::post('/save-discussion-post',                ['as' => 'save-discussion-post',    'uses' => 'DiscussionPostController@save']);
     });
 
     Route::group(['prefix' => 'exam', 'as' => 'exam.'], function() {
@@ -94,7 +98,17 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
             Route::post('/unassign-questions',  ['as' => 'unassign-questions',  'uses' => 'QuestionAssignmentController@unassignQuestions']);
         });
 
-        
+    });
+
+    Route::group(['prefix' => 'discussion', 'as' => 'discussion.'], function() {
+        Route::get('/group/{group}/folder/{folder}',            ['as' => 'create',          'uses' => 'DiscussionController@create']);
+        Route::post('/save',                                    ['as' => 'save',            'uses' => 'DiscussionController@save']);
+        Route::get('/show/discussion/{discussion}',             ['as' => 'show',            'uses' => 'DiscussionController@show']);
+        Route::get('/edit/discussion/{discussion}',             ['as' => 'edit',            'uses' => 'DiscussionController@edit']);
+        Route::post('/update',                                  ['as' => 'update',          'uses' => 'DiscussionController@update']);
+        Route::get('/delete/{discussion}',                      ['as' => 'delete',          'uses' => 'DiscussionController@delete']);
+        Route::post('/save-scores',                             ['as' => 'save-scores',     'uses' => 'DiscussionController@saveScores']);
+        Route::get('/generate-pdf/{discussion}',                ['as' => 'generate-pdf',    'uses' => 'DiscussionController@generatePdf']);
     });
 
 });
@@ -124,6 +138,8 @@ Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], functi
 // Other Routes
 Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
     Route::get('/{question_attachment}', ['as' => 'question-attachment', 'uses' => 'DownloadController@questionAttachment']);
+    Route::get('/{discussion_attachment}', ['as' => 'discussion-attachment', 'uses' => 'DownloadController@discussionAttachment']);
+  
 });
 
 

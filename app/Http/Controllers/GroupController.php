@@ -6,6 +6,7 @@ use App\Exam;
 use App\User;
 use App\Group;
 use App\Folder;
+use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Repositories\GroupRepository;
@@ -13,6 +14,7 @@ use App\Http\Repositories\FolderRepository;
 use App\Http\Repositories\GroupModuleRepository;
 use App\Http\Repositories\ExamAssignmentRepository;
 use App\Http\Repositories\GroupAssignmentRepository;
+use App\Http\Repositories\DiscussionAssignmentRepository;
 
 class GroupController extends Controller
 {
@@ -24,29 +26,30 @@ class GroupController extends Controller
 
     public function index(){
         
-        $groups = app(GroupRepository::class)->query()->with('user_creator')->whereCreatorId(Auth::user()->id)->get();
-      
+        $groups = app(GroupRepository::class)->query()->with('user_creator','subject')->whereCreatorId(Auth::user()->id)->get();
+       
         return view('groups.index',compact('groups'));
 
     }
 
     public function create(){
-
-        return view('groups.create');
-
+        $subjects = Subject::all();
+        return view('groups.create',compact('subjects'));
     }
 
     public function save(Request $request){
-
+     
         $request->validate([
             'name' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'subject'   => 'required'
         ]);
 
         $data = [
             'name'          => $request->name,
             'description'   => $request->description,
-            'creator_id'    =>  Auth::user()->id
+            'creator_id'    =>  Auth::user()->id,
+            'subject_id'    =>  $request->subject
         ];
 
         app(GroupRepository::class)->save($data);
@@ -82,8 +85,8 @@ class GroupController extends Controller
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
         $folders = app(FolderRepository::class)->query()->whereGroupId($group->id)->whereParentId(0)->get();
         $this_folder = null;
-        $group_modules = app(GroupModuleRepository::class)->query()->with('exam')->whereGroupId($group->id)->whereFolderId(0)->get();
-    
+        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion')->whereGroupId($group->id)->whereFolderId(0)->get();
+       
         return view('groups.folder-content',compact('group','assigned_users','this_folder','folders','group_modules'));
 
     }
@@ -98,7 +101,7 @@ class GroupController extends Controller
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($this_folder->group_id)->get();
         $created_exam = Exam::whereGroupId($this_folder->group_id)->get();
 
-        $group_modules = app(GroupModuleRepository::class)->query()->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
+        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion')->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
         
         return view('groups.folder-content',compact('group','this_folder','assigned_users','created_exam','get_depth','group_modules'));
     }
@@ -128,14 +131,20 @@ class GroupController extends Controller
     
     }
 
-    public function showUserGroup(Group $group){
+    public function listExam(Group $group){
        
         $my_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
-        $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
-       
-        return view('groups.user.show',compact('group','assigned_users','my_exam_assignments'));
+        return view('groups.user.exam.list',compact('group','my_exam_assignments'));
       
     }
+
+    public function listDiscussion(Group $group){
+
+        $my_discussion_assignments = app(DiscussionAssignmentRepository::class)->query()->with('discussion')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        return view('groups.user.discussion.list',compact('group','my_discussion_assignments'));
+    }
+
+    
 
 
     public function userExamAssignments(Group $group, User $user){

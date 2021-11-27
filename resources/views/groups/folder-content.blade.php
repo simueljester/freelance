@@ -4,26 +4,22 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-header"> 
-        <i class="fas fa-file-signature"></i> <strong> My Resources </strong>
+        <a href="{{route('groups.show',$group->id)}}"> Main </a>
+        @if ($this_folder)
+            &nbsp
+            @if ($this_folder)
+                @foreach ($get_depth as $depth)
+                    &nbsp <i class="fas fa-caret-right"></i> &nbsp <a href="{{route('groups.show-folder',$depth->id)}}"> {{$depth->name}} </a></li>
+                @endforeach
+                    &nbsp <i class="fas fa-caret-right"></i> &nbsp {{$this_folder->name}}</li>
+            @endif
+        @endif
     </div>
     <div class="card-body">
         
         <div class="mt-1">
 
-            {{-- Folder path or breadcrumbs  --}}
-            @if ($this_folder)
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="{{route('groups.show',$group->id)}}">{{$group->name}}</a></li>
-                    @if ($this_folder)
-                        @foreach ($get_depth as $depth)
-                            <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-folder text-warning"></i> &nbsp <a href="{{route('groups.show-folder',$depth->id)}}"> {{$depth->name}} </a></li>
-                        @endforeach
-                        <li class="breadcrumb-item active" aria-current="page"> <i class="fas fa-folder text-warning"></i>  &nbsp {{$this_folder->name}}</li>
-                    @endif
-                </ol>
-            </nav>
-            @endif
+        
             {{-- Folder Child folders  --}}
             <div class="row">
                 @if ($this_folder)
@@ -55,7 +51,7 @@
                 <div class="col-sm-2">
                     <div class="card bg-light" style="cursor:pointer" data-toggle="modal" data-target="#createFolder">
                         <div class="card-body">
-                            <i class="fas fa-plus"></i> <small> <i> Create new folder  </i>  </small> 
+                            <i class="fas fa-plus"></i> <small> <i> New folder  </i>  </small> 
                         </div>
                     </div>
                 </div>
@@ -73,19 +69,38 @@
                             <div class="card-header bg-light text-dark p-2">
                                 <i class="fas fa-copy text-primary fa-2x m-1"></i> 
                                  <a href="{{route('groups.exam.show',$module->exam)}}" class="text-primary" style="  text-decoration: none;"> 
-                                    <strong class="h5"> {{$module->exam->name}}  </strong> 
+                                    <strong > {{$module->exam->name}}  </strong> 
                                 </a> 
                             </div>
                             <div class="card-body">
-                                {{$module->exam->description}} 
+                                {{$module->exam->description ?? 'No description provided'}} 
                             </div>
                             <div class="card-footer">
                                 <i class="fas fa-calendar-alt"></i> {{$module->exam->created_at->format('Y-m-d')}}
                                 &nbsp&nbsp
                                 <i class="fas fa-hourglass-half"></i> {{$module->exam->duration}} minutes
                                 &nbsp&nbsp
-                                <i class="fas fa-star text-warning"></i> {{$module->exam->total_score}} max points
+                                <i class="fas fa-star text-warning"></i> {{$module->exam->total_score}} Total score
                              
+                            </div>
+                        </div>
+                        @break
+
+                    @case('discussion')
+                        <div class="card mt-3">
+                            <div class="card-header bg-light text-dark p-2">
+                                <i class="fas fa-comments fa-2x text-success m-1"></i> 
+                                 <a href="{{route('groups.discussion.show',$module->discussion)}}" class="text-primary" style="  text-decoration: none;"> 
+                                    <strong > {{$module->discussion->name}}  </strong> 
+                                </a> 
+                            </div>
+                            <div class="card-body">
+                                {!! $module->discussion->description ?? 'No description provided'!!} 
+                            </div>
+                            <div class="card-footer">
+                                <i class="fas fa-calendar-alt"></i> {{$module->discussion->created_at->format('Y-m-d')}}
+                                &nbsp&nbsp
+                                <i class="fas fa-star text-warning"></i> {{$module->discussion->total_score}} Total score
                             </div>
                         </div>
                         @break
@@ -164,7 +179,7 @@
             </div>
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
-                    <i class="fas fa-file-signature fa-2x text-info"></i>
+                    <i class="fas fa-file-signature fa-2x text-warning"></i>
                     <br>
                     <small> Upload learning materials such as docx, ppt, pdf or excel </small>
                     <a href="#" class="btn btn-info btn-sm btn-block mt-3"> Learning Materials </a>
@@ -175,7 +190,7 @@
                     <i class="fas fa-comments fa-2x text-success"></i> 
                     <br>
                     <small> Start a discussion with users </small>
-                    <a href="#" class="btn btn-info btn-sm btn-block mt-3"> Discussion </a>
+                    <a href="{{route('groups.discussion.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Discussion </a>
                 </div>
             </div>
         </div>

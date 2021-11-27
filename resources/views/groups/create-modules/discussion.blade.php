@@ -13,19 +13,19 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
             <li class="breadcrumb-item"><a href="{{route('groups.show',$group->id)}}"> {{$group->name}} </a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Exam </li>
+            <li class="breadcrumb-item active" aria-current="page"> Create Discussion </li>
         </ol>
     </nav>
 </div>
 
-{{-- Modal create exam  --}}
-<form action="{{route('groups.exam.save')}}" method="POST">
+{{-- Modal create discussion  --}}
+<form action="{{route('groups.discussion.save')}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method("POST")
    
     <div class="card mt-3 shadow-sm">
         <div class="card-body">
-            <strong> Create Exam </strong>
+            <strong> Create Discussion </strong>
             <hr>
             <div class="form-group mt-1">
                 <span> Name </span>
@@ -33,7 +33,10 @@
             </div>
             <div class="form-group mt-3">
                 <span> Description (optional) </span>
-                <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                <textarea name="description" id="description" c cols="30" rows="5" class="form-control description"></textarea>
+            </div>
+            <div class="form-group mt-3">
+                <input type="file" name="attachment" id="attachment">
             </div>
             <div class="form-group mt-3">
                 <span> Group </span>
@@ -41,21 +44,37 @@
                 <input type="text" value="{{$group->name}}" class="form-control" disabled>
             </div>
             <div class="form-group mt-3">
-                <span> Duration (Minutes) </span>
-                <input type="number" name="duration" min="1" id="duration" value="1"  class="form-control" required>
+                <span> Total score </span>
+                <input type="number" name="total_score" min="1" id="total_score" value="1"  class="form-control" required>
             </div>
             <hr>
             <div class="mt-3">
                 <input type="hidden" name="folder_id" id="folder_id" value="{{$folder}}">
                 <a href="{{route('groups.show',$group->id)}}" class="btn btn-outline-secondary"> Cancel </a>
-                <button type="submit" class="btn btn-info"> Create Exam </button>
+                <button type="submit" class="btn btn-info"> Create discussion </button>
             </div>
         </div>
     </div>
            
-           
-    
 </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+<script>
+   
+    $('.description').each( function () {
+        // var editor =  CKEDITOR.replace( this.id  )
+        var editor = CKEDITOR.replace( this.id, {
+            language: 'en',
+            extraPlugins: 'notification'
+        });
+
+        editor.on( 'required', function( evt ) {
+            editor.showNotification( 'This field is required.', 'warning' );
+        evt.cancel();
+        });
+    });
+
+</script>
 
 
 @endsection

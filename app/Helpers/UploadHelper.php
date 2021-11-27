@@ -17,4 +17,11 @@ class UploadHelper {
         $att->move(public_path('/shots'), $file_name);
         return $file_name;
     }
+
+    public static function uploadDiscussionPostAttachment($att)
+    {
+        $name = 'discussion-post-attachment-'.time().'.'.$att->getClientOriginalExtension();
+        $att->move(public_path('/attachments'), $name);
+        return $name;
+    }
 }

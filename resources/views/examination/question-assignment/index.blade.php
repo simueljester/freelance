@@ -36,8 +36,9 @@
             </div>
             <table class="table table-hover mt-3">
                 <thead>
-                    <th style="width:70%"> Question </th>
+                    <th style="width:60%"> Question </th>
                     <th style="width:20%"> Type </th>
+                    <th style="width:10%"> Subject </th>
                     <th style="width:10%">  </th>
                 </thead>
                 <tbody>
@@ -45,6 +46,7 @@
                         <tr>
                             <td> <a href="{{route('question-bank.show',$question)}}" class="text-info"> {!!$question->instruction!!} </a>  </td>
                             <td class="text-uppercase"> <small> {{ $question->question_type }} </small>  </td>
+                            <td> {{$question->subject->name}} </td>
                             <td>
                                 @if(in_array($question->id, $assigned_questions))
                                     <h6><span class="badge badge-success"> Assigned </span></h6>
@@ -61,8 +63,9 @@
             </table>
             <div class="mt-3">
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
-                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
+           
                 <button class="btn btn-info btn-sm"> Assign Selected Questions </button>
+                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             </div>
         </div>
     </div>

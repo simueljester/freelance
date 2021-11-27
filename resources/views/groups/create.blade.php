@@ -32,6 +32,14 @@
                 <small class="text-capitalize"> Description </small>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" required></textarea>
             </div>
+            <div class="form-group">
+                <small class="text-capitalize"> Subject </small>
+                <select name="subject" id="subject" class="form-control" required>
+                    @foreach ($subjects as $subject)
+                        <option value="{{$subject->id}}"> {{$subject->name}} </option>
+                    @endforeach
+                </select>
+            </div>
             <hr>
             <a href="{{route('groups.index')}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             <button class="btn btn-info btn-sm"> Create Group </button>

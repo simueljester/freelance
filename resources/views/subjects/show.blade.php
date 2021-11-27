@@ -27,9 +27,9 @@
         <div> Date Created: {{$subject->created_at->format('Y-m-d')}} </div>
     </div>
     <div class="card-footer">
-        <span class="text-info" data-toggle="modal" data-target="#editSubject" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </apn>
+        <span class="text-info" data-toggle="modal" data-target="#editSubject" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </span>
         &nbsp&nbsp
-        <a href="#" class="text-danger"> <i class="fas fa-trash-alt"></i> Delete </a>
+        <a href="{{route('subjects.delete',$subject)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this subject? Questions and Groups assign to this subject will be deleted')"> <i class="fas fa-trash-alt"></i> Delete </a>
     </div>
 </div>
 
@@ -57,6 +57,7 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <input type="hidden" name="subject_id" id="subject_id" value="{{$subject->id}}">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="submit" class="btn btn-info">Save changes</button>
             </div>
