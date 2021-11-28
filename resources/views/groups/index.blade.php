@@ -18,8 +18,15 @@
 
 <div class="mt-3">
     <a href="{{route('groups.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New Group </a>
+    @if (Auth::user()->user_instance->role_id == 1)
+        <a href="{{route('groups.list')}}" class="btn btn-info btn-sm"> <i class="fas fa-cubes"></i>  All Groups </a>
+    @endif
+    
 </div>
  
+<div class="mt-3">
+
+</div>
 
 <div class="row">
     @forelse ($groups as $group)

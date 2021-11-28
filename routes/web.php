@@ -60,6 +60,8 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     Route::get('/show/{group}', ['as' => 'show',        'uses' => 'GroupController@show']);
     Route::get('/view-user-exam-assignment/group/{group}/user/{user}',  ['as' => 'user-exam-assignments', 'uses' => 'GroupController@userExamAssignments']);
     Route::get('/show/folder/{folder}', ['as' => 'show-folder', 'uses' => 'GroupController@showFolder']);
+    Route::get('/list/',        ['as' => 'list',        'uses' => 'GroupController@list']);
+
 
     Route::group(['prefix' => 'group-assignment', 'as' => 'group-assignment.'], function() {
         Route::get('/{group}',                  ['as' => 'index',           'uses' => 'GroupAssignmentController@index']);

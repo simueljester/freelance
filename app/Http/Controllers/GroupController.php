@@ -93,6 +93,11 @@ class GroupController extends Controller
 
     }
 
+    public function list(){
+        $groups = Group::with('user_creator','subject')->orderBy('name','ASC')->paginate(20);
+        return view('groups.list',compact('groups'));
+    }
+
     public function showFolder(Folder $folder){
     
         $this_folder = $folder->load('group','recursiveChildFolders','parent');

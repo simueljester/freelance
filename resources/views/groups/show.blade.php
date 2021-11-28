@@ -19,7 +19,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$group->name}} </strong> </h5>
+        <h5 class="text-muted"> <strong> {{$group->name}} - <i> {{$group->subject->name}} </i>  </strong> </h5>
         <small> {{$group->description}} </small>
         <hr>
         <div> Creator: {{$group->user_creator->name}} </div>
@@ -28,8 +28,7 @@
     <div class="card-footer">
         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignUsers">
             <i class="fas fa-users"></i> Enrolled Users
-          </button>
-       
+        </button>
     </div>
 </div>
 

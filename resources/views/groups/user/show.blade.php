@@ -29,7 +29,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <strong> {{$group->name}} Resources </strong>
+        <strong> {{$group->name}} Modules </strong>
         <ul class="nav nav-tabs mt-3" role="tablist">
        
             <li class="nav-item">

@@ -48,19 +48,24 @@
                     @endforeach
                 @endif
 
-                <div class="col-sm-2">
-                    <div class="card bg-light" style="cursor:pointer" data-toggle="modal" data-target="#createFolder">
-                        <div class="card-body">
-                            <i class="fas fa-plus"></i> <small> <i> New folder  </i>  </small> 
+                @if ($group->creator_id == Auth::user()->id)
+                    <div class="col-sm-2">
+                        <div class="card bg-light" style="cursor:pointer" data-toggle="modal" data-target="#createFolder">
+                            <div class="card-body">
+                                <i class="fas fa-plus"></i> <small> <i> New folder  </i>  </small> 
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
 
-        <div class="mt-3  p-3 " style="">
-            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Resource </button>
+        <div class="mt-3 p-3 " >
+            @if ($group->creator_id == Auth::user()->id)
+            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Module </button>
             <hr>
+            @endif
+       
 
             @forelse ($group_modules as $module)
                 @switch($module->module_type)
@@ -189,7 +194,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> Create New Resource </h5>
+          <h5 class="modal-title" id="exampleModalLabel"> Create New Module </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
