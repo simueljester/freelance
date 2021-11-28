@@ -22,6 +22,16 @@ class GroupModule extends Model
         return $this->hasOne('App\Discussion', 'id','module_specific_id');
     }
 
+    public function learning_material()
+    {
+        return $this->hasOne('App\LearningMaterial', 'id','module_specific_id');
+    }
+
+    public function link()
+    {
+        return $this->hasOne('App\Link', 'id','module_specific_id');
+    }
+
     public function group()
     {
         return $this->belongsTo('App\Group', 'group_id');

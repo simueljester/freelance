@@ -24,4 +24,11 @@ class UploadHelper {
         $att->move(public_path('/attachments'), $name);
         return $name;
     }
+
+    public static function uploadLearningMaterial($att)
+    {
+        $name = 'learning-material-attachment-'.time().'.'.$att->getClientOriginalExtension();
+        $att->move(public_path('/attachments'), $name);
+        return $name;
+    }
 }

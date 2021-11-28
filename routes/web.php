@@ -80,6 +80,12 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
         Route::get('/list-discussion/{group}',              ['as' => 'list-discussion',         'uses' => 'GroupController@listDiscussion']);
         Route::get('/start-discussion/{discussion}',        ['as' => 'start-discussion',        'uses' => 'DiscussionController@start']);
         Route::post('/save-discussion-post',                ['as' => 'save-discussion-post',    'uses' => 'DiscussionPostController@save']);
+
+        Route::get('/list-learning-material/{group}',       ['as' => 'list-learning-material',  'uses' => 'GroupController@listLearningMaterial']);
+
+        Route::get('/list-link/{group}',                    ['as' => 'list-link',               'uses' => 'GroupController@listLink']);
+    
+    
     });
 
     Route::group(['prefix' => 'exam', 'as' => 'exam.'], function() {
@@ -109,6 +115,24 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
         Route::get('/delete/{discussion}',                      ['as' => 'delete',          'uses' => 'DiscussionController@delete']);
         Route::post('/save-scores',                             ['as' => 'save-scores',     'uses' => 'DiscussionController@saveScores']);
         Route::get('/generate-pdf/{discussion}',                ['as' => 'generate-pdf',    'uses' => 'DiscussionController@generatePdf']);
+    });
+
+    Route::group(['prefix' => 'learning-material', 'as' => 'learning-material.'], function() {
+        Route::get('/group/{group}/folder/{folder}',                ['as' => 'create',          'uses' => 'LearningMaterialController@create']);
+        Route::post('/save',                                        ['as' => 'save',            'uses' => 'LearningMaterialController@save']);
+        Route::get('/show/learning-material/{learning_material}',   ['as' => 'show',            'uses' => 'LearningMaterialController@show']);
+        Route::get('/edit/learning-material/{learning_material}',   ['as' => 'edit',            'uses' => 'LearningMaterialController@edit']);
+        Route::post('/update',                                      ['as' => 'update',          'uses' => 'LearningMaterialController@update']);
+        Route::get('/delete/{learning_material}',                   ['as' => 'delete',          'uses' => 'LearningMaterialController@delete']);
+    });
+
+    Route::group(['prefix' => 'link', 'as' => 'link.'], function() {
+        Route::get('/group/{group}/folder/{folder}',                ['as' => 'create',          'uses' => 'LinkController@create']);
+        Route::post('/save',                                        ['as' => 'save',            'uses' => 'LinkController@save']);
+        Route::get('/show/link/{link}',                             ['as' => 'show',            'uses' => 'LinkController@show']);
+        Route::get('/edit/link/{link}',                             ['as' => 'edit',            'uses' => 'LinkController@edit']);
+        Route::post('/update',                                      ['as' => 'update',          'uses' => 'LinkController@update']);
+        Route::get('/delete/{link}',                                ['as' => 'delete',          'uses' => 'LinkController@delete']);
     });
 
 });
@@ -151,9 +175,9 @@ Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function()
 
 // Other Routes
 Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
-    Route::get('/{question_attachment}', ['as' => 'question-attachment', 'uses' => 'DownloadController@questionAttachment']);
-    Route::get('/{discussion_attachment}', ['as' => 'discussion-attachment', 'uses' => 'DownloadController@discussionAttachment']);
-  
+    Route::get('/{question_attachment}',            ['as' => 'question-attachment',             'uses' => 'DownloadController@questionAttachment']);
+    Route::get('/{discussion_attachment}',          ['as' => 'discussion-attachment',           'uses' => 'DownloadController@discussionAttachment']);
+    Route::get('/{learning_material_attachment}',   ['as' => 'learning-material-attachment',    'uses' => 'DownloadController@learningMaterialAttachment']);
 });
 
 

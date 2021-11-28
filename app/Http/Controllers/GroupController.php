@@ -13,8 +13,10 @@ use App\Http\Repositories\GroupRepository;
 use App\Http\Repositories\FolderRepository;
 use App\Http\Repositories\GroupModuleRepository;
 use App\Http\Repositories\ExamAssignmentRepository;
+use App\Http\Repositories\LinkAssignmentRepository;
 use App\Http\Repositories\GroupAssignmentRepository;
 use App\Http\Repositories\DiscussionAssignmentRepository;
+use App\Http\Repositories\LearningMaterialAssignmentRepository;
 
 class GroupController extends Controller
 {
@@ -85,7 +87,7 @@ class GroupController extends Controller
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
         $folders = app(FolderRepository::class)->query()->whereGroupId($group->id)->whereParentId(0)->get();
         $this_folder = null;
-        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion')->whereGroupId($group->id)->whereFolderId(0)->get();
+        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion','learning_material','link')->whereGroupId($group->id)->whereFolderId(0)->get();
        
         return view('groups.folder-content',compact('group','assigned_users','this_folder','folders','group_modules'));
 
@@ -101,7 +103,7 @@ class GroupController extends Controller
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($this_folder->group_id)->get();
         $created_exam = Exam::whereGroupId($this_folder->group_id)->get();
 
-        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion')->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
+        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion','learning_material','link')->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
         
         return view('groups.folder-content',compact('group','this_folder','assigned_users','created_exam','get_depth','group_modules'));
     }
@@ -144,7 +146,17 @@ class GroupController extends Controller
         return view('groups.user.discussion.list',compact('group','my_discussion_assignments'));
     }
 
-    
+    public function listLearningMaterial(Group $group){
+
+        $my_learning_material_assignments = app(LearningMaterialAssignmentRepository::class)->query()->with('learning_material')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        return view('groups.user.learning-material.list',compact('group','my_learning_material_assignments'));
+    }
+
+    public function listLink(Group $group){
+
+        $my_link_assignments = app(LinkAssignmentRepository::class)->query()->with('link')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        return view('groups.user.link.list',compact('group','my_link_assignments'));
+    }
 
 
     public function userExamAssignments(Group $group, User $user){

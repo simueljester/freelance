@@ -103,7 +103,7 @@ class DiscussionController extends Controller
             'total_score' => 'required'
         ]);
 
-        $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : ($request->old_attachment ?? null);
+        $attachment = $request->attachment ? UploadHelper::uploadDiscussionPostAttachment($request->attachment) : ($request->old_attachment ?? null);
 
         $data = [
             'name'              => $request->name,

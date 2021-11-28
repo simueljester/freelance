@@ -131,13 +131,14 @@ class BaseRepository {
 
     public function customSaveLog($model,$function,$details,$data)
     {
+        $data = json_encode($data);
         $dt = new DateTime();
         SystemLog::create([
             'date'      => $dt->format('Y-m-d'),
             'time'      =>  $dt->format('H:i:s'),
             'model'     => $model,
             'function'  => $function,
-            'data'      => null,
+            'data'      => $data,
             'details'   => $details,
             'user_id'   => Auth::user()->id,
         ]);

@@ -3,10 +3,11 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-paste text-white text-info"></i>  Discussion  </h4>
-        <small class="text-muted"> <i> Manages discussion details </i>  </small>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
+
 
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
@@ -20,7 +21,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <i class="fas fa-copy"></i>  <strong> {{$discussion->name}} </strong> &nbsp&nbsp   </h5>
+        <h5 class="text-muted"> <i class="fas fa-comments fa-2x text-success m-1"></i>  <strong> {{$discussion->name}} </strong> &nbsp&nbsp   </h5>
         <small> {!! $discussion->description ?? 'No details provided' !!} </small>
         <hr>
         <div>
@@ -33,7 +34,7 @@
             <a href="{{route('groups.discussion.delete',$discussion)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this discussion? All discussion assignments, participation posts and user scores will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Discussion </a>
             &nbsp&nbsp
             @if ($discussion->attachment)
-                <i class="fas fa-paperclip"></i> <a href="{{route('downloads.question-attachment',$discussion->attachment)}}" class="text-info"> {{$discussion->attachment}} </a>
+                <i class="fas fa-paperclip"></i> <a href="{{route('downloads.discussion-attachment',$discussion->attachment)}}" class="text-info"> {{$discussion->attachment}} </a>
             @endif
                 {{--&nbsp&nbsp
             <a href="{{route('groups.exam.delete',$discussion)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a> --}}

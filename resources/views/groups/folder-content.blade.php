@@ -104,6 +104,40 @@
                             </div>
                         </div>
                         @break
+
+                    @case('learning_material')
+                        <div class="card mt-3">
+                            <div class="card-header bg-light text-dark p-2">
+                                <i class="fas fa-file-signature fa-2x text-warning m-1"></i>
+                                 <a href="{{route('groups.learning-material.show',$module->learning_material)}}" class="text-primary" style="  text-decoration: none;"> 
+                                    <strong > {{$module->learning_material->name}}  </strong> 
+                                </a> 
+                            </div>
+                            <div class="card-body">
+                                {!! $module->learning_material->description ?? 'No description provided'!!} 
+                            </div>
+                            <div class="card-footer">
+                                <i class="fas fa-calendar-alt"></i> {{$module->learning_material->created_at->format('Y-m-d')}}
+                            </div>
+                        </div>
+                        @break
+
+                    @case('link')
+                        <div class="card mt-3">
+                            <div class="card-header bg-light text-dark p-2">
+                                <i class="fas fa-link fa-2x text-danger"></i>
+                                 <a href="{{route('groups.link.show',$module->link)}}" class="text-primary" style="  text-decoration: none;"> 
+                                    <strong > {{$module->link->name}}  </strong> 
+                                </a> 
+                            </div>
+                            <div class="card-body">
+                                {!! $module->link->description ?? 'No description provided'!!} 
+                            </div>
+                            <div class="card-footer">
+                                <i class="fas fa-calendar-alt"></i> {{$module->link->created_at->format('Y-m-d')}}
+                            </div>
+                        </div>
+                        @break
                 
                 @endswitch
         
@@ -174,7 +208,7 @@
                     <i class="fas fa-link fa-2x text-danger"></i>
                     <br>
                     <small> Create a link file </small>
-                    <a href="#" class="btn btn-info btn-sm btn-block mt-3"> Link </a>
+                    <a href="{{route('groups.link.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Link </a>
                 </div>
             </div>
             <div class="card shadow-sm mt-3">
@@ -182,7 +216,7 @@
                     <i class="fas fa-file-signature fa-2x text-warning"></i>
                     <br>
                     <small> Upload learning materials such as docx, ppt, pdf or excel </small>
-                    <a href="#" class="btn btn-info btn-sm btn-block mt-3"> Learning Materials </a>
+                    <a href="{{route('groups.learning-material.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Learning Materials </a>
                 </div>
             </div>
             <div class="card shadow-sm mt-3">

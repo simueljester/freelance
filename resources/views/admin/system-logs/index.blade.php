@@ -55,7 +55,6 @@
                 <th> Role </th>
                 <th> Date </th>
                 <th> Time </th>
-        
                 <th> Model </th>
                 <th> </th>
             </thead>
@@ -118,7 +117,7 @@
 
             <div class="card mt-3">
                 <div class="card-header">
-                    <strong> Function: </strong>
+                    <strong> Model / Function: </strong>
                 </div>
                 <div class="card-body">
                     <span id="function"></span>
@@ -166,7 +165,7 @@
       function viewOtherInfo(data){
           console.log(data);
         $('#user').html(data.user.name)
-        $('#function').html(data.function)
+        $('#function').html(data.model +' / '+ data.function)
         $('#creation').html(data.created_at)
         $('#data').html(data.data)
         $('#details').html(data.details)

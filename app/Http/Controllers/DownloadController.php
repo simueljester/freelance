@@ -20,5 +20,12 @@ class DownloadController extends Controller
         return Response::download($filepath); 
     }
 
+    public function learningMaterialAttachment($learning_material_attachment){
+        $filepath = public_path('attachments/'.$learning_material_attachment);
+        return Response::download($filepath); 
+    }
+
+    
+
     
 }

@@ -59,6 +59,8 @@ class ExamAnswerRepository extends BaseRepository
     
             //update exam assignment
             $this->updateExamAssignment($exam_assignment_id,$total_score,$duration_status);
+            
+            //save logs
             app(BaseRepository::class)->customSaveLog('exam_answers','create','Answered examination',$answers);
 
             DB::commit();
@@ -68,6 +70,7 @@ class ExamAnswerRepository extends BaseRepository
             return $e;
         }
 
+      
         return 'success';
 
     }

@@ -36,10 +36,10 @@
                 <a class="nav-link {{Route::is('groups.user-group.list-exam') ? 'active' : ''}}" href="{{route('groups.user-group.list-exam',$group)}}" > <i class="fas fa-copy text-primary"></i> Assessments </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#" > <i class="fas fa-link text-danger"></i> Links </a>
+                <a class="nav-link {{Route::is('groups.user-group.list-link') ? 'active' : ''}}" href="{{route('groups.user-group.list-link',$group)}}" > <i class="fas fa-link text-danger"></i> Links </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link " href="#" > <i class="fas fa-file-signature text-warning"></i> Learning Materials </a>
+                <a class="nav-link {{Route::is('groups.user-group.list-learning-material') ? 'active' : ''}}" href="{{route('groups.user-group.list-learning-material',$group)}}" > <i class="fas fa-file-signature text-warning"></i> Learning Materials </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link {{Route::is('groups.user-group.list-discussion') ? 'active' : ''}}" href="{{route('groups.user-group.list-discussion',$group)}}" > <i class="fas fa-comment text-success"></i>  Discussions </a>

@@ -8,7 +8,7 @@
                
             </div>
             <div class="card-body">
-                {{$assignment->exam->description ?? 'No description provided'}}
+                {!! $assignment->discussion->description ?? 'No description provided' !!}
                 <hr>
                 <a href="{{route('groups.user-group.start-discussion',$assignment->discussion)}}" class="btn btn-success btn-sm"> Open Discussion </a>
             </div>

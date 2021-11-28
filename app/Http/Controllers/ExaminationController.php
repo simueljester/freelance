@@ -145,8 +145,6 @@ class ExaminationController extends Controller
    
         $exam_answers = app(ExamAnswerRepository::class)->saveAnswers($request);
 
-  
-
         return redirect()->route('groups.user-group.list-exam', $request->group_id)->with('success', 'Exam successfully deleted');
 
     }
