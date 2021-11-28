@@ -53,6 +53,10 @@
                             </div>
                             <div class="card-body">
                                 {!!$question_assignments->question->instruction!!}
+                                <br>
+                                @if ($question_assignments->question->attachment)
+                                    <a href="{{route('downloads.question-attachment',$question_assignments->question->attachment)}}" class="text-info"> <i class="fas fa-download"></i> {{$question_assignments->question->attachment}} </a>
+                                @endif
                                 <hr>
                                 @switch($question_assignments->question->question_type)
                                     @case('mcq')

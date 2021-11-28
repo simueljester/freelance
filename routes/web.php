@@ -135,6 +135,20 @@ Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], functi
     Route::post('/delete',      ['as' => 'delete',      'uses' => 'UserController@delete']);
 });
 
+//User Managament Routes
+Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function() {
+    Route::get('/',             ['as' => 'index',       'uses' => 'AdministratorController@index']);
+
+    Route::group(['prefix' => 'logins', 'as' => 'logins.'], function() {
+        Route::get('/',      ['as' => 'index',       'uses' => 'LoginReportController@index']);
+    });
+
+    Route::group(['prefix' => 'system-logs', 'as' => 'system-logs.'], function() {
+        Route::get('/',      ['as' => 'index',       'uses' => 'SystemLogController@index']);
+    });
+
+});
+
 // Other Routes
 Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
     Route::get('/{question_attachment}', ['as' => 'question-attachment', 'uses' => 'DownloadController@questionAttachment']);

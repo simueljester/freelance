@@ -134,6 +134,20 @@
                     </a>
                 </li>
             @endif
+
+            @if (Auth::user()->user_instance->role_id == 1)
+            <li class="nav-item" >
+                <a class="nav-link" href="{{route('administrator.index')}}">
+                    @if(request()->is(['administrator', 'administrator/*']))
+                        <i class="fas fa-user-cog text-info"></i>
+                        <span class="text-info"> <strong> Administrator </strong> </span>
+                    @else
+                        <i class="fas fa-user-cog text-white"></i>
+                        <span> Administrator </span>
+                    @endif
+                </a>
+            </li>
+        @endif
           
 
          

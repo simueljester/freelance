@@ -29,7 +29,7 @@
         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignUsers">
             <i class="fas fa-users"></i> Enrolled Users
           </button>
-        <a href="#" class="btn btn-info btn-sm"> <i class="fas fa-user-check"></i> Attendance </a>
+       
     </div>
 </div>
 

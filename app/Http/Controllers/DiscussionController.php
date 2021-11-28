@@ -10,6 +10,7 @@ use App\GroupModule;
 use Illuminate\Http\Request;
 use App\DiscussionAssignment;
 use App\Helpers\UploadHelper;
+use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\DiscussionRepository;
 use App\Http\Repositories\GroupModuleRepository;
 use App\Http\Repositories\DiscussionPostRepository;
@@ -124,6 +125,7 @@ class DiscussionController extends Controller
 
     public function delete(Discussion $discussion){
 
+        app(BaseRepository::class)->saveLog($discussion,'delete');
         $group_id = $discussion->group_id;
         $group_modules_delete = GroupModule::whereModuleType('discussion')->whereModuleSpecificId($discussion->id)->first();
         $group_modules_delete->delete();

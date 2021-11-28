@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use DateTime;
+use App\Login;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
@@ -37,4 +42,6 @@ class ConfirmPasswordController extends Controller
     {
         $this->middleware('auth');
     }
+
+
 }

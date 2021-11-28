@@ -9,6 +9,7 @@ use App\ExamAnswers;
 use App\ExamAssignment;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
+use App\Http\Repositories\BaseRepository;
 
 class ExamAnswerRepository extends BaseRepository 
 {
@@ -58,7 +59,8 @@ class ExamAnswerRepository extends BaseRepository
     
             //update exam assignment
             $this->updateExamAssignment($exam_assignment_id,$total_score,$duration_status);
-        
+            app(BaseRepository::class)->customSaveLog('exam_answers','create','Answered examination',$answers);
+
             DB::commit();
    
         } catch (\Exception $e) {

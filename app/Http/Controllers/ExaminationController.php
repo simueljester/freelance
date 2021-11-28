@@ -11,6 +11,7 @@ use App\GroupModule;
 use App\ExamAssignment;
 use App\GroupAssignment;
 use Illuminate\Http\Request;
+use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\ExamRepository;
 use App\Http\Repositories\ExamAnswerRepository;
 use App\Http\Repositories\GroupModuleRepository;
@@ -124,6 +125,8 @@ class ExaminationController extends Controller
 
     public function delete(Exam $exam){
 
+        app(BaseRepository::class)->saveLog($exam,'delete');
+        
         $group_id = $exam->group_id;
         $group_modules_delete = GroupModule::whereModuleType('exam')->whereModuleSpecificId($exam->id)->first();
         $group_modules_delete->delete();
@@ -141,6 +144,9 @@ class ExaminationController extends Controller
     public function saveFinishedExam(Request $request){
    
         $exam_answers = app(ExamAnswerRepository::class)->saveAnswers($request);
+
+  
+
         return redirect()->route('groups.user-group.list-exam', $request->group_id)->with('success', 'Exam successfully deleted');
 
     }

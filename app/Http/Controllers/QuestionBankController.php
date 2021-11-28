@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use DateTime;
 use App\Subject;
 use App\Question;
+use App\SystemLog;
 use Illuminate\Http\Request;
 use App\Helpers\UploadHelper;
+use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\QuestionBankRepository;
 
 class QuestionBankController extends Controller
@@ -143,7 +146,10 @@ class QuestionBankController extends Controller
 
 
     public function delete(Question $question){
+
+        app(BaseRepository::class)->saveLog($question,'delete');
         $question->delete();
+
         return redirect()->route('question-bank.index')->with('success', 'Question successfully deleted');
     }
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Subject;
 use Illuminate\Http\Request;
+use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\SubjectRepository;
 
 class SubjectController extends Controller
@@ -60,6 +61,7 @@ class SubjectController extends Controller
     }
 
     public function delete(Subject $subject){ 
+        app(BaseRepository::class)->saveLog($subject,'delete');
         $subject->delete();
         return redirect()->route('subjects.index')->with('success', 'Subject successfully deleted');
     }
