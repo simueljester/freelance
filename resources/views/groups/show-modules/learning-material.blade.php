@@ -35,10 +35,9 @@
            
             &nbsp&nbsp 
             @if ($learning_material->file)
-                <i class="fas fa-paperclip"></i> <a href="{{route('downloads.learning-material-attachment',$learning_material->file)}}" class="text-info"> {{$learning_material->file}} </a>
+                <i class="fas fa-paperclip"></i> <a href="{{route('downloads.learning-material-attachment',[$learning_material->file,$learning_material->group])}}" class="text-info"> {{$learning_material->file}} </a>
             @endif
-                {{--&nbsp&nbsp
-            <a href="{{route('groups.exam.delete',$discussion)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a> --}}
+        
         </div>
     </div>
 </div>

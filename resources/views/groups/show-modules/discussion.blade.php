@@ -67,7 +67,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="3"> No users found in this discussion. To assign users, Click <strong> Edit Exam </strong> then save changes </td>
+                                <td colspan="3"> No users found in this discussion. To assign users, Click <strong> Edit Discussion </strong> then save changes </td>
                             </tr>
                         @endforelse
                     </tbody>

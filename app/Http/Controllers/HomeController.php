@@ -11,7 +11,13 @@ use App\Subject;
 use App\Question;
 use DateInterval;
 use Carbon\Carbon;
+use App\GroupModule;
+use App\ExamAssignment;
+use App\LinkAssignment;
+use App\GroupAssignment;
 use Illuminate\Http\Request;
+use App\DiscussionAssignment;
+use App\LearningMaterialAssignment;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -31,8 +37,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        //dashboard admin
         if(Auth::user()->user_instance->role_id == 1){
 
             $group_count = Group::count();
@@ -40,9 +47,14 @@ class HomeController extends Controller
             $subject_count = Subject::count();
             $question_count = Question::count();
 
-            
-            $begin = Carbon::parse('2021-11-28')->startOfWeek();
-            $end = Carbon::parse('2021-11-28')->endOfWeek();
+            if($request->date){
+                $date = $request->date;
+            }else{
+                $date = Carbon::now()->format('Y-m-d');
+            }
+       
+            $begin = Carbon::parse($date)->startOfWeek();
+            $end = Carbon::parse($date)->endOfWeek();
             $interval = DateInterval::createFromDateString('1 day');
             $period = new DatePeriod($begin, $interval, $end);
             $logins = Login::whereBetween('date', [$begin, $end])->get()->toArray();
@@ -57,15 +69,40 @@ class HomeController extends Controller
                 $login_count[] = [
                     'count' => count($count),
                     'date'  => $date_format,
-                  
                 ];
             } 
+          
+            return view('home',compact('group_count','user_count','subject_count','question_count','login_count','date'));
+        }
 
-          
-          
-            return view('home',compact('group_count','user_count','subject_count','question_count','login_count'));
-        }else{
-            return 'development';
+        //dashboard teacher
+        if(Auth::user()->user_instance->role_id == 2){
+            $group_count = Group::whereCreatorId(Auth::user()->id)->count();
+            $module_count = GroupModule::whereUserId(Auth::user()->id)->count();
+            $question_count = Question::whereCreator(Auth::user()->id)->count();
+            $recently_created_questions = Question::with('subject')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->get();
+            return view('home-teacher',compact('group_count','question_count','module_count','recently_created_questions'));
+        }
+
+
+        //dashboard teacher
+        if(Auth::user()->user_instance->role_id == 3){
+            $my_group_assignments = GroupAssignment::with('group')->whereUserId(Auth::user()->id)->get();
+
+            $all_modules = collect();
+       
+            $exam_assignments = ExamAssignment::with('exam.group')->whereUserId(Auth::user()->id)->get();
+            $discussion_assignments = DiscussionAssignment::with('discussion.group')->whereUserId(Auth::user()->id)->get();
+            $learning_assignments = LearningMaterialAssignment::with('learning_material.group')->whereUserId(Auth::user()->id)->get();
+            $link_assignments = LinkAssignment::with('link.group')->whereUserId(Auth::user()->id)->get();
+            
+            $all_modules =  $all_modules->merge($exam_assignments);
+            $all_modules =  $all_modules->merge($discussion_assignments);
+            $all_modules =  $all_modules->merge($learning_assignments);
+            $all_modules =  $all_modules->merge($link_assignments);
+
+            // dd($all_modules);
+            return view('home-student',compact('my_group_assignments','all_modules'));
         }
      
     }

@@ -63,7 +63,7 @@
                     <tbody>
                         @forelse ($assigned_users as $user)
                             <tr>
-                                <td> <a href="{{route('groups.user-exam-assignments',[$group,$user->user_id])}}" class="text-info"> {{$user->user->name}} </a> </td>
+                                <td> <a href="{{route('groups.user-data',$user)}}" class="text-info"> {{$user->user->name}} </a> </td>
                                 <td> {{$user->user->email}} </td>
                                 {{-- <td> {{$user->user->user_instance->role->role}} </td> --}}
                                 <td>

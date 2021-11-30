@@ -52,16 +52,17 @@ Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function()
 
 //Groups Routes
 Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
-    Route::get('/',             ['as' => 'index',       'uses' => 'GroupController@index']);
-    Route::get('/create',       ['as' => 'create',      'uses' => 'GroupController@create']);
-    Route::post('/save',        ['as' => 'save',        'uses' => 'GroupController@save']);
-    Route::get('/edit/{group}', ['as' => 'edit',        'uses' => 'GroupController@edit']);
-    Route::post('/update',      ['as' => 'update',      'uses' => 'GroupController@update']);
-    Route::get('/show/{group}', ['as' => 'show',        'uses' => 'GroupController@show']);
+    Route::get('/',                                         ['as' => 'index',                   'uses' => 'GroupController@index']);
+    Route::get('/create',                                   ['as' => 'create',                  'uses' => 'GroupController@create']);
+    Route::post('/save',                                    ['as' => 'save',                    'uses' => 'GroupController@save']);
+    Route::get('/edit/{group}',                             ['as' => 'edit',                    'uses' => 'GroupController@edit']);
+    Route::post('/update',                                  ['as' => 'update',                  'uses' => 'GroupController@update']);
+    Route::get('/show/{group}',                             ['as' => 'show',                    'uses' => 'GroupController@show']);
     Route::get('/view-user-exam-assignment/group/{group}/user/{user}',  ['as' => 'user-exam-assignments', 'uses' => 'GroupController@userExamAssignments']);
-    Route::get('/show/folder/{folder}', ['as' => 'show-folder', 'uses' => 'GroupController@showFolder']);
-    Route::get('/list/',        ['as' => 'list',        'uses' => 'GroupController@list']);
-
+    Route::get('/show/folder/{folder}',                     ['as' => 'show-folder',             'uses' => 'GroupController@showFolder']);
+    Route::get('/list/',                                    ['as' => 'list',                    'uses' => 'GroupController@list']);
+    Route::get('/show-user-data/{group_assignment}',        ['as' => 'user-data',               'uses' => 'UserDataController@index']);
+    Route::get('/get-user-activities',                      ['as' => 'get-user-activities',     'uses' => 'UserDataController@getActivities']);
 
     Route::group(['prefix' => 'group-assignment', 'as' => 'group-assignment.'], function() {
         Route::get('/{group}',                  ['as' => 'index',           'uses' => 'GroupAssignmentController@index']);
@@ -179,7 +180,7 @@ Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function()
 Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
     Route::get('/{question_attachment}',            ['as' => 'question-attachment',             'uses' => 'DownloadController@questionAttachment']);
     Route::get('/{discussion_attachment}',          ['as' => 'discussion-attachment',           'uses' => 'DownloadController@discussionAttachment']);
-    Route::get('/{learning_material_attachment}',   ['as' => 'learning-material-attachment',    'uses' => 'DownloadController@learningMaterialAttachment']);
+    Route::get('/{learning_material_attachment}/group/{group}',   ['as' => 'learning-material-attachment',    'uses' => 'DownloadController@learningMaterialAttachment']);
 });
 
 

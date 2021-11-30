@@ -54,15 +54,15 @@
     </div>
 </div>
 
-
 <div class="row">
     <div class="col-sm-8">
         <div class="card shadow-sm mt-3 fadeIn">
             <div class="card-header bg-dark text-white">
-                <i class="fas fa-chart-line"></i> Login Count this week  
+                <i class="fas fa-chart-line"></i> Login Count this week   
+                <i class="far fa-calendar-alt float-right" style="cursor:pointer" data-toggle="modal" data-target="#openDateFilter"></i>
             </div>
             <div class="card-body">
-                <canvas class="mt-3" id="myChart" height="100"></canvas>
+                <canvas class="mt-1" id="myChart" height="100"></canvas>
             </div>
         </div>
     </div>
@@ -80,6 +80,33 @@
         </div>
     </div>
 </div>
+
+
+<!-- Modal -->
+<form action="">
+    <div class="modal fade" id="openDateFilter" tabindex="-1" role="dialog" >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel"> Filter Date </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-group">
+                  <span> Select date </span>
+                  <input type="date" name="date" id="date" class="form-control" value="{{$date ?? Carbon\Carbon::now()->format('Y-m-d')}}" required>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-info btn-sm"> Filter Dates </button>
+            </div>
+          </div>
+        </div>
+      </div>
+</form>
 
 
 @endif
@@ -147,7 +174,7 @@
 <script>
 
 var login_count = {!! json_encode($login_count) !!};
-console.log(login_count);
+
 var dates = []
 var count_login = []
 login_count.forEach((data) => {
