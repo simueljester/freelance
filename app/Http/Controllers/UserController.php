@@ -28,16 +28,23 @@ class UserController extends Controller
     public function saveUser(Request $request){
         
         $request->validate([
-            'name' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'birthday' => 'required',
+            'address' => 'required',
             'email' => 'required|email|unique:users',
             'role' => 'required',
             'password' => 'required'
         ]);
 
         $user_data = [
-            'name'      => $request->name,
-            'email'     => $request->email,
-            'password'  =>  Hash::make($request->password)
+            'first_name'        => $request->first_name,
+            'last_name'         => $request->last_name,
+            'name'              => $request->first_name .' '.$request->last_name,
+            'email'             => $request->email,
+            'password'          =>  Hash::make($request->password),
+            'address'           => $request->address,
+            'birthday'          => $request->birthday,
         ];
         $saved_user_data = app(UserRepository::class)->save($user_data);
         
@@ -61,13 +68,21 @@ class UserController extends Controller
     public function update(Request $request){
 
         $request->validate([
-            'name' => 'required'
+            'first_name'    => 'required',
+            'last_name'     => 'required',
+            'birthday'      => 'required',
+            'address'       => 'required',
         ]);
 
         $user_data = [
-            'name'      => $request->name,
-            'email'     => $request->email
+            'first_name'        => $request->first_name,
+            'last_name'         => $request->last_name,
+            'name'              => $request->first_name .' '.$request->last_name,
+            'email'             => $request->email,
+            'address'           => $request->address,
+            'birthday'          => $request->birthday
         ];
+
         if($request->password != null){
             $user_data['password'] = Hash::make($request->password);
         }

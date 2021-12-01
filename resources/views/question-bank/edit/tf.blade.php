@@ -30,6 +30,14 @@
             <strong class="text-muted"> Update Question </strong> -  <span class="badge badge-warning text-dark p-1"> True or False </span>
             <hr>
             <div class="form-group mt-3">
+                <small class="text-capitalize"> Difficulty Level </small>
+                <select name="difficulty" id="difficulty" class="form-control"  required>
+                    <option value="1" {{$question->level == 1 ? 'selected' : null}}> Easy </option>
+                    <option value="2" {{$question->level == 2 ? 'selected' : null}}> Medium </option>
+                    <option value="3" {{$question->level == 3 ? 'selected' : null}}> Hard </option>
+                </select>
+            </div>
+            <div class="form-group mt-3">
                 <span> <i class="fas fa-question-circle"></i>  Instruction </span>
                 <textarea name="instruction" id="instruction" cols="30" rows="10" class="instruction">  {!! $question->instruction !!}  </textarea>
             </div>
@@ -46,14 +54,14 @@
 
             <div class="mt-5">
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="correct_answer" value="true"  {{$question->answer == 'a' ? 'checked' : ''}}  required> 
+                    <input class="form-check-input" type="radio" name="correct_answer" value="true"  {{$question->answer == 'true' ? 'checked' : ''}}  required> 
                     <input type="hidden" name="option_1" id="option_1" value="true">
                     <label class="form-check-label" for="exampleRadios1">
                       True
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="correct_answer" value="false" {{$question->answer == 'b' ? 'checked' : ''}}  required> 
+                    <input class="form-check-input" type="radio" name="correct_answer" value="false" {{$question->answer == 'false' ? 'checked' : ''}}  required> 
                     <input type="hidden" name="option_2" id="option_2" value="false">
                     <label class="form-check-label" for="exampleRadios1">
                       False

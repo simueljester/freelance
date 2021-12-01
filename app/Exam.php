@@ -20,7 +20,7 @@ class Exam extends Model
 
     public function questionAssignments()
     {
-        return $this->HasMany('App\QuestionExamAssignment', 'exam_id', 'id');
+        return $this->HasMany('App\QuestionExamAssignment', 'exam_id', 'id')->orderBy('level','ASC');
     }
 
     

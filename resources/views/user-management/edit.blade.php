@@ -20,7 +20,78 @@
 <form action="{{route('user-management.update')}}" method="POST">
     @csrf
     @method('POST')
-    <div class="card shadow-sm mt-2">
+
+    <input type="hidden" name="user_id" id="" value="{{$user->id}}">
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <strong> Basic Information </strong>
+            <hr>
+            <div class="form-group">
+                <small class="text-capitalize"> <i>  First Name </i>  </small>
+                <input type="text" name="first_name" id="first_name" class="form-control p-3" value="{{$user->first_name}}" required>
+            </div>
+            <div class="form-group">
+                <small class="text-capitalize"> Last Name </small>
+                <input type="text" name="last_name" id="last_name" class="form-control p-3" value="{{$user->last_name}}" required>
+            </div>
+            <div class="form-group">
+                <small class="text-capitalize"> Birthday </small>
+                <input type="date" name="birthday" id="birthday"  class="form-control p-3" value="{{$user->birthday}}" required>
+            </div>
+            
+            {{-- <div class="form-group">
+                <small class="text-capitalize"> Name </small>
+                <input type="text" name="name" id="name" class="form-control p-3" required>
+            </div> --}}
+        </div>
+    </div>
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <strong> <i> Physical Address </i> </strong>
+            <hr>
+
+            <div class="form-group">
+                <small class="text-capitalize"> Address </small>
+                <input type="text" name="address" id="address" class="form-control p-3" value="{{$user->address}}" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <strong> <i> Account Information </i> </strong>
+            <hr>
+            <div class="form-group">
+                <small class="text-capitalize"> Email Address </small>
+                <input type="email" value="{{$user->email}}" class="form-control p-3" disabled>
+                <input type="email" name="email" id="email" value="{{$user->email}}" class="form-control p-3" hidden>
+            </div>
+            <div class="form-group">
+                <small class="text-capitalize"> New Password </small>
+                <input type="password" name="password" id="password" class="form-control p-3" >
+            </div>
+            <div class="form-group">
+                <small class="text-capialize"> Role </small>
+                <select name="role" id="role" class="form-control" value="{{$user->user_instance->role->role}}" disabled>
+                    <option value="2"> Teacher </option>
+                    <option value="3"> User </option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mt-3">
+        <div class="card-body">
+            <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary"> Cancel </a>
+            <button class="btn btn-info"> Save Changes </button>
+        </div>
+    </div>
+
+
+
+
+
+    {{-- <div class="card shadow-sm mt-2">
         <div class="card-body">
             <strong> Edit User </strong> 
             <hr>
@@ -43,10 +114,9 @@
                 <input type="text" name="password" id="password" class="form-control" value="{{$user->user_instance->role->role}}" disabled>
             </div>
             <hr>
-            <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
-            <button class="btn btn-info btn-sm"> Save Changes </button>
+    
         </div>
-    </div>
+    </div> --}}
 </form>
 
 <div class="card mt-2 " style="background:transparent;border:none;">

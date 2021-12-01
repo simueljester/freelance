@@ -23,6 +23,17 @@
             <strong> Instruction - </strong> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span>
             <p class="mt-3"> {!! $question->instruction !!} </p>
             <hr>
+         
+            @if ($question->level == 1)
+                <span class="text-success"> Easy </span>
+            @endif
+            @if ($question->level == 2)
+                <span class="text-primary"> Medium </span>
+            @endif
+            @if ($question->level == 3)
+                <span class="text-danger"> Hard </span>
+            @endif
+            &nbsp&nbsp&nbsp
             <small> <i class="fas fa-circle"></i>  Points: {{$question->max_points}}</small>
             &nbsp&nbsp&nbsp
             <small> <i class="fas fa-user"></i> Created By: {{$question->user_creator->name}}</small>

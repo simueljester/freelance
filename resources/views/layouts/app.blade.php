@@ -22,20 +22,23 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center">
-             
-                <div class="sidebar-brand-text mx-3"> System Title </div>
-            </a> 
+            <div class="text-center">
+                <img src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:100px">
+                {{-- <br>
+                <strong class="text-white"> {{ App\SystemInformation::whereActive(1)->first()->title }} </strong> --}}
+            </div>
+     
 
             <!-- Heading -->
-      
-            <div class="text-center">
+
+            
+{{--       
+            <div class="text-center mt-2">
                 <h6><span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span></h6>
-            </div>
+            </div> --}}
 
          
-            <li class="nav-item">
+            <li class="nav-item ">
                 <a class="nav-link " href="{{route('home')}}">
                     
                     @if(request()->is(['home', 'home/*']))
@@ -172,7 +175,9 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content" class="p-3">
-                
+         
+                <strong> {{Auth::user()->name}}  </strong> -  <span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span>
+                  
                 @if(session()->has('success'))
                     <div class="alert alert-success" role="alert">
                         <i class="fas fa-check-circle"></i> {{ session()->get('success') }}

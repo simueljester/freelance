@@ -44,6 +44,7 @@
                 <span> Duration (Minutes) </span>
                 <input type="number" name="duration" min="1" id="duration" value="1"  class="form-control" required>
             </div>
+         
             <hr>
             <div class="mt-3">
                 <input type="hidden" name="folder_id" id="folder_id" value="{{$folder}}">

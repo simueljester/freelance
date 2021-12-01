@@ -14,8 +14,9 @@
     <thead>
         <th style="width:50%"> Question </th>
         <th style="width:10%"  class="text-center"> Type </th>
+        <th style="width:10%"> Difficulty </th>
         <th style="width:10%"> Subject </th>
-        <th style="width:20%"> Creator </th>
+        <th style="width:10%"> Creator </th>
         <th></th>
     </thead>
     <tbody>
@@ -23,6 +24,17 @@
             <tr>
                 <td> {!! $question->instruction !!} </td>
                 <td  class="text-center"> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span> </td>
+                <td>  
+                    @if ($question->level == 1)
+                        <span class="text-success"> Easy </span>
+                    @endif
+                    @if ($question->level == 2)
+                        <span class="text-primary"> Medium </span>
+                    @endif
+                    @if ($question->level == 3)
+                        <span class="text-danger"> Hard </span>
+                    @endif
+                </td>
                 <td> {{$question->subject->name}} </td>
                 <td> {{$question->user_creator->name}} </td>
                 <td> 

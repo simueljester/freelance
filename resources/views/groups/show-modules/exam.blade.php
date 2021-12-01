@@ -89,16 +89,20 @@
             <div class="card shadow-sm mt-3">
                 <div class="card-body">
                     <strong> <i class="fas fa-question-circle"></i> Questions </strong>
+                    <div class="alert alert-info" role="alert">
+                         Examination questions will be ordered by level of difficulty 
+                      </div>
                     <div class="mt-3">
                         <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
                         <a href="{{route('groups.exam.examination-assignment.index',$exam)}}" class="btn btn-info btn-sm"> <i class="fas fa-question-circle"></i> Assign Questions </a>
                         <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to unassign selected questions?')"> Unassign Questions </button>
                         <a href="{{route('groups.show',$exam->group_id)}}" class="btn btn-outline-secondary btn-sm"> Go to Group </a>
                     </div>
-                    <table class="table table-hover mt-3">
+                    <table class="table table-hover mt-3 table-bordered">
                         <thead>
                             <th> Question </th>
                             <th> Type </th>
+                            <th> Difficulty </th>
                             <th> Points </th>
                             <th>  </th>
                         </thead>
@@ -107,6 +111,17 @@
                                 <tr>
                                     <td> <a href="{{route('question-bank.show',$assignment->question_id)}}" class="text-info"> {!!$assignment->question->instruction!!} </a>  </td>
                                     <td class="text-uppercase"> <small> {{$assignment->question->question_type}} </small></td>
+                                    <td>
+                                        @if ($assignment->question->level == 1)
+                                            <span class="text-success"> Easy </span>
+                                        @endif
+                                        @if ($assignment->question->level == 2)
+                                            <span class="text-primary"> Medium </span>
+                                        @endif
+                                        @if ($assignment->question->level == 3)
+                                            <span class="text-danger"> Hard </span>
+                                    @endif
+                                    </td>
                                     <td> {{$assignment->question->max_points}} </td>
                                     <td>
                                         <div class="form-check">

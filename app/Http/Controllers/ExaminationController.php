@@ -87,9 +87,15 @@ class ExaminationController extends Controller
     public function show(Exam $exam){
      
         $exam = $exam->load('group');
-        $questions_assigned = app(QuestionAssignmentRepository::class)->query()->with('question')->whereExamId($exam->id)->get();
+        $questions_assigned = app(QuestionAssignmentRepository::class)->query()
+        ->with('question')
+        ->whereExamId($exam->id)
+        ->orderBy('level','ASC')
+        ->get();  
+   
         $exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam','user','group')->whereExamId($exam->id)->whereGroupId($exam->group_id)->get();
- 
+        
+  
         return view('groups.show-modules.exam',compact('exam','questions_assigned','exam_assignments'));
 
     }
@@ -138,6 +144,7 @@ class ExaminationController extends Controller
     public function start(ExamAssignment $exam_assignment){
 
         $exam_assignment = $exam_assignment->load('exam.questionAssignments.question');
+    
         return view('groups.user.exam.start',compact('exam_assignment'));
 
     }

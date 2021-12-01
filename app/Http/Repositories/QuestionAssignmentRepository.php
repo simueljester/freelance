@@ -18,11 +18,12 @@ class QuestionAssignmentRepository extends BaseRepository
     public function assignQuestions($request){
    
         foreach($request->question_ids as $question){
-    
+            $question_object = Question::find($question);
             $group_assignment = QuestionExamAssignment::updateOrCreate(
                 [
                     'exam_id'          => $request->exam_id,
-                    'question_id'      => $question
+                    'question_id'      => $question_object->id,
+                    'level'            => $question_object->level
                 ]
             );
         }

@@ -22,7 +22,8 @@ class Question extends Model
         'max_points',
         'attachment',
         'creator',
-        'subject_id'
+        'subject_id',
+        'level'
     ];
 
     public function user_creator()

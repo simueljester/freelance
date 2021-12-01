@@ -75,7 +75,8 @@ class QuestionBankController extends Controller
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
             'option_1' => 'required_if:question_type,mcq',
             'option_2' => 'required_if:question_type,mcq',
-            'subject'   => 'required'
+            'subject'   => 'required',
+            'difficulty' => 'required'
         ]);
 
         $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : null;
@@ -93,7 +94,8 @@ class QuestionBankController extends Controller
             'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id,
-            'subject_id'        => $request->subject
+            'subject_id'        => $request->subject,
+            'level'             => $request->difficulty,
         ];
 
         $saved = app(QuestionBankRepository::class)->save($data);
@@ -119,7 +121,8 @@ class QuestionBankController extends Controller
             'instruction' => 'required',
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
             'option_1' => 'required_if:question_type,mcq',
-            'option_2' => 'required_if:question_type,mcq'
+            'option_2' => 'required_if:question_type,mcq',
+            'difficulty' => 'required'
         ]);
 
         $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : ($request->old_attachment ?? null);
@@ -136,7 +139,8 @@ class QuestionBankController extends Controller
             'answer'            => $request->correct_answer,
             'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
             'attachment'        => $attachment,
-            'creator'           => Auth::user()->id
+            'creator'           => Auth::user()->id,
+            'level'             => $request->difficulty,
         ];
 
         app(QuestionBankRepository::class)->update($request->question_id,$data);
