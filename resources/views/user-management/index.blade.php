@@ -20,6 +20,7 @@
     <div class="card-body">
         <div>
             <a href="{{route('user-management.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New User </a>
+            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-upload"></i> Batch Upload </button>
         </div>
         <br>
         <strong class="mt-3"> User List </strong>
@@ -58,37 +59,34 @@
     </div>
 </div>
 
-{{-- <form action="{{route('user-management.save-user')}}" method="POST">
+<form action="{{route('user-management.batch-upload')}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('POST')
-    <div class="card shadow-sm mt-2">
-        <div class="card-body">
-            <strong> Create User </strong>
-            <hr>
-            <div class="form-group">
-                <small class="text-capitalize"> Name </small>
-                <input type="text" name="name" id="name" class="form-control p-3" required>
+   <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Batch User Upload </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
             </div>
-            <div class="form-group">
-                <small class="text-capitalize"> Email Address </small>
-                <input type="email" name="email" id="email" class="form-control p-3" required>
+            <div class="modal-body">
+                <a href="{{route('downloads.user-template','user_template.xlsx')}}"> Download Template </a>
+                <div class="form-group mt-3">
+                    <span> File </span><br>
+                    <input type="file" name="file" id="file" accept=".xlsx, .xls, .csv"  required>
+                </div>
             </div>
-            <div class="form-group">
-                <small class="text-capitalize"> Password </small>
-                <input type="password" name="password" id="password" class="form-control p-3" required>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-info btn-sm"> Upload </button>
             </div>
-            <div class="form-group">
-                <small class="text-capialize"> Role </small>
-                <select name="role" id="role" class="form-control" required>
-                    <option value="2"> Teacher </option>
-                    <option value="3"> User </option>
-                </select>
-            </div>
-            <hr>
-            <button class="btn btn-info"> Create User </button>
+        </div>
         </div>
     </div>
-</form> --}}
+</form>
 
 
 @endsection

@@ -154,12 +154,14 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
 
 //User Managament Routes
 Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], function() {
-    Route::get('/',             ['as' => 'index',       'uses' => 'UserController@index']);
-    Route::get('/create',       ['as' => 'create',      'uses' => 'UserController@create']);
-    Route::post('/save-user',   ['as' => 'save-user',   'uses' => 'UserController@saveUser']);
-    Route::get('/edit/{user}',  ['as' => 'edit',        'uses' => 'UserController@edit']);
-    Route::post('/update',      ['as' => 'update',      'uses' => 'UserController@update']);
-    Route::post('/delete',      ['as' => 'delete',      'uses' => 'UserController@delete']);
+    Route::get('/',                     ['as' => 'index',                   'uses' => 'UserController@index']);
+    Route::get('/create',               ['as' => 'create',                  'uses' => 'UserController@create']);
+    Route::post('/save-user',           ['as' => 'save-user',               'uses' => 'UserController@saveUser']);
+    Route::get('/edit/{user}',          ['as' => 'edit',                    'uses' => 'UserController@edit']);
+    Route::post('/update',              ['as' => 'update',                  'uses' => 'UserController@update']);
+    Route::post('/delete',              ['as' => 'delete',                  'uses' => 'UserController@delete']);
+    Route::post('/batch-upload',        ['as' => 'batch-upload',            'uses' => 'UserController@batchUpload']);
+    Route::post('/batch-upload-save',   ['as' => 'save-batch-upload',       'uses' => 'UserController@saveBatchUpload']);
 });
 
 //User Managament Routes
@@ -178,9 +180,11 @@ Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function()
 
 // Other Routes
 Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
-    Route::get('/{question_attachment}',            ['as' => 'question-attachment',             'uses' => 'DownloadController@questionAttachment']);
-    Route::get('/{discussion_attachment}',          ['as' => 'discussion-attachment',           'uses' => 'DownloadController@discussionAttachment']);
-    Route::get('/{learning_material_attachment}/group/{group}',   ['as' => 'learning-material-attachment',    'uses' => 'DownloadController@learningMaterialAttachment']);
+    Route::get('/{question_attachment}',                            ['as' => 'question-attachment',             'uses' => 'DownloadController@questionAttachment']);
+    Route::get('/{discussion_attachment}',                          ['as' => 'discussion-attachment',           'uses' => 'DownloadController@discussionAttachment']);
+    Route::get('/{learning_material_attachment}/group/{group}',     ['as' => 'learning-material-attachment',    'uses' => 'DownloadController@learningMaterialAttachment']);
+    Route::get('/download-user-template/{template}',                           ['as' => 'user-template',                   'uses' => 'DownloadController@userTemplate']);
+
 });
 
 

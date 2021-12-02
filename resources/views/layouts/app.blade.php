@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> System Title </title>
+    <title> {{ App\SystemInformation::whereActive(1)->first()->title }} </title>
     @include('layouts.styles') 
 
 </head>

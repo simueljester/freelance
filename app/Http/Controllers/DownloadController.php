@@ -33,10 +33,13 @@ class DownloadController extends Controller
         ]);
         
         $filepath = public_path('attachments/'.$learning_material_attachment);
+        return Response::download($filepath); 
+    }
 
-    
 
-
+    public function userTemplate($template){
+   
+        $filepath = public_path('attachments/'.$template);
         return Response::download($filepath); 
     }
 
