@@ -37,7 +37,7 @@ class DownloadController extends Controller
     }
 
 
-    public function userTemplate($template){
+    public function template($template){
    
         $filepath = public_path('attachments/'.$template);
         return Response::download($filepath); 

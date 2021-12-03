@@ -73,7 +73,7 @@
             </button>
             </div>
             <div class="modal-body">
-                <a href="{{route('downloads.user-template','user_template.xlsx')}}"> Download Template </a>
+                <a href="{{route('downloads.template','user_template.xlsx')}}"> Download Template </a>
                 <div class="form-group mt-3">
                     <span> File </span><br>
                     <input type="file" name="file" id="file" accept=".xlsx, .xls, .csv"  required>

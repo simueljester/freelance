@@ -23,15 +23,17 @@
             <strong> Instruction - </strong> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span>
             <p class="mt-3"> {!! $question->instruction !!} </p>
             <hr>
-         
+            <small> <i class="fas fa-book-reader"></i> {{$question->subject->name}} </small>
+          
+            &nbsp&nbsp&nbsp
             @if ($question->level == 1)
-                <span class="text-success"> Easy </span>
+                <small class="text-success"> Easy </small>
             @endif
             @if ($question->level == 2)
-                <span class="text-primary"> Medium </span>
+                <small class="text-primary"> Medium </small>
             @endif
             @if ($question->level == 3)
-                <span class="text-danger"> Hard </span>
+                <small class="text-danger"> Hard </small>
             @endif
             &nbsp&nbsp&nbsp
             <small> <i class="fas fa-circle"></i>  Points: {{$question->max_points}}</small>

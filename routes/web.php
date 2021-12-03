@@ -36,6 +36,9 @@ Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function()
     Route::get('/',             ['as' => 'index',           'uses' => 'QuestionBankController@index']);
     Route::get('/my-questions', ['as' => 'my-questions',    'uses' => 'QuestionBankController@myQuestionBank']);
 
+    Route::post('/batch-upload',        ['as' => 'batch-upload',            'uses' => 'QuestionBankController@batchUpload']);
+    Route::post('/batch-upload-save',   ['as' => 'save-batch-upload',       'uses' => 'QuestionBankController@saveBatchUpload']);
+
     Route::group(['prefix' => 'create', 'as' => 'create.'], function() {
         Route::get('/mcq',      ['as' => 'mcq',     'uses' => 'QuestionBankController@createMcq']);
         Route::get('/tf',       ['as' => 'tf',      'uses' => 'QuestionBankController@createTf']);
@@ -48,6 +51,7 @@ Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function()
     Route::get('/edit/{question}',  ['as' => 'edit',    'uses' => 'QuestionBankController@edit']);
     Route::post('/update',          ['as' => 'update',  'uses' => 'QuestionBankController@update']);
     Route::get('/delete/{question}',['as' => 'delete',  'uses' => 'QuestionBankController@delete']);
+
 });
 
 //Groups Routes
@@ -183,7 +187,7 @@ Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
     Route::get('/{question_attachment}',                            ['as' => 'question-attachment',             'uses' => 'DownloadController@questionAttachment']);
     Route::get('/{discussion_attachment}',                          ['as' => 'discussion-attachment',           'uses' => 'DownloadController@discussionAttachment']);
     Route::get('/{learning_material_attachment}/group/{group}',     ['as' => 'learning-material-attachment',    'uses' => 'DownloadController@learningMaterialAttachment']);
-    Route::get('/download-user-template/{template}',                           ['as' => 'user-template',                   'uses' => 'DownloadController@userTemplate']);
+    Route::get('/downloa-templates/{template}',                     ['as' => 'template',                        'uses' => 'DownloadController@template']);
 
 });
 

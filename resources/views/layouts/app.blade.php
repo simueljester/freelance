@@ -179,13 +179,13 @@
                 <strong> {{Auth::user()->name}}  </strong> -  <span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span>
                   
                 @if(session()->has('success'))
-                    <div class="alert alert-success" role="alert">
+                    <div class="alert alert-success mt-3" role="alert">
                         <i class="fas fa-check-circle"></i> {{ session()->get('success') }}
                     </div>
                 @endif
 
                 @if(session()->has('error'))
-                    <div class="alert alert-danger" role="alert">
+                    <div class="alert alert-danger mt-3" role="alert">
                         <i class="fas fa-times-circle"></i> {{ session()->get('error') }}
                     </div>
                 @endif

@@ -129,8 +129,6 @@ class UserController extends Controller
             '*.role'         => 'required|in:student,teacher'
         ])->validate();
 
-        
-
         return view('user-management.check-uploads',compact('uploaded_users','existing_emails'));
         
     }
@@ -138,12 +136,9 @@ class UserController extends Controller
     public function saveBatchUpload(Request $request){
         
         $uploaded_users = json_decode($request->uploaded_users);
- 
-
      
         $data = app(UserRepository::class)->saveBatch($uploaded_users);
            
-
         return redirect()->route('user-management.index')->with('success', 'Users successfully uploaded');
 
     }

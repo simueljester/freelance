@@ -29,13 +29,27 @@
 
             <strong class="text-muted"> Edit Question </strong> -  <span class="badge badge-warning text-dark p-1"> Identification </span>
             <hr>
-            <div class="form-group mt-3">
-                <small class="text-capitalize"> Difficulty Level </small>
-                <select name="difficulty" id="difficulty" class="form-control"  required>
-                    <option value="1" {{$question->level == 1 ? 'selected' : null}}> Easy </option>
-                    <option value="2" {{$question->level == 2 ? 'selected' : null}}> Medium </option>
-                    <option value="3" {{$question->level == 3 ? 'selected' : null}}> Hard </option>
-                </select>
+            <div class="row">
+                <div class="col-sm-6"> 
+                    <div class="form-group mt-3">
+                        <small class="text-capitalize"> Subject </small>
+                        <select name="subject" id="subject" class="form-control" required>
+                            @foreach ($subjects as $subject)
+                                <option value="{{$subject->id}}" {{$question->subject_id == $subject->id ? 'selected' : null}}> {{$subject->name}} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6"> 
+                    <div class="form-group mt-3">
+                        <small class="text-capitalize"> Difficulty Level </small>
+                        <select name="difficulty" id="difficulty" class="form-control"  required>
+                            <option value="1" {{$question->level == 1 ? 'selected' : null}}> Easy </option>
+                            <option value="2" {{$question->level == 2 ? 'selected' : null}}> Medium </option>
+                            <option value="3" {{$question->level == 3 ? 'selected' : null}}> Hard </option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="form-group mt-3">
                 <span> <i class="fas fa-question-circle"></i>  Instruction </span>
