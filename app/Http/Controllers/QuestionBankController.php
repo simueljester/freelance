@@ -7,6 +7,7 @@ use DateTime;
 use App\Subject;
 use App\Question;
 use App\SystemLog;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Helpers\UploadHelper;
 use App\Imports\QuestionsImport;
@@ -23,31 +24,111 @@ class QuestionBankController extends Controller
     }
 
     public function index(Request $request){
-     
-        $subject_filter = $request->subject_filter ?? 0;
 
+        $type = $request->type;
+        $subject = $request->subject;
+        $difficulty = $request->difficulty;
+        $creator = $request->creator;
+        $start_date = $request->start_date;
+        $end_date = Carbon::parse($request->end_date)->addDays(1);
+      
+
+        if($request->start_date){
+            $request->validate([
+                'start_date'    => 'date',
+                'end_date'      => 'required|date|after_or_equal:start_date'
+            ]);
+        }
+      
         $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
-        ->when($subject_filter != 0, function ($query) use ($subject_filter) {
-            $query->where('subject_id', $subject_filter);
+        ->when($type, function ($query) use ($type) {
+            $query->where('question_type', $type);
+        })
+        ->when($subject, function ($query) use ($subject) {
+            $query->where('subject_id', $subject);
+        })
+        ->when($difficulty, function ($query) use ($difficulty) {
+            $query->where('level', $difficulty);
+        })
+        ->when($creator, function ($query) use ($creator) {
+            $query->where('creator', $creator);
+        })
+        ->when($start_date, function ($query) use ($start_date,$end_date) {
+            $query->where('created_at','>=', $start_date)
+            ->where('created_at','<=', $end_date);
         })
         ->orderBy('created_at','DESC')
         ->paginate(10);
         
+        
         $all_subjects = Subject::all();
-        return view('question-bank.all-questions',compact('all_questions','all_subjects'));
+        $all_creators = app(QuestionBankRepository::class)->query()->with('user_creator')->get()->unique('creator');
+
+        $filters = (object)[
+            'type'          => $type,
+            'subject'       => $subject,
+            'difficulty'    => $difficulty,
+            'creator'       => $creator,
+            'start_date'    => $start_date,
+            'end_date'      => $request->end_date, //different format because end date added 1 day upon wherebetween
+        ];
+
+        return view('question-bank.all-questions',compact('all_questions','all_subjects','all_creators','filters'));
     }
 
     public function myQuestionBank(Request $request){
-        $subject_filter = $request->subject_filter ?? 0;
-        $my_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
-        ->when($subject_filter != 0, function ($query) use ($subject_filter) {
-            $query->where('subject_id', $subject_filter);
+
+        $type = $request->type;
+        $subject = $request->subject;
+        $difficulty = $request->difficulty;
+        $creator = $request->creator;
+        $start_date = $request->start_date;
+        $end_date = Carbon::parse($request->end_date)->addDays(1);
+      
+
+        if($request->start_date){
+            $request->validate([
+                'start_date'    => 'date',
+                'end_date'      => 'required|date|after_or_equal:start_date'
+            ]);
+        }
+      
+        $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
+        ->when($type, function ($query) use ($type) {
+            $query->where('question_type', $type);
+        })
+        ->when($subject, function ($query) use ($subject) {
+            $query->where('subject_id', $subject);
+        })
+        ->when($difficulty, function ($query) use ($difficulty) {
+            $query->where('level', $difficulty);
+        })
+        ->when($creator, function ($query) use ($creator) {
+            $query->where('creator', $creator);
+        })
+        ->when($start_date, function ($query) use ($start_date,$end_date) {
+            $query->where('created_at','>=', $start_date)
+            ->where('created_at','<=', $end_date);
         })
         ->whereCreator(Auth::user()->id)
         ->orderBy('created_at','DESC')
         ->paginate(10);
+        
+        
         $all_subjects = Subject::all();
-        return view('question-bank.my-questions',compact('my_questions','all_subjects'));
+        $all_creators = app(QuestionBankRepository::class)->query()->with('user_creator')->get()->unique('creator');
+
+        $filters = (object)[
+            'type'          => $type,
+            'subject'       => $subject,
+            'difficulty'    => $difficulty,
+            'creator'       => $creator,
+            'start_date'    => $start_date,
+            'end_date'      => $request->end_date, //different format because end date added 1 day upon wherebetween
+        ];
+
+        return view('question-bank.my-questions',compact('all_questions','all_subjects','all_creators','filters'));
+
     }
 
     public function createMcq(){
