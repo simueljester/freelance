@@ -21,7 +21,6 @@
     @if (Auth::user()->user_instance->role_id == 1)
         <a href="{{route('groups.list')}}" class="btn btn-info btn-sm"> <i class="fas fa-cubes"></i>  All Groups </a>
     @endif
-    
 </div>
  
 <div class="mt-3">

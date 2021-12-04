@@ -113,6 +113,11 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
 
     });
 
+    Route::group(['prefix' => 'class-grades', 'as' => 'class-grades.'], function() {
+        Route::get('/group/{group}/',            ['as' => 'index',          'uses' => 'ClassGradesController@index']);
+
+    });
+
     Route::group(['prefix' => 'discussion', 'as' => 'discussion.'], function() {
         Route::get('/group/{group}/folder/{folder}',            ['as' => 'create',          'uses' => 'DiscussionController@create']);
         Route::post('/save',                                    ['as' => 'save',            'uses' => 'DiscussionController@save']);
