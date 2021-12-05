@@ -18,6 +18,11 @@ class UserActivity extends Model
         return $this->belongsTo('App\User', 'user_id', 'id');
     }
 
+    public function group()
+    {
+        return $this->belongsTo('App\Group', 'group_id', 'id');
+    }
+
     public function getCreatedAtAttribute($date){
         return Carbon::parse($date)->diffForHumans();
     }

@@ -185,6 +185,16 @@ Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function()
         Route::get('/',      ['as' => 'index',       'uses' => 'SystemLogController@index']);
     });
 
+    Route::group(['prefix' => 'exports', 'as' => 'exports.'], function() {
+        Route::get('/',                 ['as' => 'index',           'uses' => 'ExportController@index']);
+        Route::get('/users',            ['as' => 'users',           'uses' => 'ExportController@users']);
+        Route::get('/groups',           ['as' => 'groups',          'uses' => 'ExportController@groups']);
+        Route::get('/question-bank',    ['as' => 'question-bank',   'uses' => 'ExportController@questionBank']);
+        Route::get('/login-report',     ['as' => 'login-report',    'uses' => 'ExportController@loginReport']);
+        Route::get('/system-logs',      ['as' => 'system-logs',     'uses' => 'ExportController@systemLogs']);
+        Route::get('/user-activities',  ['as' => 'user-activities', 'uses' => 'ExportController@userActivities']);
+    });
+
 });
 
 // Other Routes

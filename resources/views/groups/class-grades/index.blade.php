@@ -54,6 +54,8 @@
 </div>
 
 
+{{-- Modal Grade Computation  --}}
+
 <form action="#" method="POST" enctype="multipart/form-data">
     @csrf
     @method("POST")
@@ -86,17 +88,27 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="card shadow-sm ">
-                            <div class="card-header"> <strong> Final Grade</strong> </div>
+                            <div class="card-header bg-dark text-white"> <strong> Final Grade</strong> </div>
                             <div class="card-body text-center">
-                                <strong class="Count text-muted " id="final_grade_display" style="font-size: 90px;"> 0 </strong>
+                                <strong class="Count text-muted " id="final_grade_display" style="font-size: 75px;"> 0 </strong>
                                 {{-- <strong style="font-size: 90px;" class="text-success"> 0 </strong> --}}
                             </div>
                         </div>
                     </div>
                 </div>
+
+                <div class="card shadow-sm mt-3">
+                    <div class="card-header bg-dark text-white"> <strong> Quizzes - </strong> <span class="badge badge-info"> 50% </span> </div>
+                    <div class="card-body">
+                        <form-group>
+                            <span> Score </span> / 100
+                            <input type="number" name="quizzes_score" id="quizzes_score" max="100" min="1" value="1" class="form-control">
+                        </form-group>
+                    </div>
+                </div>
              
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header"> <strong> Major Examination - </strong> <span class="badge badge-secondary"> 50% </span> </div>
+                    <div class="card-header bg-dark text-white"> <strong> Major Examination - </strong> <span class="badge badge-info"> 25% </span> </div>
                     <div class="card-body">
                         <form-group>
                             <span> Score </span> / 100
@@ -105,7 +117,7 @@
                     </div>
                 </div>
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header"> <strong> Class Participation - </strong> <span class="badge badge-secondary"> 50% </span> </div>
+                    <div class="card-header bg-dark text-white"> <strong> Class Participation - </strong> <span class="badge badge-info"> 25% </span> </div>
                     <div class="card-body">
                         <form-group>
                             <span> Score </span> / 100
@@ -114,31 +126,32 @@
                     </div>
                 </div>
                 <div class="card shadow-sm mt-3">
-                    <div class="card-body">
+                    <div class="card-body ">
                         <button type="button" class="btn btn-block btn-info" onclick="computeGrades()"> Compute Grades </button>
                     </div>
                 </div>
 
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header"> </div>
+                    <div class="card-header bg-dark text-white"> Computation </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <span>  Major Examination 50%  </span>
+                            <span>  Quizzes 50%  </span>
+                            <input disabled type="text" name="quizzes_eg_txt" id="quizzes_eg_txt" class="form-control"> 
+                        </div>
+                        <div class="form-group">
+                            <span>  Major Examination 25%  </span>
                             <input disabled type="text" name="major_examination_eg_txt" id="major_examination_eg_txt" class="form-control"> 
                         </div>
                         <div class="form-group">
-                            <span>  Class Participation 50%  </span>
+                            <span>  Class Participation 25%  </span>
                             <input disabled type="text" name="class_participation_eg_txt" id="class_participation_eg_txt" class="form-control"> 
                         </div>
                         <div class="form-group">
                             <span>  Final Grade </span>
                             <input disabled type="text" name="final_grade_txt" id="final_grade_txt" class="form-control"> 
                         </div>
-                     
                     </div>
                 </div>
-            
-               
             </div>
             <div class="modal-footer">
                 <input type="hidden" name="group_assignment_id" id="group_assignment_id">
@@ -165,9 +178,11 @@
     
         $('#major_examination_score').val(1)
         $('#class_participation_score').val(1)
+        $('#quizzes_score').val(1)
 
         $('#major_examination_eg_txt').val(0)
         $('#class_participation_eg_txt').val(0)
+        $('#quizzes_eg_txt').val(0)
         $('#final_grade_txt').val(0)
 
         $('#final_grade_display').html(0)
@@ -188,32 +203,39 @@
     function computeGrades(){
         var major_examination_input
         var class_participation_input
+        var quizzes_input
         
          //inputs
 
         major_examination_input = parseInt($('#major_examination_score').val())
         class_participation_input = parseInt($('#class_participation_score').val())
+        quizzes_input = parseInt($('#quizzes_score').val())
+        
 
         //criteria data
         var major_examination_max_points = 100
         var class_participation_max_points = 100
+        var quizzes_max_points = 100
 
-        var major_examination_percentage_value_ = 0.50
-        var major_examination_percentage_value_ = 0.50
+        var major_examination_percentage_value_ = 0.25
+        var class_participation_value_ = 0.25
+        var quizzes_percentage_value_ = 0.50
         
         //computation
         var major_examination_eg = (major_examination_input / major_examination_max_points) * 100
         var class_participation_eg = (class_participation_input / class_participation_max_points) * 100
+        var quizzes_eg = (quizzes_input / quizzes_max_points) * 100
 
         var total_major_examination = major_examination_percentage_value_ * major_examination_eg
-        var class_participation_examination = major_examination_percentage_value_ * class_participation_eg
+        var total_class_participation = class_participation_value_ * class_participation_eg
+        var total_quizzes = quizzes_percentage_value_ * quizzes_eg
 
-        var final_grade = total_major_examination + class_participation_examination
-
+        var final_grade = total_major_examination + total_class_participation + total_quizzes
 
 
         $('#major_examination_eg_txt').val(total_major_examination)
-        $('#class_participation_eg_txt').val(class_participation_examination)
+        $('#class_participation_eg_txt').val(total_class_participation)
+        $('#quizzes_eg_txt').val(total_quizzes)
         $('#final_grade_txt').val(final_grade)
 
         $('#final_grade_display').html(final_grade)

@@ -17,7 +17,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <a href="{{route('administrator.logins.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
@@ -29,7 +29,7 @@
             </div>
         </a>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <a href="{{route('administrator.system-logs.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
@@ -41,7 +41,7 @@
             </div>
         </a>
     </div>
-    <div class="col-sm-4">
+    <div class="col-sm-3">
         <a href="{{route('user-management.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
@@ -49,6 +49,18 @@
                 </div>
                 <div class="card-footer bg-dark text-white text-center">
                     <strong class="text-white"> User Management </strong> 
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="col-sm-3">
+        <a href="{{route('administrator.exports.index')}}">
+            <div class="card shadow-sm mt-3">
+                <div class="card-body text-center">
+                    <i class="fas fa-cloud-download-alt  fa-3x text-info"></i>
+                </div>
+                <div class="card-footer bg-dark text-white text-center">
+                    <strong class="text-white"> Exports </strong> 
                 </div>
             </div>
         </a>
