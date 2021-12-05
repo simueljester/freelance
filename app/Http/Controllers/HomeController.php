@@ -77,8 +77,8 @@ class HomeController extends Controller
 
         //dashboard teacher
         if(Auth::user()->user_instance->role_id == 2){
-            $group_count = Group::whereCreatorId(Auth::user()->id)->count();
-            $module_count = GroupModule::whereUserId(Auth::user()->id)->count();
+            $group_count = Group::whereCreatorId(Auth::user()->id)->whereCreatorInstanceId(Auth::user()->user_instance->id)->count();
+            $module_count = GroupModule::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->count();
             $question_count = Question::whereCreator(Auth::user()->id)->count();
             $recently_created_questions = Question::with('subject')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->get();
             return view('home-teacher',compact('group_count','question_count','module_count','recently_created_questions'));
@@ -87,14 +87,14 @@ class HomeController extends Controller
 
         //dashboard teacher
         if(Auth::user()->user_instance->role_id == 3){
-            $my_group_assignments = GroupAssignment::with('group')->whereUserId(Auth::user()->id)->get();
+            $my_group_assignments = GroupAssignment::with('group')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->get();
 
             $all_modules = collect();
        
-            $exam_assignments = ExamAssignment::with('exam.group')->whereUserId(Auth::user()->id)->get();
-            $discussion_assignments = DiscussionAssignment::with('discussion.group')->whereUserId(Auth::user()->id)->get();
-            $learning_assignments = LearningMaterialAssignment::with('learning_material.group')->whereUserId(Auth::user()->id)->get();
-            $link_assignments = LinkAssignment::with('link.group')->whereUserId(Auth::user()->id)->get();
+            $exam_assignments = ExamAssignment::with('exam.group')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->get();
+            $discussion_assignments = DiscussionAssignment::with('discussion.group')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->get();
+            $learning_assignments = LearningMaterialAssignment::with('learning_material.group')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->get();
+            $link_assignments = LinkAssignment::with('link.group')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->get();
             
             $all_modules =  $all_modules->merge($exam_assignments);
             $all_modules =  $all_modules->merge($discussion_assignments);

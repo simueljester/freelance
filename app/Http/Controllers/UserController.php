@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-use App\Imports\UsersImport;
 use Session;
+use App\User;
+use App\AcademicYear;
+use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -53,9 +54,10 @@ class UserController extends Controller
         $saved_user_data = app(UserRepository::class)->save($user_data);
         
         $user_instance_data = [
-            'user_id'       => $saved_user_data->id,
-            'role_id'       => $request->role,
-            'active'        =>  1
+            'user_id'           => $saved_user_data->id,
+            'role_id'           => $request->role,
+            'active'            =>  1,
+            'academic_year_id'  => AcademicYear::whereActive(1)->first()->id
         ];
         $saved_user_instances_data = app(UserInstanceRepository::class)->save($user_instance_data);
 

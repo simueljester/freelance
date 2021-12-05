@@ -23,6 +23,23 @@ class GroupAssignment extends Model
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function prelim_grades()
+    {
+        return $this->hasOne('App\Grade', 'group_assignment_id','id')->whereTerm('prelim');
+    }
+
+    public function midterm_grades()
+    {
+        return $this->hasOne('App\Grade', 'group_assignment_id','id')->whereTerm('midterm');
+    }
+
+    public function finals_grades()
+    {
+        return $this->hasOne('App\Grade', 'group_assignment_id','id')->whereTerm('finals');
+    }
+
+   
+
  
 
 }

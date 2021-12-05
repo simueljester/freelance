@@ -3,8 +3,9 @@ namespace App\Http\Repositories;
 
 use DB;
 use App\User;
-use Illuminate\Support\Collection;
+use App\AcademicYear;
 
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\UserInstanceRepository;
@@ -42,9 +43,10 @@ class UserRepository extends BaseRepository
                     
                     
                     $user_instance_data = [
-                        'user_id'       => $save_user->id,
-                        'role_id'       => $user->role == 'teacher' ? 2 : 3,
-                        'active'        => 1
+                        'user_id'           => $save_user->id,
+                        'role_id'           => $user->role == 'teacher' ? 2 : 3,
+                        'active'            => 1,
+                        'academic_year_id'  => AcademicYear::whereActive(1)->first()->id
                     ];
                     $saved_user_instances_data = app(UserInstanceRepository::class)->save($user_instance_data);
 

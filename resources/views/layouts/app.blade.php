@@ -175,9 +175,26 @@
         <div id="content-wrapper" class="d-flex flex-column">
             <!-- Main Content -->
             <div id="content" class="p-3">
-         
-                <strong> {{Auth::user()->name}}  </strong> -  <span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span>
-                  
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="card shadow-sm p-1">
+                            <div class="card-body border">
+                                <strong> <i class="fas fa-user-circle"></i> {{Auth::user()->name}}  </strong> -  <span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="card shadow-sm p-1">
+                            <div class="card-body border">
+                                <strong> <i class="fab fa-font-awesome-flag"></i> {{App\AcademicYear::whereActive(1)->first()->name}} </strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+      
+        
+               
+
                 @if(session()->has('success'))
                     <div class="alert alert-success mt-3" role="alert">
                         <i class="fas fa-check-circle"></i> {{ session()->get('success') }}

@@ -9,12 +9,17 @@ class Group extends Model
     protected $table = 'groups';
 
     protected $fillable = [
-        'name', 'description','creator_id','subject_id'
+        'name', 'description','creator_id','subject_id','creator_instance_id'
     ];
 
     public function user_creator()
     {
         return $this->belongsTo('App\User', 'creator_id', 'id');
+    }
+
+    public function user_creator_instance()
+    {
+        return $this->belongsTo('App\User', 'creator_instance_id', 'id');
     }
 
     public function members()

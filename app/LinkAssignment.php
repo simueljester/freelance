@@ -10,7 +10,7 @@ class LinkAssignment extends Model
     protected $table = 'link_assignments';
 
     protected $fillable = [
-        'link_id', 'user_id','group_id','group_assignment_id','score','status'
+        'link_id', 'user_id','group_id','group_assignment_id','user_instance_id','score','status'
     ];
 
     public function link()
@@ -31,5 +31,10 @@ class LinkAssignment extends Model
     public function groupAssignment()
     {
         return $this->belongsTo('App\GroupAssignment', 'group_assignment_id', 'id');
+    }
+
+    public function user_instance()
+    {
+        return $this->belongsTo('App\UserInstance', 'user_instance_id', 'id');
     }
 }

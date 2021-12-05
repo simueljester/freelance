@@ -25,7 +25,8 @@ class DiscussionAssignmentRepository extends BaseRepository
                     'discussion_id'         => $discussion_data->id,
                     'user_id'               => $member->user_id,
                     'group_id'              => $group->id,
-                    'group_assignment_id'   => $member->id
+                    'group_assignment_id'   => $member->id,
+                    'user_instance_id'      => $member->user_instance_id,
                 ],
                 [
                     'score'         => 0,

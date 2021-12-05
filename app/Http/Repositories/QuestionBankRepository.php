@@ -45,7 +45,7 @@ class QuestionBankRepository extends BaseRepository
             $new_question->max_points       = $question->max_points;
             $new_question->attachment       = null;
             $new_question->creator          = Auth::user()->id;
-            $new_question->subject_id       = 0;
+            $new_question->subject_id       = 1;
             $new_question->level            = $level ?? 2;
             $new_question->save();
         }

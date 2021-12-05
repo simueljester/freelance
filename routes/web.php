@@ -115,6 +115,8 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
 
     Route::group(['prefix' => 'class-grades', 'as' => 'class-grades.'], function() {
         Route::get('/group/{group}/',            ['as' => 'index',          'uses' => 'ClassGradesController@index']);
+        Route::post('/save',                     ['as' => 'save',           'uses' => 'ClassGradesController@save']);
+        Route::get('/show/grade/{grade}',       ['as' => 'show',           'uses' => 'ClassGradesController@show']);
 
     });
 
@@ -175,7 +177,9 @@ Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], functi
 
 //User Managament Routes
 Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function() {
-    Route::get('/',             ['as' => 'index',       'uses' => 'AdministratorController@index']);
+    Route::get('/',                                         ['as' => 'index',                   'uses' => 'AdministratorController@index']);
+    Route::post('/save-academic-year',                      ['as' => 'save-academic-year',      'uses' => 'AdministratorController@saveAcademicYear']);
+    Route::get('/change-academic-active/{academic_year}',   ['as' => 'change-academic-active',  'uses' => 'AdministratorController@changeAcadmicActive']);
 
     Route::group(['prefix' => 'logins', 'as' => 'logins.'], function() {
         Route::get('/',      ['as' => 'index',       'uses' => 'LoginReportController@index']);

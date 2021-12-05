@@ -10,7 +10,7 @@ class ExamAssignment extends Model
     protected $table = 'exam_assignments';
 
     protected $fillable = [
-        'exam_id', 'user_id','group_id','group_assignment_id','duration','score','status'
+        'exam_id', 'user_id','group_id','group_assignment_id','user_instance_id','duration','score','status'
     ];
 
     public function exam()
@@ -41,5 +41,10 @@ class ExamAssignment extends Model
     public function webShots()
     {
         return $this->HasMany('App\ExamAssignmentWebShot', 'exam_assignment_id', 'id');
+    }
+
+    public function user_instance()
+    {
+        return $this->belongsTo('App\UserInstance', 'user_instance_id', 'id');
     }
 }

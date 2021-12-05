@@ -10,7 +10,7 @@ class LearningMaterialAssignment extends Model
     protected $table = 'learning_material_assignments';
 
     protected $fillable = [
-        'learning_material_id', 'user_id','group_id','group_assignment_id','score','status'
+        'learning_material_id', 'user_id','group_id','group_assignment_id','user_instance_id','score','status'
     ];
 
     public function learning_material()
@@ -31,5 +31,10 @@ class LearningMaterialAssignment extends Model
     public function groupAssignment()
     {
         return $this->belongsTo('App\GroupAssignment', 'group_assignment_id', 'id');
+    }
+
+    public function user_instance()
+    {
+        return $this->belongsTo('App\UserInstance', 'user_instance_id', 'id');
     }
 }

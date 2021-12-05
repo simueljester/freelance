@@ -28,7 +28,7 @@ class GroupController extends Controller
 
     public function index(){
         
-        $groups = app(GroupRepository::class)->query()->with('user_creator','subject')->whereCreatorId(Auth::user()->id)->get();
+        $groups = app(GroupRepository::class)->query()->with('user_creator','subject')->whereCreatorId(Auth::user()->id)->whereCreatorInstanceId(Auth::user()->user_instance->id)->get();
        
         return view('groups.index',compact('groups'));
 
@@ -48,10 +48,11 @@ class GroupController extends Controller
         ]);
 
         $data = [
-            'name'          => $request->name,
-            'description'   => $request->description,
-            'creator_id'    =>  Auth::user()->id,
-            'subject_id'    =>  $request->subject
+            'name'                      => $request->name,
+            'description'               => $request->description,
+            'creator_id'                =>  Auth::user()->id,
+            'subject_id'                =>  $request->subject,
+            'creator_instance_id'       =>  Auth::user()->user_instance->id,
         ];
 
         app(GroupRepository::class)->save($data);
@@ -133,40 +134,40 @@ class GroupController extends Controller
 
     public function userGroup(){
 
-        $my_group_assignments =  app(GroupAssignmentRepository::class)->query()->with('group')->whereUserId(Auth::user()->id)->get();
+        $my_group_assignments =  app(GroupAssignmentRepository::class)->query()->with('group')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->get();
         return view('groups.user.index',compact('my_group_assignments'));
     
     }
 
     public function listExam(Group $group){
        
-        $my_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        $my_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         return view('groups.user.exam.list',compact('group','my_exam_assignments'));
       
     }
 
     public function listDiscussion(Group $group){
 
-        $my_discussion_assignments = app(DiscussionAssignmentRepository::class)->query()->with('discussion')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        $my_discussion_assignments = app(DiscussionAssignmentRepository::class)->query()->with('discussion')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         return view('groups.user.discussion.list',compact('group','my_discussion_assignments'));
     }
 
     public function listLearningMaterial(Group $group){
 
-        $my_learning_material_assignments = app(LearningMaterialAssignmentRepository::class)->query()->with('learning_material')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        $my_learning_material_assignments = app(LearningMaterialAssignmentRepository::class)->query()->with('learning_material')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         return view('groups.user.learning-material.list',compact('group','my_learning_material_assignments'));
     }
 
     public function listLink(Group $group){
 
-        $my_link_assignments = app(LinkAssignmentRepository::class)->query()->with('link')->whereUserId(Auth::user()->id)->whereGroupId($group->id)->get();
+        $my_link_assignments = app(LinkAssignmentRepository::class)->query()->with('link')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         return view('groups.user.link.list',compact('group','my_link_assignments'));
     }
 
 
     public function userExamAssignments(Group $group, User $user){
         
-        $user_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereGroupId($group->id)->whereUserId($user->id)->get();
+        $user_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereGroupId($group->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereUserId($user->id)->get();
         return view('groups.user.exam.assignments',compact('user_exam_assignments','group','user'));
    
     }
