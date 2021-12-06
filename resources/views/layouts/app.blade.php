@@ -20,10 +20,10 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <div class="text-center">
-                <img src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:100px">
+            <div class="text-center m-3">
+                <img class="shadow" src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:100px">
                 {{-- <br>
                 <strong class="text-white"> {{ App\SystemInformation::whereActive(1)->first()->title }} </strong> --}}
             </div>
@@ -43,7 +43,7 @@
                     
                     @if(request()->is(['home', 'home/*']))
                         <i class="fas fa-tachometer-alt text-info"></i>
-                        <span class="text-info"> <strong> Dashboard </strong> </span>
+                        <span class="text-white"> <strong> Dashboard </strong> </span>
                     @else
                         <i class="fas fa-tachometer-alt text-white"></i>
                         <span> Dashboard </span>
@@ -57,7 +57,7 @@
                     
                         @if(request()->is(['subjects', 'subjects/*']))
                             <i class="fas fa-book-reader text-info"></i>
-                            <span class="text-info"> <strong> Subjects </strong> </span>
+                            <span class="text-white"> <strong> Subjects </strong> </span>
                         @else
                             <i class="fas fa-book-reader text-white"></i>
                             <span> Subjects </span>
@@ -72,7 +72,7 @@
                 
                     @if(request()->is(['question-bank', 'question-bank/*']))
                         <i class="fas fa-globe text-info"></i>
-                        <span class="text-info"> <strong> Question Bank </strong>  </span>
+                        <span class="text-white"> <strong> Question Bank </strong>  </span>
                     @else
                         <i class="fas fa-globe text-white"></i>
                         <span>Question Bank</span>
@@ -88,7 +88,7 @@
                  
                     @if(request()->is(['groups', 'groups/*']))
                         <i class="fas fa-cubes text-info"></i>
-                        <span class="text-info"> <strong> Groups </strong>  </span>
+                        <span class="text-white"> <strong> Class </strong>  </span>
                     @else
                         <i class="fas fa-cubes text-white"></i>
                         <span>Class</span>
@@ -102,7 +102,7 @@
                     
                         @if(request()->is(['groups', 'groups/*']))
                             <i class="fas fa-cubes text-info"></i>
-                            <span class="text-info"> <strong> My Groups </strong>  </span>
+                            <span class="text-white"> <strong> My Groups </strong>  </span>
                         @else
                             <i class="fas fa-cubes text-white"></i>
                             <span> My Class</span>
@@ -129,7 +129,7 @@
                     <a class="nav-link" href="{{route('user-management.index')}}">
                         @if(request()->is(['user-management', 'user-management/*']))
                             <i class="fas fa-users text-info"></i>
-                            <span class="text-info"> <strong> User Management </strong> </span>
+                            <span class="text-white"> <strong> User Management </strong> </span>
                         @else
                             <i class="fas fa-users text-white"></i>
                             <span> User Management </span>
@@ -143,7 +143,7 @@
                 <a class="nav-link" href="{{route('administrator.index')}}">
                     @if(request()->is(['administrator', 'administrator/*']))
                         <i class="fas fa-user-cog text-info"></i>
-                        <span class="text-info"> <strong> Administrator </strong> </span>
+                        <span class="text-white"> <strong> Administrator </strong> </span>
                     @else
                         <i class="fas fa-user-cog text-white"></i>
                         <span> Administrator </span>

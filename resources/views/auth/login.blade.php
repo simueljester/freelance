@@ -6,28 +6,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Login</title>
+    
+
+
+
+
     @include('layouts.styles') 
 </head>
 <body  
 {{-- style="background-image: url('{{asset('system_info/bg-login-background.jpg')}}');  background-size: cover;" --}}
 style="background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.5746673669467788) 91%);"
+background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.8743872549019608) 100%);"
 >
-    <div class="container " style="top:100px">
+    <div class="container " style="top:50px">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card" style="border:none;background:transparent;top:100px">
+                <div class="card" style="border:none;background:transparent;top:50px">
                 
                     <div class="card-body">
                         
-                        <div class="text-center rubberBand" >
-                            <img src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:250px">
+                        <div class="text-center rubberBand p-3" >
+                            <img src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:220px;">
                         </div>
+                        <div class="p-3 text-center">
+                            <strong class="text-white" style="font-size:24px;"> {!! App\SystemInformation::whereActive(1)->first()->title !!} </strong>
+                        </div>
+                        <center>
+                            <a href="https://www.facebook.com/LetranCalambaOfficial" target="_blank" class="text-white"> 
+                                <small> <i class="fab fa-facebook fa-2x text-primary"></i> Facebook Page  </small>
+                            </a>
+                            &nbsp&nbsp
+                            <a href="https://www.letran-calamba.edu.ph/" class="text-white">
+                                <small> <i class="fas fa-globe fa-2x "></i> Official Website  </small> 
+                                
+                            </a>
+                        </center>
+                   
+                        <hr>
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
-    
+                            
                             <div class="form-group row">
-                                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                                <label for="email" class="col-md-4 col-form-label text-md-right text-white">{{ __('E-Mail Address') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
@@ -41,7 +61,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.57466
                             </div>
     
                             <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                <label for="password" class="col-md-4 col-form-label text-md-right text-white">{{ __('Password') }}</label>
     
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -66,7 +86,7 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.57466
     
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-info">
+                                    <button type="submit" class="btn btn-primary">
                                         {{ __('Login') }} <i class="fas fa-sign-in-alt"></i>
                                     </button>
     
@@ -82,7 +102,9 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.57466
                 </div>
             </div>
         </div>
+   
     </div>
+
 
     <style>
 .rubberBand {

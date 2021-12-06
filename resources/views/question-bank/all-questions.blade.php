@@ -66,7 +66,7 @@
             @if($filters->type || $filters->subject || $filters->difficulty || $filters->creator || $filters->start_date || $filters->end_date )
                 <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary btn-sm"> Clear </a>
             @endif
-            <button class="btn btn-info btn-sm"> Filter Question </button>
+            <button class="btn btn-primary btn-sm"> Filter Question </button>
         </div>
     </div>
 

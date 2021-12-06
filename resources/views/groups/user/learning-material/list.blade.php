@@ -13,7 +13,7 @@
             
                 @if ($assignment->learning_material->file)
               
-                    <i class="fas fa-download"></i> <a href="{{route('downloads.learning-material-attachment',[$assignment->learning_material->file,$assignment->group_id])}}" class="text-info"> {{$assignment->learning_material->file}}  </a>
+                    <i class="fas fa-download"></i> <a href="{{route('downloads.learning-material-attachment',[$assignment->learning_material->file,$assignment->group_id])}}" class="text-primary"> {{$assignment->learning_material->file}}  </a>
                 @endif
             </div>
             <div class="card-footer">

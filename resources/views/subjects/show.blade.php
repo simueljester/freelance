@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-book-reader text-info"></i>  Subjects </h4>
+        <h4 class="text-muted">   <i class="fas fa-book-reader text-primary"></i>  Subjects </h4>
         <small class="text-muted"> <i> Manage subjects </i>  </small>
     </div>
 </div>
@@ -27,7 +27,7 @@
         <div> Date Created: {{$subject->created_at->format('Y-m-d')}} </div>
     </div>
     <div class="card-footer">
-        <span class="text-info" data-toggle="modal" data-target="#editSubject" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </span>
+        <span class="text-primary" data-toggle="modal" data-target="#editSubject" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </span>
         &nbsp&nbsp
         <a href="{{route('subjects.delete',$subject)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this subject? Questions and Groups assign to this subject will be deleted')"> <i class="fas fa-trash-alt"></i> Delete </a>
     </div>
@@ -63,7 +63,7 @@
             <div class="modal-footer">
                 <input type="hidden" name="subject_id" id="subject_id" value="{{$subject->id}}">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-info">Save changes</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

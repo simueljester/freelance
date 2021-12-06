@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-tachometer-alt text-info"></i>  Dashboard </h4>
+        <h4 class="text-muted">   <i class="fas fa-tachometer-alt text-primary"></i>  Dashboard </h4>
         <small class="text-muted"> <i> Summary of contents </i>  </small>
     </div>
 </div>
@@ -44,10 +44,10 @@
                                     {{$module->link ? $module->link->group->name : null}}  
                                 </td>
                                 <td>
-                                    <a class="btn btn-sm btn-info" href="{{route('groups.user-group.list-exam',$module->group_id)}}" {{$module->exam ? $module->exam->group->name : 'hidden'}}> <i class="fas fa-align-left"></i> Open List </a> 
-                                    <a class="btn btn-sm btn-info" href="{{route('groups.user-group.list-discussion',$module->group_id)}}" {{$module->discussion ? $module->discussion->group->name : 'hidden'}} > <i class="fas fa-align-left"></i> Open List </a>
-                                    <a class="btn btn-sm btn-info" href="{{route('groups.user-group.list-learning-material',$module->group_id)}}" {{$module->learning_material ? $module->learning_material->group->name : 'hidden'}}> <i class="fas fa-align-left"></i> Open List </a>
-                                    <a class="btn btn-sm btn-info" href="{{route('groups.user-group.list-link',$module->group_id)}}" {{$module->link ? $module->link->group->name : 'hidden'}}> <i class="fas fa-align-left"></i> Open List </a>
+                                    <a class="btn btn-sm btn-primary" href="{{route('groups.user-group.list-exam',$module->group_id)}}" {{$module->exam ? $module->exam->group->name : 'hidden'}}> <i class="fas fa-align-left"></i> Open List </a> 
+                                    <a class="btn btn-sm btn-primary" href="{{route('groups.user-group.list-discussion',$module->group_id)}}" {{$module->discussion ? $module->discussion->group->name : 'hidden'}} > <i class="fas fa-align-left"></i> Open List </a>
+                                    <a class="btn btn-sm btn-primary" href="{{route('groups.user-group.list-learning-material',$module->group_id)}}" {{$module->learning_material ? $module->learning_material->group->name : 'hidden'}}> <i class="fas fa-align-left"></i> Open List </a>
+                                    <a class="btn btn-sm btn-primary" href="{{route('groups.user-group.list-link',$module->group_id)}}" {{$module->link ? $module->link->group->name : 'hidden'}}> <i class="fas fa-align-left"></i> Open List </a>
                                 </td>
                             </tr>
                         @endforeach
@@ -63,7 +63,7 @@
             </div>
             <div class="card-body">
                 @forelse ($my_group_assignments as $group_assignment)
-                    <a href="{{route('groups.user-group.list-exam',$group_assignment->group_id)}}" class="text-info" style="text-decoration: none;">
+                    <a href="{{route('groups.user-group.list-exam',$group_assignment->group_id)}}" class="text-primary" style="text-decoration: none;">
                         <div class="card mt-2">
                             <div class="card-body">
                                 <i class="fas fa-cube"></i> {{$group_assignment->group->name}}

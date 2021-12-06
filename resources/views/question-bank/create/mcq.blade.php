@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">  <i class="fas fa-globe text-info"></i> Question Bank  </h4>
+        <h4 class="text-muted">  <i class="fas fa-globe text-primary"></i> Question Bank  </h4>
         <small class="text-muted"> <i> Manage questions </i>  </small>
     </div>
 </div>
@@ -133,7 +133,7 @@
     
             <div>
                 <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
-                <button class="btn btn-info"> Save Question</button>
+                <button class="btn btn-primary"> Save Question</button>
             </div>
         </div>
     </div>

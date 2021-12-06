@@ -28,7 +28,7 @@
                         <span class="badge badge-danger"> Late Submission </span>
                     @endif
                     &nbsp&nbsp
-                    <span class="text-info" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span>
+                    <span class="text-primary" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span>
                  
                    
                     <div class="mt-5">
@@ -38,7 +38,7 @@
                                 <i> <i class="far fa-question-circle"></i> Question {{ $loop->index + 1}} </i> <small class="text-uppercase float-right"> {{$user_answer->question->question_type}} </small> 
                                 @if ($user_answer->question->question_type == 'essay' && Auth::user()->user_instance->role->id !=3)
                         
-                                   <small> - Click <span class="text-info" style="cursor:pointer;" onclick="showOverrideInput({{$user_answer}},{{$loop->index+1}})"> here </span> to override essay score </small> 
+                                   <small> - Click <span class="text-primary" style="cursor:pointer;" onclick="showOverrideInput({{$user_answer}},{{$loop->index+1}})"> here </span> to override essay score </small> 
                                 @endif
                             </div>
                             <div class="card-body">
@@ -105,7 +105,7 @@
 
                             </div>
                             <div class="card-footer">
-                                Correct Answer : <strong class="text-info"> {{$user_answer->question->answer ?? 'Not available'}}  </strong>
+                                Correct Answer : <strong class="text-primary"> {{$user_answer->question->answer ?? 'Not available'}}  </strong>
                                 &nbsp&nbsp 
                                 Points: <strong> {{$user_answer->points}} </strong>
                             </div>
@@ -141,7 +141,7 @@
                         <div class="card-body">
                             <ul>
                                 @forelse ($exam_assignment->webShots as $shot)
-                                    <li onclick="previewImage({{$shot}})" style="cursor: pointer;" class="text-info"> <i class="fas fa-camera"></i> {{$shot->filename}} - <small> {{$shot->created_at->format('Y/m/d H:m:s')}} </small> </li>
+                                    <li onclick="previewImage({{$shot}})" style="cursor: pointer;" class="text-primary"> <i class="fas fa-camera"></i> {{$shot->filename}} - <small> {{$shot->created_at->format('Y/m/d H:m:s')}} </small> </li>
                          
                                 @empty
                                     <li> No shots captured </li>
@@ -200,7 +200,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-info btn-sm">Save changes</button>
+              <button type="submit" class="btn btn-primary btn-sm">Save changes</button>
             </div>
           </div>
         </div>

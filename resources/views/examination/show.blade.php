@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-paste text-white text-info"></i>  Examination  </h4>
+        <h4 class="text-muted"> <i class="fas fa-paste text-white text-primary"></i>  Examination  </h4>
         <small class="text-muted"> <i> Manages examination details, assignment, questions and settings </i>  </small>
     </div>
 </div>
@@ -30,16 +30,16 @@
                 &nbsp&nbsp
                 <i class="fas fa-star text-warning"></i> {{$exam->total_score}} Maximum Score
                 &nbsp&nbsp
-                <a href="{{route('groups.show',$exam->group_id)}}" class="text-info"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
+                <a href="{{route('groups.show',$exam->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
                 &nbsp&nbsp
-                <a href="{{route('examination.edit',$exam)}}" class="text-info"> <i class="fas fa-edit "></i> Edit Exam </a>
+                <a href="{{route('examination.edit',$exam)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Exam </a>
                 &nbsp&nbsp
                 <a href="{{route('examination.delete',$exam)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a>
             </div>
             <br>
             <div class="mt-5">
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
-                <a href="{{route('examination.examination-assignment.index',$exam)}}" class="btn btn-info btn-sm"> <i class="fas fa-question-circle"></i> Assign Questions </a>
+                <a href="{{route('examination.examination-assignment.index',$exam)}}" class="btn btn-primary btn-sm"> <i class="fas fa-question-circle"></i> Assign Questions </a>
                 <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to unassign selected questions?')"> Unassign Questions </button>
                 <a href="{{route('groups.show',$exam->group_id)}}" class="btn btn-outline-secondary btn-sm"> Go to Group </a>
             </div>
@@ -53,7 +53,7 @@
                 <tbody>
                     @forelse ($questions_assigned as $assignment)
                         <tr>
-                            <td> <a href="{{route('question-bank.show',$assignment->question_id)}}" class="text-info"> {!!$assignment->question->instruction!!} </a>  </td>
+                            <td> <a href="{{route('question-bank.show',$assignment->question_id)}}" class="text-primary"> {!!$assignment->question->instruction!!} </a>  </td>
                             <td class="text-uppercase"> <small> {{$assignment->question->question_type}} </small></td>
                             <td> {{$assignment->question->max_points}} </td>
                             <td>

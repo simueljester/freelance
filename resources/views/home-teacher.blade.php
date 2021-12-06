@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-tachometer-alt text-info"></i>  Dashboard </h4>
+        <h4 class="text-muted">   <i class="fas fa-tachometer-alt text-primary"></i>  Dashboard </h4>
         <small class="text-muted"> <i> Summary of contents </i>  </small>
     </div>
 </div>
@@ -16,7 +16,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$module_count}} </strong> </div>
-                <div>  <i class="fas fa-shapes text-info fa-2x"></i>  </div>
+                <div>  <i class="fas fa-shapes text-primary fa-2x"></i>  </div>
                 <div> <small> Modules created </small> </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$group_count}} </strong> </div>
-                <div>  <i class="fas fa-cubes text-info fa-2x"></i>  </div>
+                <div>  <i class="fas fa-cubes text-primary fa-2x"></i>  </div>
                 <div> <small> Class created </small> </div>
             </div>
         </div>
@@ -38,7 +38,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px; ">  {{$question_count}}  </strong> </div>
-                <div>  <i class="fas fa-question-circle text-info fa-2x"></i> </div>
+                <div>  <i class="fas fa-question-circle text-primary fa-2x"></i> </div>
                 <div> <small> Questions created </small> </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                     <tbody>
                         @foreach ($recently_created_questions as $question)
                         <tr>
-                            <td> <a class="text-info" style="text-decoration: none;" href="{{route('question-bank.show',$question)}}"> {!! $question->instruction !!} </a>  </td>
+                            <td> <a class="text-primary" style="text-decoration: none;" href="{{route('question-bank.show',$question)}}"> {!! $question->instruction !!} </a>  </td>
                             <td> {{$question->subject->name}} </td>
                         </tr>
                         @endforeach
@@ -75,11 +75,11 @@
                 <i class="far fa-plus-square"></i> Create Shortcut 
             </div>
             <div class="card-body">
-                <a href="{{route('groups.create')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
-                <a href="{{route('question-bank.create.mcq')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
-                <a href="{{route('question-bank.create.tf')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create True or False Question </a>
-                <a href="{{route('question-bank.create.sa')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create Identification Question </a>
-                <a href="{{route('question-bank.create.essay')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create Essay Question </a>
+                <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
+                <a href="{{route('question-bank.create.mcq')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
+                <a href="{{route('question-bank.create.tf')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create True or False Question </a>
+                <a href="{{route('question-bank.create.sa')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Identification Question </a>
+                <a href="{{route('question-bank.create.essay')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Essay Question </a>
             </div>
         </div>
     </div>

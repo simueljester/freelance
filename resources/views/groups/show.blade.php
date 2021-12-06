@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
         <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
@@ -26,10 +26,10 @@
         <div> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
     </div>
     <div class="card-footer">
-        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignUsers">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#assignUsers">
             <i class="fas fa-users"></i> Enrolled Users
         </button>
-        <a href="{{route('groups.class-grades.index',$group)}}" class="btn btn-info btn-sm"> <i class="fab fa-cloudsmith"></i> Class Grades </a>
+        <a href="{{route('groups.class-grades.index',$group)}}" class="btn btn-primary btn-sm"> <i class="fab fa-cloudsmith"></i> Class Grades </a>
     </div>
 </div>
 
@@ -64,7 +64,7 @@
                     <tbody>
                         @forelse ($assigned_users as $user)
                             <tr>
-                                <td> <a href="{{route('groups.user-data',$user)}}" class="text-info"> {{$user->user->name}} </a> </td>
+                                <td> <a href="{{route('groups.user-data',$user)}}" class="text-primary"> {{$user->user->name}} </a> </td>
                                 <td> {{$user->user->email}} </td>
                                 {{-- <td> {{$user->user->user_instance->role->role}} </td> --}}
                                 <td>
@@ -84,7 +84,7 @@
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to unassign selected users? Users examination data will be deleted')"> Unassign Users </button>
-                <a href="{{route('groups.group-assignment.assignment',$group)}}" class="btn btn-info btn-sm" > <i class="fas fa-user-plus"></i> Assign New Users  </a>
+                <a href="{{route('groups.group-assignment.assignment',$group)}}" class="btn btn-primary btn-sm" > <i class="fas fa-user-plus"></i> Assign New Users  </a>
             </div>
         </div>
         </div>

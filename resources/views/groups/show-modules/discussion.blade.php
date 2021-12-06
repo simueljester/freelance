@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
@@ -27,14 +27,14 @@
         <div>
             <i class="fas fa-star text-warning"></i> {{$discussion->total_score}} Total Score
             &nbsp&nbsp
-            <a href="{{route('groups.show',$discussion->group_id)}}" class="text-info"> <i class="fas fa-cube"></i> {{$discussion->group->name}} </a>
+            <a href="{{route('groups.show',$discussion->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$discussion->group->name}} </a>
             &nbsp&nbsp
-            <a href="{{route('groups.discussion.edit',$discussion)}}" class="text-info"> <i class="fas fa-edit "></i> Edit Discussion </a>
+            <a href="{{route('groups.discussion.edit',$discussion)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Discussion </a>
             &nbsp&nbsp
             <a href="{{route('groups.discussion.delete',$discussion)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this discussion? All discussion assignments, participation posts and user scores will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Discussion </a>
             &nbsp&nbsp
             @if ($discussion->attachment)
-                <i class="fas fa-paperclip"></i> <a href="{{route('downloads.discussion-attachment',$discussion->attachment)}}" class="text-info"> {{$discussion->attachment}} </a>
+                <i class="fas fa-paperclip"></i> <a href="{{route('downloads.discussion-attachment',$discussion->attachment)}}" class="text-primary"> {{$discussion->attachment}} </a>
             @endif
                 {{--&nbsp&nbsp
             <a href="{{route('groups.exam.delete',$discussion)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a> --}}
@@ -46,14 +46,14 @@
     <div class="col-sm-6">
         <div class="card shadow-sm mt-3">
             <div class="card-body">
-                <a href="{{route('groups.user-group.start-discussion',$discussion)}}" class="btn btn-info btn-block"> <i class="fas fa-comment-dots"></i> Open Discussion </a>
+                <a href="{{route('groups.user-group.start-discussion',$discussion)}}" class="btn btn-primary btn-block"> <i class="fas fa-comment-dots"></i> Open Discussion </a>
             </div>
         </div>
     </div>
     <div class="col-sm-6">
         <div class="card shadow-sm mt-3">
             <div class="card-body">
-                <strong> <i class="fas fa-users"></i> User Discussion Assignments </strong> - <a href="{{route('groups.discussion.generate-pdf',$discussion)}}" target="_blank" class="text-info" style="text-decoration:none"> Generate scores </a>
+                <strong> <i class="fas fa-users"></i> User Discussion Assignments </strong> - <a href="{{route('groups.discussion.generate-pdf',$discussion)}}" target="_blank" class="text-primary" style="text-decoration:none"> Generate scores </a>
                 <table class="table table-hover mt-3">
                     <thead>
                         <th> User </th>

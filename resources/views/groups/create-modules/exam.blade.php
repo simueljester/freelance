@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
@@ -49,7 +49,7 @@
             <div class="mt-3">
                 <input type="hidden" name="folder_id" id="folder_id" value="{{$folder}}">
                 <a href="{{route('groups.show',$group->id)}}" class="btn btn-outline-secondary"> Cancel </a>
-                <button type="submit" class="btn btn-info"> Create Exam </button>
+                <button type="submit" class="btn btn-primary"> Create Exam </button>
             </div>
         </div>
     </div>

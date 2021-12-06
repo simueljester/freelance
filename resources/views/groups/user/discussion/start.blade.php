@@ -52,7 +52,7 @@
                         <span class="mt-3"> {!! $discussion->description !!} </span>
                         <hr>
                         @if ($discussion->attachment)
-                            <i class="fas fa-paperclip"></i> <a href="{{route('downloads.question-attachment',$discussion->attachment)}}" class="text-info"> {{$discussion->attachment}} </a>
+                            <i class="fas fa-paperclip"></i> <a href="{{route('downloads.question-attachment',$discussion->attachment)}}" class="text-primary"> {{$discussion->attachment}} </a>
                         @endif
           
                         @if ($discussion->creator == Auth::user()->id)
@@ -90,7 +90,7 @@
                                </tbody>
                            </table>
                            <hr>
-                           <button class="btn btn-info btn-sm"> Save Scores <i class="far fa-check-circle"></i> </button>
+                           <button class="btn btn-primary btn-sm"> Save Scores <i class="far fa-check-circle"></i> </button>
                         </div>
                     </div>
                 </form>
@@ -112,7 +112,7 @@
                         </div>
                         <div>
                             <input type="hidden" name="discussion_id" id="discussion_id" value="{{$discussion->id}}">
-                            <button class="btn btn-info btn-sm"> Post <i class="fas fa-paper-plane"></i> </button>
+                            <button class="btn btn-primary btn-sm"> Post <i class="fas fa-paper-plane"></i> </button>
                         </div>
                     </div>
                 </div>
@@ -133,7 +133,7 @@
                             </div>
                             <div class="card-footer">
                                 @if ($post->attachment)
-                                    <a href="{{route('downloads.discussion-attachment',$post->attachment)}}" class="text-info"> <i class="fas fa-download"></i> {{$post->attachment}} </a>
+                                    <a href="{{route('downloads.discussion-attachment',$post->attachment)}}" class="text-primary"> <i class="fas fa-download"></i> {{$post->attachment}} </a>
                                 @endif
                             </div>
                         </div>

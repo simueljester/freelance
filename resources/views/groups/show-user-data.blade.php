@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
         <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
@@ -55,8 +55,8 @@
                                    
                                         <td> 
                                             @if ($assignment->status != 0)
-                                            <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" target="_blank" class="btn btn-info btn-sm"> <i class="far fa-eye"></i> View Result </a> 
-                                            <a href="{{route('groups.exam.generate-pdf',$assignment)}}" target="_blank" class="btn btn-info btn-sm"> <i class="fas fa-download"></i> Download Result </a> 
+                                            <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" target="_blank" class="btn btn-primary btn-sm"> <i class="far fa-eye"></i> View Result </a> 
+                                            <a href="{{route('groups.exam.generate-pdf',$assignment)}}" target="_blank" class="btn btn-primary btn-sm"> <i class="fas fa-download"></i> Download Result </a> 
                                             @endif
                                         </td>
                                 
@@ -84,7 +84,7 @@
                                 @forelse ($discussion_assignments as $assignment)
                                     <tr>
                                         <td> {{$assignment->score}} / {{$assignment->discussion->total_score}} </td>
-                                        <td> <a href="{{route('groups.user-group.start-discussion',$assignment->discussion_id)}}" class="btn btn-info btn-sm"> <i class="fas fa-comments"></i> Open Discussion </a> </td>
+                                        <td> <a href="{{route('groups.user-group.start-discussion',$assignment->discussion_id)}}" class="btn btn-primary btn-sm"> <i class="fas fa-comments"></i> Open Discussion </a> </td>
                                     </tr>
                                 @empty
                                     <tr>

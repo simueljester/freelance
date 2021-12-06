@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-user-cog text-info"></i>  Administrator </h4>
+        <h4 class="text-muted"> <i class="fas fa-user-cog text-primary"></i>  Administrator </h4>
         <small class="text-muted"> <i> Access / Manage reports, logins and user accounts as system adminstrator </i>  </small>
     </div>
 </div>
@@ -21,7 +21,7 @@
         <a href="{{route('administrator.logins.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
-                    <i class="fas fa-sign-in-alt fa-3x text-info"></i>
+                    <i class="fas fa-sign-in-alt fa-3x text-primary"></i>
                 </div>
                 <div class="card-footer bg-dark text-white text-center">
                     <strong class="text-white"> Login Report </strong> 
@@ -33,7 +33,7 @@
         <a href="{{route('administrator.system-logs.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
-                    <i class="fas fa-layer-group fa-3x text-info"></i>
+                    <i class="fas fa-layer-group fa-3x text-primary"></i>
                 </div>
                 <div class="card-footer bg-dark text-white text-center">
                     <strong class="text-white"> System Logs  </strong> 
@@ -45,7 +45,7 @@
         <a href="{{route('user-management.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
-                    <i class="fas fa-users fa-3x text-info"></i>
+                    <i class="fas fa-users fa-3x text-primary"></i>
                 </div>
                 <div class="card-footer bg-dark text-white text-center">
                     <strong class="text-white"> User Management </strong> 
@@ -57,7 +57,7 @@
         <a href="{{route('administrator.exports.index')}}">
             <div class="card shadow-sm mt-3">
                 <div class="card-body text-center">
-                    <i class="fas fa-cloud-download-alt  fa-3x text-info"></i>
+                    <i class="fas fa-cloud-download-alt  fa-3x text-primary"></i>
                 </div>
                 <div class="card-footer bg-dark text-white text-center">
                     <strong class="text-white"> Exports </strong> 
@@ -70,7 +70,7 @@
 
     <div class="card shadow-sm mt-3">
         <div class="card-body">
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                 <i class="fas fa-plus"></i> Add Academic Year
               </button>
               
@@ -89,7 +89,7 @@
                             <td> {{$ac->semester}} </td>
                             <td> 
                                 @if ($ac->active != 1)
-                                    <a href="{{route('administrator.change-academic-active',$ac)}}" class="btn btn-info btn-sm"> Set as active </a>
+                                    <a href="{{route('administrator.change-academic-active',$ac)}}" class="btn btn-primary btn-sm"> Set as active </a>
                                 @else
                                     <strong class="text-success"> Active </strong>
                                 @endif
@@ -135,7 +135,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-info btn-sm"> Save Academic Year </button>
+                    <button type="submit" class="btn btn-primary btn-sm"> Save Academic Year </button>
                 </div>
             </div>
             </div>

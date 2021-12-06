@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-user-cog text-info"></i>  Administrator </h4>
+        <h4 class="text-muted"> <i class="fas fa-user-cog text-primary"></i>  Administrator </h4>
         <small class="text-muted"> <i> Access / Manage reports, logins and user accounts as system adminstrator </i>  </small>
     </div>
 </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <button class="btn btn-info btn-sm btn-block mt-4"> Filter Dates </button>
+                    <button class="btn btn-primary btn-sm btn-block mt-4"> Filter Dates </button>
                 </div>
             </div>
         </form>

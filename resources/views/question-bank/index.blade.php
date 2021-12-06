@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">  <i class="fas fa-globe text-info"></i> Question Bank  </h4>
+        <h4 class="text-muted">  <i class="fas fa-globe text-primary"></i> Question Bank  </h4>
         <small class="text-muted"> <i> Manage questions </i>  </small>
     </div>
 </div>
@@ -21,7 +21,7 @@
       <div class="row">
         &nbsp
         <div class="dropdown">
-            <button class="btn btn-info btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-plus"></i> Create New Question
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -32,7 +32,7 @@
             </div>
         </div>
         &nbsp
-        <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-upload"></i> Batch Question Upload
         </button>
       </div>
@@ -77,7 +77,7 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-info btn-sm"> Upload </button>
+                    <button type="submit" class="btn btn-primary btn-sm"> Upload </button>
                     </div>
                 </div>
                 </div>

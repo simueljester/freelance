@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-paste text-white text-info"></i>  Examination  </h4>
+        <h4 class="text-muted"> <i class="fas fa-paste text-white text-primary"></i>  Examination  </h4>
         <small class="text-muted"> <i> Manages examination details, assignment, questions and settings </i>  </small>
     </div>
 </div>
@@ -31,7 +31,7 @@
             <small> {{$exam->description}} </small>
         
             <div class="mt-4">
-                <button class="btn btn-info btn-sm"> Assign Selected Questions </button>
+                <button class="btn btn-primary btn-sm"> Assign Selected Questions </button>
                 <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             </div>
             <table class="table table-hover mt-3">
@@ -45,7 +45,7 @@
                 <tbody>
                     @foreach ($questions as $question)
                         <tr>
-                            <td> <a href="{{route('question-bank.show',$question)}}" class="text-info"> {!!$question->instruction!!} </a>  </td>
+                            <td> <a href="{{route('question-bank.show',$question)}}" class="text-primary"> {!!$question->instruction!!} </a>  </td>
                             <td>
                                 @if ($question->level == 1)
                                     <span class="text-success"> Easy </span>
@@ -76,7 +76,7 @@
             <div class="mt-3">
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
            
-                <button class="btn btn-info btn-sm"> Assign Selected Questions </button>
+                <button class="btn btn-primary btn-sm"> Assign Selected Questions </button>
                 <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             </div>
         </div>

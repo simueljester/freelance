@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
         <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
@@ -42,7 +42,7 @@
             </div>
             <hr>
             <a href="{{route('groups.index')}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
-            <button class="btn btn-info btn-sm"> Create Class </button>
+            <button class="btn btn-primary btn-sm"> Create Class </button>
         </div>
     </div>
 </form>

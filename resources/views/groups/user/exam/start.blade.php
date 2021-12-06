@@ -31,7 +31,7 @@
     @csrf
     @method('POST')
 
-    <div class="bg-info text-white sticky p-3">
+    <div class="bg-primary text-white sticky p-3">
        
         <i class="fas fa-hourglass-half fa-lg fa-spin"></i>
         &nbsp&nbsp
@@ -55,7 +55,7 @@
                                 {!!$question_assignments->question->instruction!!}
                                 <br>
                                 @if ($question_assignments->question->attachment)
-                                    <a href="{{route('downloads.question-attachment',$question_assignments->question->attachment)}}" class="text-info"> <i class="fas fa-download"></i> {{$question_assignments->question->attachment}} </a>
+                                    <a href="{{route('downloads.question-attachment',$question_assignments->question->attachment)}}" class="text-primary"> <i class="fas fa-download"></i> {{$question_assignments->question->attachment}} </a>
                                 @endif
                                 <hr>
                                 @switch($question_assignments->question->question_type)

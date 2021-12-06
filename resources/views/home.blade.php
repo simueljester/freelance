@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-tachometer-alt text-info"></i>  Dashboard </h4>
+        <h4 class="text-muted">   <i class="fas fa-tachometer-alt text-primary"></i>  Dashboard </h4>
         <small class="text-muted"> <i> Summary of contents </i>  </small>
     </div>
 </div>
@@ -17,7 +17,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$group_count}} </strong> </div>
-                <div>  <i class="fas fa-cubes text-info fa-2x"></i>  </div>
+                <div>  <i class="fas fa-cubes text-primary fa-2x"></i>  </div>
                 <div> <small> Class created </small> </div>
             </div>
         </div>
@@ -27,7 +27,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$user_count}} </strong> </div>
-                <div>  <i class="fas fa-users text-info fa-2x"></i>  </div>
+                <div>  <i class="fas fa-users text-primary fa-2x"></i>  </div>
                 <div> <small> Users created </small> </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$subject_count}} </strong> </div>
-                <div> <i class="fas fa-book-reader text-info fa-2x"></i>  </div>
+                <div> <i class="fas fa-book-reader text-primary fa-2x"></i>  </div>
                 <div> <small> Subjects created </small> </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px; ">  {{$question_count}}  </strong> </div>
-                <div>  <i class="fas fa-question-circle text-info fa-2x"></i> </div>
+                <div>  <i class="fas fa-question-circle text-primary fa-2x"></i> </div>
                 <div> <small> Questions created </small> </div>
             </div>
         </div>
@@ -72,10 +72,10 @@
                 <i class="far fa-plus-square"></i> Create Shortcut 
             </div>
             <div class="card-body">
-                <a href="{{route('user-management.create')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-user-plus"></i> Create New User </a>
-                <a href="{{route('subjects.create')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
-                <a href="{{route('groups.create')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
-                <a href="{{route('question-bank.create.mcq')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create New Question (MCQ) </a>
+                <a href="{{route('user-management.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-user-plus"></i> Create New User </a>
+                <a href="{{route('subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
+                <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
+                <a href="{{route('question-bank.create.mcq')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Question (MCQ) </a>
             </div>
         </div>
     </div>
@@ -101,7 +101,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-info btn-sm"> Filter Dates </button>
+              <button type="submit" class="btn btn-primary btn-sm"> Filter Dates </button>
             </div>
           </div>
         </div>

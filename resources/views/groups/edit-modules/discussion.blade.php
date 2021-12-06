@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="form-group mt-3">
                 @if ($discussion->attachment)
-                    <i class="fas fa-paperclip"></i> <a href="{{route('downloads.question-attachment',$discussion->attachment)}}" class="text-info"> {{$discussion->attachment}} </a> <br>
+                    <i class="fas fa-paperclip"></i> <a href="{{route('downloads.question-attachment',$discussion->attachment)}}" class="text-primary"> {{$discussion->attachment}} </a> <br>
                 @endif
                 <input type="file" name="attachment" id="attachment" class="mt-3">
                 <input type="hidden" name="old_attachment" id="old_attachment" value="{{$discussion->attachment}}">
@@ -55,7 +55,7 @@
             <div>
                 <input type="hidden" name="discussion_id" id="discussion_id" value="{{$discussion->id}}">
                 <a href="{{route('groups.discussion.show',$discussion)}}" class="btn btn-outline-secondary btn-sm" > Cancel </a>
-                <button class="btn btn-info btn-sm"> Save Changes </button>
+                <button class="btn btn-primary btn-sm"> Save Changes </button>
             </div>
         </div>
     </div>

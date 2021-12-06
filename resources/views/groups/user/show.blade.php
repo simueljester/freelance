@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
         <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
@@ -25,7 +25,7 @@
         <div> Creator: {{$group->user_creator->name}} </div>
         <div> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
         <div class="mt-3">  
-            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                 View Grades
             </button>
         </div>

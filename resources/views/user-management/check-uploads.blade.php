@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-users text-info"></i>  User Management  </h4>
+        <h4 class="text-muted">   <i class="fas fa-users text-primary"></i>  User Management  </h4>
         <small class="text-muted"> <i> Create, Update and Delete user accounts </i>  </small>
     </div>
 </div>
@@ -69,9 +69,9 @@
             <input type="hidden" name="uploaded_users" id="uploaded_users" value="{{json_encode($uploaded_users)}}">
             <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary "> Cancel </a>
             @if (empty($existing_emails))
-                <button type="submit" class="btn btn-info"> Save Users </button>  
+                <button type="submit" class="btn btn-primary"> Save Users </button>  
             @else
-            <span class="text-danger ml-3"> <i class="fas fa-info-circle"></i> There are errors found in your uploaded data. Please check <strong> remarks </strong> and reupload. </span>
+            <span class="text-danger ml-3"> <i class="fas fa-primary-circle"></i> There are errors found in your uploaded data. Please check <strong> remarks </strong> and reupload. </span>
             @endif
         </div>
     </div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
@@ -37,7 +37,7 @@
             <div class="card-body">
                 <table class="table table-hover  table-sm">
                     <tr>
-                        <td colspan="2" class="bg-info text-white"> <strong> Long Quiz </strong> </td>
+                        <td colspan="2" class="bg-primary text-white"> <strong> Long Quiz </strong> </td>
                     </tr>
                     <tr>
                         <td> Teacher / Instructor Input </td>
@@ -62,7 +62,7 @@
             <div class="card-body">
                 <table class="table table-hover  table-sm">
                     <tr>
-                        <td colspan="2" class="bg-info text-white"> <strong> Assessment Task </strong> </td>
+                        <td colspan="2" class="bg-primary text-white"> <strong> Assessment Task </strong> </td>
                     </tr>
                     <tr>
                         <td> Teacher / Instructor Input </td>
@@ -89,7 +89,7 @@
             <div class="card-body">
                 <table class="table table-hover  table-sm">
                     <tr>
-                        <td colspan="2" class="bg-info text-white"> <strong> Short Quiz </strong> </td>
+                        <td colspan="2" class="bg-primary text-white"> <strong> Short Quiz </strong> </td>
                     </tr>
                     <tr>
                         <td> Teacher / Instructor Input </td>
@@ -114,7 +114,7 @@
             <div class="card-body">
                 <table class="table table-hover  table-sm">
                     <tr>
-                        <td colspan="2" class="bg-info text-white"> <strong> Major Examination </strong> </td>
+                        <td colspan="2" class="bg-primary text-white"> <strong> Major Examination </strong> </td>
                     </tr>
                     <tr>
                         <td> Teacher / Instructor Input </td>

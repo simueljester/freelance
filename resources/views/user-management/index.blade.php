@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-users text-info"></i>  User Management  </h4>
+        <h4 class="text-muted">   <i class="fas fa-users text-primary"></i>  User Management  </h4>
         <small class="text-muted"> <i> Create, Update and Delete user accounts </i>  </small>
     </div>
 </div>
@@ -37,7 +37,7 @@
                             </select>
                         </div>
                         <div class="col-sm-4">
-                            <button class="btn btn-info btn-sm mt-4 btn-block"> <i class="fas fa-search"></i> Search </button>
+                            <button class="btn btn-primary btn-sm mt-4 btn-block"> <i class="fas fa-search"></i> Search </button>
                         </div>
                     </div>
                     @if ($keyword || $role)
@@ -49,8 +49,8 @@
             
         </div>
         <div class="mt-3">
-            <a href="{{route('user-management.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New User </a>
-            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-upload"></i> Batch Upload </button>
+            <a href="{{route('user-management.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New User </a>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-upload"></i> Batch Upload </button>
         </div>
         <br>
         <strong class="mt-3"> User List </strong>
@@ -78,7 +78,7 @@
                                 @endif
                             </td>
                             <td>
-                                <a href="{{route('user-management.edit',$user)}}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> Edit </a>
+                                <a href="{{route('user-management.edit',$user)}}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> Edit </a>
                             </td>
                         </tr>
                     @endif
@@ -116,7 +116,7 @@
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-            <button type="submit" class="btn btn-info btn-sm"> Upload </button>
+            <button type="submit" class="btn btn-primary btn-sm"> Upload </button>
             </div>
         </div>
         </div>

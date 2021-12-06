@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-book-reader text-info"></i>  Subjects </h4>
+        <h4 class="text-muted">   <i class="fas fa-book-reader text-primary"></i>  Subjects </h4>
         <small class="text-muted"> <i> Manage subjects </i>  </small>
     </div>
 </div>
@@ -39,7 +39,7 @@
             
             <div>
                 <a href="{{route('subjects.index')}}" class="btn btn-outline-secondary"> Cancel </a>
-                <button class="btn btn-info"> Create Subject </button>
+                <button class="btn btn-primary"> Create Subject </button>
             </div>
         </div>
     </div>

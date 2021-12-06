@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-paste text-white text-info"></i>  Examination  </h4>
+        <h4 class="text-muted"> <i class="fas fa-paste text-white text-primary"></i>  Examination  </h4>
         <small class="text-muted"> <i> Manages examination details, assignment, questions and settings </i>  </small>
     </div>
 </div>
@@ -33,7 +33,7 @@
             <tbody>
                 @forelse ($exams as $exam)
                     <tr>
-                        <td> <a href="{{route('examination.show',$exam)}}" class="text-info"> {{$exam->name}}</a>  </td>
+                        <td> <a href="{{route('examination.show',$exam)}}" class="text-primary"> {{$exam->name}}</a>  </td>
                         <td> {{$exam->group->name}} </td>
                         <td> {{$exam->created_at->format('Y-m-d')}} </td>
                     </tr>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">  <i class="fas fa-globe text-info"></i> Question Bank  </h4>
+        <h4 class="text-muted">  <i class="fas fa-globe text-primary"></i> Question Bank  </h4>
         <small class="text-muted"> <i> Manage questions </i>  </small>
     </div>
 </div>
@@ -66,13 +66,13 @@
         <div class="card shadow-sm mt-3">
             <div class="card-body">
                 <div class="alert alert-primary" role="alert">
-                    <i class="fas fa-info-circle"></i> These questions will be assigned to <strong> Default Subject </strong>. Admin / Teacher my update subject assignments of these questions after import.
+                    <i class="fas fa-primary-circle"></i> These questions will be assigned to <strong> Default Subject </strong>. Admin / Teacher my update subject assignments of these questions after import.
                   </div>
 
                 <br>
                 <input type="hidden" name="uploaded_questions" id="uploaded_questions" value="{{json_encode($uploaded_questions)}}">
                 <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
-                <button class="btn btn-info"> Import Questions </button>
+                <button class="btn btn-primary"> Import Questions </button>
             </div>
         </div>
         

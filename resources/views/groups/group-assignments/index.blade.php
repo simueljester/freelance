@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group assignments </i>  </small>
     </div>
 </div>
@@ -27,7 +27,7 @@
             <small> {{$group->description}} </small>
     
             <div class="mt-3"> 
-                <a href="{{route('groups.group-assignment.assignment',$group)}}" class="btn btn-info btn-sm"> <i class="fas fa-user-plus"></i> Assign Users  </a>
+                <a href="{{route('groups.group-assignment.assignment',$group)}}" class="btn btn-primary btn-sm"> <i class="fas fa-user-plus"></i> Assign Users  </a>
                 <button type="submit" class="btn btn-outline-danger btn-sm"> Unassign Selected Users </button>
             </div>
             
@@ -43,7 +43,7 @@
                 <tbody>
                     @forelse ($assigned_users as $user)
                         <tr>
-                            <td> <a href="" class="text-info"> {{$user->user->name}} </a> </td>
+                            <td> <a href="" class="text-primary"> {{$user->user->name}} </a> </td>
                             <td> {{$user->user->email}} </td>
                             <td> {{$user->user->user_instance->role->role}} </td>
                             <td>

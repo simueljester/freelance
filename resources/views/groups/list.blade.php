@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
         <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
@@ -31,7 +31,7 @@
             <tbody>
                 @foreach ($groups as $group)
                     <tr>
-                        <td> <a href="{{route('groups.show',$group)}}" class="text-info" style="text-decoration:none;" target="_blank"> <i class="fas fa-cube"></i> {{$group->name}}  </a> </td>
+                        <td> <a href="{{route('groups.show',$group)}}" class="text-primary" style="text-decoration:none;" target="_blank"> <i class="fas fa-cube"></i> {{$group->name}}  </a> </td>
                         <td> {{$group->subject->course_code}} {{$group->subject->name}} </td>
                         <td> {{$group->user_creator->name}} </td>
                         <td> {{$group->created_at->format('Y-m-d')}} </td>

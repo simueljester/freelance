@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-paste text-white text-info"></i>  Examination  </h4>
+        <h4 class="text-muted"> <i class="fas fa-paste text-white text-primary"></i>  Examination  </h4>
         <small class="text-muted"> <i> Manages examination details, assignment, questions and settings </i>  </small>
     </div>
 </div>
@@ -45,7 +45,7 @@
             <div>
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
                 <a href="{{route('examination.show',$exam->id)}}" class="btn btn-outline-secondary btn-sm" > Cancel </a>
-                <button class="btn btn-info btn-sm"> Save Changes </button>
+                <button class="btn btn-primary btn-sm"> Save Changes </button>
             </div>
         </div>
     </div>

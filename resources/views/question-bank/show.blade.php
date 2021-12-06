@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">  <i class="fas fa-globe text-info"></i> Question Bank  </h4>
+        <h4 class="text-muted">  <i class="fas fa-globe text-primary"></i> Question Bank  </h4>
         <small class="text-muted"> <i> Manage questions </i>  </small>
     </div>
 </div>
@@ -43,7 +43,7 @@
             <small> <i class="far fa-calendar-alt"></i> Date Created: {{$question->created_at->format('Y-m-d')}} </small>
             &nbsp&nbsp&nbsp
             @if ($question->attachment)
-                <a href="{{route('downloads.question-attachment',$question->attachment)}}" class="text-info"> <i class="fas fa-download"></i> Download Attached File </a>
+                <a href="{{route('downloads.question-attachment',$question->attachment)}}" class="text-primary"> <i class="fas fa-download"></i> Download Attached File </a>
             @endif
         </div>
 
@@ -83,7 +83,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <a href="{{route('question-bank.edit',$question)}}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> Edit Question </a>
+        <a href="{{route('question-bank.edit',$question)}}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> Edit Question </a>
         <a href="{{route('question-bank.delete',$question)}}" onclick="return confirm('Are you sure you want to delete this question?')" class="btn btn-sm btn-outline-danger"> <i class="fas fa-trash-alt"></i> Delete Question </a>
         <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary btn-sm"> Back to List </a>
         

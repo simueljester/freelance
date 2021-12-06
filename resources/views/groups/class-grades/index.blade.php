@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
@@ -21,7 +21,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <a href="{{route('groups.class-grades.download',$group)}}" class="btn btn-info btn-sm"> <i class="fas fa-download"></i> Download Grades </a>
+        <a href="{{route('groups.class-grades.download',$group)}}" class="btn btn-primary btn-sm"> <i class="fas fa-download"></i> Download Grades </a>
         <table class="table table-hover mt-3 table-bordered">
             <thead>
                 <th> Name </th>
@@ -65,7 +65,7 @@
                                 0
                             @endif  
                         </td>
-                        <td> <button type="button" class="btn btn-info btn-sm" onclick="gradeUser({{$user}})"> Update </button> </td>
+                        <td> <button type="button" class="btn btn-primary btn-sm" onclick="gradeUser({{$user}})"> Update </button> </td>
                     </tr>
                 @empty
                     <tr>
@@ -123,7 +123,7 @@
                 </div>
                 
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header bg-dark text-white"> <strong> Long Quizzes - </strong> <span class="badge badge-info"> 25% </span> </div>
+                    <div class="card-header bg-dark text-white"> <strong> Long Quizzes - </strong> <span class="badge badge-primary"> 25% </span> </div>
                     <div class="card-body">
                         <form-group>
                             <span> Score </span> / 100
@@ -133,7 +133,7 @@
                 </div>
 
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header bg-dark text-white"> <strong> Short Quizzes - </strong> <span class="badge badge-info"> 15% </span> </div>
+                    <div class="card-header bg-dark text-white"> <strong> Short Quizzes - </strong> <span class="badge badge-primary"> 15% </span> </div>
                     <div class="card-body">
                         <form-group>
                             <span> Score </span> / 100
@@ -143,7 +143,7 @@
                 </div>
            
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header bg-dark text-white"> <strong> Assessment Task - </strong> <span class="badge badge-info"> 10% </span> </div>
+                    <div class="card-header bg-dark text-white"> <strong> Assessment Task - </strong> <span class="badge badge-primary"> 10% </span> </div>
                     <div class="card-body">
                         <form-group>
                             <span> Score </span> / 100
@@ -153,7 +153,7 @@
                 </div>
 
                 <div class="card shadow-sm mt-3">
-                    <div class="card-header bg-dark text-white"> <strong> Major Examination - </strong> <span class="badge badge-info"> 50% </span> </div>
+                    <div class="card-header bg-dark text-white"> <strong> Major Examination - </strong> <span class="badge badge-primary"> 50% </span> </div>
                     <div class="card-body">
                         <form-group>
                             <span> Score </span> / 100
@@ -163,7 +163,7 @@
                 </div>
                 <div class="card shadow-sm mt-3">
                     <div class="card-body ">
-                        <button type="button" class="btn btn-block btn-info" onclick="computeGrades()"> Compute Grades </button>
+                        <button type="button" class="btn btn-block btn-primary" onclick="computeGrades()"> Compute Grades </button>
                     </div>
                 </div>
 
@@ -210,7 +210,7 @@
           
      
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-info">Save changes</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
             </div>
         </div>
         </div>

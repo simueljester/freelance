@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
         <small class="text-muted"> <i> Class assignments </i>  </small>
     </div>
 </div>
@@ -23,7 +23,7 @@
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
                     <a href="{{route('groups.user-group.list-exam',$assignment->group)}}">
-                        <strong class="text-info" style="font-size:18px;"> 
+                        <strong class="text-primary" style="font-size:18px;"> 
                             <i class="fas fa-cube"></i> {{$assignment->group->name}} 
                         </strong>
                     </a>

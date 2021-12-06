@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-user-cog text-info"></i>  Administrator </h4>
+        <h4 class="text-muted"> <i class="fas fa-user-cog text-primary"></i>  Administrator </h4>
         <small class="text-muted"> <i> Access / Manage reports, logins and user accounts as system adminstrator </i>  </small>
     </div>
 </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <button class="btn btn-info btn-sm btn-block mt-4"> Filter Dates </button>
+                    <button class="btn btn-primary btn-sm btn-block mt-4"> Filter Dates </button>
                 </div>
             </div>
         </form>
@@ -80,7 +80,7 @@
                         <td> <small> {{ Carbon\Carbon::parse($log->time)->format('h:i:s a')}} </small> </td>
                 
                         <td> <small> {{$log->model}} </small> </td>
-                        <td> <button class="btn btn-sm btn-info" onclick="viewOtherInfo({{$log}})"> Other information </button> </td>
+                        <td> <button class="btn btn-sm btn-primary" onclick="viewOtherInfo({{$log}})"> Other information </button> </td>
                     </tr>
                 @empty
                 <tr>

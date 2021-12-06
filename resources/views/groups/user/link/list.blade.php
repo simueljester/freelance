@@ -10,7 +10,7 @@
             <div class="card-body">
                 {!! $assignment->link->description ?? 'No description provided' !!}
                 <hr>
-                <a href="{{$assignment->link->link}}" class="btn btn-info btn-sm" target="_blank"> Open Link </a>
+                <a href="{{$assignment->link->link}}" class="btn btn-primary btn-sm" target="_blank"> Open Link </a>
             </div>
             <div class="card-footer">
     

@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-users text-info"></i>  User Management  </h4>
+        <h4 class="text-muted">   <i class="fas fa-users text-primary"></i>  User Management  </h4>
         <small class="text-muted"> <i> Create, Update and Delete user accounts </i>  </small>
     </div>
 </div>
@@ -80,7 +80,7 @@
     <div class="card shadow-sm mt-3">
         <div class="card-body">
             <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary"> Cancel </a>
-            <button class="btn btn-info"> Create User </button>
+            <button class="btn btn-primary"> Create User </button>
         </div>
     </div>
 </form>

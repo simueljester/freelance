@@ -60,7 +60,7 @@
 
         <div class="mt-3 p-3 " >
             @if ($group->creator_id == Auth::user()->id)
-            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Module </button>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Module </button>
             <hr>
             @endif
        
@@ -178,7 +178,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-info btn-sm"> Create </button>
+              <button type="submit" class="btn btn-primary btn-sm"> Create </button>
             </div>
           </div>
         </div>
@@ -203,7 +203,7 @@
                     <i class="fas fa-copy fa-2x text-primary"></i>
                     <br>
                     <small> Create new examination / quiz for users </small>
-                    <a href="{{route('groups.exam.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Assessment </a>
+                    <a href="{{route('groups.exam.create',[$group,$this_folder ?? 0])}}" class="btn btn-primary btn-sm btn-block mt-3"> Assessment </a>
                 </div>
             </div>
             <div class="card shadow-sm mt-3">
@@ -211,7 +211,7 @@
                     <i class="fas fa-link fa-2x text-danger"></i>
                     <br>
                     <small> Create a link file </small>
-                    <a href="{{route('groups.link.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Link </a>
+                    <a href="{{route('groups.link.create',[$group,$this_folder ?? 0])}}" class="btn btn-primary btn-sm btn-block mt-3"> Link </a>
                 </div>
             </div>
             <div class="card shadow-sm mt-3">
@@ -219,7 +219,7 @@
                     <i class="fas fa-file-signature fa-2x text-warning"></i>
                     <br>
                     <small> Upload learning materials such as docx, ppt, pdf or excel </small>
-                    <a href="{{route('groups.learning-material.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Learning Materials </a>
+                    <a href="{{route('groups.learning-material.create',[$group,$this_folder ?? 0])}}" class="btn btn-primary btn-sm btn-block mt-3"> Learning Materials </a>
                 </div>
             </div>
             <div class="card shadow-sm mt-3">
@@ -227,7 +227,7 @@
                     <i class="fas fa-comments fa-2x text-success"></i> 
                     <br>
                     <small> Start a discussion with users </small>
-                    <a href="{{route('groups.discussion.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Discussion </a>
+                    <a href="{{route('groups.discussion.create',[$group,$this_folder ?? 0])}}" class="btn btn-primary btn-sm btn-block mt-3"> Discussion </a>
                 </div>
             </div>
         </div>

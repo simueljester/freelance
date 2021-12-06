@@ -18,7 +18,7 @@
                 {{$assignment->exam->description ?? 'No description provided'}}
                 <hr>
                 @if ($assignment->status == 1 || $assignment->status == 2)
-                    <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" class="btn btn-info btn-sm"> View Exam </a>   
+                    <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" class="btn btn-primary btn-sm"> View Exam </a>   
                 @else
                     <a href="{{route('groups.user-group.start-exam',$assignment)}}" class="btn btn-success btn-sm"> Start Exam </a>
                 @endif

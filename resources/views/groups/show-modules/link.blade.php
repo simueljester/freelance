@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
         <small class="text-muted"> <i> Group Assignments </i>  </small>
     </div>
 </div>
@@ -26,9 +26,9 @@
         <hr>
         <div>
    
-            <a href="{{route('groups.show',$link->group_id)}}" class="text-info"> <i class="fas fa-cube"></i> {{$link->group->name}} </a>
+            <a href="{{route('groups.show',$link->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$link->group->name}} </a>
             &nbsp&nbsp
-            <a href="{{route('groups.link.edit',$link)}}" class="text-info"> <i class="fas fa-edit "></i> Edit Link </a>
+            <a href="{{route('groups.link.edit',$link)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Link </a>
          
             &nbsp&nbsp
             <a href="{{route('groups.link.delete',$link)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this link? All link assignments will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Link </a>
