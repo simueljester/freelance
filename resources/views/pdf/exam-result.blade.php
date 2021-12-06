@@ -16,7 +16,8 @@
             <hr>
             Name: {{$exam_assignment->user->name}} <br>
             Email: {{$exam_assignment->user->email}} <br>
-            Group: {{$exam_assignment->group->name}}
+            Class: {{$exam_assignment->group->name}}
+            Subject: {{$exam_assignment->group->subject->course_code}} {{$exam_assignment->group->subject->name}}
             Score: {{$exam_assignment->score}} / {{$exam_assignment->exam->total_score}}
             <br>
 

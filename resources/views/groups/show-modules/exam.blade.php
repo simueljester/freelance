@@ -104,7 +104,7 @@
                             <th> Type </th>
                             <th> Difficulty </th>
                             <th> Points </th>
-                            <th>  </th>
+                            <th> Remove </th>
                         </thead>
                         <tbody>
                             @forelse ($questions_assigned as $assignment)
@@ -131,7 +131,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="3"> No questions assigned </td>
+                                    <td colspan="5"> No questions assigned </td>
                                 </tr>
                             @endforelse
                         </tbody>

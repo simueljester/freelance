@@ -126,6 +126,7 @@
                         <div class="card mt-4  shadow-sm">
                             <div class="card-header">
                                 <i class="fas fa-user-circle"></i>  {{$post->user->name}} - <small> <i> {{$post->user->user_instance->role->role}} </i>  </small>
+                                <span class="float-right"> <i class="fas fa-calendar-alt"></i> <small> {{$post->created_at->format('Y-m-d h:m:s a')}} </small> </span>
                             </div>
                             <div class="card-body">
                                 {!! $post->description !!}

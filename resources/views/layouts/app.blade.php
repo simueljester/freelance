@@ -91,7 +91,7 @@
                         <span class="text-info"> <strong> Groups </strong>  </span>
                     @else
                         <i class="fas fa-cubes text-white"></i>
-                        <span>Groups</span>
+                        <span>Class</span>
                     @endif
                 </a>
             </li>
@@ -105,7 +105,7 @@
                             <span class="text-info"> <strong> My Groups </strong>  </span>
                         @else
                             <i class="fas fa-cubes text-white"></i>
-                            <span> My Groups</span>
+                            <span> My Class</span>
                         @endif
                     </a>
                 </li>

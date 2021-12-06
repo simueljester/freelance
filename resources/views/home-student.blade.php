@@ -25,7 +25,7 @@
                 <table class="table table-hover">
                     <thead>
                         <th> Module </th>
-                        <th> Group </th>
+                        <th> Class </th>
                         <th></th>
                     </thead>
                     <tbody>
@@ -59,7 +59,7 @@
     <div class="col-sm-4">
         <div class="card shadow-sm mt-3">
             <div class="card-header bg-dark text-white">
-                <i class="fas fa-cubes"></i> My Groups
+                <i class="fas fa-cubes"></i> My Class
             </div>
             <div class="card-body">
                 @forelse ($my_group_assignments as $group_assignment)
@@ -72,7 +72,7 @@
                     </a>
                 @empty
                     <div>
-                        No groups assigned
+                        No class assigned
                     </div>
                 @endforelse
             </div>

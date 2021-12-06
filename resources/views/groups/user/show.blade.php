@@ -3,15 +3,15 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
-        <small class="text-muted"> <i> Group Assignments </i>  </small>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
 
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"> <a href="{{route('groups.user-group.user-group')}}">Groups</a> </li>
+            <li class="breadcrumb-item"> <a href="{{route('groups.user-group.user-group')}}">Class</a> </li>
             <li class="breadcrumb-item"> {{$group->name}} </li>
         </ol>
     </nav>
@@ -24,6 +24,11 @@
         <hr>
         <div> Creator: {{$group->user_creator->name}} </div>
         <div> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
+        <div class="mt-3">  
+            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
+                View Grades
+            </button>
+        </div>
     </div>
 </div>
 
@@ -55,67 +60,38 @@
 </div>
 
 
-
-
-{{-- <div class="row">
-    <div class="col-sm-8">
-        <div class="card shadow-sm mt-3">
-            <div class="card-body">
-            @forelse ($my_exam_assignments as $assignment)
-                <div class="card mt-3">
-                    <div class="card-header">
-                        <strong> <i class="fas fa-copy"></i> {{$assignment->exam->name}} </strong> 
-                        - 
-                        @if ($assignment->status == 1)
-                            <span class="badge badge-success">Completed</span>
-                        @elseif ($assignment->status == 2)
-                            <span class="badge badge-danger">Late Submission</span>
-                        @else
-                            <span class="badge badge-secondary">Pending</span>
-                        @endif
-                    </div>
-                    <div class="card-body">
-                        {{$assignment->exam->description}}
-                        <hr>
-                        @if ($assignment->status == 1 || $assignment->status == 2)
-                            <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" class="btn btn-info btn-sm"> View Exam </a>   
-                        @else
-                            <a href="{{route('groups.user-group.start-exam',$assignment)}}" class="btn btn-success btn-sm"> Start Exam </a>
-                        @endif
-               
-                    </div>
-                    <div class="card-footer">
-                        <i class="fas fa-clock"></i> {{$assignment->exam->duration}} minutes
-                        &nbsp&nbsp
-                        <i class="fas fa-star text-warning"></i> {{$assignment->score }} / {{$assignment->exam->total_score}} points
-                    </div>
-                </div>
-            @empty
-                No exam assigned to you
-            @endforelse
-            </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> My {{$group->name}} Grades </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-    </div>
-
-    <div class="col-sm-4">
-        <div class="card shadow-sm mt-3">
-            <div class="card-body">
-                <strong>  <i class="fas fa-users"></i> Group  Members </strong> 
-                <br>
-                <small> Users belong to this group </small>
-                <div class="mt-3">
-                    <ul>
-                        @forelse ($assigned_users as $user)
-                            <li> {{$user->user->name}} - {{$user->user->email}} </li>         
-                        @empty
-                            <li> No members found </li>
-                        @endforelse
-                    </ul>
-                </div>
-            </div>
+        <div class="modal-body">
+            <table class="table table-hover">
+                <thead>
+                    <th> Term </th>
+                    <th> Grade </th>
+                </thead>
+                <tbody>
+                    @foreach ($my_grade as $grade)
+                        <tr>
+                            <td class="text-uppercase"> {{$grade->term}} </td>
+                            <td> {{$grade->final_grade}} </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+        </div>
+      </div>
     </div>
-</div> --}}
+  </div>
 
 
 

@@ -114,9 +114,10 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     });
 
     Route::group(['prefix' => 'class-grades', 'as' => 'class-grades.'], function() {
-        Route::get('/group/{group}/',            ['as' => 'index',          'uses' => 'ClassGradesController@index']);
-        Route::post('/save',                     ['as' => 'save',           'uses' => 'ClassGradesController@save']);
-        Route::get('/show/grade/{grade}',       ['as' => 'show',           'uses' => 'ClassGradesController@show']);
+        Route::get('/group/{group}/',               ['as' => 'index',              'uses' => 'ClassGradesController@index']);
+        Route::post('/save',                        ['as' => 'save',               'uses' => 'ClassGradesController@save']);
+        Route::get('/show/grade/{grade}',           ['as' => 'show',               'uses' => 'ClassGradesController@show']);
+        Route::get('/download-grades/{group}',      ['as' => 'download',           'uses' => 'ClassGradesController@downloadGrades']);
 
     });
 

@@ -33,7 +33,7 @@
                     <td> <a href="{{route('administrator.exports.users')}}" class="btn btn-sm btn-info" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
                 </tr>
                 <tr>
-                    <td> <i class="fas fa-cubes"></i> Groups </td>
+                    <td> <i class="fas fa-cubes"></i> Class </td>
                     <td> <a href="{{route('administrator.exports.groups')}}" class="btn btn-sm btn-info" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
                 </tr>
                 <tr>

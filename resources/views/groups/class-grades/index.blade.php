@@ -21,6 +21,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
+        <a href="{{route('groups.class-grades.download',$group)}}" class="btn btn-info btn-sm"> <i class="fas fa-download"></i> Download Grades </a>
         <table class="table table-hover mt-3 table-bordered">
             <thead>
                 <th> Name </th>

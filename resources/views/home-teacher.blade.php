@@ -28,7 +28,7 @@
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$group_count}} </strong> </div>
                 <div>  <i class="fas fa-cubes text-info fa-2x"></i>  </div>
-                <div> <small> Groups created </small> </div>
+                <div> <small> Class created </small> </div>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
                 <i class="far fa-plus-square"></i> Create Shortcut 
             </div>
             <div class="card-body">
-                <a href="{{route('groups.create')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i> Create New Group </a>
+                <a href="{{route('groups.create')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
                 <a href="{{route('question-bank.create.mcq')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
                 <a href="{{route('question-bank.create.tf')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create True or False Question </a>
                 <a href="{{route('question-bank.create.sa')}}" class="btn btn-info btn-block text-left"> <i class="fas fa-plus"></i>  Create Identification Question </a>

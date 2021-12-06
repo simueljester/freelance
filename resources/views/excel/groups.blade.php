@@ -4,24 +4,28 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
 </head>
 
-<title> Groups  </title>
+<title> Class  </title>
 <body>
 
     <table class="table table-hover table-striped">
         <tr>
-            <td colspan="5"> <span> <strong> List of Group </strong></td>
+            <td colspan="5"> <span> <strong> List of Class </strong></td>
         </tr>
 
         @foreach ($data as $group)
         <tr>
             <td style="background-color: #47ABFF; color:white" colspan="10"></td>
         </tr>
-            <tr>
-                <td width="20"> <strong> Subject </strong> </td>
-                <td width="20"> {{$group->subject->name}} </td>
+        <tr>
+            <td width="20"> <strong> Academic Year </strong> </td>
+                <td width="20"> {{$group->user_creator_instance->academicYear->name}} </td>
             </tr>
             <tr>
-                <td width="20"> <strong> Group Name </strong> </td>
+                <td width="20"> <strong> Subject </strong> </td>
+                <td width="20"> {{$group->subject->course_code}}  {{$group->subject->name}} </td>
+            </tr>
+            <tr>
+                <td width="20"> <strong> Class Name </strong> </td>
                 <td width="20"> {{$group->name}} </td>
             </tr>
             <tr>

@@ -3,15 +3,15 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
-        <small class="text-muted"> <i> Group Assignments </i>  </small>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
 
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
+            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Class</a></li>
             <li class="breadcrumb-item"> {{$group->name}} </li>
         </ol>
     </nav>
@@ -19,7 +19,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$group->name}} - <i> {{$group->subject->name}} </i>  </strong> </h5>
+        <h5 class="text-muted"> <strong> {{$group->name}} - <i> {{$group->subject->course_code}}  {{$group->subject->name}} </i>  </strong> </h5>
         <small> {{$group->description}} </small>
         <hr>
         <div> Creator: {{$group->user_creator->name}} </div>

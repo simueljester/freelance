@@ -23,7 +23,7 @@
         <div class="mt-4">
             @forelse ($subjects as $subject)
                 <div class="p-3 border rounded mt-3"> 
-                    <i class="fas fa-book-reader fa-2x"></i> &nbsp&nbsp <a href="{{route('subjects.show',$subject)}}" style="font-size:22px;text-decoration:none;" class="text-info"> {{$subject->name}} </a> 
+                    <i class="fas fa-book-reader fa-2x"></i> &nbsp&nbsp <a href="{{route('subjects.show',$subject)}}" style="font-size:18px;text-decoration:none;" class="text-info"> {{$subject->course_code}} <small class="text-muted"> {{$subject->name}}  </small> </a> 
                 </div>
             @empty
                 <strong> No subjects created </strong>

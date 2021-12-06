@@ -18,8 +18,6 @@
     <div class="card-body">
         
         <div class="mt-1">
-
-        
             {{-- Folder Child folders  --}}
             <div class="row">
                 @if ($this_folder)

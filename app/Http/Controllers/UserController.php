@@ -20,10 +20,22 @@ class UserController extends Controller
     public function __construct(){
         $this->middleware('auth');
     }
-    public function index(){
+    public function index(Request $request){
 
-        $users = app(UserRepository::class)->getUserWithInstance();
-        return view('user-management.index',compact('users'));
+        $keyword = $request->keyword;
+        $role = $request->role;
+        // $users = app(UserRepository::class)->getUserWithInstance();
+        $users =  $users = User::with('user_instance.role')->orderBy('last_name','ASC')
+        ->when($keyword, function ($query) use ($keyword) {
+            $query->where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%');
+        })
+        ->when($role, function ($query) use ($role) {
+            $query->whereHas('user_instance', function($q) use ($role){
+                $q->where('role_id', $role);
+            });
+        })
+        ->get();
+        return view('user-management.index',compact('users','keyword','role'));
     }
 
     public function create(){

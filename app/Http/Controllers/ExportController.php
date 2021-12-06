@@ -38,8 +38,8 @@ class ExportController extends Controller
 
     public function groups(){
 
-        $data = Group::with('user_creator','members.user','subject')->get();
-        return Excel::download(new GroupsExport($data), 'Groups.xlsx');
+        $data = Group::with('user_creator','members.user','subject','user_creator_instance.academicYear')->get();
+        return Excel::download(new GroupsExport($data), 'Classes.xlsx');
 
     }
 

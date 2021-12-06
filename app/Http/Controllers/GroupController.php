@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exam;
 use App\User;
+use App\Grade;
 use App\Group;
 use App\Folder;
 use App\Subject;
@@ -140,28 +141,32 @@ class GroupController extends Controller
     }
 
     public function listExam(Group $group){
-       
+
+        $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
-        return view('groups.user.exam.list',compact('group','my_exam_assignments'));
+        return view('groups.user.exam.list',compact('group','my_exam_assignments','my_grade'));
       
     }
 
     public function listDiscussion(Group $group){
 
+        $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_discussion_assignments = app(DiscussionAssignmentRepository::class)->query()->with('discussion')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
-        return view('groups.user.discussion.list',compact('group','my_discussion_assignments'));
+        return view('groups.user.discussion.list',compact('group','my_discussion_assignments','my_grade'));
     }
 
     public function listLearningMaterial(Group $group){
 
+        $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_learning_material_assignments = app(LearningMaterialAssignmentRepository::class)->query()->with('learning_material')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
-        return view('groups.user.learning-material.list',compact('group','my_learning_material_assignments'));
+        return view('groups.user.learning-material.list',compact('group','my_learning_material_assignments','my_grade'));
     }
 
     public function listLink(Group $group){
 
+        $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_link_assignments = app(LinkAssignmentRepository::class)->query()->with('link')->whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
-        return view('groups.user.link.list',compact('group','my_link_assignments'));
+        return view('groups.user.link.list',compact('group','my_link_assignments','my_grade'));
     }
 
 

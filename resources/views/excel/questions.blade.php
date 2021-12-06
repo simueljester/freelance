@@ -31,7 +31,7 @@
             <tr>
                 <td> {{strip_tags($question->instruction)}} </td>
                 <td> {{$question->question_type}} </td>
-                <td> {{$question->subject->name}} </td>
+                <td> {{$question->subject->course_code}} {{$question->subject->name}} </td>
                 <td> {{$question->option_1}} </td>
                 <td> {{$question->option_2}} </td>
                 <td> {{$question->option_3}} </td>

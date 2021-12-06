@@ -3,23 +3,23 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Groups  </h4>
-        <small class="text-muted"> <i> Group assignments </i>  </small>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-info"></i>  Class  </h4>
+        <small class="text-muted"> <i> Class assignments </i>  </small>
     </div>
 </div>
 
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item">Groups</li>
+            <li class="breadcrumb-item">Class</li>
         </ol>
     </nav>
 </div>
 
 <div class="mt-3">
-    <a href="{{route('groups.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New Group </a>
+    <a href="{{route('groups.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New Class </a>
     @if (Auth::user()->user_instance->role_id == 1)
-        <a href="{{route('groups.list')}}" class="btn btn-info btn-sm"> <i class="fas fa-cubes"></i>  All Groups </a>
+        <a href="{{route('groups.list')}}" class="btn btn-info btn-sm"> <i class="fas fa-cubes"></i>  All Class </a>
     @endif
 </div>
  
@@ -36,8 +36,9 @@
                     {{-- <a href="{{route('groups.group-assignment.index',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a> --}}
                     <a href="{{route('groups.edit',$group)}}" class="float-right"> <i class="fas fa-edit text-info"></i> </a>
                     <br>
-                    <small> <i class="fas fa-book-reader"></i> {{$group->subject->name}} </small>
-                    &nbsp&nbsp
+                    <small> <i class="fas fa-book-reader"></i> {{$group->subject->course_code}} {{$group->subject->name}} </small>
+                    <br>
+             
                     <small> <i class="fas fa-user"></i> {{$group->user_creator->name}} </small>
                     <hr>
                     <small> {!! $group->description !!} </small>

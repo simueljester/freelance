@@ -18,7 +18,37 @@
 
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <div>
+        <div class="card bg-light">
+            <div class="card-body">
+                <form action="">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <span> Search User </span>
+                                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Keyword.." value="{{$keyword}}">
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <span> Filter Role </span>
+                            <select name="role" id="role" class="form-control">
+                                <option value=""> All Role </option>
+                                <option value="2" {{ $role == 2 ? 'selected' : null }} > Teacher </option>
+                                <option value="3" {{ $role == 3 ? 'selected' : null }}> Student </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-4">
+                            <button class="btn btn-info btn-sm mt-4 btn-block"> <i class="fas fa-search"></i> Search </button>
+                        </div>
+                    </div>
+                    @if ($keyword || $role)
+                        <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary btn-sm"> Clear keyword </a>
+                    @endif
+                    
+                </form>
+            </div>
+            
+        </div>
+        <div class="mt-3">
             <a href="{{route('user-management.create')}}" class="btn btn-info btn-sm"> <i class="fas fa-plus"></i> Create New User </a>
             <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-upload"></i> Batch Upload </button>
         </div>
@@ -27,27 +57,32 @@
         <hr>
         <table class="table table-hover">
             <thead>
-                <th> Name </th>
+                <th> Last Name </th>
+                <th> First Name </th>
                 <th> Email </th>
                 <th> Role </th>
                 <th></th>
             </thead>
             <tbody>
                 @forelse ($users as $user)
-                    <tr>
-                        <td> {{$user->name}} </td>
-                        <td> {{$user->email}} </td>
-                        <td> 
-                            @if($user->user_instance)
-                               {{$user->user_instance->role->role}} 
-                            @else
-                                No active role
-                            @endif
-                        </td>
-                        <td>
-                            <a href="{{route('user-management.edit',$user)}}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> Edit </a>
-                        </td>
-                    </tr>
+                    @if ($user->user_instance->role_id != 1)
+                        <tr>
+                            <td> {{$user->last_name}} </td>
+                            <td> {{$user->first_name}} </td>
+                            <td> {{$user->email}} </td>
+                            <td> 
+                                @if($user->user_instance)
+                                {{$user->user_instance->role->id == '3' ? 'Student' : 'Teacher' }} 
+                                @else
+                                    No active role
+                                @endif
+                            </td>
+                            <td>
+                                <a href="{{route('user-management.edit',$user)}}" class="btn btn-info btn-sm"> <i class="fas fa-edit"></i> Edit </a>
+                            </td>
+                        </tr>
+                    @endif
+                  
                 @empty
                     <tr>
                         <td colspan="4"> No user created </td>

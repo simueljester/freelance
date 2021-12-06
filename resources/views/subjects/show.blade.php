@@ -20,7 +20,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$subject->name}} </strong> </h5>
+        <h5 class="text-muted"> <strong> {{$subject->course_code}} {{$subject->name}} </strong> </h5>
         <small> {{$subject->description}} </small>
         <hr>
    
@@ -50,6 +50,10 @@
                 <div class="form-group">
                     <span> Name </span>
                     <input type="text" name="name" id="name" class="form-control" value="{{$subject->name}}">
+                </div>
+                <div class="form-group">
+                    <span> Course Code </span>
+                    <input type="text" name="course_code" id="course_code" class="form-control" value="{{$subject->course_code}}">
                 </div>
                 <div class="form-group">
                     <span> Description </span>

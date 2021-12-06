@@ -19,7 +19,7 @@ class UserRepository extends BaseRepository
 
     public function getUserWithInstance(){
 
-        $users = User::with('user_instance.role')->get();
+        $users = User::with('user_instance.role')->orderBy('last_name','ASC')->get();
         return $users;
     }
 

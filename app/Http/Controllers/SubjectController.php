@@ -32,6 +32,7 @@ class SubjectController extends Controller
         $data = [
             'name'          => $request->name,
             'description'   => $request->description,
+            'course_code'   => $request->course_code
         ];
 
         $saved = app(SubjectRepository::class)->save($data);
@@ -48,12 +49,14 @@ class SubjectController extends Controller
     public function update(Request $request){
   
         $request->validate([
-            'name' => 'required'
+            'name'          => 'required',
+            'course_code'   => 'required'
         ]);
 
         $data = [
             'name'      => $request->name,
-            'description'     => $request->description
+            'description'     => $request->description,
+            'course_code'   => $request->course_code
         ];
 
         app(SubjectRepository::class)->update($request->subject_id,$data);

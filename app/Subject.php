@@ -10,6 +10,6 @@ class Subject extends Model
     protected $table = 'subjects';
     
     protected $fillable = [
-        'id', 'name','description'
+        'id', 'name','course_code','description'
     ];
 }

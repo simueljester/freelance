@@ -23,7 +23,7 @@
             <strong> Instruction - </strong> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span>
             <p class="mt-3"> {!! $question->instruction !!} </p>
             <hr>
-            <small> <i class="fas fa-book-reader"></i> {{$question->subject->name}} </small>
+            <small> <i class="fas fa-book-reader"></i> {{$question->subject->course_code}} {{$question->subject->name}} </small>
           
             &nbsp&nbsp&nbsp
             @if ($question->level == 1)

@@ -19,7 +19,7 @@ class Group extends Model
 
     public function user_creator_instance()
     {
-        return $this->belongsTo('App\User', 'creator_instance_id', 'id');
+        return $this->belongsTo('App\UserInstance', 'creator_instance_id', 'id');
     }
 
     public function members()
