@@ -48,7 +48,7 @@
                     <td> <i class="fas fa-layer-group"></i> System Logs </td>
                     <td> <a href="{{route('administrator.exports.system-logs')}}" class="btn btn-sm btn-info" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
                 </tr>
-                <tr>
+                <tr hidden>
                     <td> <i class="fas fa-running"></i> User Activities </td>
                     <td> <a href="{{route('administrator.exports.user-activities')}}" class="btn btn-sm btn-info" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
                 </tr>

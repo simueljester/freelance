@@ -206,7 +206,7 @@
                     <a href="{{route('groups.exam.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Assessment </a>
                 </div>
             </div>
-            <div class="card shadow-sm mt-3">
+            <div class="card shadow-sm mt-3" hidden>
                 <div class="card-body text-center">
                     <i class="fas fa-link fa-2x text-danger"></i>
                     <br>
@@ -214,7 +214,7 @@
                     <a href="{{route('groups.link.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Link </a>
                 </div>
             </div>
-            <div class="card shadow-sm mt-3">
+            <div class="card shadow-sm mt-3" hidden>
                 <div class="card-body text-center">
                     <i class="fas fa-file-signature fa-2x text-warning"></i>
                     <br>
@@ -222,7 +222,7 @@
                     <a href="{{route('groups.learning-material.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Learning Materials </a>
                 </div>
             </div>
-            <div class="card shadow-sm mt-3">
+            <div class="card shadow-sm mt-3" hidden>
                 <div class="card-body text-center">
                     <i class="fas fa-comments fa-2x text-success"></i> 
                     <br>
