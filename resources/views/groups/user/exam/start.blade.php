@@ -173,6 +173,11 @@
             editor.on( 'required', function( evt ) {
                 editor.showNotification( 'This field is required.', 'warning' );
             evt.cancel();
+
+            editor.on( 'paste', function( evt ) {
+                editor.showNotification( 'Copy / Paste is prohibited.', 'warning' );
+            evt.cancel();
+
             });
         });
 
