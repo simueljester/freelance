@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/gif/png" href="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}">
     <title>Login</title>
     
 
@@ -36,9 +37,8 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.874387
                                 <small> <i class="fab fa-facebook fa-2x text-primary"></i> Facebook Page  </small>
                             </a>
                             &nbsp&nbsp
-                            <a href="https://www.letran-calamba.edu.ph/" class="text-white">
+                            <a href="https://www.letran-calamba.edu.ph/" class="text-white" target="_blank">
                                 <small> <i class="fas fa-globe fa-2x "></i> Official Website  </small> 
-                                
                             </a>
                         </center>
                    

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <link rel="icon" type="image/gif/png" href="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}">
     <title> {{ App\SystemInformation::whereActive(1)->first()->title }} </title>
     @include('layouts.styles') 
 
@@ -176,17 +176,17 @@
             <!-- Main Content -->
             <div id="content" class="p-3">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="card shadow-sm p-1">
                             <div class="card-body border">
-                                <strong> <i class="fas fa-user-circle"></i> {{Auth::user()->name}}  </strong> -  <span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span>
+                                <strong> <i class="fas fa-user-circle fa-2x"></i> &nbsp {{Auth::user()->name}}  </strong> -  <span class="badge badge-primary p-1"> {{Auth::user()->user_instance->role->role}} </span>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-4">
                         <div class="card shadow-sm p-1">
                             <div class="card-body border">
-                                <strong> <i class="fab fa-font-awesome-flag"></i> {{App\AcademicYear::whereActive(1)->first()->name}} </strong>
+                                <strong> <i class="fab fa-font-awesome-flag fa-2x"></i> &nbsp {{App\AcademicYear::whereActive(1)->first()->name}} </strong>
                             </div>
                         </div>
                     </div>
