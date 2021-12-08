@@ -6,6 +6,7 @@ use PDF;
 use Auth;
 use App\Exam;
 use App\Group;
+use Carbon\Carbon;
 use App\ExamAnswers;
 use App\GroupModule;
 use App\ExamAssignment;
@@ -35,14 +36,18 @@ class ExaminationController extends Controller
     }
 
     public function save(Request $request){
-     
+        
         $request->validate([
             'name' => 'required',
             'group' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required'
         ]);
 
-        //create group module
+      
+   
+   
         $group_module_data = [
             'module_type'           => 'exam',
             'module_specific_id'    => null,
@@ -50,12 +55,16 @@ class ExaminationController extends Controller
             'user_id'               => Auth::user()->id,
             'user_instance_id'      => Auth::user()->user_instance->id,
             'folder_id'             => $request->folder_id,
-            'visibility'            => 1,
+            'visibility'            => 1
         ];
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
 
+        
         //create exam based in created group module
+
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+
         $data = [
             'name'              => $request->name,
             'description'       => $request->description,
@@ -64,6 +73,7 @@ class ExaminationController extends Controller
             'group_id'          => $request->group,
             'duration'          => $request->duration,
             'user_instance_id'  => Auth::user()->user_instance->id,
+            'accessible_at'     => $accessible_at
         ];
 
         //assign exam to users
@@ -111,15 +121,21 @@ class ExaminationController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required'
         ]);
-
+        
+        // dd($request->accessible_date,$request->accessible_time);
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+    
         $data = [
-            'name'          => $request->name,
-            'description'   => $request->description,
-            'creator'       =>  Auth::user()->id,
-            'group_id'      => $request->group,
-            'duration'      => $request->duration
+            'name'              => $request->name,
+            'description'       => $request->description,
+            'creator'           =>  Auth::user()->id,
+            'group_id'          => $request->group,
+            'duration'          => $request->duration,
+            'accessible_at'     => $accessible_at
         ];
 
         $exam_data = app(ExamRepository::class)->update($request->exam_id,$data);
