@@ -23,7 +23,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <div class="text-center m-3">
-                <img class="shadow" src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:100px">
+                <img  src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:100px">
                 {{-- <br>
                 <strong class="text-white"> {{ App\SystemInformation::whereActive(1)->first()->title }} </strong> --}}
             </div>

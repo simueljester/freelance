@@ -213,7 +213,7 @@
         };
 
 
-    takeWebCamera()
+    // takeWebCamera()
 
     var exam_id = {{$exam_assignment->exam->id}} 
     var exam_assignment_id = {{$exam_assignment->id}} 
