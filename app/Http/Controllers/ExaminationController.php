@@ -125,8 +125,8 @@ class ExaminationController extends Controller
             'accessible_date' => 'required',
             'accessible_time' => 'required'
         ]);
-        
-        // dd($request->accessible_date,$request->accessible_time);
+
+     
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
     
         $data = [

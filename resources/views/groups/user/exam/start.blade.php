@@ -15,6 +15,47 @@
         z-index: 9999;
         color:#fff;
     }
+
+    /* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
 </style>
 <body class="bg-light">
     
@@ -156,6 +197,22 @@
             </div>
         </div>
     </form>
+    
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content p-5">
+            <div class="text-right">
+                <span class="close">&times;</span>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-camera fa-4x"></i>
+                <div> No camera detected. Please allow your browser to access your camera </div>
+            </div>
+        </div>
+    </div>
 
     {{-- @include('layouts.scripts')  --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -232,15 +289,19 @@
             });
 
             Webcam.attach('#camera');
+            setInterval(function() {$('#btn_take_snap').trigger('click');}, 5000);
+            setInterval(function() {$('#btn_save_image').trigger('click');}, 6000);
             console.log("camera detected")
-        
+            
         }, function() {
             console.log("no camera detected")
+            document.getElementById("myModal").style.display = "block";
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                document.getElementById("myModal").style.display = "none";
+            }
         });
 
- 
-        setInterval(function() {$('#btn_take_snap').trigger('click');}, 5000);
-        setInterval(function() {$('#btn_save_image').trigger('click');}, 6000);
 
         $('#btn_take_snap').on('click', function () {
             Webcam.snap(function (data_uri) {
