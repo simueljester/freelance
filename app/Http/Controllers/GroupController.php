@@ -10,6 +10,7 @@ use App\Folder;
 use App\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\GroupRepository;
 use App\Http\Repositories\FolderRepository;
 use App\Http\Repositories\GroupModuleRepository;
@@ -93,6 +94,13 @@ class GroupController extends Controller
        
         return view('groups.folder-content',compact('group','assigned_users','this_folder','folders','group_modules'));
 
+    }
+
+    public function delete(Group $group){
+        app(BaseRepository::class)->saveLog($group,'delete');
+        $group->delete();
+        return redirect()->route('groups.index')->with('success', 'Group successfully deleted');
+        return $group;
     }
 
     public function list(){

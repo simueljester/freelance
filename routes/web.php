@@ -67,6 +67,7 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     Route::get('/list/',                                    ['as' => 'list',                    'uses' => 'GroupController@list']);
     Route::get('/show-user-data/{group_assignment}',        ['as' => 'user-data',               'uses' => 'UserDataController@index']);
     Route::get('/get-user-activities',                      ['as' => 'get-user-activities',     'uses' => 'UserDataController@getActivities']);
+    Route::get('/delete/{group}',                           ['as' => 'delete',                  'uses' => 'GroupController@delete']);
 
     Route::group(['prefix' => 'group-assignment', 'as' => 'group-assignment.'], function() {
         Route::get('/{group}',                  ['as' => 'index',           'uses' => 'GroupAssignmentController@index']);

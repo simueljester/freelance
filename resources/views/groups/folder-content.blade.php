@@ -60,7 +60,7 @@
 
         <div class="mt-3 p-3 " >
             @if ($group->creator_id == Auth::user()->id)
-            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Module </button>
+            <button class="btn btn-info btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Exam </button>
             <hr>
             @endif
        
@@ -106,7 +106,7 @@
                                 <i class="fas fa-star text-warning"></i> {{$module->discussion->total_score}} Total score
                             </div>
                         </div>
-                        @break
+                    @break
 
                     @case('learning_material')
                         <div class="card mt-3">
@@ -192,7 +192,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> Create New Module </h5>
+          <h5 class="modal-title" id="exampleModalLabel"> Add New  </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -203,7 +203,7 @@
                     <i class="fas fa-copy fa-2x text-primary"></i>
                     <br>
                     <small> Create new examination / quiz for users </small>
-                    <a href="{{route('groups.exam.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Assessment </a>
+                    <a href="{{route('groups.exam.create',[$group,$this_folder ?? 0])}}" class="btn btn-info btn-sm btn-block mt-3"> Examination / Quizzes </a>
                 </div>
             </div>
             <div class="card shadow-sm mt-3" hidden>

@@ -46,7 +46,8 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.57466
     
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-    
+                                    <br>
+                                    <input type="checkbox" onclick="myFunction()"> Show Password
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -155,6 +156,17 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.57466
   }
   } 
     </style>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
 </body>
 </html>
 

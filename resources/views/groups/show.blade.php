@@ -29,6 +29,7 @@
         <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#assignUsers">
             <i class="fas fa-users"></i> Enrolled Users
         </button>
+        <a href="{{route('groups.delete',$group)}}" class="text-danger float-right" onclick="return confirm('Are you sure you want to delete this class? Created examination data will be deleted.')"> <i class="fas fa-trash-alt"></i> Delete Class </a>
         <a hidden href="{{route('groups.class-grades.index',$group)}}" class="btn btn-info btn-sm"> <i class="fab fa-cloudsmith"></i> Class Grades </a>
     </div>
 </div>
