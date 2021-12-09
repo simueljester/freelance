@@ -280,6 +280,17 @@
     function takeWebCamera(){
 
         navigator.getMedia = ( navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+        
+        if(navigator.getMedia){
+            console.log('working')
+        }else{
+               document.getElementById("myModal").style.display = "block";
+            var span = document.getElementsByClassName("close")[0];
+            span.onclick = function() {
+                document.getElementById("myModal").style.display = "none";
+            }
+        }
+        
         navigator.getMedia({video: true}, function() {
             Webcam.set({
                 width: 340,
@@ -292,7 +303,7 @@
             setInterval(function() {$('#btn_take_snap').trigger('click');}, 5000);
             setInterval(function() {$('#btn_save_image').trigger('click');}, 6000);
             console.log("camera detected")
-            
+
         }, function() {
             console.log("no camera detected")
             document.getElementById("myModal").style.display = "block";
