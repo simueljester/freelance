@@ -66,12 +66,13 @@
             <div class="form-group">
                 <small class="text-capitalize"> Password </small>
                 <input type="password" name="password" id="password" class="form-control p-3" required>
+                <input type="checkbox" onclick="myFunction()" class="mt-3"> Show Password
             </div>
             <div class="form-group">
                 <small class="text-capialize"> Role </small>
                 <select name="role" id="role" class="form-control" required>
                     <option value="2"> Teacher </option>
-                    <option value="3"> User </option>
+                    <option value="3"> Student </option>
                 </select>
             </div>
         </div>
@@ -84,6 +85,17 @@
         </div>
     </div>
 </form>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
 
 
 @endsection

@@ -17,7 +17,7 @@
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$module_count}} </strong> </div>
                 <div>  <i class="fas fa-shapes text-info fa-2x"></i>  </div>
-                <div> <small> Modules created </small> </div>
+                <div> <small> Exam / Quizzes created </small> </div>
             </div>
         </div>
     </div>

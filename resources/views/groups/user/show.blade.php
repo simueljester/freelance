@@ -24,17 +24,17 @@
         <hr>
         <div> Creator: {{$group->user_creator->name}} </div>
         <div> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
-        <div class="mt-3">  
+        {{-- <div class="mt-3">  
             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#exampleModal">
                 View Grades
             </button>
-        </div>
+        </div> --}}
     </div>
 </div>
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <strong> {{$group->name}} Modules </strong>
+        <strong class="text-capitalize"> {{$group->name}} Created Exams </strong>
         <ul class="nav nav-tabs mt-3" role="tablist">
        
             <li class="nav-item">

@@ -19,12 +19,12 @@
     <div class="col-sm-8">
         <div class="card shadow-sm mt-3">
             <div class="card-header bg-dark text-white">
-                <i class="fas fa-shapes"></i> Recently Assigned Modules 
+                <i class="fas fa-shapes"></i> Recently Assigned Exam 
             </div>
             <div class="card-body">
                 <table class="table table-hover">
                     <thead>
-                        <th> Module </th>
+                        <th> Exam </th>
                         <th> Class </th>
                         <th></th>
                     </thead>
