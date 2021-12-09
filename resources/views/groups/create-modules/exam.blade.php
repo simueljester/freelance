@@ -44,6 +44,18 @@
                 <span> Duration (Minutes) </span>
                 <input type="number" name="duration" min="1" id="duration" value="1"  class="form-control" required>
             </div>
+            
+            <div class="form-group mt-3">
+                <span> Accessible Date </span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="date" name="accessible_date" id="accessible_date"  class="form-control" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="time" name="accessible_time" id="accessible_time"  class="form-control" required>
+                    </div>
+                </div>
+            </div>
          
             <hr>
             <div class="mt-3">

@@ -6,6 +6,7 @@ use PDF;
 use Auth;
 use App\Exam;
 use App\Group;
+use Carbon\Carbon;
 use App\ExamAnswers;
 use App\GroupModule;
 use App\ExamAssignment;
@@ -54,7 +55,7 @@ class ExaminationController extends Controller
         ];
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
-
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
         //create exam based in created group module
         $data = [
             'name'              => $request->name,
@@ -64,6 +65,7 @@ class ExaminationController extends Controller
             'group_id'          => $request->group,
             'duration'          => $request->duration,
             'user_instance_id'  => Auth::user()->user_instance->id,
+            'accessible_at'     => $accessible_at
         ];
 
         //assign exam to users
@@ -113,13 +115,14 @@ class ExaminationController extends Controller
             'group' => 'required',
             'duration' => 'required'
         ]);
-
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
         $data = [
             'name'          => $request->name,
             'description'   => $request->description,
             'creator'       =>  Auth::user()->id,
             'group_id'      => $request->group,
-            'duration'      => $request->duration
+            'duration'      => $request->duration,
+            'accessible_at'     => $accessible_at
         ];
 
         $exam_data = app(ExamRepository::class)->update($request->exam_id,$data);

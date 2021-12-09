@@ -45,6 +45,17 @@
                 <input type="number" name="duration" min="1" id="duration" value="{{$exam->duration}}"  class="form-control" required>
             </div>
             <hr>
+            <div class="form-group mt-3">
+                <span> Accessible Date </span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="date" name="accessible_date" id="accessible_date"  class="form-control" value="{{Carbon\Carbon::parse($exam->accessible_at)->format('Y-m-d')}}" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="time" name="accessible_time" id="accessible_time"  class="form-control" value="{{Carbon\Carbon::parse($exam->accessible_at)->format('H:i:s')}}" required>
+                    </div>
+                </div>
+            </div>
             <div>
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
                 <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm" > Cancel </a>

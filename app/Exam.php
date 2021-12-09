@@ -10,7 +10,7 @@ class Exam extends Model
     protected $table = 'exam';
 
     protected $fillable = [
-        'name', 'description','creator','group_id','duration','group_module_id','user_instance_id'
+        'name', 'description','creator','group_id','duration','group_module_id','user_instance_id','accessible_at'
     ];
 
     public function group()
