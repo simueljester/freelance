@@ -165,7 +165,7 @@ class ExaminationController extends Controller
                'user_id'               => Auth::user()->id,
            ]);
 
-        return redirect()->route('groups.user-group.list-exam', $request->group_id)->with('success', 'Exam successfully deleted');
+        return redirect()->route('groups.user-group.list-exam', $request->group_id)->with('success', 'Exam submitted!');
 
     }
 

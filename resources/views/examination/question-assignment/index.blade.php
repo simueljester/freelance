@@ -76,8 +76,8 @@
             <div class="mt-3">
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
            
-                <button class="btn btn-primary btn-sm"> Assign Selected Questions </button>
-                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
+                {{-- <button class="btn btn-primary btn-sm"> Assign Selected Questions </button>
+                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a> --}}
             </div>
         </div>
     </div>

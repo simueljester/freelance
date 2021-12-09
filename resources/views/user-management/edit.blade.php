@@ -69,12 +69,13 @@
             <div class="form-group">
                 <small class="text-capitalize"> New Password </small>
                 <input type="password" name="password" id="password" class="form-control p-3" >
+                <input type="checkbox" onclick="myFunction()" class="mt-3">  <span class="text-dark"> Show Password </span> 
             </div>
             <div class="form-group">
                 <small class="text-capialize"> Role </small>
                 <select name="role" id="role" class="form-control" value="{{$user->user_instance->role->role}}" disabled>
-                    <option value="2"> Teacher </option>
-                    <option value="3"> User </option>
+                    <option value="2" {{ $user->user_instance->role_id == 2 ? 'selected' : null }}> Teacher </option>
+                    <option value="3" {{ $user->user_instance->role_id == 3 ? 'selected' : null }}> User </option>
                 </select>
             </div>
         </div>
@@ -130,6 +131,17 @@
         </form>
     </div>
 </div>
+
+<script>
+    function myFunction() {
+      var x = document.getElementById("password");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+    </script>
 
 
 @endsection
