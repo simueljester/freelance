@@ -20,11 +20,17 @@
                 @if ($assignment->status == 1 || $assignment->status == 2)
                     <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" class="btn btn-primary btn-sm"> View Exam </a>   
                 @else
-                    <a href="{{route('groups.user-group.start-exam',$assignment)}}" class="btn btn-success btn-sm"> Start Exam </a>
+                    @if (Carbon\Carbon::now()->gt(Carbon\Carbon::parse($assignment->exam->accessible_at)))
+                        <a href="{{route('groups.user-group.start-exam',$assignment)}}" class="btn btn-success btn-sm"> Start Exam </a>
+                    @else
+                        This exam will be available on scheduled date
+                    @endif
                 @endif
             </div>
             <div class="card-footer">
                 <i class="fas fa-clock"></i> {{$assignment->exam->duration}} minutes
+                &nbsp&nbsp
+                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($assignment->exam->accessible_at)->format('F d, Y h:i:s a')}}
                 &nbsp&nbsp
                 <i class="fas fa-star text-warning"></i> {{$assignment->score }} / {{$assignment->exam->total_score}} points
             </div>

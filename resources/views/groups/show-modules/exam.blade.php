@@ -29,6 +29,8 @@
             &nbsp&nbsp
             <i class="fas fa-star text-warning"></i> {{$exam->total_score}} Maximum Score
             &nbsp&nbsp
+            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->accessible_at)->format('F d, Y h:i a')}}
+            &nbsp&nbsp
             <a href="{{route('groups.show',$exam->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
             &nbsp&nbsp
             <a href="{{route('groups.exam.edit',$exam)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Exam </a>
