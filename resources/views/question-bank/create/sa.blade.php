@@ -72,7 +72,12 @@
             </div>
             
             <div class="mt-5">
-                <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
+                <input type="hidden" name="exam" value="{{$exam}}">
+                @if($exam)
+                    <a href="{{route('groups.exam.examination-assignment.index',json_decode($exam)->id)}}" class="btn btn-outline-secondary"> Back to exam </a>
+                @else
+                    <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
+                @endif
                 <button class="btn btn-primary"> Save Question</button>
             </div>
         </div>

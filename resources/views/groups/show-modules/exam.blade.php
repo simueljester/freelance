@@ -98,7 +98,7 @@
                         <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
                         <a href="{{route('groups.exam.examination-assignment.index',$exam)}}" class="btn btn-primary btn-sm"> <i class="fas fa-question-circle"></i> Assign Questions </a>
                         <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to unassign selected questions?')"> Unassign Questions </button>
-                        <a href="{{route('groups.show',$exam->group_id)}}" class="btn btn-outline-secondary btn-sm"> Go to Group </a>
+                        {{-- <a href="{{route('groups.show',$exam->group_id)}}" class="btn btn-outline-secondary btn-sm"> Go to Group </a> --}}
                     </div>
                     <table class="table table-hover mt-3 table-bordered">
                         <thead>

@@ -19,6 +19,7 @@ use Illuminate\Http\Request;
 use App\DiscussionAssignment;
 use App\LearningMaterialAssignment;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Repositories\AcademicYearRepository;
 
 class HomeController extends Controller
 {
@@ -40,12 +41,13 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         //dashboard admin
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         if(Auth::user()->user_instance->role_id == 1){
 
-            $group_count = Group::count();
+            $group_count = Group::whereAcademicYearId($active_ac_id)->count();
             $user_count = User::count();
-            $subject_count = Subject::count();
-            $question_count = Question::count();
+            $subject_count = Subject::whereAcademicYearId($active_ac_id)->count();
+            $question_count = Question::whereAcademicYearId($active_ac_id)->count();
 
             if($request->date){
                 $date = $request->date;
@@ -79,7 +81,7 @@ class HomeController extends Controller
         if(Auth::user()->user_instance->role_id == 2){
             $group_count = Group::whereCreatorId(Auth::user()->id)->whereCreatorInstanceId(Auth::user()->user_instance->id)->count();
             $module_count = GroupModule::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->count();
-            $question_count = Question::whereCreator(Auth::user()->id)->count();
+            $question_count = Question::whereCreator(Auth::user()->id)->whereAcademicYearId($active_ac_id)->count();
             $recently_created_questions = Question::with('subject')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->get();
             return view('home-teacher',compact('group_count','question_count','module_count','recently_created_questions'));
         }

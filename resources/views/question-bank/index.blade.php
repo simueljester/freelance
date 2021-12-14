@@ -25,10 +25,10 @@
                 <i class="fas fa-plus"></i> Create New Question
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{{route('question-bank.create.mcq')}}"> Add Multiple Choice</a>
-              <a class="dropdown-item" href="{{route('question-bank.create.tf')}}"> Add True or False</a>
-              <a class="dropdown-item" href="{{route('question-bank.create.sa')}}"> Add Identification </a>
-              <a class="dropdown-item" href="{{route('question-bank.create.essay')}}"> Add Essay </a>
+              <a class="dropdown-item" href="{{route('question-bank.create.mcq',0)}}"> Add Multiple Choice</a>
+              <a class="dropdown-item" href="{{route('question-bank.create.tf',0)}}"> Add True or False</a>
+              <a class="dropdown-item" href="{{route('question-bank.create.sa',0)}}"> Add Identification </a>
+              <a class="dropdown-item" href="{{route('question-bank.create.essay',0)}}"> Add Essay </a>
             </div>
         </div>
         &nbsp

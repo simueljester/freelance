@@ -41,4 +41,15 @@ class QuestionAssignmentRepository extends BaseRepository
         $total_score = array_sum($individual_points);
         Exam::where('id',$exam_id)->update(['total_score'=>$total_score]);
     }
+
+    public function assignSingleQuestions($exam,$question){
+        $question_object = $question;
+        $group_assignment = QuestionExamAssignment::updateOrCreate(
+            [
+                'exam_id'          => $exam->id,
+                'question_id'      => $question_object->id,
+                'level'            => $question_object->level
+            ]
+        );
+    }
 } 

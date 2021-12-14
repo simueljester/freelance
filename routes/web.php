@@ -62,10 +62,10 @@ Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function()
     Route::post('/batch-upload-save',   ['as' => 'save-batch-upload',       'uses' => 'QuestionBankController@saveBatchUpload']);
 
     Route::group(['prefix' => 'create', 'as' => 'create.'], function() {
-        Route::get('/mcq',      ['as' => 'mcq',     'uses' => 'QuestionBankController@createMcq']);
-        Route::get('/tf',       ['as' => 'tf',      'uses' => 'QuestionBankController@createTf']);
-        Route::get('/sa',       ['as' => 'sa',      'uses' => 'QuestionBankController@createSa']);
-        Route::get('/essay',    ['as' => 'essay',   'uses' => 'QuestionBankController@createEssay']);
+        Route::get('/mcq/{exam}',      ['as' => 'mcq',     'uses' => 'QuestionBankController@createMcq']);
+        Route::get('/tf/{exam}',       ['as' => 'tf',      'uses' => 'QuestionBankController@createTf']);
+        Route::get('/sa/{exam}',       ['as' => 'sa',      'uses' => 'QuestionBankController@createSa']);
+        Route::get('/essay/{exam}',    ['as' => 'essay',   'uses' => 'QuestionBankController@createEssay']);
     });
 
     Route::post('/save',            ['as' => 'save',    'uses' => 'QuestionBankController@save']);

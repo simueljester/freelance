@@ -31,8 +31,23 @@
             <small> {{$exam->description}} </small>
         
             <div class="mt-4">
-                <button class="btn btn-primary btn-sm"> Assign Selected Questions </button>
-                <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
+                <div class="row">
+                    <div class="dropdown">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-plus"></i> Create New Question
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                          <a class="dropdown-item" href="{{route('question-bank.create.mcq',$exam)}}"> Add Multiple Choice</a>
+                          <a class="dropdown-item" href="{{route('question-bank.create.tf',$exam)}}"> Add True or False</a>
+                          <a class="dropdown-item" href="{{route('question-bank.create.sa',$exam)}}"> Add Identification </a>
+                          <a class="dropdown-item" href="{{route('question-bank.create.essay',$exam)}}"> Add Essay </a>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary btn-sm ml-2"> Assign Selected Questions </button>
+                    <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm ml-2"> Cancel </a>
+                </div>
+              
+          
             </div>
             <table class="table table-hover mt-3">
                 <thead>

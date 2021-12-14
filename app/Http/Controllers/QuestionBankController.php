@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use App\Exam;
 use DateTime;
 use App\Subject;
 use App\Question;
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Http\Repositories\SubjectRepository;
 use App\Http\Repositories\AcademicYearRepository;
 use App\Http\Repositories\QuestionBankRepository;
+use App\Http\Repositories\QuestionAssignmentRepository;
 
 class QuestionBankController extends Controller
 {
@@ -141,38 +143,37 @@ class QuestionBankController extends Controller
 
     }
 
-    public function createMcq(){
-
+    public function createMcq($exam){
+        $exam =  Exam::find($exam);
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
-        return view('question-bank.create.mcq',compact('subjects'));
+        return view('question-bank.create.mcq',compact('subjects','exam'));
     }
 
-    public function createTf(){
-
+    public function createTf($exam){
+        $exam =  Exam::find($exam);
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
-        return view('question-bank.create.tf',compact('subjects'));
+        return view('question-bank.create.tf',compact('subjects','exam'));
     }
 
-    public function createSa(){
-
+    public function createSa($exam){
+        $exam =  Exam::find($exam);
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
-        return view('question-bank.create.sa',compact('subjects'));
+        return view('question-bank.create.sa',compact('subjects','exam'));
     }
 
-    public function createEssay(){
-
+    public function createEssay($exam){
+        $exam =  Exam::find($exam);
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
-        return view('question-bank.create.essay',compact('subjects'));
+        return view('question-bank.create.essay',compact('subjects','exam'));
 
     }
 
     public function save(Request $request){
 
-        
         $request->validate([
             'instruction' => 'required',
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
@@ -203,8 +204,17 @@ class QuestionBankController extends Controller
         ];
 
         $saved = app(QuestionBankRepository::class)->save($data);
+
+        //if creation of question is inside exam, then automatically assign to that exam
+        if($request->exam){
+            $exam = json_decode($request->exam);
+            app(QuestionAssignmentRepository::class)->assignSingleQuestions($exam,$saved);
+            return redirect()->route('groups.exam.examination-assignment.index',$exam->id)->with('success', 'Question successfully created');
+        }else{
+            return redirect()->route('question-bank.show',$saved->id)->with('success', 'Question successfully created');
+        }
     
-        return redirect()->route('question-bank.show',$saved->id)->with('success', 'Question successfully created');
+     
 
     }
 
