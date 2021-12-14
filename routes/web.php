@@ -20,16 +20,29 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-//Subjects
 
-Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {
-    Route::get('/',                 ['as' => 'index',       'uses' => 'SubjectController@index']);
-    Route::get('/create',           ['as' => 'create',      'uses' => 'SubjectController@create']);
-    Route::post('/save',            ['as' => 'save',        'uses' => 'SubjectController@save']);
-    Route::get('/show/{subject}',   ['as' => 'show',        'uses' => 'SubjectController@show']);
-    Route::post('/update',          ['as' => 'update',      'uses' => 'SubjectController@update']);
-    Route::get('/delete/{subject}', ['as' => 'delete',      'uses' => 'SubjectController@delete']);
+//School Management
+Route::group(['prefix' => 'school-management', 'as' => 'school-management.'], function() {
+    Route::get('/',                 ['as' => 'index',       'uses' => 'SchoolManagementController@index']);
+
+    Route::group(['prefix' => 'academic-year', 'as' => 'academic-year.'], function() {
+        Route::get('/',                                         ['as' => 'index',                   'uses' => 'AcademicYearController@index']);
+        Route::post('/save-academic-year',                      ['as' => 'save-academic-year',      'uses' => 'AcademicYearController@saveAcademicYear']);
+        Route::get('/change-academic-active/{academic_year}',   ['as' => 'change-academic-active',  'uses' => 'AcademicYearController@changeAcadmicActive']);
+    });
+
+    Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {
+        Route::get('/',                 ['as' => 'index',       'uses' => 'SubjectController@index']);
+        Route::get('/create',           ['as' => 'create',      'uses' => 'SubjectController@create']);
+        Route::post('/save',            ['as' => 'save',        'uses' => 'SubjectController@save']);
+        Route::get('/show/{subject}',   ['as' => 'show',        'uses' => 'SubjectController@show']);
+        Route::post('/update',          ['as' => 'update',      'uses' => 'SubjectController@update']);
+        Route::get('/delete/{subject}', ['as' => 'delete',      'uses' => 'SubjectController@delete']);
+    });
+
 });
+
+
 
 //Question Bank Routes
 Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function() {
@@ -179,8 +192,8 @@ Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], functi
 //User Managament Routes
 Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function() {
     Route::get('/',                                         ['as' => 'index',                   'uses' => 'AdministratorController@index']);
-    Route::post('/save-academic-year',                      ['as' => 'save-academic-year',      'uses' => 'AdministratorController@saveAcademicYear']);
-    Route::get('/change-academic-active/{academic_year}',   ['as' => 'change-academic-active',  'uses' => 'AdministratorController@changeAcadmicActive']);
+    // Route::post('/save-academic-year',                      ['as' => 'save-academic-year',      'uses' => 'AdministratorController@saveAcademicYear']);
+    // Route::get('/change-academic-active/{academic_year}',   ['as' => 'change-academic-active',  'uses' => 'AdministratorController@changeAcadmicActive']);
 
     Route::group(['prefix' => 'logins', 'as' => 'logins.'], function() {
         Route::get('/',      ['as' => 'index',       'uses' => 'LoginReportController@index']);

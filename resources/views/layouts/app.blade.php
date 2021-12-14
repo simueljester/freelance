@@ -53,18 +53,21 @@
 
             @if (Auth::user()->user_instance->role_id == 1)
                 <li class="nav-item">
-                    <a class="nav-link " href="{{route('subjects.index')}}">
+                    <a class="nav-link " href="{{route('school-management.academic-year.index')}}">
                     
-                        @if(request()->is(['subjects', 'subjects/*']))
-                            <i class="fas fa-book-reader text-info"></i>
-                            <span class="text-white"> <strong> Subjects </strong> </span>
+                        @if(request()->is(['school-management', 'school-management/*']))
+                        
+                            <i class="fas fa-university text-info"></i>
+                            <span class="text-white"> <strong> School Management </strong> </span>
                         @else
-                            <i class="fas fa-book-reader text-white"></i>
-                            <span> Subjects </span>
+                            <i class="fas fa-university text-white"></i>
+                            <span> School Management  </span>
                         @endif 
                     </a>
                 </li>
             @endif
+
+           
 
             @if (Auth::user()->user_instance->role_id == 1 || Auth::user()->user_instance->role_id == 2)
             <li class="nav-item">

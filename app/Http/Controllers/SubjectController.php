@@ -16,11 +16,11 @@ class SubjectController extends Controller
 
     public function index(){
         $subjects = app(SubjectRepository::class)->query()->get();
-        return view('subjects.index',compact('subjects'));
+        return view('school-management.subjects.index',compact('subjects'));
     }
 
     public function create(){
-        return view('subjects.create');
+        return view('school-management.subjects.create');
     }
 
     public function save(Request $request){
@@ -37,13 +37,13 @@ class SubjectController extends Controller
 
         $saved = app(SubjectRepository::class)->save($data);
     
-        return redirect()->route('subjects.index')->with('success', 'Subject successfully created');
+        return redirect()->route('school-management.subjects.index')->with('success', 'Subject successfully created');
 
     }
 
     public function show(Subject $subject){
 
-        return view('subjects.show',compact('subject'));
+        return view('school-management.subjects.show',compact('subject'));
     }
 
     public function update(Request $request){
@@ -60,13 +60,13 @@ class SubjectController extends Controller
         ];
 
         app(SubjectRepository::class)->update($request->subject_id,$data);
-        return redirect()->route('subjects.show',$request->subject_id)->with('success', 'Subject successfully updated');
+        return redirect()->route('school-management.subjects.show',$request->subject_id)->with('success', 'Subject successfully updated');
     }
 
     public function delete(Subject $subject){ 
         app(BaseRepository::class)->saveLog($subject,'delete');
         $subject->delete();
-        return redirect()->route('subjects.index')->with('success', 'Subject successfully deleted');
+        return redirect()->route('school-management.subjects.index')->with('success', 'Subject successfully deleted');
     }
     
 
