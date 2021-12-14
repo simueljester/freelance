@@ -76,10 +76,10 @@
             </div>
             <div class="card-body">
                 <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
-                <a href="{{route('question-bank.create.mcq')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
-                <a href="{{route('question-bank.create.tf')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create True or False Question </a>
-                <a href="{{route('question-bank.create.sa')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Identification Question </a>
-                <a href="{{route('question-bank.create.essay')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Essay Question </a>
+                <a href="{{route('question-bank.create.mcq',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
+                <a href="{{route('question-bank.create.tf',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create True or False Question </a>
+                <a href="{{route('question-bank.create.sa',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Identification Question </a>
+                <a href="{{route('question-bank.create.essay',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Essay Question </a>
             </div>
         </div>
     </div>

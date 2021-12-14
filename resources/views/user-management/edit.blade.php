@@ -84,6 +84,7 @@
     <div class="card shadow-sm mt-3">
         <div class="card-body">
             <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary"> Cancel </a>
+            <button class="btn btn-success" name="password" value="letranlms123" onclick="return confirm('Are you sure you want to reset password of this user? The default password is letranlms123')"> Reset Password </button>
             <button class="btn btn-primary"> Save Changes </button>
         </div>
     </div>
