@@ -3,7 +3,7 @@
 @section('content')
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <h4 class="text-muted">   <i class="fas fa-book-reader text-primary"></i>  School Management </h4>
+        <h4 class="text-muted"> <i class="fas fa-university"></i>  School Management </h4>
         <small class="text-muted"> <i> Manage subjects, teacher departments and student sections </i>  </small>
     </div>
 </div>
@@ -21,17 +21,36 @@
     <li class="nav-item">
         <a class="nav-link {{Route::is('school-management.academic-year.index') ? 'active' : ''}}"  href="{{route('school-management.academic-year.index')}}"> Academic Year </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link {{Route::is('school-management.subjects.index') ? 'active' : ''}}"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+    <li class="nav-item ">
+        @if (Route::is('school-management.subjects.index'))
+            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+       
+        @elseif (Route::is('school-management.subjects.create'))
+            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+   
+        @elseif (Route::is('school-management.subjects.show'))
+            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+        @else
+            <a class="nav-link "  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+        @endif 
     </li>
     <li class="nav-item">
-        <a class="nav-link"  href="#"> Departments </a>
+        @if (Route::is('school-management.sections.index'))
+            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Sections </a>
+        @elseif (Route::is('school-management.sections.create'))
+            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Sections </a>
+        @elseif (Route::is('school-management.sections.show'))
+            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Sections </a>
+        @else
+            <a class="nav-link "  href="{{route('school-management.sections.index')}}"> Sections </a>
+        @endif 
     </li>
+    {{--
     <li class="nav-item">
         <a class="nav-link"  href="#"> Sections </a>
-    </li>
+    </li> --}}
 </ul>
-<div class="card shadow-sm">
+<div class="card shadow-sm mt-2">
     <div class="card-body">
         @yield('sub-content')
     </div>

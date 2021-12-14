@@ -12,7 +12,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Class</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Class Group </li>
+            <li class="breadcrumb-item active" aria-current="page"> Create Class  </li>
         </ol>
     </nav>
 </div>
@@ -40,6 +40,26 @@
                     @endforeach
                 </select>
             </div>
+
+            <div class="form-group">
+                <small class="text-capitalize"> Sections </small>
+                <select name="section" id="section" class="form-control" required>
+                    @foreach ($sections as $section)
+                        <option value="{{$section->id}}"> {{$section->name}} </option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <small class="text-capitalize"> Teacher </small>
+                <select name="teacher" id="teacher" class="form-control" required>
+                    @foreach ($teachers as $teacher)
+                        <option value="{{$teacher}}"> {{$teacher->user->name}} </option>
+                    @endforeach
+                </select>
+            </div>
+
+            
             <hr>
             <a href="{{route('groups.index')}}" class="btn btn-outline-secondary btn-sm"> Cancel </a>
             <button class="btn btn-primary btn-sm"> Create Class </button>

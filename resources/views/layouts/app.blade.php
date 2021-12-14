@@ -101,11 +101,10 @@
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('groups.user-group.user-group')}}">
-                     
                     
                         @if(request()->is(['groups', 'groups/*']))
                             <i class="fas fa-cubes text-info"></i>
-                            <span class="text-white"> <strong> My Groups </strong>  </span>
+                            <span class="text-white"> <strong> My Class </strong>  </span>
                         @else
                             <i class="fas fa-cubes text-white"></i>
                             <span> My Class</span>

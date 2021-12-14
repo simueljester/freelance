@@ -19,16 +19,25 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$group->name}} - <i> {{$group->subject->course_code}}  {{$group->subject->name}} </i>  </strong> </h5>
+        <h5 class="text-muted"> <strong> {{$group->name}} </strong> </h5>
         <small> {{$group->description}} </small>
         <hr>
-        <div> Creator: {{$group->user_creator->name}} </div>
-        <div> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
+     
+        <i class="fas fa-book-reader"></i> Course Code:  <strong> {{$group->subject->course_code}} </strong>
+        <br>
+        <i class="fas fa-user"></i> Assign Teacher: <strong> {{$group->user_creator->name}} </strong>
+        <br>
+        <i class="fas fa-flag"></i> Active AY: <strong> {{$group->activeAcademicYear->name}} </strong>
+        <br>
+        <i class="fas fa-adjust"></i> Section: <strong> {{$group->section->name}} </strong>
+        <div> <i class="fas fa-calendar-alt"></i> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
     </div>
     <div class="card-footer">
+
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#assignUsers">
             <i class="fas fa-users"></i> Enrolled Users
         </button>
+      
         <a href="{{route('groups.class-grades.index',$group)}}" class="btn btn-primary btn-sm"> <i class="fab fa-cloudsmith"></i> Class Grades </a>
     </div>
 </div>
@@ -45,7 +54,7 @@
         <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <strong>  <i class="fas fa-users"></i> Group  Members </strong> 
+                <strong>  <i class="fas fa-users"></i> Enrolled Users </strong> 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -83,8 +92,10 @@
                 </table>
             </div>
             <div class="modal-footer">
+                @if (Auth::user()->user_instance->role_id == 1)
                 <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to unassign selected users? Users examination data will be deleted')"> Unassign Users </button>
-                <a href="{{route('groups.group-assignment.assignment',$group)}}" class="btn btn-primary btn-sm" > <i class="fas fa-user-plus"></i> Assign New Users  </a>
+                    <a href="{{route('groups.group-assignment.assignment',$group)}}" class="btn btn-primary btn-sm" > <i class="fas fa-user-plus"></i> Assign New Users  </a>
+                @endif
             </div>
         </div>
         </div>

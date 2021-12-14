@@ -6,14 +6,29 @@
    
 <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Subject </a>
 <div class="mt-4">
-    @forelse ($subjects as $subject)
-    <div class="mt-3">
-        <i class="fas fa-book-reader fa-2x"></i> &nbsp&nbsp <a href="{{route('school-management.subjects.show',$subject)}}" style="font-size:18px;text-decoration:none;" class="text-primary"> {{$subject->course_code}} <small class="text-muted"> {{$subject->name}}  </small> </a>
-    </div>
-         
-    @empty
-        <strong> No subjects created </strong>
-    @endforelse
+    <table class="table table-hover">
+        <thead>
+            <th> Course Code </th>
+            <th> Descriptive Title </th>
+            <th> Academic Year </th>
+            <th></th>
+        </thead>
+        <tbody>
+            @forelse ($subjects as $subject)
+                <tr>
+                    <td> {{$subject->course_code}} </td>
+                    <td> {{$subject->name}}  </td>
+                    <td> {{$subject->activeAcademicYear->name}} </td>
+                    <td> <a href="{{route('school-management.subjects.show',$subject)}}" class="btn btn-primary btn-sm">  View </a> </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4"> <strong> No subjects created </strong> </td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
 </div>
 
 

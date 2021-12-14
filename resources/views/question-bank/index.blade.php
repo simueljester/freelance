@@ -32,9 +32,9 @@
             </div>
         </div>
         &nbsp
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+        {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
           <i class="fas fa-upload"></i> Batch Question Upload
-        </button>
+        </button> --}}
       </div>
 
         {{-- <a href="{{route('question-bank.create')}}" class="btn btn-info btn-sm">  </a> --}}

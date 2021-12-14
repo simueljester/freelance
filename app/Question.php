@@ -23,7 +23,8 @@ class Question extends Model
         'attachment',
         'creator',
         'subject_id',
-        'level'
+        'level',
+        'academic_year_id'
     ];
 
     public function user_creator()

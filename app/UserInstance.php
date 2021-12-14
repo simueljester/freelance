@@ -19,6 +19,11 @@ class UserInstance extends Model
         return $this->belongsTo('App\UserRoles', 'role_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
 
     public function academicYear()
     {

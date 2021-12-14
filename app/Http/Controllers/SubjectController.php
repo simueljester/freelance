@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Subject;
+use App\AcademicYear;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\SubjectRepository;
+use App\Http\Repositories\AcademicYearRepository;
 
 class SubjectController extends Controller
 {
@@ -15,7 +17,8 @@ class SubjectController extends Controller
     }
 
     public function index(){
-        $subjects = app(SubjectRepository::class)->query()->get();
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
         return view('school-management.subjects.index',compact('subjects'));
     }
 
@@ -32,7 +35,8 @@ class SubjectController extends Controller
         $data = [
             'name'          => $request->name,
             'description'   => $request->description,
-            'course_code'   => $request->course_code
+            'course_code'   => $request->course_code,
+            'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
         ];
 
         $saved = app(SubjectRepository::class)->save($data);

@@ -17,8 +17,9 @@
 </div>
 
 <div class="mt-3">
-    <a href="{{route('groups.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Class </a>
+   
     @if (Auth::user()->user_instance->role_id == 1)
+        <a href="{{route('groups.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Class </a>
         <a href="{{route('groups.list')}}" class="btn btn-primary btn-sm"> <i class="fas fa-cubes"></i>  All Class </a>
     @endif
 </div>
@@ -29,17 +30,23 @@
 
 <div class="row">
     @forelse ($groups as $group)
-        <div class="col-sm-3">
+        <div class="col-sm-4 mt-2">
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
                     <a href="{{route('groups.show',$group)}}"> <strong class="text-primary" style="font-size:18px;"> <i class="fas fa-cube"></i> {{$group->name}} </strong> </a> 
                     {{-- <a href="{{route('groups.group-assignment.index',$group)}}"> <strong class="text-info" style="font-size:18px;"> {{$group->name}} </strong> </a> --}}
-                    <a href="{{route('groups.edit',$group)}}" class="float-right"> <i class="fas fa-edit text-primary"></i> </a>
+                    @if (Auth::user()->user_instance->role_id == 1)
+                        <a href="{{route('groups.edit',$group)}}" class="float-right"> <i class="fas fa-edit text-primary"></i> </a>
+                    @endif
+                    
                     <br>
-                    <small> <i class="fas fa-book-reader"></i> {{$group->subject->course_code}} {{$group->subject->name}} </small>
+                    <small> <i class="fas fa-book-reader"></i> Course Code:  <strong> {{$group->subject->course_code}} </strong>  </small>
                     <br>
-             
-                    <small> <i class="fas fa-user"></i> {{$group->user_creator->name}} </small>
+                    <small> <i class="fas fa-user"></i> Assign Teacher: <strong> {{$group->user_creator->name}} </strong>  </small>
+                    <br>
+                    <small> <i class="fas fa-flag"></i> Active AY: <strong> {{$group->activeAcademicYear->name}} </strong>  </small>
+                    <br>
+                    <small> <i class="fas fa-adjust"></i> Section: <strong> {{$group->section->name}} </strong>  </small>
                     <hr>
                     <small> {!! $group->description !!} </small>
                 </div>

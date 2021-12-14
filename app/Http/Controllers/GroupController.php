@@ -8,11 +8,15 @@ use App\Grade;
 use App\Group;
 use App\Folder;
 use App\Subject;
+use App\UserInstance;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Repositories\GroupRepository;
 use App\Http\Repositories\FolderRepository;
+use App\Http\Repositories\SectionRepository;
+use App\Http\Repositories\SubjectRepository;
 use App\Http\Repositories\GroupModuleRepository;
+use App\Http\Repositories\AcademicYearRepository;
 use App\Http\Repositories\ExamAssignmentRepository;
 use App\Http\Repositories\LinkAssignmentRepository;
 use App\Http\Repositories\GroupAssignmentRepository;
@@ -28,32 +32,54 @@ class GroupController extends Controller
     }
 
     public function index(){
-        
-        $groups = app(GroupRepository::class)->query()->with('user_creator','subject')->whereCreatorId(Auth::user()->id)->whereCreatorInstanceId(Auth::user()->user_instance->id)->get();
-       
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        if(Auth::user()->user_instance->role_id == 1){
+            $groups = app(GroupRepository::class)->query()->with('user_creator','subject','activeAcademicYear','section')
+            ->whereAcademicYearId($active_ac_id)
+            ->get();
+        }
+        if(Auth::user()->user_instance->role_id == 2){
+            $groups = app(GroupRepository::class)->query()->with('user_creator','subject','activeAcademicYear','section')
+            ->whereCreatorId(Auth::user()->id)
+            ->whereCreatorInstanceId(Auth::user()->user_instance->id)
+            ->whereAcademicYearId($active_ac_id)
+            ->get();
+        }
+           
         return view('groups.index',compact('groups'));
 
     }
 
     public function create(){
-        $subjects = Subject::all();
-        return view('groups.create',compact('subjects'));
+        
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
+        $teachers = UserInstance::with('user')->whereActive(1)->whereRoleId(2)->get();
+        $sections = app(SectionRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
+        
+        return view('groups.create',compact('subjects','teachers','sections'));
+
     }
 
     public function save(Request $request){
-     
+        // return $request->teacher;
+   
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'subject'   => 'required'
+            'subject'   => 'required',
+            'teacher'   => 'required',
+            'section'   => 'required',
         ]);
 
         $data = [
-            'name'                      => $request->name,
-            'description'               => $request->description,
-            'creator_id'                =>  Auth::user()->id,
+            'name'                      =>  $request->name,
+            'description'               =>  $request->description,
+            'creator_id'                =>  json_decode($request->teacher)->user_id,
             'subject_id'                =>  $request->subject,
-            'creator_instance_id'       =>  Auth::user()->user_instance->id,
+            'creator_instance_id'       =>  json_decode($request->teacher)->id,
+            'academic_year_id'          =>  app(AcademicYearRepository::class)->getActiveAcademicYear()->id,
+            'section_id'                =>  $request->section,
         ];
 
         app(GroupRepository::class)->save($data);

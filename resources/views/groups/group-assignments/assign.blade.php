@@ -26,7 +26,7 @@
         <div class="card-body">
             
             <strong> Available Users </strong> <br>
-            <small> Assign users to this group </small>
+            <small> Assign users to this class </small>
             <table class="table table-hover mt-3">
                 <thead>
                     <th> Name </th>

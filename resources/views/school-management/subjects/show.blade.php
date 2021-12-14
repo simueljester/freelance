@@ -2,20 +2,20 @@
 
 @section('sub-content')
 
-<div class="card mt-3">
-    <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$subject->course_code}} {{$subject->name}} </strong> </h5>
-        <small> {{$subject->description}} </small>
-        <hr>
-   
-        <div> Date Created: {{$subject->created_at->format('Y-m-d')}} </div>
-    </div>
-    <div class="card-footer">
-        <span class="text-primary" data-toggle="modal" data-target="#editSubject" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </span>
-        &nbsp&nbsp
-        <a href="{{route('school-management.subjects.delete',$subject)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this subject? Questions and Groups assign to this subject will be deleted')"> <i class="fas fa-trash-alt"></i> Delete </a>
-    </div>
+<div class="p-3">
+  <h5 class="text-muted"> <strong> {{$subject->course_code}} </strong> </h5> 
+  <strong class="text-muted"> {{$subject->name}}  </strong> <br>
+  <small> {{$subject->description}} </small>
+  <hr>
+  <a href="{{route('school-management.subjects.index')}}" class="text-muted"> <i class="far fa-arrow-alt-circle-left"></i> Back </a>
+  &nbsp&nbsp
+  <span class="text-primary" data-toggle="modal" data-target="#editSubject" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </span>
+  &nbsp&nbsp
+  <a href="{{route('school-management.subjects.delete',$subject)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this subject? Questions and Groups assign to this subject will be deleted')"> <i class="fas fa-trash-alt"></i> Delete </a>
+  &nbsp&nbsp
+  Date Created: {{$subject->created_at->format('Y-m-d')}} 
 </div>
+
 
 <!-- Modal for Edit-->
 <form action="{{route('school-management.subjects.update')}}" method="POST">

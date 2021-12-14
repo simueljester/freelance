@@ -40,6 +40,15 @@ Route::group(['prefix' => 'school-management', 'as' => 'school-management.'], fu
         Route::get('/delete/{subject}', ['as' => 'delete',      'uses' => 'SubjectController@delete']);
     });
 
+    Route::group(['prefix' => 'sections', 'as' => 'sections.'], function() {
+        Route::get('/',                 ['as' => 'index',       'uses' => 'SectionController@index']);
+        Route::get('/create',           ['as' => 'create',      'uses' => 'SectionController@create']);
+        Route::post('/save',            ['as' => 'save',        'uses' => 'SectionController@save']);
+        Route::get('/show/{section}',   ['as' => 'show',        'uses' => 'SectionController@show']);
+        Route::post('/update',          ['as' => 'update',      'uses' => 'SectionController@update']);
+        Route::get('/delete/{section}', ['as' => 'delete',      'uses' => 'SectionController@delete']);
+    });
+
 });
 
 

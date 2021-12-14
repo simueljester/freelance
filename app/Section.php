@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Subject extends Model
+class Section extends Model
 {
     //
-    protected $table = 'subjects';
+    protected $table = 'sections';
     
     protected $fillable = [
-        'id', 'name','course_code','description','academic_year_id'
+        'id', 'name','description','academic_year_id'
     ];
 
     public function activeAcademicYear()

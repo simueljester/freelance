@@ -73,7 +73,7 @@
             </div>
             <div class="card-body">
                 <a href="{{route('user-management.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-user-plus"></i> Create New User </a>
-                <a href="{{route('subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
+                <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
                 <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
                 <a href="{{route('question-bank.create.mcq')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Question (MCQ) </a>
             </div>

@@ -14,6 +14,8 @@ use App\Imports\QuestionsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Repositories\BaseRepository;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Repositories\SubjectRepository;
+use App\Http\Repositories\AcademicYearRepository;
 use App\Http\Repositories\QuestionBankRepository;
 
 class QuestionBankController extends Controller
@@ -32,6 +34,7 @@ class QuestionBankController extends Controller
         $start_date = $request->start_date;
         $end_date = Carbon::parse($request->end_date)->addDays(1);
       
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
 
         if($request->start_date){
             $request->validate([
@@ -41,6 +44,7 @@ class QuestionBankController extends Controller
         }
       
         $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
+ 
         ->when($type, function ($query) use ($type) {
             $query->where('question_type', $type);
         })
@@ -57,11 +61,14 @@ class QuestionBankController extends Controller
             $query->where('created_at','>=', $start_date)
             ->where('created_at','<=', $end_date);
         })
+        ->whereAcademicYearId($active_ac_id)
         ->orderBy('created_at','DESC')
         ->paginate(10);
         
         
-        $all_subjects = Subject::all();
+
+ 
+        $all_subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         $all_creators = app(QuestionBankRepository::class)->query()->with('user_creator')->get()->unique('creator');
 
         $filters = (object)[
@@ -84,7 +91,8 @@ class QuestionBankController extends Controller
         $creator = $request->creator;
         $start_date = $request->start_date;
         $end_date = Carbon::parse($request->end_date)->addDays(1);
-      
+
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
 
         if($request->start_date){
             $request->validate([
@@ -94,6 +102,7 @@ class QuestionBankController extends Controller
         }
       
         $all_questions = app(QuestionBankRepository::class)->query()->with('user_creator','subject')
+        ->whereAcademicYearId($active_ac_id)
         ->when($type, function ($query) use ($type) {
             $query->where('question_type', $type);
         })
@@ -115,7 +124,8 @@ class QuestionBankController extends Controller
         ->paginate(10);
         
         
-        $all_subjects = Subject::all();
+     
+        $all_subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         $all_creators = app(QuestionBankRepository::class)->query()->with('user_creator')->get()->unique('creator');
 
         $filters = (object)[
@@ -132,23 +142,32 @@ class QuestionBankController extends Controller
     }
 
     public function createMcq(){
-        $subjects = Subject::all();
+
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         return view('question-bank.create.mcq',compact('subjects'));
     }
 
     public function createTf(){
-        $subjects = Subject::all();
+
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         return view('question-bank.create.tf',compact('subjects'));
     }
 
     public function createSa(){
-        $subjects = Subject::all();
+
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         return view('question-bank.create.sa',compact('subjects'));
     }
 
     public function createEssay(){
-        $subjects = Subject::all();
+
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         return view('question-bank.create.essay',compact('subjects'));
+
     }
 
     public function save(Request $request){
@@ -180,6 +199,7 @@ class QuestionBankController extends Controller
             'creator'           => Auth::user()->id,
             'subject_id'        => $request->subject,
             'level'             => $request->difficulty,
+            'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
         ];
 
         $saved = app(QuestionBankRepository::class)->save($data);
@@ -195,7 +215,8 @@ class QuestionBankController extends Controller
 
     
     public function edit(Question $question){
-        $subjects = Subject::all();
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $subjects = app(SubjectRepository::class)->query()->whereAcademicYearId($active_ac_id)->get();
         return view('question-bank.edit.'.$question->question_type,compact('question','subjects'));
     }
 

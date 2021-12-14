@@ -59,7 +59,7 @@
         </div>
 
         <div class="mt-3 p-3 " >
-            @if ($group->creator_id == Auth::user()->id)
+            @if ($group->creator_id == Auth::user()->id && Route::is('groups.show-folder'))
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Module </button>
             <hr>
             @endif
@@ -147,7 +147,9 @@
                 @endswitch
         
             @empty
-                No resource found 
+                @if (Route::is('groups.show-folder'))
+                    No resource found 
+                @endif
             @endforelse
       
         </div>
