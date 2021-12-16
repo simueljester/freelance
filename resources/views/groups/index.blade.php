@@ -25,9 +25,9 @@
 </div>
 
 
-<div class="row">
+<div class="row ">
     @forelse ($groups as $group)
-        <div class="col-sm-4 mt-2">
+        <div class="col-sm-4 mt-1 p-3">
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
                     <a href="{{route('groups.show',$group)}}"> <strong class="text-primary" style="font-size:18px;"> <i class="fas fa-cube"></i> {{$group->name}} </strong> </a> 
@@ -47,7 +47,6 @@
                     <hr>
                     <div id="class_description{{$group->id}}" class="class_description"> {!! $group->description !!}  </div> 
                     <strong class="text-primary" id="btn-see-more{{$group->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$group}})"> See more </strong>
-                    
                     <div id="full_class_description{{$group->id}}" class="full_class_description"></div>
                  
 

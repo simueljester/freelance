@@ -19,7 +19,7 @@
 
 <div class="row">
     @forelse ($my_group_assignments as $assignment)
-        <div class="col-sm-3">
+        <div class="col-sm-4 mt-1 p-3">
             <div class="card shadow-sm mt-3 h-100">
                 <div class="card-body">
                     <a href="{{route('groups.user-group.list-exam',$assignment->group)}}">
@@ -27,13 +27,20 @@
                             <i class="fas fa-cube"></i> {{$assignment->group->name}} 
                         </strong>
                     </a>
+                    
                     <br>
-                    <small> <i class="fas fa-book-reader"></i> {{$assignment->group->subject->name}} </small>
-                    &nbsp&nbsp
-                    <small> <i class="fas fa-user"></i> {{$assignment->group->user_creator->name}}</small>
+                    <small> <i class="fas fa-book-reader"></i> Course Code:  <strong> {{$assignment->group->subject->course_code}} </strong>  </small>
+                    <br>
+                    <small> <i class="fas fa-user"></i> Assign Teacher: <strong> {{$assignment->group->user_creator->name}} </strong>  </small>
+                    <br>
+                    <small> <i class="fas fa-flag"></i> Active AY: <strong> {{$assignment->group->activeAcademicYear->name}} </strong>  </small>
+                    <br>
+                    <small> <i class="fas fa-adjust"></i> Section: <strong> {{$assignment->group->section->name}} </strong>  </small>
                  
                     <hr>
-                    <small> {!! $assignment->group->description ?? 'No description' !!} </small>
+                    <div id="class_description{{$assignment->group->id}}" class="class_description"> {!! $assignment->group->description !!}  </div> 
+                    <strong class="text-primary" id="btn-see-more{{$assignment->group->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$assignment->group}})"> See more </strong>
+                    <div id="full_class_description{{$assignment->group->id}}" class="full_class_description"></div>
                 </div>
             </div>
         </div>
@@ -49,5 +56,27 @@
     @endforelse
 
 </div>
+
+
+@include('layouts.scripts')
+
+<script>
+    $(".class_description").text(function(index, currentText) {
+        return currentText.substr(0, 250)+"...";
+    });
+
+  
+    function showFullDescription(group){
+        $('#full_class_description'+group.id).html(group.description)
+        $( "#btn-see-more"+group.id).hide();
+        $( "#btn-see-less"+group.id).show();
+        $( "#class_description"+group.id).hide();
+    }
+
+
+
+</script>
+
+
 
 @endsection
