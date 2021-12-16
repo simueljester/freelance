@@ -18,39 +18,10 @@
 
 <div class="card shadow-sm mt-2">
     <div class="card-body">
-        <div class="card bg-light">
-            <div class="card-body">
-                <form action="">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <span> Search User </span>
-                                <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Keyword.." value="{{$keyword}}">
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <span> Filter Role </span>
-                            <select name="role" id="role" class="form-control">
-                                <option value=""> All Role </option>
-                                <option value="2" {{ $role == 2 ? 'selected' : null }} > Teacher </option>
-                                <option value="3" {{ $role == 3 ? 'selected' : null }}> Student </option>
-                            </select>
-                        </div>
-                        <div class="col-sm-4">
-                            <button class="btn btn-primary btn-sm mt-4 btn-block"> <i class="fas fa-search"></i> Search </button>
-                        </div>
-                    </div>
-                    @if ($keyword || $role)
-                        <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary btn-sm"> Clear keyword </a>
-                    @endif
-                    
-                </form>
-            </div>
-            
-        </div>
         <div class="mt-3">
             <a href="{{route('user-management.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New User </a>
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-upload"></i> Batch Upload </button>
+            <button type="button" class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#filterUser"> <i class="fas fa-search"></i> Filters </button>
         </div>
         <br>
         <strong class="mt-3"> User List </strong>
@@ -108,6 +79,49 @@
         </table>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="filterUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Filter User </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="card bg-light">
+                <div class="card-body">
+                    <form action="">   
+                        <div class="form-group">
+                            <span> Search User </span>
+                            <input type="text" name="keyword" id="keyword" class="form-control" placeholder="Keyword.." value="{{$keyword}}">
+                        </div>
+                    
+                        
+                        <span> Filter Role </span>
+                        <select name="role" id="role" class="form-control">
+                            <option value=""> All Role </option>
+                            <option value="2" {{ $role == 2 ? 'selected' : null }} > Teacher </option>
+                            <option value="3" {{ $role == 3 ? 'selected' : null }}> Student </option>
+                        </select>
+                
+                        @if ($keyword || $role)
+                            <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary mt-3 btn-sm btn-block"> Clear keyword </a>
+                        @endif
+                        <button class="btn btn-primary btn-sm mt-4 btn-block"> <i class="fas fa-search"></i> Search </button>                   
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+        <div class="modal-footer">
+    
+        </div>
+      </div>
+    </div>
+  </div>
 
 <form action="{{route('user-management.batch-upload')}}" method="POST" enctype="multipart/form-data">
     @csrf

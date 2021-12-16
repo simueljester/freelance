@@ -6,7 +6,7 @@ use App\User;
 use App\AcademicYear;
 use App\UserInstance;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Validator;
 class AcademicYearController extends Controller
 {
     //
@@ -21,6 +21,10 @@ class AcademicYearController extends Controller
 
     public function saveAcademicYear(Request $request){
 
+        $request->validate([
+          'name' => 'required|unique:academic_years'
+        ]);
+        
         $save_acad = new AcademicYear;
         $save_acad->name = $request->name;
         $save_acad->year = $request->year;

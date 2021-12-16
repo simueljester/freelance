@@ -65,7 +65,7 @@ class UserController extends Controller
             'address' => 'required',
             'email' => 'required|email|unique:users',
             'role' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:10',
             'department' => 'required',
             'section' => 'required_if:role,3'
         ]);
@@ -129,6 +129,9 @@ class UserController extends Controller
         ];
 
         if($request->password != null){
+            $request->validate([
+                'password' => 'required|min:10'
+            ]);
             $user_data['password'] = Hash::make($request->password);
         }
 

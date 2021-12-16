@@ -64,9 +64,10 @@
                 <input type="email" name="email" id="email" class="form-control p-3" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Password </small>
+                <small class="text-capitalize"> Password (Atleast 10 characters required) </small>
                 <input type="password" name="password" id="password" class="form-control p-3" required>
                 <input type="checkbox" onclick="myFunction()" class="mt-3">  <span class="text-dark"> Show Password </span> 
+                <button type="button" class="btn btn-sm btn-info ml-3" onclick="generateRandom(10)"> Generate Password </button>
             </div>
             <div class="form-group">
                 <small class="text-capialize"> Role </small>
@@ -148,6 +149,23 @@
             }
         })
     });
+
+    function generateRandom(length) {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      
+    }
+
+
+    document.getElementById("password").value = result;
+
+    
+}
+
+
 
 </script>
 

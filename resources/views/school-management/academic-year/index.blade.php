@@ -47,7 +47,7 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <span> Name </span>
+                    <span> Name (Unique) </span>
                     <input type="text" name="name" id="name" class="form-control" required>
                 </div>
                 <div class="form-group">
