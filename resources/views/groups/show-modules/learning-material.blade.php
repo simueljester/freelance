@@ -37,6 +37,11 @@
             @if ($learning_material->file)
                 <i class="fas fa-paperclip"></i> <a href="{{route('downloads.learning-material-attachment',[$learning_material->file,$learning_material->group])}}" class="text-primary"> {{$learning_material->file}} </a>
             @endif
+
+            <span class="float-right">
+                <i class="{{$learning_material->groupModule->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                <small>  {{$learning_material->groupModule->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+            </span>
         
         </div>
     </div>

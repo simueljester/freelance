@@ -47,7 +47,11 @@
                 <input type="hidden" name="group" id="group" value="{{$learning_material->group_id}}">
                 <input type="text" class="form-control" value="{{$learning_material->group->name}}" disabled>
             </div>
-
+            <div class="form-group mt-3">
+                <span> Module Visibility </span>
+                <br>
+                <input name="visibility" type="checkbox" {{$learning_material->groupModule->visibility == 1 ? 'checked' : null}} data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-off-style="secondary">
+            </div>
             <hr>
             <div>
                 <input type="hidden" name="learning_material_id" id="learning_material_id" value="{{$learning_material->id}}">

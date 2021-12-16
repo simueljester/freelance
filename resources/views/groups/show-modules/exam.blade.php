@@ -29,15 +29,20 @@
             &nbsp&nbsp
             <i class="fas fa-star text-warning"></i> {{$exam->total_score}} Maximum Score
             &nbsp&nbsp
-            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->accessible_at)->format('F d, Y h:i a')}} -
+            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->accessible_at)->format('M d, Y h:i a')}} -
             &nbsp&nbsp
-            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->expired_at)->format('F d, Y h:i a')}}
+            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->expired_at)->format('M d, Y h:i a')}}
             &nbsp&nbsp
             <a href="{{route('groups.show',$exam->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
             &nbsp&nbsp
             <a href="{{route('groups.exam.edit',$exam)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Exam </a>
             &nbsp&nbsp
             <a href="{{route('groups.exam.delete',$exam)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a>
+            &nbsp&nbsp
+            <span class="float-right">
+                <i class="{{$exam->groupModule->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                <small>  {{$exam->groupModule->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+            </span>
         </div>
     </div>
 </div>

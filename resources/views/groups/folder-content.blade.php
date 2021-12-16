@@ -71,9 +71,13 @@
                         <div class="card mt-3">
                             <div class="card-header bg-light text-dark p-2">
                                 <i class="fas fa-copy text-primary fa-2x m-1"></i> 
-                                 <a href="{{route('groups.exam.show',$module->exam)}}" class="text-primary" style="  text-decoration: none;"> 
+                                <a href="{{route('groups.exam.show',$module->exam)}}" class="text-primary" style="  text-decoration: none;"> 
                                     <strong > {{$module->exam->name}}  </strong> 
                                 </a> 
+                                <span class="float-right">
+                                    <i class="{{$module->visibility == 1 ? 'fas fa-eye  text-success' : 'fas fa-eye-slash  text-secondary'}}"></i>
+                                    <small>  {{$module->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+                                </span>
                             </div>
                             <div class="card-body">
                                 {{$module->exam->description ?? 'No description provided'}} 
@@ -100,6 +104,10 @@
                                  <a href="{{route('groups.discussion.show',$module->discussion)}}" class="text-primary" style="  text-decoration: none;"> 
                                     <strong > {{$module->discussion->name}}  </strong> 
                                 </a> 
+                                <span class="float-right">
+                                    <i class="{{$module->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                                    <small> {{$module->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+                                </span>
                             </div>
                             <div class="card-body">
                                 {!! $module->discussion->description ?? 'No description provided'!!} 
@@ -119,6 +127,10 @@
                                  <a href="{{route('groups.learning-material.show',$module->learning_material)}}" class="text-primary" style="  text-decoration: none;"> 
                                     <strong > {{$module->learning_material->name}}  </strong> 
                                 </a> 
+                                <span class="float-right">
+                                    <i class="{{$module->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                                    <small> {{$module->visibility == 1 ? 'Visible to student' : 'Hidden to student'}}  </small>
+                                </span>
                             </div>
                             <div class="card-body">
                                 {!! $module->learning_material->description ?? 'No description provided'!!} 
@@ -133,9 +145,13 @@
                         <div class="card mt-3">
                             <div class="card-header bg-light text-dark p-2">
                                 <i class="fas fa-link fa-2x text-danger"></i>
-                                 <a href="{{route('groups.link.show',$module->link)}}" class="text-primary" style="  text-decoration: none;"> 
+                                <a href="{{route('groups.link.show',$module->link)}}" class="text-primary" style="  text-decoration: none;"> 
                                     <strong > {{$module->link->name}}  </strong> 
                                 </a> 
+                                <span class="float-right">
+                                    <i class="{{$module->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                                    <small> {{$module->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+                                </span>
                             </div>
                             <div class="card-body">
                                 {!! $module->link->description ?? 'No description provided'!!} 

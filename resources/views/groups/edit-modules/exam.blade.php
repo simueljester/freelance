@@ -69,6 +69,11 @@
                     </div>
                 </div>
             </div>
+            <div class="form-group mt-3">
+                <span> Module Visibility </span>
+                <br>
+                <input name="visibility" type="checkbox" {{$exam->groupModule->visibility == 1 ? 'checked' : null}} data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
+            </div>
             <div>
                 <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
                 <a href="{{route('groups.exam.show',$exam)}}" class="btn btn-outline-secondary btn-sm" > Cancel </a>

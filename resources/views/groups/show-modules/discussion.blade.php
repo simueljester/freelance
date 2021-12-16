@@ -36,6 +36,11 @@
             @if ($discussion->attachment)
                 <i class="fas fa-paperclip"></i> <a href="{{route('downloads.discussion-attachment',$discussion->attachment)}}" class="text-primary"> {{$discussion->attachment}} </a>
             @endif
+            &nbsp&nbsp
+            <span class="float-right">
+                <i class="{{$discussion->groupModule->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                <small>  {{$discussion->groupModule->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+            </span>
                 {{--&nbsp&nbsp
             <a href="{{route('groups.exam.delete',$discussion)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a> --}}
         </div>

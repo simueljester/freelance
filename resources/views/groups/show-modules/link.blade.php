@@ -32,7 +32,11 @@
          
             &nbsp&nbsp
             <a href="{{route('groups.link.delete',$link)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this link? All link assignments will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Link </a>
-           
+            &nbsp&nbsp
+            <span class="float-right">
+                <i class="{{$link->groupModule->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
+                <small>  {{$link->groupModule->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
+            </span>
         </div>
     </div>
 </div>

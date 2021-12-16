@@ -40,7 +40,7 @@ class LearningMaterialController extends Controller
             'user_id'               => Auth::user()->id,
             'user_instance_id'      => Auth::user()->user_instance->id,
             'folder_id'             => $request->folder_id,
-            'visibility'            => 1,
+            'visibility'            => $request->visibility ? 1 : 0
         ];
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
@@ -111,6 +111,11 @@ class LearningMaterialController extends Controller
         ];
 
         $learning_material_data = app(LearningMaterialRepository::class)->update($request->learning_material_id,$data);
+
+        $group_module_data = [
+            'visibility'  => $request->visibility ? 1 : 0
+        ];
+        $saved_group_module = app(GroupModuleRepository::class)->update($learning_material_data->group_module_id,$group_module_data);
 
         app(LearningMaterialAssignmentRepository::class)->assignLearningMaterialToUsers($learning_material_data,$request->group);
 

@@ -51,6 +51,11 @@
                 <span> Total Score </span>
                 <input type="number" name="total_score" min="1" id="duration" value="{{$discussion->total_score}}"  class="form-control" required>
             </div>
+            <div class="form-group mt-3">
+                <span> Module Visibility </span>
+                <br>
+                <input name="visibility" type="checkbox" {{$discussion->groupModule->visibility == 1 ? 'checked' : null}} data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
+            </div>
             <hr>
             <div>
                 <input type="hidden" name="discussion_id" id="discussion_id" value="{{$discussion->id}}">

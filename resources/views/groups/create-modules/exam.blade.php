@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="card shadow-sm mt-3">
     <div class="card-body">
         <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
@@ -70,7 +71,11 @@
                     </div>
                 </div>
             </div>
-         
+            <div class="form-group mt-3">
+                <span> Module Visibility </span>
+                <br>
+                <input name="visibility" type="checkbox" checked data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
+            </div>
             <hr>
             <div class="mt-3">
                 <input type="hidden" name="folder_id" id="folder_id" value="{{$folder}}">
@@ -83,6 +88,7 @@
            
     
 </form>
+
 
 
 @endsection

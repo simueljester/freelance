@@ -36,7 +36,7 @@ class ExaminationController extends Controller
     }
 
     public function save(Request $request){
-     
+      
         $request->validate([
             'name' => 'required',
             'group' => 'required',
@@ -55,7 +55,7 @@ class ExaminationController extends Controller
             'user_id'               => Auth::user()->id,
             'user_instance_id'      => Auth::user()->user_instance->id,
             'folder_id'             => $request->folder_id,
-            'visibility'            => 1,
+            'visibility'            => $request->visibility ? 1 : 0
         ];
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
@@ -116,7 +116,7 @@ class ExaminationController extends Controller
     }
 
     public function update(Request $request){
-
+        
         $request->validate([
             'name' => 'required',
             'group' => 'required',
@@ -140,6 +140,13 @@ class ExaminationController extends Controller
 
         $exam_data = app(ExamRepository::class)->update($request->exam_id,$data);
 
+        //update visibility in group modules
+        $group_module_data = [
+            'visibility'  => $request->visibility ? 1 : 0
+        ];
+        $saved_group_module = app(GroupModuleRepository::class)->update($exam_data->group_module_id,$group_module_data);
+
+        //assign users to group
         app(ExamAssignmentRepository::class)->assignExamToUsers($exam_data,$request->group);
 
         return redirect()->route('groups.exam.show',$exam_data)->with('success', 'Exam successfully updated');

@@ -43,7 +43,7 @@ class DiscussionController extends Controller
             'user_id'               => Auth::user()->id,
             'user_instance_id'      => Auth::user()->user_instance->id,
             'folder_id'             => $request->folder_id,
-            'visibility'            => 1,
+            'visibility'            => $request->visibility ? 1 : 0
         ];
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
@@ -116,6 +116,12 @@ class DiscussionController extends Controller
         ];
 
         $discussion_data = app(DiscussionRepository::class)->update($request->discussion_id,$data);
+
+         //update visibility in group modules
+         $group_module_data = [
+            'visibility'  => $request->visibility ? 1 : 0
+        ];
+        $saved_group_module = app(GroupModuleRepository::class)->update($discussion_data->group_module_id,$group_module_data);
 
         app(DiscussionAssignmentRepository::class)->assignDiscussionToUsers($discussion_data,$request->group);
 

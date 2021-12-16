@@ -47,6 +47,11 @@
                 <span> Total score </span>
                 <input type="number" name="total_score" min="1" id="total_score" value="1"  class="form-control" required>
             </div>
+            <div class="form-group mt-3">
+                <span> Module Visibility </span>
+                <br>
+                <input name="visibility" type="checkbox" checked data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
+            </div>
             <hr>
             <div class="mt-3">
                 <input type="hidden" name="folder_id" id="folder_id" value="{{$folder}}">
