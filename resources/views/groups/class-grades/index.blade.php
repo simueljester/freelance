@@ -30,7 +30,7 @@
                 <th> Midterm Grade </th>
                 <th> Finals Grade </th>
                 <th> Average </th>
-                <th></th>
+            
             </thead>
             <tbody>
                 @forelse ($assigned_users as $user)
@@ -43,6 +43,7 @@
                             @else
                                 0
                             @endif   
+                            <i class="fas fa-pencil-alt ml-3" style="cursor:pointer" onclick="gradeUser( {{$user}}, {{$user->prelim_grades ?? 1 }}, 'prelim' )"></i>
                         </td>
                         <td> 
                             @if ($user->midterm_grades)
@@ -50,13 +51,15 @@
                             @else
                                 0
                             @endif   
+                            <i class="fas fa-pencil-alt ml-3" style="cursor:pointer" onclick="gradeUser({{$user}}, {{$user->midterm_grades ?? 1 }}, 'midterm' )"></i>
                         </td>
                         <td> 
                             @if ($user->finals_grades)
                                 <a href="{{route('groups.class-grades.show',$user->finals_grades)}}"> {{$user->finals_grades->final_grade}} </a> 
                             @else
                                 0
-                            @endif   
+                            @endif 
+                            <i class="fas fa-pencil-alt ml-3" style="cursor:pointer" onclick="gradeUser({{$user}},{{$user->finals_grades ?? 1}},'finals')"></i>  
                         </td>
                         <td> 
                             @if ($user->prelim_grades && $user->midterm_grades && $user->finals_grades)
@@ -65,7 +68,7 @@
                                 0
                             @endif  
                         </td>
-                        <td> <button type="button" class="btn btn-primary btn-sm" onclick="gradeUser({{$user}})"> Update </button> </td>
+                      
                     </tr>
                 @empty
                     <tr>
@@ -192,11 +195,12 @@
                         </div>
                         <div class="form-group">
                             <span>  Term </span>
-                            <select name="term" id="term" class="form-control">
+                            <input type="text" name="term" id="term" class="form-control" readonly>
+                            {{-- <select name="term" id="term" class="form-control">
                                 <option value="prelim"> Prelim </option>
                                 <option value="midterm"> Midterm </option>
                                 <option value="finals"> Finals </option>
-                            </select>
+                            </select> --}}
                         </div>
                     </div>
                 </div>
@@ -225,21 +229,23 @@
 
 @include('layouts.scripts')
 <script>
-    function gradeUser(group_assignment){
-    
-        $('#long_quiz_score').val(1)
-        $('#short_quiz_score').val(1)
-        $('#major_examination_score').val(1)
-        $('#class_participation_score').val(1)
+    function gradeUser(group_assignment,grade,term){
+        console.log(grade);
+        $('#long_quiz_score').val(grade == 1 ? 1 : grade.long_quiz_input )
+        $('#short_quiz_score').val(grade == 1 ? 1 : grade.short_quiz_input)
+        $('#major_examination_score').val(grade == 1 ? 1 : grade.major_examination_input)
+        $('#class_participation_score').val(grade == 1 ? 1 : grade.assessment_task_input)
+        $('#term').val(term)
+        
 
-        $('#long_quiz_eg_text').val(0)
-        $('#short_quiz_eg_text').val(0)
-        $('#major_examination_eg_txt').val(0)
-        $('#class_participation_eg_txt').val(0)
+        $('#long_quiz_eg_text').val(grade == 1 ? 1 : grade.long_quiz_final)
+        $('#short_quiz_eg_text').val(grade == 1 ? 1 : grade.short_quiz_final)
+        $('#major_examination_eg_txt').val(grade == 1 ? 1 : grade.major_examination_final)
+        $('#class_participation_eg_txt').val(grade == 1 ? 1 : grade.assessment_task_final)
 
-        $('#final_grade_txt').val(0)
+        $('#final_grade_txt').val(grade == 1 ? 1 : grade.final_grade)
 
-        $('#final_grade_display').html(0)
+        $('#final_grade_display').html(grade == 1 ? 1 : grade.final_grade)
 
 
         $('#group_assignment_id').val(group_assignment.id)
