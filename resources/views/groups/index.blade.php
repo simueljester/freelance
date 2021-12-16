@@ -23,10 +23,7 @@
         <a href="{{route('groups.list')}}" class="btn btn-primary btn-sm"> <i class="fas fa-cubes"></i>  All Class </a>
     @endif
 </div>
- 
-<div class="mt-3">
 
-</div>
 
 <div class="row">
     @forelse ($groups as $group)
@@ -48,7 +45,12 @@
                     <br>
                     <small> <i class="fas fa-adjust"></i> Section: <strong> {{$group->section->name}} </strong>  </small>
                     <hr>
-                    <small> {!! $group->description !!} </small>
+                    <div id="class_description{{$group->id}}" class="class_description"> {!! $group->description !!}  </div> 
+                    <strong class="text-primary" id="btn-see-more{{$group->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$group}})"> See more </strong>
+                    
+                    <div id="full_class_description{{$group->id}}" class="full_class_description"></div>
+                 
+
                 </div>
             </div>
         </div>
@@ -64,5 +66,24 @@
     @endforelse
 
 </div>
+
+@include('layouts.scripts')
+
+<script>
+    $(".class_description").text(function(index, currentText) {
+        return currentText.substr(0, 250)+"...";
+    });
+
+  
+    function showFullDescription(group){
+        $('#full_class_description'+group.id).html(group.description)
+        $( "#btn-see-more"+group.id).hide();
+        $( "#btn-see-less"+group.id).show();
+        $( "#class_description"+group.id).hide();
+    }
+
+
+
+</script>
 
 @endsection
