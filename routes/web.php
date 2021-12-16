@@ -1,5 +1,6 @@
 <?php
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -237,3 +238,9 @@ Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
 Route::group(['prefix' => 'folders', 'as' => 'folders.'], function() {
     Route::post('/save', ['as' => 'save', 'uses' => 'FolderController@save']);
 });
+
+
+Route::get('send', 'UserController@sendNotification');
+
+Route::get('send-email-notif', 'UserController@sendEmail')->name('send-email');
+

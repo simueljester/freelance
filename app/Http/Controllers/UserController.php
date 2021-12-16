@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Session;
 use App\User;
 use App\AcademicYear;
+use App\Mail\MyTestMail;
 use App\Imports\UsersImport;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Crypt;
+
+
 use App\Http\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Repositories\UserInstanceRepository;
@@ -72,6 +77,10 @@ class UserController extends Controller
             'academic_year_id'  => AcademicYear::whereActive(1)->first()->id
         ];
         $saved_user_instances_data = app(UserInstanceRepository::class)->save($user_instance_data);
+
+        if($saved_user_data && $saved_user_instances_data){
+            $this->sendEmail($saved_user_data,$request->password);
+        }
 
         return redirect()->route('user-management.index')->with('success', 'User successfully saved');
     
@@ -155,6 +164,27 @@ class UserController extends Controller
            
         return redirect()->route('user-management.index')->with('success', 'Users successfully uploaded');
 
+    }
+
+
+    public function sendEmail($saved_user_data,$password){
+
+        $details = [
+            'title' => 'Mail from Letran Calamba LMS',
+            'body' => 'Welcome '. $saved_user_data->name.' to <strong> Letran Calamba Learning Management System </strong> ! <br> 
+            You may now start your learning experience and login to your account <br> 
+            <ul>
+                <li> Email Address: '.$saved_user_data->email.' </li>
+                <li> Password: '. $password. ' </li>
+            </ul>
+            <br>
+            <a href="http://letrancalamba-lms.tech/"> Login Here </a>
+            '
+        ];
+       
+        \Mail::to($saved_user_data->email)->send(new \App\Mail\MyTestMail($details));
+       
+   
     }
 
   
