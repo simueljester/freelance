@@ -40,7 +40,11 @@ class ExaminationController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required',
+            'expiration_date' => 'required',
+            'expiration_time' => 'required'
         ]);
 
         //create group module
@@ -56,6 +60,7 @@ class ExaminationController extends Controller
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
         //create exam based in created group module
         $data = [
             'name'              => $request->name,
@@ -65,7 +70,9 @@ class ExaminationController extends Controller
             'group_id'          => $request->group,
             'duration'          => $request->duration,
             'user_instance_id'  => Auth::user()->user_instance->id,
-            'accessible_at'     => $accessible_at
+            'accessible_at'     => $accessible_at,
+            'expired_at'        => $expired_at,
+         
         ];
 
         //assign exam to users
@@ -113,16 +120,22 @@ class ExaminationController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required',
+            'expiration_date' => 'required',
+            'expiration_time' => 'required'
         ]);
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
         $data = [
-            'name'          => $request->name,
-            'description'   => $request->description,
-            'creator'       =>  Auth::user()->id,
-            'group_id'      => $request->group,
-            'duration'      => $request->duration,
-            'accessible_at'     => $accessible_at
+            'name'              => $request->name,
+            'description'       => $request->description,
+            'creator'           =>  Auth::user()->id,
+            'group_id'          => $request->group,
+            'duration'          => $request->duration,
+            'accessible_at'     => $accessible_at,
+            'expired_at'        => $expired_at
         ];
 
         $exam_data = app(ExamRepository::class)->update($request->exam_id,$data);

@@ -83,7 +83,9 @@
                                 &nbsp&nbsp
                                 <i class="fas fa-hourglass-half"></i> {{$module->exam->duration}} minutes
                                 &nbsp&nbsp 
-                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->exam->accessible_at)->format('F d, Y h:i a')}}
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->exam->accessible_at)->format('F d, Y h:i a')}} -
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->exam->expired_at)->format('F d, Y h:i a')}}
                                 &nbsp&nbsp
                                 <i class="fas fa-star text-warning"></i> {{$module->exam->total_score}} Total score
                              
