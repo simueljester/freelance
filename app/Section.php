@@ -22,4 +22,9 @@ class Section extends Model
     {
         return $this->belongsTo('App\Department', 'department_id', 'id');
     }
+
+    public function user_instances()
+    {
+        return $this->HasMany('App\UserInstance', 'section_id', 'id');
+    }
 }

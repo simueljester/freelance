@@ -71,6 +71,7 @@
             <div class="form-group">
                 <small class="text-capialize"> Role </small>
                 <select name="role" id="role" class="form-control" required>
+                    <option > Select Role </option>
                     <option value="2"> Teacher </option>
                     <option value="3"> Student </option>
                 </select>
@@ -111,8 +112,19 @@
     }
 
 
+    
+    $('#role').on('change', function() {
+        role_id = this.value
+        if(role_id == 2){
+            document.getElementById("section").disabled = true;
+            document.getElementById("section").value = 0;
+        }else{
+            document.getElementById("section").disabled = false;
+        }
+        
+    });
     $('#department').on('change', function() {
-        console.log(this.value);
+   
         department_id = this.value
 
         $.ajax({
@@ -129,7 +141,7 @@
                var fetched_sections = data.sections
                var select = document.getElementById('section');
                $("#section option").remove(); // remove all values first before feeding new data
-          
+               $(select).append('<option  name="section"> Select Section </option>');
                fetched_sections.forEach(element => {
                     $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
                 });

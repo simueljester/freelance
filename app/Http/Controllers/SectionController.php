@@ -49,6 +49,8 @@ class SectionController extends Controller
     }
 
     public function show(Section $section){
+        $section->load('user_instances.user');
+      
         return view('school-management.sections.show',compact('section'));
     }
 

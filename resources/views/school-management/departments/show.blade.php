@@ -17,8 +17,8 @@
 
 <div class="bg-light mt-3 p-3 border rounded">
   <strong class="text-muted"> Sections Created </strong>
- 
-  <table class="table table-hover">
+  <br>
+  <table class="table table-hover mt-3">
     <thead>
         <th> Name </th>
         <th> Creation Date </th>

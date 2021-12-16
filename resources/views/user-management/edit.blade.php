@@ -89,7 +89,8 @@
             </div>
             <div class="form-group">
                 <small class="text-capialize"> Section </small>
-                <select name="section" id="section" class="form-control" required>
+                <select name="section" id="section" class="form-control" {{$user->user_instance->role_id == 2 ? 'disabled':null}}>
+                    <option value=""> Select Section </option>
                     @if ($user->user_instance->section)
                         <option value="{{$user->user_instance->section_id}}"> {{ $user->user_instance->section->name }} (Current) </option>
                     @endif
@@ -179,7 +180,7 @@
                var fetched_sections = data.sections
                var select = document.getElementById('section');
                $("#section option").remove(); // remove all values first before feeding new data
-          
+               $(select).append('<option  name="section"> Select Section </option>');
                fetched_sections.forEach(element => {
                     $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
                 });

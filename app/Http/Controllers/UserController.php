@@ -67,7 +67,7 @@ class UserController extends Controller
             'role' => 'required',
             'password' => 'required',
             'department' => 'required',
-            'section' => 'required'
+            'section' => 'required_if:role,3'
         ]);
 
         $user_data = [
@@ -87,7 +87,7 @@ class UserController extends Controller
             'active'            =>  1,
             'academic_year_id'  => AcademicYear::whereActive(1)->first()->id,
             'department_id'        => $request->department,
-            'section_id'        => $request->section,
+            'section_id'        => $request->role == 3 ? $request->section : 0,
 
         ];
         $saved_user_instances_data = app(UserInstanceRepository::class)->save($user_instance_data);
@@ -116,7 +116,7 @@ class UserController extends Controller
             'birthday'      => 'required',
             'address'       => 'required',
             'department' => 'required',
-            'section' => 'required'
+            'section' => 'required_if:role,3'
         ]);
 
         $user_data = [
@@ -134,7 +134,7 @@ class UserController extends Controller
 
         $saved_user_data = app(UserRepository::class)->update($request->user_id,$user_data);
 
-        if($request->department && $request->section){
+        if($request->department || $request->section){
             $user_instance_data = [
                 'department_id' => $request->department,
                 'section_id' => $request->section

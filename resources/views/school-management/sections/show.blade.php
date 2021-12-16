@@ -15,6 +15,29 @@
   Date Created: {{$section->created_at->format('Y-m-d')}} 
 </div>
 
+<div class="bg-light mt-3 p-3 border rounded">
+  <strong class="text-muted"> Users in this section </strong>
+  <br>
+  <table class="table table-hover mt-3">
+    <thead>
+        <th> Name </th>
+        <th> Role </th>
+    </thead>
+    <tbody>
+      @foreach ($section->user_instances as $user_instances)
+      <tr>
+        <td> <i class="fas fa-user"></i> {{$user_instances->user->name}} </td>
+        <td> Student </td>
+      </tr>
+      @endforeach
+    
+    </tbody>
+  </table>
+  
+
+
+</div>
+
 
 <!-- Modal for Edit-->
 <form action="{{route('school-management.sections.update')}}" method="POST">
