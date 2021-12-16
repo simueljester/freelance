@@ -11,12 +11,21 @@
 
     <div class="form-group">
         <span> Name </span>
-        <input type="text" name="name" id="name" class="form-control" required>
+        <input type="text" name="section_name" id="section_name" class="form-control" required>
     </div>
 
     <div class="form-group">
         <span> Description (optional) </span>
-        <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
+        <textarea name="section_description" id="section_description" cols="30" rows="10" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <span> Department</span>
+        <select name="department" id="department" class="form-control" required>
+            @foreach ($departments as $department)
+                <option value="{{$department->id}}"> {{$department->name}} </option>
+            @endforeach
+        </select>
     </div>
     
     <div>

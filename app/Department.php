@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Section extends Model
+class Department extends Model
 {
     //
-    protected $table = 'sections';
+    protected $table = 'departments';
     
     protected $fillable = [
-        'id', 'name','description','academic_year_id','department_id'
+        'id', 'name','description','academic_year_id'
     ];
 
     public function activeAcademicYear()
@@ -18,8 +18,9 @@ class Section extends Model
         return $this->belongsTo('App\AcademicYear', 'academic_year_id', 'id');
     }
 
-    public function department()
+
+    public function sections()
     {
-        return $this->belongsTo('App\Department', 'department_id', 'id');
+        return $this->HasMany('App\Section', 'department_id', 'id');
     }
 }

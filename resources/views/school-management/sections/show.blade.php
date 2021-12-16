@@ -3,7 +3,7 @@
 @section('sub-content')
 
 <div class="p-2">
-  <h5 class="text-muted"> <strong> {{$section->name}} </strong> </h5> 
+  <h5 class="text-muted"> <strong> <i class="fas fa-users"></i> {{$section->name}} </strong> </h5> 
   <small> {{$section->description}} </small>
   <hr>
   <a href="{{route('school-management.sections.index')}}" class="text-muted"> <i class="far fa-arrow-alt-circle-left"></i> Back </a>

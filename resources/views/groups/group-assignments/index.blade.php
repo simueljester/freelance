@@ -22,7 +22,7 @@
     @method("POST")
     <div class="card shadow-sm mt-3 p-1"> 
         <div class="card-body">
-            <h5 class="text-muted"> {{$group->name}} </h5>
+            <h5 class="text-muted"> {{$group->name}}  ss</h5>
     
             <small> {{$group->description}} </small>
     

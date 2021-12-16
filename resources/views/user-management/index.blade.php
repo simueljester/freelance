@@ -57,18 +57,19 @@
         <hr>
         <table class="table table-hover">
             <thead>
-                <th> Last Name </th>
-                <th> First Name </th>
+                <th> Full Name </th>
                 <th> Email </th>
                 <th> Role </th>
+                <th> Department </th>
+                <th> Section </th>
                 <th></th>
             </thead>
             <tbody>
                 @forelse ($users as $user)
                     @if ($user->user_instance->role_id != 1)
                         <tr>
-                            <td> {{$user->last_name}} </td>
-                            <td> {{$user->first_name}} </td>
+                            <td> {{$user->last_name}}, {{$user->first_name}} </td>
+                    
                             <td> {{$user->email}} </td>
                             <td> 
                                 @if($user->user_instance)
@@ -76,6 +77,20 @@
                                 @else
                                     No active role
                                 @endif
+                            </td>
+                            <td>
+                                @if ($user->user_instance->department)
+                                    {{$user->user_instance->department->name}}
+                                @else
+                                    No department assigned
+                                @endif    
+                            </td>
+                            <td> 
+                                @if ($user->user_instance->section)
+                                    {{$user->user_instance->section->name}}
+                                @else
+                                    No section assigned
+                                @endif             
                             </td>
                             <td>
                                 <a href="{{route('user-management.edit',$user)}}" class="btn btn-primary btn-sm"> <i class="fas fa-edit"></i> Edit </a>

@@ -6,6 +6,7 @@ use App\Section;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\SectionRepository;
+use App\Http\Repositories\DepartmentRepository;
 use App\Http\Repositories\AcademicYearRepository;
 
 class SectionController extends Controller
@@ -17,29 +18,33 @@ class SectionController extends Controller
 
     public function index(){
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $sections = app(SectionRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->paginate(10);
+        $sections = app(SectionRepository::class)->query()->with('activeAcademicYear','department')->whereAcademicYearId($active_ac_id)->paginate(10);
+     
         return view('school-management.sections.index',compact('sections'));
     }
 
     public function create(){
-        return view('school-management.sections.create');
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
+        return view('school-management.sections.create',compact('departments'));
     }
 
     public function save(Request $request){
-     
+    
         $request->validate([
-            'name' => 'required'
+            'section_name' => 'required'
         ]);
   
         $data = [
-            'name'          => $request->name,
-            'description'   => $request->description,
-            'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
+            'name'              => $request->section_name,
+            'description'       => $request->section_description,
+            'academic_year_id'  => app(AcademicYearRepository::class)->getActiveAcademicYear()->id,
+            'department_id'     => $request->department
         ];
 
         $saved = app(SectionRepository::class)->save($data);
     
-        return redirect()->route('school-management.sections.index')->with('success', 'Section successfully created');
+        return redirect()->back()->with('success', 'Section successfully created');
 
     }
 

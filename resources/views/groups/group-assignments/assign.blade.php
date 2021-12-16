@@ -3,8 +3,8 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
-        <small class="text-muted"> <i> Group Assignments </i>  </small>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
+        <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
 
@@ -13,7 +13,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
             <li class="breadcrumb-item"><a href="{{route('groups.show',$group->id)}}"> {{$group->name}}  </a></li>
-            <li class="breadcrumb-item active" aria-current="page"> Assign Users </li>
+            <li class="breadcrumb-item active" aria-current="page"> Enroll Users </li>
         </ol>
     </nav>
 </div>
@@ -26,11 +26,17 @@
         <div class="card-body">
             
             <strong> Available Users </strong> <br>
-            <small> Assign users to this class </small>
-            <table class="table table-hover mt-3">
+            <small> Assign users to this class, As an admin you may enroll users from different sections and departments </small>
+            <div class="form-group mt-3">
+                <span> <i class="fas fa-search"></i> Search User Name </span>
+                <input type="text" name="search" id="search" class="form-control" onkeyup="searchUser()">
+            </div>
+            <table class="table table-hover mt-3" id="table-user">
                 <thead>
                     <th> Name </th>
                     <th> Email </th>
+                    <th> Role </th>
+                    <th> Section </th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -39,6 +45,14 @@
                             <tr>
                                 <td> {{$user->name}} </td>
                                 <td> {{$user->email}} </td>
+                                <td> Student </td>
+                                <td> 
+                                    @if ($user->user_instance->section)
+                                        {{$user->user_instance->section->name}} 
+                                    @else
+                                        No section assigned to this user
+                                    @endif 
+                                </td>
                                 <td>  
                                     @if(in_array($user->id, $assigned_users))
                                         <h6><span class="badge badge-success"> Assigned </span></h6>
@@ -62,6 +76,25 @@
 
 </form>
 
+<script>
 
+    function searchUser(filter) {  
+        if (filter == undefined)
+        filter = document.getElementById("search").value.toUpperCase();
+        var table = document.getElementById("table-user");   
+        var tr = table.getElementsByTagName("tr");  
+        for (var i = 0; i < tr.length; i++){
+            var td = tr[i].getElementsByTagName("td")[0];
+            if (td){
+                var txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1){
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }       
+        }
+    }
+</script>
 
 @endsection

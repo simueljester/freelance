@@ -26,8 +26,8 @@ class GroupAssignmentController extends Controller
     }
 
     public function assignment(Group $group){
-     
-        $all_users = User::has('user_instance')->with('user_instance')->get();
+        
+        $all_users = User::has('user_instance')->with('user_instance.section')->get();
         $assigned_users = app(GroupAssignmentRepository::class)->query()->whereGroupId($group->id)->pluck('user_id')->toArray();
  
         return view('groups.group-assignments.assign',compact('group','all_users','assigned_users'));
@@ -37,8 +37,8 @@ class GroupAssignmentController extends Controller
     public function assignUsers(Request $request){
 
         $data = app(GroupAssignmentRepository::class)->assignUsers($request);
- 
-        return redirect()->route('groups.show',$request->group_id)->with('success', 'Users successfully assigned to Group');
+        return redirect()->back()->with('success', 'Users successfully assigned to Group');
+        // return redirect()->route('groups.show',$request->group_id)->with('success', 'Users successfully assigned to Group');
    
     }
 

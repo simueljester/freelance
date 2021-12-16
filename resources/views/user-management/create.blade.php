@@ -75,6 +75,19 @@
                     <option value="3"> Student </option>
                 </select>
             </div>
+            <div class="form-group">
+                <small class="text-capialize"> Departments </small>
+                <select name="department" id="department" class="form-control" required>
+                    <option value=""> Select Department </option>
+                    @foreach ($departments as $department)
+                        <option value="{{$department->id}}"> {{$department->name}} </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
+                <small class="text-capialize"> Section </small>
+                <select name="section" id="section" class="form-control" required></select>
+            </div>
         </div>
     </div>
 
@@ -86,6 +99,7 @@
     </div>
 </form>
 
+@include('layouts.scripts')
 <script>
     function myFunction() {
       var x = document.getElementById("password");
@@ -95,6 +109,34 @@
         x.type = "password";
       }
     }
-    </script>
+
+
+    $('#department').on('change', function() {
+        console.log(this.value);
+        department_id = this.value
+
+        $.ajax({
+            url: '/user-management/fetch-section/'+department_id  ,
+            type: 'get',
+            datetype:"json",
+            // data: { user_id: user_id, group_id: group_id},
+            beforeSend: function () {
+     
+            },
+            success: function(data){
+                
+               console.log(data.sections);
+               var fetched_sections = data.sections
+               var select = document.getElementById('section');
+               $("#section option").remove(); // remove all values first before feeding new data
+          
+               fetched_sections.forEach(element => {
+                    $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
+                });
+            }
+        })
+    });
+
+</script>
 
 @endsection

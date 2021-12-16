@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\User;
+use App\Department;
 use App\AcademicYear;
 use App\Mail\MyTestMail;
 use App\Imports\UsersImport;
@@ -12,11 +13,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Facades\Excel;
+
+
 use Illuminate\Support\Facades\Crypt;
-
-
 use App\Http\Repositories\UserRepository;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Repositories\SectionRepository;
+use App\Http\Repositories\DepartmentRepository;
+use App\Http\Repositories\AcademicYearRepository;
 use App\Http\Repositories\UserInstanceRepository;
 
 class UserController extends Controller
@@ -30,7 +34,7 @@ class UserController extends Controller
         $keyword = $request->keyword;
         $role = $request->role;
         // $users = app(UserRepository::class)->getUserWithInstance();
-        $users =  $users = User::with('user_instance.role')->orderBy('last_name','ASC')
+        $users =  $users = User::with('user_instance.role','user_instance.section','user_instance.department')->orderBy('last_name','ASC')
         ->when($keyword, function ($query) use ($keyword) {
             $query->where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%');
         })
@@ -40,11 +44,16 @@ class UserController extends Controller
             });
         })
         ->get();
+
+      
         return view('user-management.index',compact('users','keyword','role'));
     }
 
     public function create(){
-        return view('user-management.create');
+       
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
+        return view('user-management.create',compact('departments'));
     }
     
     public function saveUser(Request $request){
@@ -56,7 +65,9 @@ class UserController extends Controller
             'address' => 'required',
             'email' => 'required|email|unique:users',
             'role' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'department' => 'required',
+            'section' => 'required'
         ]);
 
         $user_data = [
@@ -74,7 +85,10 @@ class UserController extends Controller
             'user_id'           => $saved_user_data->id,
             'role_id'           => $request->role,
             'active'            =>  1,
-            'academic_year_id'  => AcademicYear::whereActive(1)->first()->id
+            'academic_year_id'  => AcademicYear::whereActive(1)->first()->id,
+            'department_id'        => $request->department,
+            'section_id'        => $request->section,
+
         ];
         $saved_user_instances_data = app(UserInstanceRepository::class)->save($user_instance_data);
 
@@ -88,7 +102,9 @@ class UserController extends Controller
 
     public function edit(User $user){
 
-        return view('user-management.edit',compact('user'));
+        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
+        return view('user-management.edit',compact('user','departments'));
 
     }
 
@@ -99,6 +115,8 @@ class UserController extends Controller
             'last_name'     => 'required',
             'birthday'      => 'required',
             'address'       => 'required',
+            'department' => 'required',
+            'section' => 'required'
         ]);
 
         $user_data = [
@@ -115,6 +133,16 @@ class UserController extends Controller
         }
 
         $saved_user_data = app(UserRepository::class)->update($request->user_id,$user_data);
+
+        if($request->department && $request->section){
+            $user_instance_data = [
+                'department_id' => $request->department,
+                'section_id' => $request->section
+            ];
+
+            $saved_user_data = app(UserInstanceRepository::class)->update($saved_user_data->user_instance->id,$user_instance_data);
+        }
+
         return redirect()->route('user-management.index')->with('success', 'User successfully updated');
 
     }
@@ -184,7 +212,14 @@ class UserController extends Controller
        
         \Mail::to($saved_user_data->email)->send(new \App\Mail\MyTestMail($details));
        
-   
+    }
+
+    public function fetchSection(Department $department){
+        $sections = app(SectionRepository::class)->query()->whereDepartmentId($department->id)->get();
+        return response()->json([
+            'sections' => $sections
+        ]);
+
     }
 
   

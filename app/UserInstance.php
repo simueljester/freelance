@@ -11,7 +11,7 @@ class UserInstance extends Model
     protected $table = 'user_instances';
     
     protected $fillable = [
-        'id', 'user_id','role_id','active','academic_year_id'
+        'id', 'user_id','role_id','active','academic_year_id','section_id','department_id'
     ];
 
     public function role()
@@ -28,6 +28,16 @@ class UserInstance extends Model
     public function academicYear()
     {
         return $this->belongsTo('App\AcademicYear', 'academic_year_id');
+    }
+
+    public function department()
+    {
+        return $this->belongsTo('App\Department', 'department_id');
+    }
+
+    public function section()
+    {
+        return $this->belongsTo('App\Section', 'section_id');
     }
     
 

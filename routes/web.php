@@ -50,6 +50,15 @@ Route::group(['prefix' => 'school-management', 'as' => 'school-management.'], fu
         Route::get('/delete/{section}', ['as' => 'delete',      'uses' => 'SectionController@delete']);
     });
 
+    Route::group(['prefix' => 'departments', 'as' => 'departments.'], function() {
+        Route::get('/',                     ['as' => 'index',       'uses' => 'DepartmentController@index']);
+        Route::get('/create',               ['as' => 'create',      'uses' => 'DepartmentController@create']);
+        Route::post('/save',                ['as' => 'save',        'uses' => 'DepartmentController@save']);
+        Route::get('/show/{department}',    ['as' => 'show',        'uses' => 'DepartmentController@show']);
+        Route::post('/update',              ['as' => 'update',      'uses' => 'DepartmentController@update']);
+        Route::get('/delete/{department}',  ['as' => 'delete',      'uses' => 'DepartmentController@delete']);
+    });
+
 });
 
 
@@ -189,14 +198,16 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
 
 //User Managament Routes
 Route::group(['prefix' => 'user-management', 'as' => 'user-management.'], function() {
-    Route::get('/',                     ['as' => 'index',                   'uses' => 'UserController@index']);
-    Route::get('/create',               ['as' => 'create',                  'uses' => 'UserController@create']);
-    Route::post('/save-user',           ['as' => 'save-user',               'uses' => 'UserController@saveUser']);
-    Route::get('/edit/{user}',          ['as' => 'edit',                    'uses' => 'UserController@edit']);
-    Route::post('/update',              ['as' => 'update',                  'uses' => 'UserController@update']);
-    Route::post('/delete',              ['as' => 'delete',                  'uses' => 'UserController@delete']);
-    Route::post('/batch-upload',        ['as' => 'batch-upload',            'uses' => 'UserController@batchUpload']);
-    Route::post('/batch-upload-save',   ['as' => 'save-batch-upload',       'uses' => 'UserController@saveBatchUpload']);
+    Route::get('/',                             ['as' => 'index',                   'uses' => 'UserController@index']);
+    Route::get('/create',                       ['as' => 'create',                  'uses' => 'UserController@create']);
+    Route::post('/save-user',                   ['as' => 'save-user',               'uses' => 'UserController@saveUser']);
+    Route::get('/edit/{user}',                  ['as' => 'edit',                    'uses' => 'UserController@edit']);
+    Route::post('/update',                      ['as' => 'update',                  'uses' => 'UserController@update']);
+    Route::post('/delete',                      ['as' => 'delete',                  'uses' => 'UserController@delete']);
+    Route::post('/batch-upload',                ['as' => 'batch-upload',            'uses' => 'UserController@batchUpload']);
+    Route::post('/batch-upload-save',           ['as' => 'save-batch-upload',       'uses' => 'UserController@saveBatchUpload']);
+
+    Route::get('/fetch-section/{department}',   ['as' => 'fetch-section',           'uses' => 'UserController@fetchSection']);
 });
 
 //User Managament Routes
