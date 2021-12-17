@@ -17,11 +17,20 @@ class DepartmentController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->paginate(10);
+        $keyword = $request->keyword;
+        $departments = app(DepartmentRepository::class)->query()
+        ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%')
+            ->whereAcademicYearId($active_ac_id);
+        })
+        ->with('activeAcademicYear')
+        ->whereAcademicYearId($active_ac_id)
+        ->paginate(20);
  
-        return view('school-management.departments.index',compact('departments'));
+        return view('school-management.departments.index',compact('departments','keyword'));
     }
 
     public function create(){

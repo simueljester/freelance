@@ -16,10 +16,20 @@ class SubjectController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
+        $keyword = $request->keyword;
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $subjects = app(SubjectRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
-        return view('school-management.subjects.index',compact('subjects'));
+        $subjects = app(SubjectRepository::class)->query()
+        ->with('activeAcademicYear')
+        ->whereAcademicYearId($active_ac_id)
+        ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%')
+            ->orWhere('course_code', 'like', '%' . $keyword . '%')
+            ->whereAcademicYearId($active_ac_id);
+        })
+        ->paginate(20);
+        return view('school-management.subjects.index',compact('subjects','keyword'));
     }
 
     public function create(){

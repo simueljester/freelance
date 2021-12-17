@@ -16,11 +16,20 @@ class SectionController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
+    public function index(Request $request){
+        $keyword = $request->keyword;
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $sections = app(SectionRepository::class)->query()->with('activeAcademicYear','department')->whereAcademicYearId($active_ac_id)->paginate(10);
+        $sections = app(SectionRepository::class)->query()
+        ->with('activeAcademicYear','department')
+        ->whereAcademicYearId($active_ac_id)
+        ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
+            $query->where('name', 'like', '%' . $keyword . '%')
+            ->orWhere('description', 'like', '%' . $keyword . '%')
+            ->whereAcademicYearId($active_ac_id);
+        })
+        ->paginate(10);
      
-        return view('school-management.sections.index',compact('sections'));
+        return view('school-management.sections.index',compact('sections','keyword'));
     }
 
     public function create(){

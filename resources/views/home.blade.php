@@ -17,8 +17,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$group_count}} </strong> </div>
-                <div>  <i class="fas fa-cubes text-primary fa-2x"></i>  </div>
-                <div> <small> Class created </small> </div>
+                <div> <i class="fas fa-cubes text-primary"></i>  <small> Class created </small> </div>
             </div>
         </div>
     </div>
@@ -27,8 +26,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$user_count}} </strong> </div>
-                <div>  <i class="fas fa-users text-primary fa-2x"></i>  </div>
-                <div> <small> Users created </small> </div>
+                <div> <i class="fas fa-users text-primary"></i>  <small> Users created </small> </div>
             </div>
         </div>
     </div>
@@ -37,8 +35,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$subject_count}} </strong> </div>
-                <div> <i class="fas fa-book-reader text-primary fa-2x"></i>  </div>
-                <div> <small> Subjects created </small> </div>
+                <div> <i class="fas fa-book-reader text-primary"></i>  <small> Subjects created </small> </div>
             </div>
         </div>
     </div>
@@ -47,8 +44,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px; ">  {{$question_count}}  </strong> </div>
-                <div>  <i class="fas fa-question-circle text-primary fa-2x"></i> </div>
-                <div> <small> Questions created </small> </div>
+                <div> <i class="fas fa-question-circle text-primary"></i> <small> Questions created </small> </div>
             </div>
         </div>
     </div>

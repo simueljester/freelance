@@ -3,8 +3,25 @@
 @section('sub-content')
 
 
-   
-<a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Subject </a>
+<div class="row">
+    <div class="col-sm-6">
+        <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Subject </a>
+    </div>
+    <div class="col-sm-6">
+        <form action="">
+            <div class="input-group mb-3">
+                <input type="text" name="keyword" class="form-control" placeholder="Keyword.." aria-describedby="button-addon2" value="{{$keyword}}">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                </div>
+            </div>
+            @if ($keyword)
+                <a href="{{route('school-management.subjects.index')}}" class="btn btn-outline-secondary btn-sm "> Clear keyword </a>  
+            @endif
+        </form>
+    </div>
+</div>   
+
 <div class="mt-4">
     <table class="table table-hover">
         <thead>
@@ -28,6 +45,7 @@
             @endforelse
         </tbody>
     </table>
+    {{ $subjects->links() }}
 
 </div>
 
