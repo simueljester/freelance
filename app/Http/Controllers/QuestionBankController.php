@@ -35,6 +35,7 @@ class QuestionBankController extends Controller
         $creator = $request->creator;
         $start_date = $request->start_date;
         $end_date = Carbon::parse($request->end_date)->addDays(1);
+        $keyword = $request->keyword;
       
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
 
@@ -62,6 +63,10 @@ class QuestionBankController extends Controller
         ->when($start_date, function ($query) use ($start_date,$end_date) {
             $query->where('created_at','>=', $start_date)
             ->where('created_at','<=', $end_date);
+        })
+        ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
+            $query->where('instruction', 'like', '%' . $keyword . '%')
+            ->whereAcademicYearId($active_ac_id);
         })
         ->whereAcademicYearId($active_ac_id)
         ->orderBy('created_at','DESC')
@@ -82,7 +87,7 @@ class QuestionBankController extends Controller
             'end_date'      => $request->end_date, //different format because end date added 1 day upon wherebetween
         ];
 
-        return view('question-bank.all-questions',compact('all_questions','all_subjects','all_creators','filters'));
+        return view('question-bank.all-questions',compact('all_questions','all_subjects','all_creators','filters','keyword'));
     }
 
     public function myQuestionBank(Request $request){
@@ -93,6 +98,7 @@ class QuestionBankController extends Controller
         $creator = $request->creator;
         $start_date = $request->start_date;
         $end_date = Carbon::parse($request->end_date)->addDays(1);
+        $keyword = $request->keyword;
 
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
 
@@ -120,6 +126,10 @@ class QuestionBankController extends Controller
         ->when($start_date, function ($query) use ($start_date,$end_date) {
             $query->where('created_at','>=', $start_date)
             ->where('created_at','<=', $end_date);
+        })
+        ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
+            $query->where('instruction', 'like', '%' . $keyword . '%')
+            ->whereAcademicYearId($active_ac_id);
         })
         ->whereCreator(Auth::user()->id)
         ->orderBy('created_at','DESC')
@@ -139,7 +149,7 @@ class QuestionBankController extends Controller
             'end_date'      => $request->end_date, //different format because end date added 1 day upon wherebetween
         ];
 
-        return view('question-bank.my-questions',compact('all_questions','all_subjects','all_creators','filters'));
+        return view('question-bank.my-questions',compact('all_questions','all_subjects','all_creators','filters','keyword'));
 
     }
 

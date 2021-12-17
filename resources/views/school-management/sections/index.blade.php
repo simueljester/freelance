@@ -23,7 +23,10 @@
 
 
 <div class="mt-4">
-    {{ $sections->links() }}
+    @if ($sections->count())
+        <div class="mb-3">Showing {{ $sections->firstItem() }} to {{ $sections->lastItem() }} of {{ $sections->total() }} sections </div>
+    @endif
+  
     <table class="table table-hover">
         <thead>
             <th> Name </th>
@@ -45,7 +48,7 @@
             @endforelse
         </tbody>
     </table>
-
+    {{ $sections->links() }}
 </div>
 
 @endsection

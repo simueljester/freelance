@@ -27,7 +27,7 @@ class SectionController extends Controller
             ->orWhere('description', 'like', '%' . $keyword . '%')
             ->whereAcademicYearId($active_ac_id);
         })
-        ->paginate(10);
+        ->paginate(20);
      
         return view('school-management.sections.index',compact('sections','keyword'));
     }

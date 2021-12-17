@@ -23,6 +23,9 @@
 </div>   
 
 <div class="mt-4">
+    @if ($subjects->count())
+        <div class="mb-3">Showing {{ $subjects->firstItem() }} to {{ $subjects->lastItem() }} of {{ $subjects->total() }} subjects </div>
+    @endif
     <table class="table table-hover">
         <thead>
             <th> Course Code </th>

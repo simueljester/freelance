@@ -19,8 +19,8 @@
 <div class="card shadow-sm mt-3">
     <div class="card-body">
       <div class="row">
-        &nbsp
-        <div class="dropdown">
+        <div class="col-sm-6">
+          <div class="dropdown">
             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-plus"></i> Create New Question
             </button>
@@ -30,11 +30,26 @@
               <a class="dropdown-item" href="{{route('question-bank.create.sa',0)}}"> Add Identification </a>
               <a class="dropdown-item" href="{{route('question-bank.create.essay',0)}}"> Add Essay </a>
             </div>
+          </div>
+          {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
+            <i class="fas fa-upload"></i> Batch Question Upload
+            </button> --}}
         </div>
-        &nbsp
-        {{-- <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
-          <i class="fas fa-upload"></i> Batch Question Upload
-        </button> --}}
+        <div class="col-sm-6">
+          <form action="">
+            <div class="input-group mb-3">
+                <input type="text" name="keyword" class="form-control" placeholder="Keyword.." aria-describedby="button-addon2" value="{{$keyword}}">
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit" id="button-addon2">Search</button>
+                </div>
+            </div>
+            @if ($keyword)
+                <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary btn-sm "> Clear keyword </a>  
+            @endif
+          </form>
+        </div>
+
+  
       </div>
 
         {{-- <a href="{{route('question-bank.create')}}" class="btn btn-info btn-sm">  </a> --}}
