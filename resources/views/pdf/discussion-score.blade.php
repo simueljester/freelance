@@ -18,7 +18,7 @@
                 @foreach ($discussion_assignments as $assignment)
                     <li> 
                         {{$assignment->user->name}} 
-                        <small> {{$assignment->user->email}} </small> 
+                        <small> {{$assignment->user->student_id}} </small> 
                         - Score: {{$assignment->score}} / {{$discussion->total_score}}
                     </li>
                 @endforeach

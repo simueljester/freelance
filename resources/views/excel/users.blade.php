@@ -12,6 +12,7 @@
             <td colspan="5"> <span> <strong> List of Users </strong></td>
         </tr>
         <tr>
+            <td width="20"> <strong> Student ID </strong> </td>
             <td width="20"> <strong> First Name </strong> </td>
             <td width="20"> <strong> Last Name </strong> </td>
             <td width="20"> <strong> Email Address  </strong> </td>
@@ -22,6 +23,7 @@
         </tr>
         @foreach ($data as $user)
             <tr>
+                <td> {{$user->student_id}} </td>
                 <td> {{$user->first_name}} </td>
                 <td> {{$user->last_name}} </td>
                 <td> {{$user->email}} </td>

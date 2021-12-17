@@ -14,6 +14,7 @@
             <h4> <strong> {{$exam_assignment->exam->name}} </strong> </h4>
             <span> {{$exam_assignment->exam->description}} </span>
             <hr>
+            Student ID: {{$exam_assignment->user->student_id}} <br>
             Name: {{$exam_assignment->user->name}} <br>
             Email: {{$exam_assignment->user->email}} <br>
             Class: {{$exam_assignment->group->name}}
