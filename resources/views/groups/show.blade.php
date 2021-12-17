@@ -51,8 +51,8 @@
     @method("POST")
     
     <div class="modal fade" id="assignUsers" tabindex="-1" role="dialog" >
-        <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content ">
             <div class="modal-header">
                 <strong>  <i class="fas fa-users"></i> Enrolled Users </strong> 
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -65,14 +65,17 @@
 
                 <table class="table table-hover mt-3">
                     <thead>
+                        <th> Student ID </th>
                         <th> Name </th>
                         <th> Email </th>
+                        
                         {{-- <th> Role </th> --}}
-                        <th></th>
+                        <th> Remove </th>
                     </thead>
                     <tbody>
                         @forelse ($assigned_users as $user)
                             <tr>
+                                <td> {{$user->user->student_id}} </td>
                                 <td> <a href="{{route('groups.user-data',$user)}}" class="text-primary"> {{$user->user->name}} </a> </td>
                                 <td> {{$user->user->email}} </td>
                                 {{-- <td> {{$user->user->user_instance->role->role}} </td> --}}

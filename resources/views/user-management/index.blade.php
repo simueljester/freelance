@@ -28,6 +28,7 @@
         <hr>
         <table class="table table-hover">
             <thead>
+                <th> Student ID </th>
                 <th> Full Name </th>
                 <th> Email </th>
                 <th> Role </th>
@@ -39,6 +40,7 @@
                 @forelse ($users as $user)
                     @if ($user->user_instance->role_id != 1)
                         <tr>
+                            <td> {{$user->student_id}} </td>
                             <td> {{$user->last_name}}, {{$user->first_name}} </td>
                     
                             <td> {{$user->email}} </td>

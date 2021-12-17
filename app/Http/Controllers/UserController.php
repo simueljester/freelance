@@ -36,7 +36,10 @@ class UserController extends Controller
         // $users = app(UserRepository::class)->getUserWithInstance();
         $users =  $users = User::with('user_instance.role','user_instance.section','user_instance.department')->orderBy('last_name','ASC')
         ->when($keyword, function ($query) use ($keyword) {
-            $query->where('first_name', 'like', '%' . $keyword . '%')->orWhere('last_name', 'like', '%' . $keyword . '%')->orWhere('email', 'like', '%' . $keyword . '%');
+            $query->where('first_name', 'like', '%' . $keyword . '%')
+            ->orWhere('last_name', 'like', '%' . $keyword . '%')
+            ->orWhere('student_id', 'like', '%' . $keyword . '%')
+            ->orWhere('email', 'like', '%' . $keyword . '%');
         })
         ->when($role, function ($query) use ($role) {
             $query->whereHas('user_instance', function($q) use ($role){
@@ -67,7 +70,8 @@ class UserController extends Controller
             'role' => 'required',
             'password' => 'required|min:10',
             'department' => 'required',
-            'section' => 'required_if:role,3'
+            'section' => 'required_if:role,3',
+            'student_id' => 'required_if:role,3'
         ]);
 
         $user_data = [
@@ -78,6 +82,7 @@ class UserController extends Controller
             'password'          =>  Hash::make($request->password),
             'address'           => $request->address,
             'birthday'          => $request->birthday,
+            'student_id'        => $request->student_id
         ];
         $saved_user_data = app(UserRepository::class)->save($user_data);
         
@@ -168,13 +173,18 @@ class UserController extends Controller
         $rows = Excel::toArray(new UsersImport, $request->file('file'));
         $uploaded_users = $rows[0];
         $existing_emails = [];
+        $existing_student_id = [];
 
         foreach($uploaded_users as $user){
-            $existing_emails[] = User::whereEmail($user['email'])->first() ?? null;
+            $existing_emails[] = User::whereEmail($user['email'])->first()->email ?? null;
+            $existing_student_id[] = User::whereStudentId($user['student_id'])->first()->student_id ?? null;
         }
     
 
         $existing_emails = array_filter($existing_emails);
+     
+        $existing_student_id = array_filter($existing_student_id);
+       
         //validate each field 
         Validator::make($uploaded_users, [
             '*.first_name'   => 'required',
@@ -183,7 +193,7 @@ class UserController extends Controller
             '*.role'         => 'required|in:student,teacher'
         ])->validate();
 
-        return view('user-management.check-uploads',compact('uploaded_users','existing_emails'));
+        return view('user-management.check-uploads',compact('uploaded_users','existing_emails','existing_student_id'));
         
     }
 

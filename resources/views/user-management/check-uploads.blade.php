@@ -24,6 +24,7 @@
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
+                    <th> Student ID </th>
                     <th> First Name </th>
                     <th> Last Name </th>
                     <th> Email Address </th>
@@ -35,6 +36,7 @@
                 <tbody>
                     @foreach ($uploaded_users as $user)
                         <tr>
+                            <td> {{$user['student_id']}} </td>
                             <td> {{$user['first_name']}} </td>
                             <td> {{$user['last_name']}} </td>
                             <td> {{$user['email']}} </td>
@@ -42,20 +44,18 @@
                             <td> {{ \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($user['birthday'])->format('Y-m-d') }} </td>
                             <td> {{$user['role']}} </td>
                             <td>
-                                @foreach ($existing_emails as $email)
-                                    @if ($email)
-                                        @if ($email->email == $user['email'])
-                                            <span class="text-danger"> <i class="fas fa-times-circle"></i> existing email </span> 
-                                        @else
-                                            <span class="text-success"> <i class="fas fa-check-circle"></i> available email </span>
-                                        @endif
-                                    @endif
-                                @endforeach
-
-                                @if (empty($existing_emails))
-                                    <span class="text-success"> <i class="fas fa-check-circle"></i> available email </span>
+                                @if(in_array($user['email'], $existing_emails))
+                                    &nbsp&nbsp<span class="text-danger"> <i class="fas fa-times-circle"></i> Existing Email </span>
+                                @else
+                                    &nbsp&nbsp<span class="text-success"><i class="fas fa-check-circle"></i> Email available </span>
                                 @endif
-                            
+
+                                @if(in_array($user['student_id'], $existing_student_id))
+                                    &nbsp&nbsp<span class="text-danger"> <i class="fas fa-times-circle"></i> Existing Student ID </span>
+                                @else
+                                    &nbsp&nbsp<span class="text-success"><i class="fas fa-check-circle"></i> Student ID available </span>
+                                @endif
+
                             </td>
                         </tr>
                     @endforeach
@@ -63,12 +63,17 @@
             </table>
         </div>
     </div>
+    <div class="card shadow-sm mt-3">
+        <div class="card-body text-muted">
+            <strong> Note: Section and Department assignment to user will be available after batch uploads. </strong> 
+        </div>
+    </div>
 
     <div class="card shadow-sm mt-2">
         <div class="card-body">
             <input type="hidden" name="uploaded_users" id="uploaded_users" value="{{json_encode($uploaded_users)}}">
             <a href="{{route('user-management.index')}}" class="btn btn-outline-secondary "> Cancel </a>
-            @if (empty($existing_emails))
+            @if (empty($existing_emails) && empty($existing_student_id))
                 <button type="submit" class="btn btn-primary"> Save Users </button>  
             @else
             <span class="text-danger ml-3"> <i class="fas fa-primary-circle"></i> There are errors found in your uploaded data. Please check <strong> remarks </strong> and reupload. </span>

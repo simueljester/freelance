@@ -33,6 +33,7 @@
             </div>
             <table class="table table-hover mt-3" id="table-user">
                 <thead>
+                    <th> Student ID </th>
                     <th> Name </th>
                     <th> Email </th>
                     <th> Role </th>
@@ -43,6 +44,7 @@
                     @foreach ($all_users as $user)
                         @if ($user->user_instance->role_id == 3)
                             <tr>
+                                <td> {{$user->student_id}} </td>
                                 <td> {{$user->name}} </td>
                                 <td> {{$user->email}} </td>
                                 <td> Student </td>

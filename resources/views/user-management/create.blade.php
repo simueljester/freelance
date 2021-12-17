@@ -60,6 +60,10 @@
             <strong> <i> Account Information </i> </strong>
             <hr>
             <div class="form-group">
+                <small class="text-capitalize"> Student ID </small>
+                <input type="number" name="student_id" id="student_id" class="form-control p-3" required>
+            </div>
+            <div class="form-group">
                 <small class="text-capitalize"> Email Address </small>
                 <input type="email" name="email" id="email" class="form-control p-3" required>
             </div>
