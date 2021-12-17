@@ -89,13 +89,17 @@
     </div>
   </div>
   
-
-<table class="table table-hover mt-3">
+@if ($all_questions->count())
+  <div class="mb-3 mt-3">Showing {{ $all_questions->firstItem() }} to {{ $all_questions->lastItem() }} of {{ $all_questions->total() }} questions </div>
+@endif
+<table class="table table-hover mt-3" style="font-size:14px; display: block ;
+overflow-x: auto !important;
+width: 100%; !important;">
     <thead>
         <th style="width:40%"> Question </th>
         <th style="width:10%" class="text-center"> Type </th>
         <th style="width:20%"> Subject </th>
-        <th style="width:10%"> Difficulty </th>
+        {{-- <th style="width:10%"> Difficulty </th> --}}
  
         <th style="width:10%"> Creator </th>
         <th> Creation Date </th>
@@ -106,7 +110,7 @@
                 <td> <a href="{{route('question-bank.show',$question)}}"> {!! $question->instruction !!} </a>  </td>
                 <td class="text-center"> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span> </td>
                 <td> {{$question->subject->course_code}} {{$question->subject->name}} </td>
-                <td>  
+                {{-- <td>  
                     @if ($question->level == 1)
                         <span class="text-success"> Easy </span>
                     @endif
@@ -116,7 +120,7 @@
                     @if ($question->level == 3)
                         <span class="text-danger"> Hard </span>
                     @endif
-                </td>
+                </td> --}}
                 <td> {{$question->user_creator->name}} </td>
                 <td> 
                     {{ $question->created_at->format('Y-m-d') }}
@@ -128,7 +132,7 @@
     </tbody>
 </table>
 
-<div>
+<div class="text-right">
     {{ $all_questions->links() }}
 </div>
 

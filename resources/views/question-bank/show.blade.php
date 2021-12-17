@@ -21,11 +21,12 @@
     <div class="card-body">
         <div class="p-3 border rounded">
             <strong> Instruction - </strong> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span>
+            <small class="float-right"> <i class="fas fa-circle"></i>  Points: {{$question->max_points}}</small>
             <p class="mt-3"> {!! $question->instruction !!} </p>
             <hr>
             <small> <i class="fas fa-book-reader"></i> {{$question->subject->course_code}} {{$question->subject->name}} </small>
           
-            &nbsp&nbsp&nbsp
+            {{-- &nbsp&nbsp&nbsp
             @if ($question->level == 1)
                 <small class="text-success"> Easy </small>
             @endif
@@ -35,8 +36,8 @@
             @if ($question->level == 3)
                 <small class="text-danger"> Hard </small>
             @endif
-            &nbsp&nbsp&nbsp
-            <small> <i class="fas fa-circle"></i>  Points: {{$question->max_points}}</small>
+       --}}
+       
             &nbsp&nbsp&nbsp
             <small> <i class="fas fa-user"></i> Created By: {{$question->user_creator->name}}</small>
             &nbsp&nbsp&nbsp

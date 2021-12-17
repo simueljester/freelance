@@ -189,8 +189,7 @@ class QuestionBankController extends Controller
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
             'option_1' => 'required_if:question_type,mcq',
             'option_2' => 'required_if:question_type,mcq',
-            'subject'   => 'required',
-            'difficulty' => 'required'
+            'subject'   => 'required'
         ]);
 
         $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : null;
@@ -209,7 +208,7 @@ class QuestionBankController extends Controller
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id,
             'subject_id'        => $request->subject,
-            'level'             => $request->difficulty,
+            'level'             => 1,
             'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
         ];
 
@@ -247,7 +246,6 @@ class QuestionBankController extends Controller
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
             'option_1' => 'required_if:question_type,mcq',
             'option_2' => 'required_if:question_type,mcq',
-            'difficulty' => 'required',
             'subject'   => 'required'
         ]);
 
@@ -267,7 +265,7 @@ class QuestionBankController extends Controller
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id,
             'subject_id'        => $request->subject,
-            'level'             => $request->difficulty,
+            'level'             => 1,
       
         ];
 

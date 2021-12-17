@@ -29,7 +29,7 @@
             <strong class="text-muted"> Create New Question </strong> -  <span class="badge badge-warning text-dark p-1"> True or False </span>
             <hr>
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="form-group mt-3">
                         <small class="text-capitalize"> Subject </small>
                         <select name="subject" id="subject" class="form-control" required>
@@ -39,18 +39,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-sm-6">
-                    <div class="form-group mt-3">
-                        <small class="text-capitalize"> Difficulty Level </small>
-                        <select name="difficulty" id="difficulty" class="form-control" required>
-                        
-                            <option value="1"> Easy </option>
-                            <option value="2"> Medium </option>
-                            <option value="3"> Hard </option>
-                        
-                        </select>
-                    </div>
-                </div>
+           
             </div>
             <div class="form-group mt-3">
                 <span> <i class="fas fa-question-circle"></i>  Instruction </span>
