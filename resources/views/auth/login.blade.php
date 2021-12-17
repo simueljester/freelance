@@ -6,18 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="icon" type="image/gif/png" href="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}">
-    <title>Login</title>
-    
-
-
-
-
+    <title> Login Letran LMS </title>
     @include('layouts.styles') 
 </head>
 <body  
 {{-- style="background-image: url('{{asset('system_info/bg-login-background.jpg')}}');  background-size: cover;" --}}
-style="background: rgb(255,255,255);
-background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.8743872549019608) 100%);"
+    style="background: #12234E"
 >
     <div class="container " style="top:50px">
         <div class="row justify-content-center">
@@ -32,17 +26,9 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.874387
                         <div class="p-3 text-center">
                             <strong class="text-white" style="font-size:24px;"> {!! App\SystemInformation::whereActive(1)->first()->title !!} </strong>
                         </div>
-                        <center>
-                            <a href="https://www.facebook.com/LetranCalambaOfficial" target="_blank" class="text-white"> 
-                                <small> <i class="fab fa-facebook fa-2x text-primary"></i> Facebook Page  </small>
-                            </a>
-                            &nbsp&nbsp
-                            <a href="https://www.letran-calamba.edu.ph/" class="text-white" target="_blank">
-                                <small> <i class="fas fa-globe fa-2x "></i> Official Website  </small> 
-                            </a>
-                        </center>
+                     
                    
-                        <hr>
+                        <hr style="border: 1px solid white;">
                         <form method="POST" action="{{ route('login') }}">
                             @csrf
                             
@@ -64,9 +50,9 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.874387
                                 <label for="password" class="col-md-4 col-form-label text-md-right text-white">{{ __('Password') }}</label>
     
                                 <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                                    <br>
-                                    <input type="checkbox" onclick="myFunction()">  <span class="text-white"> Show Password </span> 
+                                    <input id="password" type="password" class="form-control mb-1 @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                
+                                    <input type="checkbox" onclick="myFunction()">  <span class="text-white mt-4"> Show Password </span> 
                                     @error('password')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -86,8 +72,8 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.874387
                             </div> --}}
     
                             <div class="form-group row mb-0">
-                                <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
+                                <div class="col-md-6 offset-md-4">
+                                    <button type="submit" class="btn btn-primary btn-block">
                                         {{ __('Login') }} <i class="fas fa-sign-in-alt"></i>
                                     </button>
     
@@ -103,7 +89,17 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(0,34,255,0.874387
                 </div>
             </div>
         </div>
-   
+        <div style="margin-top: 220px;" class="p-3">
+            <center>
+                <a href="https://www.facebook.com/LetranCalambaOfficial" target="_blank" class="text-white"> 
+                    <small> <i class="fab fa-facebook fa-2x text-primary"></i> Facebook Page  </small>
+                </a>
+                &nbsp&nbsp
+                <a href="https://www.letran-calamba.edu.ph/" class="text-white" target="_blank">
+                    <small> <i class="fas fa-globe fa-2x "></i> Official Website  </small> 
+                </a>
+            </center>
+        </div>
     </div>
 
 

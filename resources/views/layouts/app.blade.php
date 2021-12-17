@@ -20,7 +20,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background: #081127">
 
             <div class="text-center m-3">
                 <img  src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:100px">
@@ -42,7 +42,7 @@
                 <a class="nav-link " href="{{route('home')}}">
                     
                     @if(request()->is(['home', 'home/*']))
-                        <i class="fas fa-tachometer-alt text-info"></i>
+                        <i class="fas fa-tachometer-alt" style="color:#567bd8"></i>
                         <span class="text-white"> <strong> Dashboard </strong> </span>
                     @else
                         <i class="fas fa-tachometer-alt text-white"></i>
@@ -57,7 +57,7 @@
                     
                         @if(request()->is(['school-management', 'school-management/*']))
                         
-                            <i class="fas fa-university text-info"></i>
+                            <i class="fas fa-university" style="color:#567bd8"></i>
                             <span class="text-white"> <strong> School Management </strong> </span>
                         @else
                             <i class="fas fa-university text-white"></i>
@@ -74,7 +74,7 @@
                 <a class="nav-link" href="{{route('question-bank.index')}}">
                 
                     @if(request()->is(['question-bank', 'question-bank/*']))
-                        <i class="fas fa-globe text-info"></i>
+                        <i class="fas fa-globe" style="color:#567bd8"></i>
                         <span class="text-white"> <strong> Question Bank </strong>  </span>
                     @else
                         <i class="fas fa-globe text-white"></i>
@@ -90,7 +90,7 @@
                     
                  
                     @if(request()->is(['groups', 'groups/*']))
-                        <i class="fas fa-cubes text-info"></i>
+                        <i class="fas fa-cubes" style="color:#567bd8"></i>
                         <span class="text-white"> <strong> Class </strong>  </span>
                     @else
                         <i class="fas fa-cubes text-white"></i>
@@ -101,9 +101,8 @@
             @else
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('groups.user-group.user-group')}}">
-                    
                         @if(request()->is(['groups', 'groups/*']))
-                            <i class="fas fa-cubes text-info"></i>
+                            <i class="fas fa-cubes" style="color:#567bd8"></i>
                             <span class="text-white"> <strong> My Class </strong>  </span>
                         @else
                             <i class="fas fa-cubes text-white"></i>
@@ -130,7 +129,7 @@
                 <li class="nav-item" >
                     <a class="nav-link" href="{{route('user-management.index')}}">
                         @if(request()->is(['user-management', 'user-management/*']))
-                            <i class="fas fa-users text-info"></i>
+                            <i class="fas fa-users" style="color:#567bd8"></i>
                             <span class="text-white"> <strong> User Management </strong> </span>
                         @else
                             <i class="fas fa-users text-white"></i>
@@ -144,7 +143,7 @@
             <li class="nav-item" >
                 <a class="nav-link" href="{{route('administrator.index')}}">
                     @if(request()->is(['administrator', 'administrator/*']))
-                        <i class="fas fa-user-cog text-info"></i>
+                        <i class="fas fa-user-cog" style="color:#567bd8" ></i>
                         <span class="text-white"> <strong> Administrator </strong> </span>
                     @else
                         <i class="fas fa-user-cog text-white"></i>
@@ -156,18 +155,15 @@
           
 
          
-            <li class="nav-item">
-             
+            {{-- <li class="nav-item">
                 <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();
                     document.getElementById('logout-form').submit();">
                     <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
                 </a>
-
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                 </form>
-             
-            </li>
+            </li> --}}
 
 
         </ul>
@@ -175,8 +171,25 @@
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
+            <div class="p-3" style="background: #e0e0e0">
+                <strong> <i class="fab fa-font-awesome-flag"></i> &nbsp {{App\AcademicYear::whereActive(1)->first()->name}} </strong>
+                <div class="dropdown float-right mr-3">
+                    <span> <i class="fas fa-user"></i> {{Auth::user()->name}} </span>
+                    <div class="dropdown-content">
+                        <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            </div>
+
             <!-- Main Content -->
             <div id="content" class="p-3">
+                
                 <div class="row">
                     <div class="col-sm-4">
                         <div class="card shadow-sm p-1">

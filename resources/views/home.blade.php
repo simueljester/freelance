@@ -191,10 +191,10 @@ var ctx = document.getElementById('myChart').getContext('2d');
             datasets: [
                 {
                     label: "Login Count",
-                    backgroundColor: 'rgba(58, 225, 225 , 0.3)',
+                    backgroundColor: '#567bd8',
                     data: count_login,
                     borderWidth: 2,
-                    borderColor:"rgba(58, 225, 225)",   
+                    borderColor:"#567bd8",   
                 }
             ]
         },
