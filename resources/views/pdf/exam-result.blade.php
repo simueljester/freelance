@@ -48,25 +48,32 @@
                             </li>
                         
                             {{-- option 3 --}}
+                            @if ($user_answer->question->option_3)
                             <li>
-                                @if ($user_answer->question->option_3)
-                                    <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_3}} </label>
-                                @endif
+                                <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_3}} </label>
                             </li>
+                            @endif
                     
                             {{-- option 4 --}}
+                            @if ($user_answer->question->option_4)
                             <li>
-                                @if ($user_answer->question->option_4)
-                                    <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_4}} </label>
-                                @endif
+                                <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_4}} </label>
                             </li>
+                            @endif
             
                             {{-- option 5 --}}
+                            @if ($user_answer->question->option_5)
                             <li>
-                                @if ($user_answer->question->option_5)
-                                    <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_5}} </label>
-                                @endif
+                                <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_5}} </label>
                             </li>
+                            @endif
+
+                              {{-- option 6 --}}
+                              @if ($user_answer->question->option_6)
+                              <li>
+                                  <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_6}} </label>
+                              </li>
+                              @endif
                     
                         </ol>
 

@@ -36,7 +36,7 @@ class ExaminationController extends Controller
     }
 
     public function save(Request $request){
-        
+      
         $request->validate([
             'name' => 'required',
             'group' => 'required',
@@ -60,7 +60,7 @@ class ExaminationController extends Controller
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
 
-        
+      
         //create exam based in created group module
 
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
