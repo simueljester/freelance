@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Artisan;
+
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +14,26 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/check-send', function() {
+ 
+    $data = array('name'=>"Virat Gandhi");
+   
+    Mail::send(['text'=>'mail'], $data, function($message) {
+       $message->to('simueljester@gmail.com', 'Tutorials Point')->subject
+          ('Laravel Basic Testing Mail');
+       $message->from('jestercareer@gmail.com','Virat Gandhi');
+    });
+    echo "Basic Email Sent. Check your inbox.";
+    
+
+ });
+
+ Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+   Artisan::call('config:clear');
+   // return what you want
+});
+
 
 Route::get('/', function () {
     return redirect('login');
