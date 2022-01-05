@@ -208,11 +208,27 @@
                 <span class="close">&times;</span>
             </div>
             <div class="text-center">
-                <i class="fas fa-camera fa-4x"></i>
+                <i class="fas fa-camera fa-4x"></i> <i class="fas fa-times-circle text-danger fa-2x"></i>
                 <div> No camera detected. Please allow your browser to access your camera </div>
             </div>
         </div>
     </div>
+
+    <div id="modal-show-alert" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content p-5">
+            <div class="text-right">
+                <span class="close" onclick="closeShow()">&times;</span>
+            </div>
+            <div class="text-center">
+                <i class="fas fa-camera fa-4x"></i> <i class="fas fa-check-circle fa-2x text-success"></i>
+                <div> Camera detected! You may now start your examination. </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     {{-- @include('layouts.scripts')  --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -273,9 +289,15 @@
 
     takeWebCamera()
 
+    
     var exam_id = {{$exam_assignment->exam->id}} 
     var exam_assignment_id = {{$exam_assignment->id}} 
     var group_id = {{$exam_assignment->group_id}} 
+
+
+    function closeShow(){
+        document.getElementById("modal-show-alert").style.display = "none";
+    }
 
     function takeWebCamera(){
 
@@ -283,8 +305,9 @@
         
         if(navigator.getMedia){
             console.log('working')
+            document.getElementById("modal-show-alert").style.display = "block";
         }else{
-               document.getElementById("myModal").style.display = "block";
+            document.getElementById("myModal").style.display = "block";
             var span = document.getElementsByClassName("close")[0];
             span.onclick = function() {
                 document.getElementById("myModal").style.display = "none";
