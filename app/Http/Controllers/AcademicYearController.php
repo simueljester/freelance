@@ -14,9 +14,18 @@ class AcademicYearController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        $academic_years = AcademicYear::all();
-        return view('school-management.academic-year.index',compact('academic_years'));
+    public function index(Request $request){
+        
+        $tab = $request->tab ?? 'current';
+        if($tab == 'current'){
+          $academic_years = AcademicYear::whereArchivedAt(null)->get();
+        }
+        if($tab == 'archive'){
+          $academic_years = AcademicYear::whereNotNull('archived_at')->get();
+        }
+   
+        $active_academic_year = AcademicYear::whereActive(1)->first();
+        return view('school-management.academic-year.index',compact('academic_years','tab','active_academic_year'));
     }
 
     public function saveAcademicYear(Request $request){
@@ -61,5 +70,21 @@ class AcademicYearController extends Controller
         return redirect()->back()->with('success', 'Academic year successfully updated');
   
       }
+
+      public function archiveAcademicYear(Request $request){
+        $academic_year = AcademicYear::find($request->ac_id);
+        $academic_year->archived_at = now();
+        $academic_year->save();
+        return redirect()->back()->with('success', 'Academic year successfully archived');
+      }
+
+      public function restoreAcademicYear(Request $request){
+        $academic_year = AcademicYear::find($request->ac_id);
+        $academic_year->archived_at = null;
+        $academic_year->save();
+        return redirect()->back()->with('success', 'Academic year successfully restored');
+      }
+
+      
 
 }

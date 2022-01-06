@@ -10,7 +10,7 @@ class AcademicYear extends Model
     protected $table = 'academic_years';
 
     protected $fillable = [
-        'name', 'year','semester','active'
+        'name', 'year','semester','active','archived_at'
     ];
 
 }

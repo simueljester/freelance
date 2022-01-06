@@ -16,7 +16,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$module_count}} </strong> </div>
-                <div> <i class="fas fa-shapes text-primary"></i> <small> Modules created </small> </div>
+                <div> <i class="fas fa-shapes text-primary"></i> <strong> <a href="{{route('groups.index')}}"> Modules Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -26,7 +26,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$group_count}} </strong> </div>
-                <div> <i class="fas fa-cubes text-primary"></i>  <small> Class created </small> </div>
+                <div> <i class="fas fa-cubes text-primary"></i> <strong> <a href="{{route('groups.index')}}"> Class Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -36,7 +36,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px; ">  {{$question_count}}  </strong> </div>
-                <div> <i class="fas fa-question-circle text-primary"></i> <small> Questions created </small> </div>
+                <div> <i class="fas fa-question-circle text-primary"></i> <strong> <a href="{{route('question-bank.index')}}"> Questions Created  </a> </strong> </div>
             </div>
         </div>
     </div>

@@ -8,8 +8,6 @@
     </div>
 </div>
 
-
-
 @if (Auth::user()->user_instance->role_id == 1)
 <div class="row">
     <div class="col-sm-3">
@@ -17,7 +15,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$group_count}} </strong> </div>
-                <div> <i class="fas fa-cubes text-primary"></i>  <small> Class created </small> </div>
+                <div> <i class="fas fa-cubes text-primary"></i>  <strong> <a href="{{route('groups.index')}}"> Class Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -26,7 +24,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$user_count}} </strong> </div>
-                <div> <i class="fas fa-users text-primary"></i>  <small> Users created </small> </div>
+                <div> <i class="fas fa-users text-primary"></i>  <strong> <a href="{{route('user-management.index')}}"> Users Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -35,7 +33,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$subject_count}} </strong> </div>
-                <div> <i class="fas fa-book-reader text-primary"></i>  <small> Subjects created </small> </div>
+                <div> <i class="fas fa-book-reader text-primary"></i>  <strong> <a href="{{route('school-management.subjects.index')}}"> Subjects Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -44,7 +42,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px; ">  {{$question_count}}  </strong> </div>
-                <div> <i class="fas fa-question-circle text-primary"></i> <small> Questions created </small> </div>
+                <div> <i class="fas fa-question-circle text-primary"></i> <strong> <a href="{{route('question-bank.index')}}"> Questions Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -70,8 +68,17 @@
             <div class="card-body">
                 <a href="{{route('user-management.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-user-plus"></i> Create New User </a>
                 <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
+                <a href="{{route('school-management.sections.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Section </a>
                 <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
-                <a href="{{route('question-bank.create.mcq',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Question (MCQ) </a>
+                <div class="dropdown mt-2 w-100">
+                    <button class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Questions </button>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="{{route('question-bank.create.mcq',0)}}"> Add Multiple Choice</a>
+                        <a class="dropdown-item" href="{{route('question-bank.create.tf',0)}}"> Add True or False</a>
+                        <a class="dropdown-item" href="{{route('question-bank.create.sa',0)}}"> Add Identification </a>
+                        <a class="dropdown-item" href="{{route('question-bank.create.essay',0)}}"> Add Essay </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -160,6 +167,25 @@
   0% {opacity: 0;}
   100% {opacity: 1;}
   } 
+
+  .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 </style>
 
 
@@ -178,7 +204,6 @@ login_count.forEach((data) => {
     count_login.push(data.count)
 });
 
-console.log(dates);
 var ctx = document.getElementById('myChart').getContext('2d');
     var chart_data = {
         type: 'line',

@@ -11,7 +11,7 @@
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
+            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Class</a></li>
             <li class="breadcrumb-item"><a href="{{route('groups.show',$group->id)}}"> {{$group->name}}  </a></li>
             <li class="breadcrumb-item active" aria-current="page"> Enroll Users </li>
         </ol>

@@ -3,8 +3,8 @@
 @section('content')
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Groups  </h4>
-        <small class="text-muted"> <i> Group Assignments </i>  </small>
+        <h4 class="text-muted"> <i class="fas fa-cubes text-primary"></i>  Class  </h4>
+        <small class="text-muted"> <i> Class Assignments </i>  </small>
     </div>
 </div>
 

@@ -53,6 +53,8 @@ Route::group(['prefix' => 'school-management', 'as' => 'school-management.'], fu
         Route::get('/',                                         ['as' => 'index',                   'uses' => 'AcademicYearController@index']);
         Route::post('/save-academic-year',                      ['as' => 'save-academic-year',      'uses' => 'AcademicYearController@saveAcademicYear']);
         Route::get('/change-academic-active/{academic_year}',   ['as' => 'change-academic-active',  'uses' => 'AcademicYearController@changeAcadmicActive']);
+        Route::post('/archive-academic-year',                   ['as' => 'archive-academic-year',      'uses' => 'AcademicYearController@archiveAcademicYear']);
+        Route::post('/restore-academic-year',                   ['as' => 'restore-academic-year',      'uses' => 'AcademicYearController@restoreAcademicYear']);
     });
 
     Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {

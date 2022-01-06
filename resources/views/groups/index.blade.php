@@ -45,11 +45,12 @@
                     <br>
                     <small> <i class="fas fa-adjust"></i> Section: <strong> {{$group->section->name}} </strong>  </small>
                     <hr>
-                    <div id="class_description{{$group->id}}" class="class_description"> {!! $group->description !!}  </div> 
-                    <strong class="text-primary" id="btn-see-more{{$group->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$group}})"> See more </strong>
-                    <div id="full_class_description{{$group->id}}" class="full_class_description"></div>
-                 
-
+                    <div id="class_description{{$group->id}}" class="class_description"> {!! $group->description !!}  </div>
+                    <div id="full_class_description{{$group->id}}" class="full_class_description"></div> 
+                    @if (strlen($group->description) >= 250)
+                        <strong class="text-primary" id="btn-see-more{{$group->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$group}})"> See more </strong>
+                        <strong class="text-primary" id="btn-see-less{{$group->id}}" class="btn-see-less" style="cursor:pointer;display:none" onclick="showLessDescription({{$group}})"> See Less </strong>
+                    @endif
                 </div>
             </div>
         </div>
@@ -70,18 +71,27 @@
 
 <script>
     $(".class_description").text(function(index, currentText) {
-        return currentText.substr(0, 250)+"...";
+        if(currentText.length >= 250){
+            return currentText.substr(0, 250)+"...";
+        }
     });
 
-  
     function showFullDescription(group){
-        $('#full_class_description'+group.id).html(group.description)
         $( "#btn-see-more"+group.id).hide();
         $( "#btn-see-less"+group.id).show();
-        $( "#class_description"+group.id).hide();
+        $( "#class_description"+group.id).empty();
+        $('#full_class_description'+group.id).html(group.description)
     }
 
-
+    function showLessDescription(group){
+        $( "#btn-see-more"+group.id).show();
+        $( "#btn-see-less"+group.id).hide();
+        $("#class_description"+group.id).html(group.description)
+        $("#class_description"+group.id).text(function(index, currentText) {
+            return currentText.substr(0, 250)+"...";
+        });
+        $('#full_class_description'+group.id).empty()
+    }
 
 </script>
 
