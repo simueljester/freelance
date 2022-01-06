@@ -251,6 +251,9 @@ Route::group(['prefix' => 'administrator', 'as' => 'administrator.'], function()
 
     Route::group(['prefix' => 'exports', 'as' => 'exports.'], function() {
         Route::get('/',                 ['as' => 'index',           'uses' => 'ExportController@index']);
+        Route::get('/subjects',         ['as' => 'subjects',        'uses' => 'ExportController@subjects']);
+        Route::get('/departments',      ['as' => 'departments',     'uses' => 'ExportController@departments']);
+        Route::get('/sections',         ['as' => 'sections',        'uses' => 'ExportController@sections']);
         Route::get('/users',            ['as' => 'users',           'uses' => 'ExportController@users']);
         Route::get('/groups',           ['as' => 'groups',          'uses' => 'ExportController@groups']);
         Route::get('/question-bank',    ['as' => 'question-bank',   'uses' => 'ExportController@questionBank']);

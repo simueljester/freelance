@@ -23,15 +23,15 @@
     </li>
     <li class="nav-item ">
         @if (Route::is('school-management.subjects.index'))
-            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Courses </a>
        
         @elseif (Route::is('school-management.subjects.create'))
-            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Courses </a>
    
         @elseif (Route::is('school-management.subjects.show'))
-            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+            <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Courses </a>
         @else
-            <a class="nav-link "  href="{{route('school-management.subjects.index')}}"> Subjects </a>
+            <a class="nav-link "  href="{{route('school-management.subjects.index')}}"> Courses </a>
         @endif 
     </li>
     <li class="nav-item">

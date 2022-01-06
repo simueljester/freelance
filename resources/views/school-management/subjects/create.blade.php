@@ -6,7 +6,7 @@
 <form action="{{route('school-management.subjects.save')}}" method="POST">
     @csrf
     @method("POST")
-    <strong> Create New Subject </strong>
+    <strong> Create New Course </strong>
     <hr>
     <div class="form-group">
         <span> Descriptive Title </span>
@@ -23,7 +23,7 @@
     
     <div>
         <a href="{{route('school-management.subjects.index')}}" class="btn btn-outline-secondary"> Cancel </a>
-        <button class="btn btn-primary"> Create Subject </button>
+        <button class="btn btn-primary"> Create Course </button>
     </div>
 </form>
 

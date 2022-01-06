@@ -29,6 +29,18 @@
             </thead>
             <tbody>
                 <tr>
+                    <td> <i class="fas fa-university"></i> Courses </td>
+                    <td> <a href="{{route('administrator.exports.subjects')}}" class="btn btn-sm btn-primary" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
+                </tr>
+                <tr>
+                    <td> <i class="fas fa-university"></i> Departments </td>
+                    <td> <a href="{{route('administrator.exports.departments')}}" class="btn btn-sm btn-primary" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
+                </tr>
+                <tr>
+                    <td> <i class="fas fa-university"></i> Sections </td>
+                    <td> <a href="{{route('administrator.exports.sections')}}" class="btn btn-sm btn-primary" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
+                </tr>
+                <tr>
                     <td> <i class="fas fa-users"></i> Users </td>
                     <td> <a href="{{route('administrator.exports.users')}}" class="btn btn-sm btn-primary" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Export </a> </td>
                 </tr>
