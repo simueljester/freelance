@@ -72,6 +72,7 @@
                         
                         {{-- <th> Role </th> --}}
                         <th> Remove </th>
+                        <th></th>
                     </thead>
                     <tbody>
                         @forelse ($assigned_users as $user)
@@ -86,6 +87,7 @@
                                         <input type="checkbox" name="user_id[]" value="{{$user->user_id}}" class="form-check-input" style="cursor:pointer;" >
                                     </div>
                                 </td>
+                                <td> <a href="{{route('groups.user-data',$user)}}" class="btn btn-sm btn-primary"> View Class Participation </a> </td>
                             </tr>
                         @empty
                             <tr>
