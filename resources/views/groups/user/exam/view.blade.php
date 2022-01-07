@@ -28,6 +28,7 @@
                         <span class="badge badge-danger"> Late Submission </span>
                     @endif
                     &nbsp&nbsp
+                    Attempt No. {{$exam_assignment->attempt}} 
                     {{-- <span class="text-primary" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span> --}}
                  
                    
@@ -38,7 +39,7 @@
                                 <i> <i class="far fa-question-circle"></i> Question {{ $loop->index + 1}} </i> <small class="text-uppercase float-right"> {{$user_answer->question->question_type}} </small> 
                                 @if ($user_answer->question->question_type == 'essay' && Auth::user()->user_instance->role->id !=3)
                         
-                                   <small> - Click <span class="text-primary" style="cursor:pointer;" onclick="showOverrideInput({{$user_answer}},{{$loop->index+1}})"> here </span> to override essay score </small> 
+                                   <small> - Click <strong class="text-primary" style="cursor:pointer;" onclick="showOverrideInput({{$user_answer}},{{$loop->index+1}})"> here </strong> to override essay score </small> 
                                 @endif
                             </div>
                             <div class="card-body">
@@ -77,7 +78,6 @@
                                                 <label class="form-check-label" for="exampleRadios2"> {{$user_answer->question->option_5}} </label>
                                             @endif
                                         </li>
-                                
                                     </ol>
 
                                         @break

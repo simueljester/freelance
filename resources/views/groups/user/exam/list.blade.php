@@ -40,6 +40,8 @@
                 <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($assignment->exam->expired_at)->format('F d, Y h:i:s a')}}
                 &nbsp&nbsp
                 <i class="fas fa-star text-warning"></i> {{$assignment->score }} / {{$assignment->exam->total_score}} points
+                &nbsp&nbsp
+                No. of Attempts <strong> {{$assignment->attempt}} </strong> 
             </div>
         </div>
         @empty

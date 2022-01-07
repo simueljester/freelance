@@ -11,8 +11,8 @@
 <div class="card shadow-sm mt-3 p-1"> 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Groups</a></li>
-            <li class="breadcrumb-item active" aria-current="page"> All Groups </li>
+            <li class="breadcrumb-item"><a href="{{route('groups.index')}}">Class</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> All Class </li>
         </ol>
     </nav>
 </div>
@@ -26,6 +26,7 @@
                 <th> Class Name </th>
                 <th> Subject </th>
                 <th> Creator </th>
+                <th> Academic Year </th>
                 <th> Creation date </th>
             </thead>
             <tbody>
@@ -34,6 +35,7 @@
                         <td> <a href="{{route('groups.show',$group)}}" class="text-primary" style="text-decoration:none;" target="_blank"> <i class="fas fa-cube"></i> {{$group->name}}  </a> </td>
                         <td> {{$group->subject->course_code}} {{$group->subject->name}} </td>
                         <td> {{$group->user_creator->name}} </td>
+                        <td> {{$group->activeAcademicYear->name}} - {{$group->activeAcademicYear->semester}} {{$group->activeAcademicYear->year}} </td>
                         <td> {{$group->created_at->format('Y-m-d')}} </td>
                     </tr>
                 @endforeach

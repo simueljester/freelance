@@ -21,28 +21,45 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <i class="fas fa-copy text-primary fa-2x m-1"></i>  <strong> {{$exam->name}} </strong> &nbsp&nbsp   </h5>
-        <small> {{$exam->description ?? 'No details provided'}} </small>
-        <hr>
-        <div>
-            <i class="fas fa-clock"></i> {{$exam->duration}} Minutes
-            &nbsp&nbsp
-            <i class="fas fa-star text-warning"></i> {{$exam->total_score}} Maximum Score
-            &nbsp&nbsp
-            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->accessible_at)->format('M d, Y h:i a')}} -
-            &nbsp&nbsp
-            <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($exam->expired_at)->format('M d, Y h:i a')}}
-            &nbsp&nbsp
-            <a href="{{route('groups.show',$exam->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
-            &nbsp&nbsp
-            <a href="{{route('groups.exam.edit',$exam)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Exam </a>
-            &nbsp&nbsp
-            <a href="{{route('groups.exam.delete',$exam)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a>
-            &nbsp&nbsp
-            <span class="float-right">
+        <span class="float-right">
+            <a href="{{route('groups.toogle-visibility',$exam->groupModule)}}"> 
                 <i class="{{$exam->groupModule->visibility == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-secondary'}}"></i>
                 <small>  {{$exam->groupModule->visibility == 1 ? 'Visible to student' : 'Hidden to student'}} </small>
-            </span>
+            </a>
+          
+        </span>
+        <h5 class="text-muted"> <i class="fas fa-copy text-primary fa-2x m-1"></i>  <strong> {{$exam->name}} </strong> &nbsp&nbsp   </h5>
+        <small> {{$exam->description ?? 'No details provided'}} </small>
+        
+        <hr>
+        <div>
+            <i class="fas fa-clock"></i> Duration: <strong> {{$exam->duration}} Minutes </strong> 
+            &nbsp&nbsp <br>
+            <i class="fas fa-star text-warning"></i> Maximum Score: <strong> {{$exam->total_score}}  </strong> 
+            &nbsp&nbsp <br>
+            <i class="far fa-calendar-check"></i> Date Start: <strong> {{Carbon\Carbon::parse($exam->accessible_at)->format('M d, Y | h:i a')}}  </strong> 
+            &nbsp&nbsp <br>
+            <i class="far fa-calendar-times"></i> Date End: <strong> {{Carbon\Carbon::parse($exam->expired_at)->format('M d, Y | h:i a')}} </strong> 
+            &nbsp&nbsp <br>
+           
+        </div>
+        <hr>
+        <div>
+            <a href="{{route('groups.show',$exam->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
+            &nbsp&nbsp
+            @if ($exam_answers == 0)
+                <span class="float-right">
+                    <a href="{{route('groups.exam.edit',$exam)}}" class="text-primary"> <i class="fas fa-edit "></i> Edit Exam </a>
+                    &nbsp&nbsp
+                    <a href="{{route('groups.exam.delete',$exam)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this exam? All exam assignments to users will be deleted')"> <i class="fas fa-trash-alt"></i> Delete Exam </a>
+                    &nbsp&nbsp
+                </span>
+            @else
+                <strong class="text-danger float-right"> <i class="fas fa-exclamation-circle"></i> Students already answered in this exam. Modification of this exam is unavailable </strong> 
+            @endif
+            
+          
+           
         </div>
     </div>
 </div>
@@ -57,6 +74,7 @@
                         <th></th>
                         <th> User </th>
                         <th> Score </th>
+                        <th> Attempt No. </th>
                         <th> Status </th>
                         <th></th>
                     </thead>
@@ -66,6 +84,7 @@
                                 <td> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $assignment->user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
                                 <td> <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" target="_blank"> {{$assignment->user->name}} </a> </td>
                                 <td> {{$assignment->score}} / {{$assignment->exam->total_score}} </td>
+                                <td> {{$assignment->attempt}} </td>
                                 <td> 
                                     @if ($assignment->status == 0)
                                         <h6> <span class="badge badge-secondary"> Pending </span></h6>
@@ -77,6 +96,7 @@
                                          <h6> <span class="badge badge-danger"> Late Submission </span></h6>
                                     @endif
                                 </td>
+                             
                                 <td> 
                                     @if ($assignment->status != 0)
                                         <a href="{{route('groups.exam.generate-pdf',$assignment)}}" target="_blank" class="btn btn-primary btn-sm"> <i class="fas fa-download"></i> Download Result </a> 
@@ -100,29 +120,37 @@
             <div class="card shadow-sm mt-3">
                 <div class="card-body">
                     <strong> <i class="fas fa-question-circle"></i> Questions </strong>
-                    <div class="alert alert-primary" role="alert">
-                         Examination questions will be ordered by level of difficulty 
-                      </div>
+                    @if ($exam_answers == 0)
                     <div class="mt-3">
                         <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">
                         <a href="{{route('groups.exam.examination-assignment.index',$exam)}}" class="btn btn-primary btn-sm"> <i class="fas fa-question-circle"></i> Assign Questions </a>
                         <button class="btn btn-outline-danger btn-sm" onclick="return confirm('Are you sure you want to unassign selected questions?')"> Unassign Questions </button>
-                        {{-- <a href="{{route('groups.show',$exam->group_id)}}" class="btn btn-outline-secondary btn-sm"> Go to Group </a> --}}
                     </div>
+                    @endif
+                
                     <table class="table table-hover mt-3 table-bordered">
                         <thead>
                             <th> Question </th>
                             <th> Type </th>
-                            <th> Difficulty </th>
+                            {{-- <th> Difficulty </th> --}}
                             <th> Points </th>
                             <th> Remove </th>
                         </thead>
                         <tbody>
                             @forelse ($questions_assigned as $assignment)
-                                <tr>
-                                    <td> <a href="{{route('question-bank.show',$assignment->question_id)}}" class="text-primary"> {!!$assignment->question->instruction!!} </a>  </td>
+                                <tr style="height:100px;">
+                                    <td> 
+                                        {{-- <a href="{{route('question-bank.show',$assignment->question_id)}}" class="text-primary"> {!!$assignment->question->instruction!!} </a>   --}}
+                                        <div id="q_instruction{{$assignment->question->id}}" class="q_instruction"> {!! $assignment->question->instruction !!}  </div>
+                                        <div id="full_q_instruction{{$assignment->question->id}}" class="full_q_instruction"></div> 
+                    
+                                        @if (strlen($assignment->question->instruction) >= 250)
+                                        <strong class="text-primary" id="btn-see-more{{$assignment->question->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$assignment->question}})"> See more </strong>
+                                        <strong class="text-primary" id="btn-see-less{{$assignment->question->id}}" class="btn-see-less" style="cursor:pointer;display:none" onclick="showLessDescription({{$assignment->question}})"> See Less </strong>
+                                        @endif
+                                    </td>
                                     <td class="text-uppercase"> <small> {{$assignment->question->question_type}} </small></td>
-                                    <td>
+                                    {{-- <td>
                                         @if ($assignment->question->level == 1)
                                             <span class="text-success"> Easy </span>
                                         @endif
@@ -132,7 +160,7 @@
                                         @if ($assignment->question->level == 3)
                                             <span class="text-danger"> Hard </span>
                                     @endif
-                                    </td>
+                                    </td> --}}
                                     <td> {{$assignment->question->max_points}} </td>
                                     <td>
                                         <div class="form-check">
@@ -153,6 +181,36 @@
     </div>
 </div>
 
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    
+    $(".q_instruction").text(function(index, currentText) {
+        if(currentText.length >= 250){
+            return currentText.substr(0, 250)+"...";
+        }
+    });
+
+    function showFullDescription(question){
+        $( "#btn-see-more"+question.id).hide();
+        $( "#btn-see-less"+question.id).show();
+        $( "#q_instruction"+question.id).empty();
+        $('#full_q_instruction'+question.id).html(question.instruction)
+    }
+
+    function showLessDescription(question){
+        $( "#btn-see-more"+question.id).show();
+        $( "#btn-see-less"+question.id).hide();
+        $("#q_instruction"+question.id).html(question.instruction)
+        $("#q_instruction"+question.id).text(function(index, currentText) {
+            return currentText.substr(0, 250)+"...";
+        });
+        $('#full_q_instruction'+question.id).empty()
+    }
+
+    </script>
 
 
 @endsection

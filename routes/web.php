@@ -124,6 +124,8 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     Route::get('/list/',                                    ['as' => 'list',                    'uses' => 'GroupController@list']);
     Route::get('/show-user-data/{group_assignment}',        ['as' => 'user-data',               'uses' => 'UserDataController@index']);
     Route::get('/get-user-activities',                      ['as' => 'get-user-activities',     'uses' => 'UserDataController@getActivities']);
+    Route::get('/toogle-visibility/{group_module}',         ['as' => 'toogle-visibility',       'uses' => 'GroupModuleController@toogleVisibility']);
+
 
     Route::group(['prefix' => 'group-assignment', 'as' => 'group-assignment.'], function() {
         Route::get('/{group}',                  ['as' => 'index',           'uses' => 'GroupAssignmentController@index']);
@@ -153,14 +155,15 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     });
 
     Route::group(['prefix' => 'exam', 'as' => 'exam.'], function() {
-        Route::get('/group/{group}/folder/{folder}',    ['as' => 'create',          'uses' => 'ExaminationController@create']);
-        Route::post('/save',                            ['as' => 'save',            'uses' => 'ExaminationController@save']);
-        Route::get('/show/exam/{exam}',                 ['as' => 'show',            'uses' => 'ExaminationController@show']);
-        Route::get('/edit/exam/{exam}',                 ['as' => 'edit',            'uses' => 'ExaminationController@edit']);
-        Route::post('/update',                          ['as' => 'update',          'uses' => 'ExaminationController@update']);
-        Route::get('/delete/{exam}',                    ['as' => 'delete',          'uses' => 'ExaminationController@delete']);
-        Route::post('/override-score',                  ['as' => 'override',        'uses' => 'ExaminationController@override']);
-        Route::get('/generate-pdf/{exam_assignment}',   ['as' => 'generate-pdf',    'uses' => 'ExaminationController@generatePdf']);
+        Route::get('/group/{group}/folder/{folder}',    ['as' => 'create',              'uses' => 'ExaminationController@create']);
+        Route::post('/save',                            ['as' => 'save',                'uses' => 'ExaminationController@save']);
+        Route::get('/show/exam/{exam}',                 ['as' => 'show',                'uses' => 'ExaminationController@show']);
+        Route::get('/edit/exam/{exam}',                 ['as' => 'edit',                'uses' => 'ExaminationController@edit']);
+        Route::post('/update',                          ['as' => 'update',              'uses' => 'ExaminationController@update']);
+        Route::get('/delete/{exam}',                    ['as' => 'delete',              'uses' => 'ExaminationController@delete']);
+        Route::post('/override-score',                  ['as' => 'override',            'uses' => 'ExaminationController@override']);
+        Route::get('/generate-pdf/{exam_assignment}',   ['as' => 'generate-pdf',        'uses' => 'ExaminationController@generatePdf']);
+        
 
         Route::group(['prefix' => 'examination-assignment', 'as' => 'examination-assignment.'], function() {
             Route::get('/{exam}',               ['as' => 'index',               'uses' => 'QuestionAssignmentController@index']);

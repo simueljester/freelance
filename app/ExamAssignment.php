@@ -10,7 +10,7 @@ class ExamAssignment extends Model
     protected $table = 'exam_assignments';
 
     protected $fillable = [
-        'exam_id', 'user_id','group_id','group_assignment_id','user_instance_id','duration','score','status'
+        'exam_id', 'user_id','group_id','group_assignment_id','user_instance_id','duration','score','status','attempt'
     ];
 
     public function exam()

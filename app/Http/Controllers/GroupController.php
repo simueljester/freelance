@@ -122,7 +122,7 @@ class GroupController extends Controller
     }
 
     public function list(){
-        $groups = Group::with('user_creator','subject')->orderBy('name','ASC')->paginate(20);
+        $groups = Group::with('user_creator','subject','activeAcademicYear')->orderBy('name','ASC')->paginate(20);
         return view('groups.list',compact('groups'));
     }
 

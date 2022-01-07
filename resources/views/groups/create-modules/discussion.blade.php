@@ -50,7 +50,7 @@
             <div class="form-group mt-3">
                 <span> Module Visibility </span>
                 <br>
-                <input name="visibility" type="checkbox" checked data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
+                <input name="visibility" type="checkbox"  data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
             </div>
             <hr>
             <div class="mt-3">

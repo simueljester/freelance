@@ -37,6 +37,8 @@
         &nbsp&nbsp
         <span id="time"></span> minutes remaining
         &nbsp&nbsp
+        <span> Attempt No: {{$exam_assignment->attempt}} </span>
+        &nbsp&nbsp
         <span class="badge badge-danger p-1" id="duration_status_display"> Late Submission </span>
     </div>
 

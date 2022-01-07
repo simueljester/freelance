@@ -30,6 +30,7 @@
                 <th> Midterm Grade </th>
                 <th> Finals Grade </th>
                 <th> Average </th>
+                <th> </th>
             
             </thead>
             <tbody>
@@ -63,10 +64,13 @@
                         </td>
                         <td> 
                             @if ($user->prelim_grades && $user->midterm_grades && $user->finals_grades)
-                                {{ ($user->prelim_grades->final_grade + $user->midterm_grades->final_grade + $user->finals_grades->final_grade) / 3}} 
+                                {{ round(($user->prelim_grades->final_grade + $user->midterm_grades->final_grade + $user->finals_grades->final_grade) / 3, 2) }} 
                             @else
                                 0
                             @endif  
+                        </td>
+                        <td>
+                            <a href="{{route('groups.user-data',$user)}}" target="_blank" class="btn btn-primary btn-sm"> View Class Participation </a>
                         </td>
                       
                     </tr>
@@ -230,7 +234,7 @@
 @include('layouts.scripts')
 <script>
     function gradeUser(group_assignment,grade,term){
-        console.log(grade);
+        
         $('#long_quiz_score').val(grade == 1 ? 1 : grade.long_quiz_input )
         $('#short_quiz_score').val(grade == 1 ? 1 : grade.short_quiz_input)
         $('#major_examination_score').val(grade == 1 ? 1 : grade.major_examination_input)
@@ -244,7 +248,6 @@
         $('#class_participation_eg_txt').val(grade == 1 ? 1 : grade.assessment_task_final)
 
         $('#final_grade_txt').val(grade == 1 ? 1 : grade.final_grade)
-
         $('#final_grade_display').html(grade == 1 ? 1 : grade.final_grade)
 
 
@@ -298,16 +301,17 @@
 
         var final_grade = total_major_examination + total_class_participation + total_long_quiz + total_short_quiz
 
+    
 
         $('#long_quiz_eg_text').val(total_long_quiz)
         $('#short_quiz_eg_text').val(total_short_quiz)
         $('#class_participation_eg_txt').val(total_class_participation)
         $('#major_examination_eg_txt').val(total_major_examination)
 
+  
+        $('#final_grade_txt').val(final_grade.toFixed(2))
 
-        $('#final_grade_txt').val(final_grade)
-
-        $('#final_grade_display').html(final_grade)
+        $('#final_grade_display').html(final_grade.toFixed(2))
 
 
         

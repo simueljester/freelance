@@ -19,7 +19,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$group->name}} </strong> </h5>
+        <h5 class="text-muted"> <i class="fas fa-cube text-primary"></i> <strong> {{$group->name}} </strong> </h5>
         <small> {{$group->description}} </small>
         <hr>
      
@@ -30,7 +30,7 @@
         <i class="fas fa-flag"></i> Active AY: <strong> {{$group->activeAcademicYear->name}} </strong>
         <br>
         <i class="fas fa-adjust"></i> Program: <strong> {{$group->section->name}} </strong>
-        <div> <i class="fas fa-calendar-alt"></i> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
+        <div> <i class="fas fa-calendar-alt"></i> Date Created: <strong> {{$group->created_at->format('Y-m-d')}}  </strong> </div>
     </div>
     <div class="card-footer">
 
