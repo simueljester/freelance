@@ -35,6 +35,7 @@
             
             <table class="table table-hover mt-3">
                 <thead>
+                    <th></th>
                     <th> Name </th>
                     <th> Email </th>
                     <th> Role </th>
@@ -43,6 +44,7 @@
                 <tbody>
                     @forelse ($assigned_users as $user)
                         <tr>
+                            <td> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
                             <td> <a href="" class="text-primary"> {{$user->user->name}} </a> </td>
                             <td> {{$user->user->email}} </td>
                             <td> {{$user->user->user_instance->role->role}} </td>

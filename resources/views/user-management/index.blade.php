@@ -28,18 +28,20 @@
         <hr>
         <table class="table table-hover">
             <thead>
+                <th></th>
                 <th> Student ID </th>
                 <th> Full Name </th>
                 <th> Email </th>
                 <th> Role </th>
                 <th> Department </th>
-                <th> Section </th>
+                <th> Program </th>
                 <th></th>
             </thead>
             <tbody>
                 @forelse ($users as $user)
                     @if ($user->user_instance->role_id != 1)
                         <tr>
+                            <td> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
                             <td> {{$user->student_id}} </td>
                             <td> {{$user->last_name}}, {{$user->first_name}} </td>
                     

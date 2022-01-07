@@ -16,7 +16,7 @@
 </div>
 
 <div class="bg-light mt-3 p-3 border rounded">
-  <strong class="text-muted"> Sections Created </strong>
+  <strong class="text-muted"> Programs Created </strong>
   <br>
   <table class="table table-hover mt-3">
     <thead>

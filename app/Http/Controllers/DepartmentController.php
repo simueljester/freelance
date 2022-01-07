@@ -23,11 +23,9 @@ class DepartmentController extends Controller
         $departments = app(DepartmentRepository::class)->query()
         ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
             $query->where('name', 'like', '%' . $keyword . '%')
-            ->orWhere('description', 'like', '%' . $keyword . '%')
-            ->whereAcademicYearId($active_ac_id);
+            ->orWhere('description', 'like', '%' . $keyword . '%');
         })
-        ->with('activeAcademicYear')
-        ->whereAcademicYearId($active_ac_id)
+  
         ->paginate(20);
  
         return view('school-management.departments.index',compact('departments','keyword'));
@@ -46,7 +44,7 @@ class DepartmentController extends Controller
         $data = [
             'name'          => $request->name,
             'description'   => $request->description,
-            'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
+            // 'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
         ];
 
         $saved = app(DepartmentRepository::class)->save($data);

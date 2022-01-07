@@ -43,7 +43,7 @@ class ExportController extends Controller
 
     public function departments(){
 
-        $data = Department::with('activeAcademicYear')->get();
+        $data = Department::all();
         return Excel::download(new DepartmentsExport($data), 'DepartmentRecord.xlsx');
 
     }

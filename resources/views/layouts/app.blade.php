@@ -154,6 +154,18 @@
             @endif
           
 
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('user-profile.index')}}">
+                    @if(request()->is(['user-profile', 'user-profile/*']))
+                        <i class="fas fa-user-circle" style="color:#567bd8"></i>
+                        <span class="text-white"> <strong> User Profile </strong>  </span>
+                    @else
+                        <i class="fas fa-user-circle text-white"></i>
+                        <span> User Profile </span>
+                    @endif
+                </a>
+            </li>
+
          
             {{-- <li class="nav-item">
                 <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -174,8 +186,9 @@
             <div class="p-3" style="background: #e0e0e0">
                 <strong> <i class="fab fa-font-awesome-flag"></i> &nbsp {{App\AcademicYear::whereActive(1)->first()->name}} </strong>
                 <div class="dropdown float-right mr-3">
-                    <span> <i class="fas fa-user"></i> {{Auth::user()->name}} </span>
+                    <span> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . Auth::user()->avatar) ?? url('/uploads/default-avatar.png')}}" /> {{Auth::user()->name}} </span>
                     <div class="dropdown-content">
+                        <a class="nav-link"  href="{{route('user-profile.index')}}"> <i class="fas fa-user-circle"></i> User Profile </a>
                         <a class="nav-link"  href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                             <i class="fas fa-sign-out-alt"></i> {{ __('Logout') }}

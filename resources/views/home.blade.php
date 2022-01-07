@@ -68,10 +68,10 @@
             <div class="card-body">
                 <a href="{{route('user-management.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-user-plus"></i> Create New User </a>
                 <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
-                <a href="{{route('school-management.sections.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Section </a>
+                <a href="{{route('school-management.sections.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Program </a>
                 <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
                 <div class="dropdown mt-2 w-100">
-                    <button class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Questions </button>
+                    <button class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Question </button>
                     <div class="dropdown-content">
                         <a class="dropdown-item" href="{{route('question-bank.create.mcq',0)}}"> Add Multiple Choice</a>
                         <a class="dropdown-item" href="{{route('question-bank.create.tf',0)}}"> Add True or False</a>

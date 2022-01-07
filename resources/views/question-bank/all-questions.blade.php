@@ -6,6 +6,49 @@
     Filter question
 </button>
 
+@if ($filters->type)
+    @switch($filters->type)
+        @case('mcq')
+            <span class="badge badge-dark badge-pill">Multiple Choice</span>
+            @break
+        @case('tf')
+            <span class="badge badge-dark badge-pill"> True or False </span>
+            @break
+        @case('sa')
+            <span class="badge badge-dark badge-pill"> Identification </span>
+            @break
+        @case('essay')
+            <span class="badge badge-dark badge-pill"> Essay </span>
+            @break
+
+        @default
+    @endswitch
+    
+@endif
+
+@if ($filters->subject)
+    <span class="badge badge-dark badge-pill">{{$filters->subject->course_code}}  {{$filters->subject->name}}</span>
+@endif
+
+@if ($filters->start_date)
+    <span class="badge badge-dark badge-pill"> Start: {{$filters->start_date}}</span>
+@endif
+
+@if ($filters->end_date)
+    <span class="badge badge-dark badge-pill"> End: {{$filters->end_date}}</span>
+@endif
+
+@if ($filters->creator)
+    <span class="badge badge-dark badge-pill"> Creator: {{$filters->creator->name}}</span>
+@endif
+
+@if($filters->type || $filters->subject || $filters->creator || $filters->start_date || $filters->end_date )
+    <a href="{{route('question-bank.index')}}" class="text-danger"> <i class="fas fa-times-circle"></i> Clear Filters </a>
+@endif
+
+
+
+
 <!-- Modal -->
 <div class="modal fade" id="filterQuestion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -32,15 +75,7 @@
                                         <option value="essay" {{ $filters->type == 'essay' ? 'selected' : null }}> Essay </option>
                                     </select>
                                 </div>
-                                <div class="form-group">
-                                    <span> Difficulty </span>
-                                    <select name="difficulty" id="difficulty" class="form-control">
-                                        <option value=""> All Difficulty </option>
-                                        <option value="1" {{ $filters->difficulty == 1 ? 'selected' : null }} > Easy </option>
-                                        <option value="2" {{ $filters->difficulty == 2 ? 'selected' : null }} > Medium </option>
-                                        <option value="3" {{ $filters->difficulty == 3 ? 'selected' : null }} > Hard </option>
-                                    </select>
-                                </div>
+                              
                                 <div class="form-group">
                                     <span> Start Date </span>
                                     <input type="date" name="start_date" id="start_date" class="form-control" value="{{$filters->start_date}}">
@@ -52,16 +87,7 @@
                                     <select name="subject" id="subject" class="form-control">
                                         <option value=""> All Subjects </option>
                                         @foreach ($all_subjects as $subject)
-                                            <option value="{{$subject->id}}" {{ $filters->subject == $subject->id ? 'selected' : null }}> {{$subject->course_code}}  {{$subject->name}}  </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <span> Creator </span>
-                                    <select name="creator" id="creator" class="form-control">
-                                        <option value=""> All Creator </option>
-                                        @foreach ($all_creators as $creator)
-                                            <option value="{{$creator->user_creator->id}}" {{ $filters->creator == $creator->user_creator->id ? 'selected' : null }}> {{$creator->user_creator->name}} </option>
+                                            <option value="{{$subject->id}}"> {{$subject->course_code}}  {{$subject->name}}  </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -69,11 +95,21 @@
                                     <span> End Date </span>
                                     <input type="date" name="end_date" id="end_date" class="form-control" value="{{$filters->end_date}}">
                                 </div>
+                                <div class="form-group">
+                                    <span> Creator </span>
+                                    <select name="creator" id="creator" class="form-control">
+                                        <option value=""> All Creator </option>
+                                        @foreach ($all_creators as $creator)
+                                            <option value="{{$creator->user_creator->id}}"> {{$creator->user_creator->name}} </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                              
                             </div>
                         </div>
                         <hr>
                         <div class="text-right">
-                            @if($filters->type || $filters->subject || $filters->difficulty || $filters->creator || $filters->start_date || $filters->end_date )
+                            @if($filters->type || $filters->subject || $filters->creator || $filters->start_date || $filters->end_date )
                                 <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary btn-sm "> Clear </a>
                             @endif
                             <button class="btn btn-primary btn-sm "> Filter Question </button>
@@ -99,31 +135,32 @@ width: 100%; !important;">
         <th style="width:40%"> Question </th>
         <th style="width:10%" class="text-center"> Type </th>
         <th style="width:20%"> Subject </th>
-        {{-- <th style="width:10%"> Difficulty </th> --}}
- 
         <th style="width:10%"> Creator </th>
         <th> Creation Date </th>
+        <th></th>
     </thead>
     <tbody>
         @forelse ($all_questions as $question)
             <tr>
-                <td> <a href="{{route('question-bank.show',$question)}}"> {!! $question->instruction !!} </a>  </td>
+                <td> 
+                    <div id="q_instruction{{$question->id}}" class="q_instruction"> {!! $question->instruction !!}  </div>
+                    <div id="full_q_instruction{{$question->id}}" class="full_q_instruction"></div> 
+
+                    @if (strlen($question->instruction) >= 250)
+                    <strong class="text-primary" id="btn-see-more{{$question->id}}" class="btn-see-more" style="cursor:pointer" onclick="showFullDescription({{$question}})"> See more </strong>
+                    <strong class="text-primary" id="btn-see-less{{$question->id}}" class="btn-see-less" style="cursor:pointer;display:none" onclick="showLessDescription({{$question}})"> See Less </strong>
+                    @endif
+                </td>
                 <td class="text-center"> <span class="badge badge-warning text-dark p-1 text-uppercase"> {{$question->question_type}} </span> </td>
                 <td> {{$question->subject->course_code}} {{$question->subject->name}} </td>
-                {{-- <td>  
-                    @if ($question->level == 1)
-                        <span class="text-success"> Easy </span>
-                    @endif
-                    @if ($question->level == 2)
-                        <span class="text-primary"> Medium </span>
-                    @endif
-                    @if ($question->level == 3)
-                        <span class="text-danger"> Hard </span>
-                    @endif
-                </td> --}}
                 <td> {{$question->user_creator->name}} </td>
                 <td> 
                     {{ $question->created_at->format('Y-m-d') }}
+                </td>
+                <td>
+                    <a class="q_instruction btn btn-primary btn-sm" href="{{route('question-bank.show',$question)}}">
+                        View
+                    </a>  
                 </td>
             </tr>
         @empty
@@ -136,5 +173,34 @@ width: 100%; !important;">
     {{ $all_questions->links() }}
 </div>
 
+
+{{-- @include('layouts.scripts') --}}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    
+    $(".q_instruction").text(function(index, currentText) {
+        if(currentText.length >= 250){
+            return currentText.substr(0, 250)+"...";
+        }
+    });
+
+    function showFullDescription(question){
+        $( "#btn-see-more"+question.id).hide();
+        $( "#btn-see-less"+question.id).show();
+        $( "#q_instruction"+question.id).empty();
+        $('#full_q_instruction'+question.id).html(question.instruction)
+    }
+
+    function showLessDescription(question){
+        $( "#btn-see-more"+question.id).show();
+        $( "#btn-see-less"+question.id).hide();
+        $("#q_instruction"+question.id).html(question.instruction)
+        $("#q_instruction"+question.id).text(function(index, currentText) {
+            return currentText.substr(0, 250)+"...";
+        });
+        $('#full_q_instruction'+question.id).empty()
+    }
+
+    </script>
 @endsection
 

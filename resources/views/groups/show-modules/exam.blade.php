@@ -54,6 +54,7 @@
                 <strong> <i class="fas fa-users"></i> User Exam Assignments </strong>
                 <table class="table table-hover mt-3">
                     <thead>
+                        <th></th>
                         <th> User </th>
                         <th> Score </th>
                         <th> Status </th>
@@ -62,6 +63,7 @@
                     <tbody>
                         @forelse ($exam_assignments as $assignment)
                             <tr>
+                                <td> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $assignment->user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
                                 <td> <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" target="_blank"> {{$assignment->user->name}} </a> </td>
                                 <td> {{$assignment->score}} / {{$assignment->exam->total_score}} </td>
                                 <td> 

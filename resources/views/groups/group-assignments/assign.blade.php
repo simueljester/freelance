@@ -33,6 +33,7 @@
             </div>
             <table class="table table-hover mt-3" id="table-user">
                 <thead>
+                    <th></th>
                     <th> Student ID </th>
                     <th> Name </th>
                     <th> Email </th>
@@ -44,6 +45,7 @@
                     @foreach ($all_users as $user)
                         @if ($user->user_instance->role_id == 3)
                             <tr>
+                                <td> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
                                 <td> {{$user->student_id}} </td>
                                 <td> {{$user->name}} </td>
                                 <td> {{$user->email}} </td>

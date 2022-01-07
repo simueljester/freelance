@@ -88,9 +88,9 @@
                 </select>
             </div>
             <div class="form-group">
-                <small class="text-capialize"> Section </small>
+                <small class="text-capialize"> Program </small>
                 <select name="section" id="section" class="form-control" {{$user->user_instance->role_id == 2 ? 'disabled':null}}>
-                    <option value=""> Select Section </option>
+                    <option value=""> Select Program </option>
                     @if ($user->user_instance->section)
                         <option value="{{$user->user_instance->section_id}}"> {{ $user->user_instance->section->name }} (Current) </option>
                     @endif

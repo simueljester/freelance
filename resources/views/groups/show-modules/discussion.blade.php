@@ -61,13 +61,15 @@
                 <strong> <i class="fas fa-users"></i> User Discussion Assignments </strong> - <a href="{{route('groups.discussion.generate-pdf',$discussion)}}" target="_blank" class="text-primary" style="text-decoration:none"> Generate scores </a>
                 <table class="table table-hover mt-3">
                     <thead>
+                        <th></th>
                         <th> User </th>
                         <th> Score </th>
                     </thead>
                     <tbody>
                         @forelse ($discussion_assignments as $assignment)
                             <tr>
-                                <td> <i class="fas fa-user"></i> {{$assignment->user->name}} </td>
+                                <td><img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $assignment->user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
+                                <td>  {{$assignment->user->name}} </td>
                                 <td> {{$assignment->score}} / {{$assignment->discussion->total_score}} </td>
                             </tr>
                         @empty

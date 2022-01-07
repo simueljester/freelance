@@ -43,7 +43,7 @@
                     <br>
                     <small> <i class="fas fa-flag"></i> Active AY: <strong> {{$group->activeAcademicYear->name}} </strong>  </small>
                     <br>
-                    <small> <i class="fas fa-adjust"></i> Section: <strong> {{$group->section->name}} </strong>  </small>
+                    <small> <i class="fas fa-adjust"></i> Program: <strong> {{$group->section->name}} </strong>  </small>
                     <hr>
                     <div id="class_description{{$group->id}}" class="class_description"> {!! $group->description !!}  </div>
                     <div id="full_class_description{{$group->id}}" class="full_class_description"></div> 

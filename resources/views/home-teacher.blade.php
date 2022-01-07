@@ -73,17 +73,59 @@
             </div>
             <div class="card-body">
                 <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
-                <a href="{{route('question-bank.create.mcq',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
+                <div class="dropdown mt-2 w-100">
+                    <button class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create New Question </button>
+                    <div class="dropdown-content">
+                        <a class="dropdown-item" href="{{route('question-bank.create.mcq',0)}}"> Add Multiple Choice</a>
+                        <a class="dropdown-item" href="{{route('question-bank.create.tf',0)}}"> Add True or False</a>
+                        <a class="dropdown-item" href="{{route('question-bank.create.sa',0)}}"> Add Identification </a>
+                        <a class="dropdown-item" href="{{route('question-bank.create.essay',0)}}"> Add Essay </a>
+                    </div>
+                </div>
+                
+                {{-- <a href="{{route('question-bank.create.mcq',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Multiple Choice Question </a>
                 <a href="{{route('question-bank.create.tf',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create True or False Question </a>
                 <a href="{{route('question-bank.create.sa',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Identification Question </a>
-                <a href="{{route('question-bank.create.essay',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Essay Question </a>
+                <a href="{{route('question-bank.create.essay',0)}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i>  Create Essay Question </a> --}}
+                <button  class="btn btn-primary btn-block text-left mt-2" data-toggle="modal" data-target="#createExam"> <i class="fas fa-plus"></i>  Create New Exam </button>
             </div>
         </div>
     </div>
 </div>
 
 
+<!-- Modal -->
 
+<div class="modal fade" id="createExam" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Create Exam </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+              <span> Select Folder </span>
+                <ul>
+                    @forelse ($folders as $folder)
+                        <li> <a href="{{route('groups.exam.create',[$folder->group,$folder->id ?? 0])}}" style="text-decoration: none;">  {{$folder->group->name}} / <i class="fas fa-folder"></i> {{$folder->name}}  </a> </li> 
+                    @empty
+                        No folder found 
+                    @endforelse
+                </ul>
+              </select>
+          </div>
+    
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endif
 
 
@@ -139,6 +181,26 @@
   0% {opacity: 0;}
   100% {opacity: 1;}
   } 
+
+  .dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
 </style>
 
 

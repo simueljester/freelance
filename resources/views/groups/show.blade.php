@@ -29,7 +29,7 @@
         <br>
         <i class="fas fa-flag"></i> Active AY: <strong> {{$group->activeAcademicYear->name}} </strong>
         <br>
-        <i class="fas fa-adjust"></i> Section: <strong> {{$group->section->name}} </strong>
+        <i class="fas fa-adjust"></i> Program: <strong> {{$group->section->name}} </strong>
         <div> <i class="fas fa-calendar-alt"></i> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
     </div>
     <div class="card-footer">
@@ -65,6 +65,7 @@
 
                 <table class="table table-hover mt-3">
                     <thead>
+                        <th></th>
                         <th> Student ID </th>
                         <th> Name </th>
                         <th> Email </th>
@@ -75,6 +76,7 @@
                     <tbody>
                         @forelse ($assigned_users as $user)
                             <tr>
+                                <td> <img  width="30" height="30" style="border-radius: 50%;" src="{{ url('/uploads/' . $user->user->avatar) ?? url('/uploads/default-avatar.png')}}" /></td>
                                 <td> {{$user->user->student_id}} </td>
                                 <td> <a href="{{route('groups.user-data',$user)}}" class="text-primary"> {{$user->user->name}} </a> </td>
                                 <td> {{$user->user->email}} </td>

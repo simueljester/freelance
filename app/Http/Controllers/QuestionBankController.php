@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Exam;
+use App\User;
 use DateTime;
 use App\Subject;
 use App\Question;
@@ -80,13 +81,12 @@ class QuestionBankController extends Controller
 
         $filters = (object)[
             'type'          => $type,
-            'subject'       => $subject,
-            'difficulty'    => $difficulty,
-            'creator'       => $creator,
+            'subject'       => Subject::find($subject),
+            'creator'       => User::find($creator),
             'start_date'    => $start_date,
             'end_date'      => $request->end_date, //different format because end date added 1 day upon wherebetween
         ];
-
+        // dd($filters);
         return view('question-bank.all-questions',compact('all_questions','all_subjects','all_creators','filters','keyword'));
     }
 
@@ -142,9 +142,8 @@ class QuestionBankController extends Controller
 
         $filters = (object)[
             'type'          => $type,
-            'subject'       => $subject,
-            'difficulty'    => $difficulty,
-            'creator'       => $creator,
+            'subject'       => Subject::find($subject),
+            'creator'       => User::find($creator),
             'start_date'    => $start_date,
             'end_date'      => $request->end_date, //different format because end date added 1 day upon wherebetween
         ];

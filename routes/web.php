@@ -283,3 +283,11 @@ Route::get('send', 'UserController@sendNotification');
 
 Route::get('send-email-notif', 'UserController@sendEmail')->name('send-email');
 
+
+//User Profile
+Route::group(['prefix' => 'user-profile', 'as' => 'user-profile.'], function() {
+    Route::get('/',                     ['as' => 'index',               'uses' => 'UserController@userProfile']);
+    Route::post('/save-new-password',    ['as' => 'save-new-password',   'uses' => 'UserController@saveNewPasswordProfile']);
+    Route::post('/save-avatar',    ['as' => 'save-avatar',   'uses' => 'UserController@saveAvatar']);
+});
+

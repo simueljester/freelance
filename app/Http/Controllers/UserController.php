@@ -54,8 +54,8 @@ class UserController extends Controller
 
     public function create(){
        
-        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
+        // $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $departments = app(DepartmentRepository::class)->query()->get();
         return view('user-management.create',compact('departments'));
     }
     
@@ -107,8 +107,8 @@ class UserController extends Controller
 
     public function edit(User $user){
 
-        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
+        // $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $departments = app(DepartmentRepository::class)->query()->get();
         return view('user-management.edit',compact('user','departments'));
 
     }
@@ -232,7 +232,53 @@ class UserController extends Controller
         return response()->json([
             'sections' => $sections
         ]);
+    }
 
+    public function userProfile(){
+        return view('user-profile.index');
+    }
+
+    public function saveNewPasswordProfile(Request $request){
+
+        $request->validate([
+            'new_password' => 'required|min:10'
+        ]);
+
+        $old_password = $request->old_password;
+        $new_password = $request->new_password;
+        $confirm_new_password = $request->confirm_new_password;
+        
+        if(Hash::check($old_password,Auth::user()->password) ){
+            if($new_password == $confirm_new_password){
+                $user = User::find(Auth::user()->id);
+                $user->password =  Hash::make($new_password);
+                $user->save();
+                return redirect()->back()->with('success', 'Password successfully updated.');
+            }else{
+                return redirect()->back()->with('error', 'New Password and Confirm Password does not match.');
+            }
+        }else{
+            return redirect()->back()->with('error', 'Invalid old password. Request of changing password aborted.');
+        }
+
+    }
+
+    public function saveAvatar(Request $request){
+
+        $request->validate([
+            'image' => 'required'
+        ]);
+
+        $slugged    = strtolower(Auth::user()->last_name);
+        $file_data  = $request->input('image');
+        $file_name  = $slugged. time().'.png';
+        $request->image->move(public_path('/uploads'), $file_name);
+
+        $user = User::find(Auth::user()->id);
+        $user->avatar =  $file_name;
+        $user->save();
+
+        return redirect()->back()->with('success', 'Avatar successfully updated.');
     }
 
   

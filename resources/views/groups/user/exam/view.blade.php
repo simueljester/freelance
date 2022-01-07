@@ -28,7 +28,7 @@
                         <span class="badge badge-danger"> Late Submission </span>
                     @endif
                     &nbsp&nbsp
-                    <span class="text-primary" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span>
+                    {{-- <span class="text-primary" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span> --}}
                  
                    
                     <div class="mt-5">

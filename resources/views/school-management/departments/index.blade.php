@@ -30,14 +30,14 @@
     <table class="table table-hover">
         <thead>
             <th> Name </th>
-            <th> Academic Year </th>
+            {{-- <th> Academic Year </th> --}}
 
         </thead>
         <tbody>
             @forelse ($departments as $department)
                 <tr>
                     <td> <a href="{{route('school-management.departments.show',$department)}}"> {{$department->name}}  </a> </td>
-                    <td> {{$department->activeAcademicYear->name}}</td>
+                    {{-- <td> {{$department->activeAcademicYear->name}}</td> --}}
                 </tr>
             @empty
                 <tr>

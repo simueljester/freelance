@@ -6,6 +6,7 @@ use App\User;
 use DateTime;
 use App\Group;
 use App\Login;
+use App\Folder;
 use DatePeriod;
 use App\Subject;
 use App\Question;
@@ -83,7 +84,12 @@ class HomeController extends Controller
             $module_count = GroupModule::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->count();
             $question_count = Question::whereCreator(Auth::user()->id)->whereAcademicYearId($active_ac_id)->count();
             $recently_created_questions = Question::with('subject')->whereCreator(Auth::user()->id)->orderBy('created_at','DESC')->get();
-            return view('home-teacher',compact('group_count','question_count','module_count','recently_created_questions'));
+            $groups = Group::whereCreatorId(Auth::user()->id)->whereCreatorInstanceId(Auth::user()->user_instance->id);
+            $group_ids = $groups->pluck('id');
+            $group_collection = $groups->get();
+            $folders = Folder::with('group')->whereIn('group_id',$group_ids)->orderBy('name','ASC')->get();
+ 
+            return view('home-teacher',compact('group_count','question_count','module_count','recently_created_questions','group_collection','folders'));
         }
 
 

@@ -6,7 +6,7 @@
 <form action="{{route('school-management.sections.save')}}" method="POST">
     @csrf
     @method("POST")
-    <strong> Create New Section </strong>
+    <strong> Create New Program </strong>
     <hr>
 
     <div class="form-group">
@@ -30,7 +30,7 @@
     
     <div>
         <a href="{{route('school-management.sections.index')}}" class="btn btn-outline-secondary"> Cancel </a>
-        <button class="btn btn-primary"> Create Section </button>
+        <button class="btn btn-primary"> Create Program </button>
     </div>
 </form>
 

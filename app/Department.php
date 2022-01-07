@@ -10,13 +10,13 @@ class Department extends Model
     protected $table = 'departments';
     
     protected $fillable = [
-        'id', 'name','description','academic_year_id'
+        'id', 'name','description'
     ];
 
-    public function activeAcademicYear()
-    {
-        return $this->belongsTo('App\AcademicYear', 'academic_year_id', 'id');
-    }
+    // public function activeAcademicYear()
+    // {
+    //     return $this->belongsTo('App\AcademicYear', 'academic_year_id', 'id');
+    // }
 
 
     public function sections()

@@ -4,7 +4,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <a href="{{route('school-management.sections.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Section </a>
+        <a href="{{route('school-management.sections.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Program </a>
     </div>
     <div class="col-sm-6">
         <form action="">
@@ -24,7 +24,7 @@
 
 <div class="mt-4">
     @if ($sections->count())
-        <div class="mb-3">Showing {{ $sections->firstItem() }} to {{ $sections->lastItem() }} of {{ $sections->total() }} sections </div>
+        <div class="mb-3">Showing {{ $sections->firstItem() }} to {{ $sections->lastItem() }} of {{ $sections->total() }} programs </div>
     @endif
   
     <table class="table table-hover">
@@ -43,7 +43,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4"> <strong> No sections created </strong> </td>
+                    <td colspan="4"> <strong> No programs created </strong> </td>
                 </tr>
             @endforelse
         </tbody>

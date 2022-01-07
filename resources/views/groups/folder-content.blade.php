@@ -71,7 +71,7 @@
                         <div class="card mt-3">
                             <div class="card-header bg-light text-dark p-2">
                                 <i class="fas fa-copy text-primary fa-2x m-1"></i> 
-                                <a href="{{route('groups.exam.show',$module->exam)}}" class="text-primary" style="  text-decoration: none;"> 
+                                <a href="{{route('groups.exam.show',$module->exam)}}" class="text-primary" style="text-decoration: none;"> 
                                     <strong > {{$module->exam->name}}  </strong> 
                                 </a> 
                                 <span class="float-right">

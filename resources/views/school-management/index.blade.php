@@ -47,13 +47,13 @@
     </li>
     <li class="nav-item">
         @if (Route::is('school-management.sections.index'))
-            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Sections </a>
+            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Programs </a>
         @elseif (Route::is('school-management.sections.create'))
-            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Sections </a>
+            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Programs </a>
         @elseif (Route::is('school-management.sections.show'))
-            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Sections </a>
+            <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Programs </a>
         @else
-            <a class="nav-link "  href="{{route('school-management.sections.index')}}"> Sections </a>
+            <a class="nav-link "  href="{{route('school-management.sections.index')}}"> Programs </a>
         @endif 
     </li>
 

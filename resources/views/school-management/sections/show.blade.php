@@ -10,13 +10,13 @@
   &nbsp&nbsp
   <span class="text-primary" data-toggle="modal" data-target="#editSection" style="cursor:pointer;"> <i class="fas fa-edit"></i> Edit </span>
   &nbsp&nbsp
-  <a href="{{route('school-management.sections.delete',$section)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this section? Classes assign to this section will be deleted')"> <i class="fas fa-trash-alt"></i> Delete </a>
+  <a href="{{route('school-management.sections.delete',$section)}}" class="text-danger" onclick="return confirm('Are you sure you want to delete this program? Classes assign to this section will be deleted')"> <i class="fas fa-trash-alt"></i> Delete </a>
   &nbsp&nbsp
   Date Created: {{$section->created_at->format('Y-m-d')}} 
 </div>
 
 <div class="bg-light mt-3 p-3 border rounded">
-  <strong class="text-muted"> Users in this section </strong>
+  <strong class="text-muted"> Users in this program </strong>
   <br>
   <table class="table table-hover mt-3">
     <thead>

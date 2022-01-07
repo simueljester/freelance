@@ -14,14 +14,14 @@
         <tr>
             <td width="20"> <strong> Name </strong> </td>
             <td width="20"> <strong> Description </strong> </td>
-            <td width="20"> <strong> Academic Year </strong> </td>
+            {{-- <td width="20"> <strong> Academic Year </strong> </td> --}}
             <td width="20"> <strong> Creation Date </strong> </td>
         </tr>
         @foreach ($data as $department)
             <tr>
                 <td> {{$department->name}} </td>
                 <td> {{$department->description}}</td>
-                <td> {{$department->activeAcademicYear->name}} / {{$department->activeAcademicYear->year}} / {{$department->activeAcademicYear->semester}} </td>
+                {{-- <td> {{$department->activeAcademicYear->name}} / {{$department->activeAcademicYear->year}} / {{$department->activeAcademicYear->semester}} </td> --}}
                 <td> {{$department->created_at}} </td>
             </tr>
         @endforeach

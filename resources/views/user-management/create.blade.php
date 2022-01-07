@@ -91,7 +91,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <small class="text-capialize"> Section </small>
+                <small class="text-capialize"> Program </small>
                 <select name="section" id="section" class="form-control" required></select>
             </div>
         </div>
@@ -141,12 +141,10 @@
      
             },
             success: function(data){
-                
-               console.log(data.sections);
                var fetched_sections = data.sections
                var select = document.getElementById('section');
                $("#section option").remove(); // remove all values first before feeding new data
-               $(select).append('<option  name="section"> Select Section </option>');
+               $(select).append('<option  name="section"> Select Program </option>');
                fetched_sections.forEach(element => {
                     $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
                 });
