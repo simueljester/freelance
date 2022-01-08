@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 
+
+Route::group(['middleware' => 'revalidate'],function(){
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -215,4 +219,7 @@ Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
 
 Route::group(['prefix' => 'folders', 'as' => 'folders.'], function() {
     Route::post('/save', ['as' => 'save', 'uses' => 'FolderController@save']);
+});
+
+
 });

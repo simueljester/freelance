@@ -38,7 +38,7 @@ class UserRepository extends BaseRepository
                     $save_user->email = $user->email;
                     $save_user->password = Hash::make('user1234');
                     $save_user->address = $user->address;
-                    // $save_user->birthday = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($user->birthday)->format('Y-m-d');
+                    $save_user->birthday = \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($user->birthday)->format('Y-m-d');
                     $save_user->save();
                     
                     
