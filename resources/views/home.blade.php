@@ -33,7 +33,7 @@
             <div class="card-header bg-dark"></div>
             <div class="card-body text-center">
                 <div> <strong style="font-size:22px;"> {{$subject_count}} </strong> </div>
-                <div> <i class="fas fa-book-reader text-primary"></i>  <strong> <a href="{{route('school-management.subjects.index')}}"> Subjects Created  </a> </strong> </div>
+                <div> <i class="fas fa-book-reader text-primary"></i>  <strong> <a href="{{route('school-management.subjects.index')}}"> Course Created  </a> </strong> </div>
             </div>
         </div>
     </div>
@@ -67,7 +67,7 @@
             </div>
             <div class="card-body">
                 <a href="{{route('user-management.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-user-plus"></i> Create New User </a>
-                <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Subject </a>
+                <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-book-medical"></i>  Create New Course </a>
                 <a href="{{route('school-management.sections.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Program </a>
                 <a href="{{route('groups.create')}}" class="btn btn-primary btn-block text-left"> <i class="fas fa-plus"></i> Create New Class </a>
                 <div class="dropdown mt-2 w-100">

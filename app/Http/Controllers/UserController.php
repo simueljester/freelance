@@ -71,7 +71,7 @@ class UserController extends Controller
             'password' => 'required|min:10',
             'department' => 'required',
             'section' => 'required_if:role,3',
-            'student_id' => 'required_if:role,3'
+            'student_id' => 'required_if:role,3|unique:user'
         ]);
 
         $user_data = [

@@ -114,7 +114,7 @@
                             <input type="text" name="" id="group_name" class="form-control" readonly>
                         </div>
                         <div class="form-group">
-                            <span> Subject: </span>
+                            <span> Course: </span>
                             <input type="text" name="" id="subject_name" class="form-control" readonly>
                         </div>
                     </div>

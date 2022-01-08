@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="col-sm-12"> 
                     <div class="form-group mt-3">
-                        <small class="text-capitalize"> Subject </small>
+                        <small class="text-capitalize"> Course </small>
                         <select name="subject" id="subject" class="form-control" required>
                             @foreach ($subjects as $subject)
                                 <option value="{{$subject->id}}" {{$question->subject_id == $subject->id ? 'selected' : null}}> {{$subject->name}} </option>

@@ -24,7 +24,7 @@
         <table class="table table-hover mt-3">
             <thead>
                 <th> Class Name </th>
-                <th> Subject </th>
+                <th> Course </th>
                 <th> Creator </th>
                 <th> Academic Year </th>
                 <th> Creation date </th>

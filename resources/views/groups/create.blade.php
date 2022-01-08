@@ -33,7 +33,7 @@
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" required></textarea>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Subject </small>
+                <small class="text-capitalize"> Course </small>
                 <select name="subject" id="subject" class="form-control" required>
                     @foreach ($subjects as $subject)
                         <option value="{{$subject->id}}"> {{$subject->name}} </option>
