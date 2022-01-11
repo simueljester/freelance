@@ -33,8 +33,8 @@ class SectionController extends Controller
     }
 
     public function create(){
-        $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $departments = app(DepartmentRepository::class)->query()->with('activeAcademicYear')->whereAcademicYearId($active_ac_id)->get();
+        // $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
+        $departments = app(DepartmentRepository::class)->query()->get();
         return view('school-management.sections.create',compact('departments'));
     }
 

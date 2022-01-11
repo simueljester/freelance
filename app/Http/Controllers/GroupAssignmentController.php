@@ -35,9 +35,14 @@ class GroupAssignmentController extends Controller
     }
 
     public function assignUsers(Request $request){
-
-        $data = app(GroupAssignmentRepository::class)->assignUsers($request);
-        return redirect()->back()->with('success', 'Users successfully assigned to Group');
+        // return $request;
+        if($request->user_id != null){
+            $data = app(GroupAssignmentRepository::class)->assignUsers($request);
+            return redirect()->back()->with('success', 'Users successfully assigned to Group');
+        }else{
+            return back()->with('error','Must select user');
+        }
+      
         // return redirect()->route('groups.show',$request->group_id)->with('success', 'Users successfully assigned to Group');
    
     }
