@@ -279,6 +279,7 @@ Route::group(['prefix' => 'downloads', 'as' => 'downloads.'], function() {
 
 Route::group(['prefix' => 'folders', 'as' => 'folders.'], function() {
     Route::post('/save', ['as' => 'save', 'uses' => 'FolderController@save']);
+    Route::post('/update', ['as' => 'update', 'uses' => 'FolderController@update']);
 });
 
 

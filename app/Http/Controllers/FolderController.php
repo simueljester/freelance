@@ -28,6 +28,14 @@ class FolderController extends Controller
         return redirect()->back()->with('success', 'Folder successfully created');
     }
 
+    public function update(Request $request){
+
+        $folder = app(FolderRepository::class)->find($request->folder_id);
+        $folder->name = $request->name;
+        $folder->save();
+        return redirect()->back()->with('success', 'Folder successfully updated');
+    }
+
   
 
 }

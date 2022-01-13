@@ -35,13 +35,14 @@
                 @else
                     @foreach ($folders as $folder)
                     <div class="col-sm-2">
-                        <a style="text-decoration: none;" href="{{route('groups.show-folder',$folder)}}"> 
-                            <div class="card bg-light" style="cursor:pointer">
-                                <div class="card-body">
-                                <i class="fas fa-folder text-warning"></i> <i class="text-muted"> {{$folder->name}} </i>  
-                                </div>
+                        <div class="card bg-light" >
+                            <div class="card-body">
+                                <a style="text-decoration: none;" href="{{route('groups.show-folder',$folder)}}"> 
+                                    <i class="fas fa-folder text-warning"></i> <i class="text-muted" style="cursor:pointer"> {{$folder->name}} </i>  
+                                </a>
+                                <i class="fas fa-edit float-right" onclick="openEditFolder({{$folder}})" style="cursor:pointer;"></i>
                             </div>
-                        </a>
+                        </div>
                     </div>
                     @endforeach
                 @endif
@@ -207,6 +208,35 @@
       </div>
 </form>
 
+<!-- Modal Edit Folder -->
+<form action="{{route('folders.update')}}" method="POST">
+    @csrf
+    @method("POST")
+    <div class="modal fade" id="editFolder" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> Edit Folder </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <input type="hidden" name="folder_id" id="folder_id">
+                    <span> Name </span> <span class="text-danger"> * </span>
+                    <input type="text" name="name" id="name" class="form-control" required>
+                </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary btn-sm">Save changes</button>
+            </div>
+        </div>
+        </div>
+    </div>
+</form>
+
 
 <!-- Modal Add Resource-->
 
@@ -261,5 +291,18 @@
   </div>
 
 
- @include('layouts.card-style')
+@include('layouts.card-style')
+
+
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    function openEditFolder(object){
+        console.log(object);
+        $('#folder_id').val(object.id);
+        $('#name').val(object.name);
+        $('#editFolder').modal('show')
+    }
+   
+</script>
