@@ -28,12 +28,12 @@
             <strong> Create Discussion </strong>
             <hr>
             <div class="form-group mt-1">
-                <span> Name </span>
+                <span> Name </span> <span class="text-danger"> * </span>
                 <input type="text" name="name" id="name" class="form-control" required>
             </div>
             <div class="form-group mt-3">
-                <span> Description (optional) </span>
-                <textarea name="description" id="description" c cols="30" rows="5" class="form-control description"></textarea>
+                <span> Description </span> <span class="text-danger"> * </span>
+                <textarea name="description" id="description" cols="30" rows="5" class="form-control description" required></textarea>
             </div>
             <div class="form-group mt-3">
                 <input type="file" name="attachment" id="attachment">
@@ -44,11 +44,11 @@
                 <input type="text" value="{{$group->name}}" class="form-control" disabled>
             </div>
             <div class="form-group mt-3">
-                <span> Total score </span>
+                <span> Total score </span> <span class="text-danger"> * </span>
                 <input type="number" name="total_score" min="1" id="total_score" value="1"  class="form-control" required>
             </div>
             <div class="form-group mt-3">
-                <span> Module Visibility </span>
+                <span> Module Visibility </span> <span class="text-danger"> * </span>
                 <br>
                 <input name="visibility" type="checkbox"  data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
             </div>

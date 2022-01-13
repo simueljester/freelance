@@ -28,15 +28,16 @@
             <strong> Create Learning Material </strong>
             <hr>
             <div class="form-group mt-1">
-                <span> Name </span>
+                <span> Name </span> <span class="text-danger"> * </span>
                 <input type="text" name="name" id="name" class="form-control" required>
             </div>
             <div class="form-group mt-3">
-                <span> Description (optional) </span>
-                <textarea name="description" id="description" c cols="30" rows="5" class="form-control description"></textarea>
+                <span> Description </span> <span class="text-danger"> * </span>
+                <textarea name="description" id="description" c cols="30" rows="5" class="form-control description" required></textarea>
             </div>
             <div class="form-group mt-3">
-                <input type="file" name="attachment" id="attachment">
+                <span> Attachment </span> <span class="text-danger"> * </span> <br>
+                <input type="file" name="attachment" id="attachment" required>
             </div>
             <div class="form-group mt-3">
                 <span> Group </span>
@@ -46,7 +47,7 @@
             <div class="form-group mt-3">
                 <span> Module Visibility </span>
                 <br>
-                <input name="visibility" type="checkbox" checked data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
+                <input name="visibility" type="checkbox"  data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
             </div>
             <hr>
             <div class="mt-3">

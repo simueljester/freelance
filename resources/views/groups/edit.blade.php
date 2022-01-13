@@ -26,11 +26,11 @@
             <hr>
             <input type="hidden" name="group_id" id="group_id" value="{{$group->id}}">
             <div class="form-group">
-                <small class="text-capitalize"> Name </small>
+                <small class="text-capitalize"> Name </small> <span class="text-danger"> * </span>
                 <input type="text" name="name" id="name" class="form-control p-3" value="{{$group->name}}" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Description </small>
+                <small class="text-capitalize"> Description </small> <span class="text-danger"> * </span>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" required> {{$group->description}} </textarea>
             </div>
             <hr>

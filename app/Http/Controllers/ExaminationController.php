@@ -36,14 +36,15 @@ class ExaminationController extends Controller
     }
 
     public function save(Request $request){
-      
+        
         $request->validate([
             'name' => 'required',
             'group' => 'required',
             'duration' => 'required',
+            'description' => 'required',
             'accessible_date' => 'required',
             'accessible_time' => 'required',
-            'expiration_date' => 'required',
+            'expiration_date' => 'required|after_or_equal:start_date',
             'expiration_time' => 'required'
         ]);
 

@@ -90,16 +90,16 @@
             </div>
             <div class="modal-body">
                 <div class="form-group">
-                    <span> Name (Unique) </span>
+                    <span> Name (Unique) </span> <span class="text-danger"> * </span>
                     <input type="text" name="name" id="name" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <span> Year </span>
+                    <span> Year </span> <span class="text-danger"> * </span>
                     <input type="text" name="year" id="year" class="form-control" required>
                 </div>
                 <div class="form-group">
-                    <span> Semester </span>
-                    <select name="semester" id="semester" class="form-control">
+                    <span> Semester </span> <span class="text-danger"> * </span>
+                    <select name="semester" id="semester" class="form-control" required>
                         <option value="1st semester"> 1st Semester </option>
                         <option value="2nd semester"> 2nd Semester </option>
                         <option value="summer"> Summer </option>

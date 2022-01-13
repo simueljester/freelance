@@ -10,7 +10,7 @@
     <hr>
 
     <div class="form-group">
-        <span> Name </span>
+        <span> Name </span> <span class="text-danger"> * </span>
         <input type="text" name="section_name" id="section_name" class="form-control" required>
     </div>
 
@@ -20,7 +20,7 @@
     </div>
 
     <div class="form-group">
-        <span> Department</span>
+        <span> Department</span> <span class="text-danger"> * </span>
         <select name="department" id="department" class="form-control" required>
             @foreach ($departments as $department)
                 <option value="{{$department->id}}"> {{$department->name}} </option>

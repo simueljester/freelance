@@ -9,11 +9,11 @@
     <strong> Create New Course </strong>
     <hr>
     <div class="form-group">
-        <span> Descriptive Title </span>
+        <span> Descriptive Title </span> <span class="text-danger"> * </span>
         <input type="text" name="name" id="name" class="form-control" required>
     </div>
     <div class="form-group">
-        <span> Course Code </span>
+        <span> Course Code </span> <span class="text-danger"> * </span>
         <input type="text" name="course_code" id="course_code" class="form-control" required>
     </div>
     <div class="form-group">

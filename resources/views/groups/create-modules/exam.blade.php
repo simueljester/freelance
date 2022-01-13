@@ -29,12 +29,12 @@
             <strong> Create Exam </strong>
             <hr>
             <div class="form-group mt-1">
-                <span> Name </span>
+                <span> Name </span> <span class="text-danger"> * </span>
                 <input type="text" name="name" id="name" class="form-control" required>
             </div>
             <div class="form-group mt-3">
-                <span> Description (optional) </span>
-                <textarea name="description" id="description" cols="30" rows="5" class="form-control"></textarea>
+                <span> Description </span> <span class="text-danger"> * </span>
+                <textarea name="description" id="description" cols="30" rows="5" class="form-control" required></textarea>
             </div>
             <div class="form-group mt-3">
                 <span> Group </span>
@@ -42,12 +42,12 @@
                 <input type="text" value="{{$group->name}}" class="form-control" disabled>
             </div>
             <div class="form-group mt-3">
-                <span> Duration (Minutes) </span>
+                <span> Duration (Minutes) <span class="text-danger"> * </span> </span>
                 <input type="number" name="duration" min="1" id="duration" value="1"  class="form-control" required>
             </div>
             
             <div class="form-group mt-3">
-                <span> Accessible Date </span>
+                <span> Accessible Date <span class="text-danger"> * </span> </span>
                 <div class="row">
                     <div class="col-sm-6">
                         <input type="date" name="accessible_date" id="accessible_date"  class="form-control" required>
@@ -59,7 +59,7 @@
             </div>
 
             <div class="form-group mt-3">
-                <span> Expiration Date </span>
+                <span> Expiration Date <span class="text-danger"> * </span></span>
                 <br>
                 <small class="text-muted"> Students may not be able to access this exam after set expiration date </small>
                 <div class="row">

@@ -25,22 +25,17 @@
             <strong> Basic Information </strong>
             <hr>
             <div class="form-group">
-                <small class="text-capitalize"> <i>  First Name </i>  </small>
+                <small class="text-capitalize"> <i>  First Name </i>  </small> <span class="text-danger"> * </span>
                 <input type="text" name="first_name" id="first_name" class="form-control p-3" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Last Name </small>
+                <small class="text-capitalize"> Last Name </small> <span class="text-danger"> * </span>
                 <input type="text" name="last_name" id="last_name" class="form-control p-3" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Birthday </small>
+                <small class="text-capitalize"> Birthday </small> <span class="text-danger"> * </span>
                 <input type="date" name="birthday" id="birthday"  class="form-control p-3" required>
             </div>
-            
-            {{-- <div class="form-group">
-                <small class="text-capitalize"> Name </small>
-                <input type="text" name="name" id="name" class="form-control p-3" required>
-            </div> --}}
         </div>
     </div>
     <div class="card shadow-sm mt-3">
@@ -49,7 +44,7 @@
             <hr>
 
             <div class="form-group">
-                <small class="text-capitalize"> Address </small>
+                <small class="text-capitalize"> Address </small> <span class="text-danger"> * </span>
                 <input type="text" name="address" id="address" class="form-control p-3" required>
             </div>
         </div>
@@ -60,21 +55,21 @@
             <strong> <i> Account Information </i> </strong>
             <hr>
             <div class="form-group">
-                <small class="text-capitalize"> Student ID </small>
+                <small class="text-capitalize"> Student ID </small> <span class="text-danger"> * </span>
                 <input type="number" name="student_id" id="student_id" class="form-control p-3" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Email Address </small>
+                <small class="text-capitalize"> Email Address </small> <span class="text-danger"> * </span>
                 <input type="email" name="email" id="email" class="form-control p-3" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Password (Atleast 10 characters required) </small>
+                <small class="text-capitalize"> Password (Atleast 10 characters required) </small> <span class="text-danger"> * </span>
                 <input type="password" name="password" id="password" class="form-control p-3" required>
                 <input type="checkbox" onclick="myFunction()" class="mt-3">  <span class="text-dark"> Show Password </span> 
                 <button type="button" class="btn btn-sm btn-info ml-3" onclick="generateRandom(10)"> Generate Password </button>
             </div>
             <div class="form-group">
-                <small class="text-capialize"> Role </small>
+                <small class="text-capialize"> Role </small> <span class="text-danger"> * </span>
                 <select name="role" id="role" class="form-control" required>
                     <option > Select Role </option>
                     <option value="2"> Teacher </option>
@@ -82,7 +77,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <small class="text-capialize"> Departments </small>
+                <small class="text-capialize"> Departments </small> <span class="text-danger"> * </span>
                 <select name="department" id="department" class="form-control" required>
                     <option value=""> Select Department </option>
                     @foreach ($departments as $department)
@@ -91,7 +86,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <small class="text-capialize"> Program </small>
+                <small class="text-capialize"> Program </small> <span class="text-danger"> * </span>
                 <select name="section" id="section" class="form-control" required></select>
             </div>
         </div>

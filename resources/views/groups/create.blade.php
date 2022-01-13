@@ -25,15 +25,15 @@
             <strong> Create Class </strong>
             <hr>
             <div class="form-group">
-                <small class="text-capitalize"> Name </small>
+                <small class="text-capitalize"> Name </small> <span class="text-danger"> * </span>
                 <input type="text" name="name" id="name" class="form-control p-3" required>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Description </small>
+                <small class="text-capitalize"> Description </small> <span class="text-danger"> * </span>
                 <textarea class="form-control" name="description" id="description" cols="30" rows="10" required></textarea>
             </div>
             <div class="form-group">
-                <small class="text-capitalize"> Course </small>
+                <small class="text-capitalize"> Course </small> <span class="text-danger"> * </span>
                 <select name="subject" id="subject" class="form-control" required>
                     @foreach ($subjects as $subject)
                         <option value="{{$subject->id}}"> {{$subject->name}} </option>
@@ -42,7 +42,7 @@
             </div>
 
             <div class="form-group">
-                <small class="text-capitalize"> Sections </small>
+                <small class="text-capitalize"> Sections </small> <span class="text-danger"> * </span>
                 <select name="section" id="section" class="form-control" required>
                     @foreach ($sections as $section)
                         <option value="{{$section->id}}"> {{$section->name}} </option>
@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <small class="text-capitalize"> Teacher </small>
+                <small class="text-capitalize"> Teacher </small> <span class="text-danger"> * </span>
                 <select name="teacher" id="teacher" class="form-control" required>
                     @foreach ($teachers as $teacher)
                         <option value="{{$teacher}}"> {{$teacher->user->name}} </option>
