@@ -71,7 +71,7 @@ class UserController extends Controller
             'password' => 'required|min:10',
             'department' => 'required',
             'section' => 'required_if:role,3',
-            'student_id' => 'required_if:role,3|unique:user'
+            'student_id' => 'required_if:role,3|unique:users'
         ]);
 
         $user_data = [
@@ -97,9 +97,9 @@ class UserController extends Controller
         ];
         $saved_user_instances_data = app(UserInstanceRepository::class)->save($user_instance_data);
 
-        if($saved_user_data && $saved_user_instances_data){
-            $this->sendEmail($saved_user_data,$request->password);
-        }
+        // if($saved_user_data && $saved_user_instances_data){
+        //     $this->sendEmail($saved_user_data,$request->password);
+        // }
 
         return redirect()->route('user-management.index')->with('success', 'User successfully saved');
     
