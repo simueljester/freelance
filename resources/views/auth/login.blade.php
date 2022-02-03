@@ -117,9 +117,10 @@ background: linear-gradient(0deg, rgba(255,255,255,0) 37%, rgba(77,87,86,0.57466
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
+                        <span> Please provide existing user email. We will send an OTP to user's email account to update password. </span>
+                        <div class="form-group mt-3">
                             <span> Email </span>
-                            <input type="email" name="email" id="email" class="form-control">
+                            <input type="email" name="email" id="email" class="form-control" required>
                         </div>
                     </div>
                     <div class="modal-footer">

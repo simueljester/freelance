@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.mailtrap.io'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'jestercareer@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'JESTER CAREER'),
+        'address' => env('MAIL_FROM_ADDRESS', 'your_email_address@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'TakeToQ'),
     ],
 
     /*
@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => env('jestercareer@gmail.com'),
+    'username' => 'jestercareer@gmail.com',
 
-    'password' => env('M@trix101010'),
+    'password' => 'M@trix101010',
 
     /*
     |--------------------------------------------------------------------------

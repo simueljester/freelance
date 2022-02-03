@@ -6,6 +6,7 @@ use App\User;
 use App\AccountRecovery;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class RecoverAccountController extends Controller
 {
@@ -28,15 +29,53 @@ class RecoverAccountController extends Controller
             $otp->save();
 
             $details = [
-                'title' => 'OTP',
-                'body' => 'This is your OTP '.$generated_otp
-             
+                'title' => 'Account Recovery',
+                'body' =>   'Hi <strong>' .$user->first_name.' </strong>,
+                            <br> <br>
+                            We received that you forgot your TakeToQ account password, to recover your account, use this generated OTP to create a new password. This is your generated OTP <strong> '.$generated_otp.' </strong> 
+                            <br> <br> 
+                            You will be redirected to Password Update Form
+                            <br> <br> 
+                            Regards
+                            '    
             ];
            
             \Mail::to($user->email)->send(new \App\Mail\MyTestMail($details));
 
+            return view('password-update');
+
         }else{
-            return redirect()->back()->with('error', 'User email does not exist');
+            return redirect()->back()->with('error', 'User account does not exist');
+        }
+    }
+
+    public function updatePassword(Request $request){
+      
+        $otp = AccountRecovery::whereOtp($request->otp)->first() ?? null;
+      
+
+        if($otp){
+            $user_account = User::find($otp->user_id);
+
+            if($request->password == $request->confirm_password){
+
+                $user_account->password = Hash::make($request->password);
+                $user_account->save();
+
+                $otp->status = 1; //used
+                $otp->save();
+
+                return redirect()->route('login')->with('success', 'Password successfully updated.');
+
+            }else{
+
+                return redirect()->route('login')->with('error', 'Password not match, OTP is now expired.');
+
+            }
+        }else{
+            return redirect()->route('login')->with('error', 'OTP does not exist and now expired.');
+            
+            $otp->save();
         }
     }
 }

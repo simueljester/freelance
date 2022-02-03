@@ -25,6 +25,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/recover-account', 'RecoverAccountController@recoverAccount')->name('recover-account');
+Route::post('/password-update', 'RecoverAccountController@updatePassword')->name('password-update');
 
 //Subjects
 
