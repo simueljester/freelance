@@ -24,6 +24,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::post('/recover-account', 'RecoverAccountController@recoverAccount')->name('recover-account');
+
 //Subjects
 
 Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {
