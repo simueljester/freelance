@@ -30,7 +30,8 @@ class ExportController extends Controller
     }
 
     public function users(){
-
+       
+        
         $data = User::with('user_instance.role')->get();
       
         return Excel::download(new UsersExport($data), 'Users.xlsx');
