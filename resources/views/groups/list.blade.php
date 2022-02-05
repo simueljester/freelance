@@ -25,7 +25,7 @@
             <thead>
                 <th> Class Name </th>
                 <th> Subject </th>
-                <th> Creator </th>
+                <th> Instructor </th>
                 <th> Academic Year </th>
                 <th> Creation date </th>
             </thead>

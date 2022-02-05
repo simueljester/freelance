@@ -22,7 +22,7 @@
         <h5 class="text-muted"> <strong> {{$group->name}} </strong> </h5>
         <small> {{$group->description}} </small>
         <hr>
-        <div> Creator: {{$group->user_creator->name}} </div>
+        <div> Instructor: {{$group->user_creator->name}} </div>
         <div> Date Created: {{$group->created_at->format('Y-m-d')}} </div>
         <div class="mt-3">  
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">

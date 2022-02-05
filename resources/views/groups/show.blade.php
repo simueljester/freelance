@@ -25,7 +25,7 @@
      
         <i class="fas fa-book-reader"></i> Subject / Course Code:  <strong> {{$group->subject->course_code}} </strong>
         <br>
-        <i class="fas fa-user"></i> Assign Teacher: <strong> {{$group->user_creator->name}} </strong>
+        <i class="fas fa-user"></i> Instructor: <strong> {{$group->user_creator->name}} </strong>
         <br>
         <i class="fas fa-flag"></i> Active AY: <strong> {{$group->activeAcademicYear->name}} </strong>
         <br>
