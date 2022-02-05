@@ -84,9 +84,9 @@ return [
     |
     */
 
-    'username' => 'jestercareer@gmail.com',
+    'username' => 'your_email',
 
-    'password' => 'M@trix101010',
+    'password' => 'your_password',
 
     /*
     |--------------------------------------------------------------------------
