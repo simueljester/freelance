@@ -36,7 +36,7 @@
                     <input type="text" name="name" id="name" class="form-control" value="{{$subject->name}}">
                 </div>
                 <div class="form-group">
-                    <span> Course Code </span>
+                    <span> Subject / Course Code </span>
                     <input type="text" name="course_code" id="course_code" class="form-control" value="{{$subject->course_code}}">
                 </div>
                 <div class="form-group">

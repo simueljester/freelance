@@ -19,7 +19,7 @@
                 <div class="card" style="border:none;background:transparent;top:50px">
                 
                     <div class="card-body">
-                        
+                        {{App\SystemInformation::whereActive(1)->first()->title}}
                         <div class="text-center rubberBand p-3" >
                             <img src="{{ asset('system_info/').'/'.App\SystemInformation::whereActive(1)->first()->logo }}"  style="width:220px;">
                         </div>

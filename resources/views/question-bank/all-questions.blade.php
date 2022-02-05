@@ -83,9 +83,9 @@
                             </div>
                             <div class="col-sm-6"> 
                                 <div class="form-group">
-                                    <span> Course </span>
+                                    <span> Subject </span>
                                     <select name="subject" id="subject" class="form-control">
-                                        <option value=""> All Course </option>
+                                        <option value=""> All Subjects </option>
                                         @foreach ($all_subjects as $subject)
                                             <option value="{{$subject->id}}"> {{$subject->course_code}}  {{$subject->name}}  </option>
                                         @endforeach
@@ -134,7 +134,7 @@ width: 100%; !important;">
     <thead>
         <th style="width:40%"> Question </th>
         <th style="width:10%" class="text-center"> Type </th>
-        <th style="width:20%"> Course </th>
+        <th style="width:20%"> Subject </th>
         <th style="width:10%"> Creator </th>
         <th> Creation Date </th>
         <th></th>

@@ -23,7 +23,7 @@
         <small> {{$group->description}} </small>
         <hr>
      
-        <i class="fas fa-book-reader"></i> Course Code:  <strong> {{$group->subject->course_code}} </strong>
+        <i class="fas fa-book-reader"></i> Subject / Course Code:  <strong> {{$group->subject->course_code}} </strong>
         <br>
         <i class="fas fa-user"></i> Assign Teacher: <strong> {{$group->user_creator->name}} </strong>
         <br>

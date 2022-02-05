@@ -5,7 +5,7 @@
 
 <div class="row">
     <div class="col-sm-6">
-        <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Course </a>
+        <a href="{{route('school-management.subjects.create')}}" class="btn btn-primary btn-sm"> <i class="fas fa-plus"></i> Create New Subject </a>
     </div>
     <div class="col-sm-6">
         <form action="">
@@ -24,11 +24,11 @@
 
 <div class="mt-4">
     @if ($subjects->count())
-        <div class="mb-3">Showing {{ $subjects->firstItem() }} to {{ $subjects->lastItem() }} of {{ $subjects->total() }} courses </div>
+        <div class="mb-3">Showing {{ $subjects->firstItem() }} to {{ $subjects->lastItem() }} of {{ $subjects->total() }} subjects </div>
     @endif
     <table class="table table-hover">
         <thead>
-            <th> Course Code </th>
+            <th> Subjects / Course Code </th>
             <th> Descriptive Title </th>
             <th> Academic Year </th>
             <th></th>

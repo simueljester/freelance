@@ -38,6 +38,11 @@ Route::get('/check-send', function() {
 Route::get('/', function () {
     return redirect('login');
 });
+Route::get('/flush', function () {
+    Session::flush();
+});
+
+
 
 
 Auth::routes();

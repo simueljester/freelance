@@ -66,7 +66,7 @@
         <div class="card shadow-sm mt-3">
             <div class="card-body">
                 <div class="alert alert-primary" role="alert">
-                    <i class="fas fa-primary-circle"></i> These questions will be assigned to <strong> Default Course </strong>. Admin / Teacher my update course assignments of these questions after import.
+                    <i class="fas fa-primary-circle"></i> These questions will be assigned to <strong> Default Subject </strong>. Admin / Teacher my update subject assignments of these questions after import.
                   </div>
 
                 <br>

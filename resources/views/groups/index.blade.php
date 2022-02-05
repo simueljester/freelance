@@ -37,7 +37,7 @@
                     @endif
                     
                     <br>
-                    <small> <i class="fas fa-book-reader"></i> Course Code:  <strong> {{$group->subject->course_code}} </strong>  </small>
+                    <small> <i class="fas fa-book-reader"></i> Subject / Course Code:  <strong> {{$group->subject->course_code}} </strong>  </small>
                     <br>
                     <small> <i class="fas fa-user"></i> Assign Teacher: <strong> {{$group->user_creator->name}} </strong>  </small>
                     <br>
