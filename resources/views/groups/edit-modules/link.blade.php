@@ -45,7 +45,7 @@
                 <input type="text" class="form-control" value="{{$link->group->name}}" disabled>
             </div>
             <div class="form-group mt-3">
-                <span> Module Visibility </span>
+                <span> Course Requirements Visibility </span>
                 <br>
                 <input name="visibility" type="checkbox" {{$link->groupModule->visibility == 1 ? 'checked' : null}} data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-off-style="secondary">
             </div>

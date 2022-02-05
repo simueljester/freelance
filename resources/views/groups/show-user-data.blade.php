@@ -27,7 +27,7 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <i class="fas fa-copy text-primary"></i> Assessment Module Participation
+                        <i class="fas fa-copy text-primary"></i> Assessment Course Requirement Participation
                         <table class="table table-hover mt-3 table-sm">
                             <thead>
                            
@@ -74,7 +74,7 @@
             <div class="col-sm-6">
                 <div class="card">
                     <div class="card-body">
-                        <i class="fas fa-comment text-success"></i> Discussion Module Participation
+                        <i class="fas fa-comment text-success"></i> Discussion Course Requirement Participation
                         <table class="table table-hover mt-3 table-sm">
                             <thead>
                                 <th style="width:60%"> Score </th>
@@ -108,7 +108,7 @@
         <center> <div class="lds-hourglass" id="loader"></div> </center>
         <table class="table table-sm table-hover">
             <thead> 
-                <th> Module </th>
+                <th> Course Requirement </th>
                 <th> Details </th>
                 <th> Date </th>
             </thead>

@@ -61,7 +61,7 @@
 
         <div class="mt-3 p-3 " >
             @if ($group->creator_id == Auth::user()->id && Route::is('groups.show-folder'))
-            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Module </button>
+            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Course Requirement </button>
             <hr>
             @endif
        
@@ -244,7 +244,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel"> Create New Module </h5>
+          <h5 class="modal-title" id="exampleModalLabel"> Create New Course Requirement </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

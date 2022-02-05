@@ -48,7 +48,7 @@
                 <input type="number" name="total_score" min="1" id="total_score" value="1"  class="form-control" required>
             </div>
             <div class="form-group mt-3">
-                <span> Module Visibility </span> <span class="text-danger"> * </span>
+                <span> Course Requirements Visibility </span> <span class="text-danger"> * </span>
                 <br>
                 <input name="visibility" type="checkbox"  data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
             </div>

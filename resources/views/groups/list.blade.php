@@ -20,7 +20,7 @@
 <div class="card mt-3 shadow-sm">
     <div class="card-body">
         <strong> All class created </strong> <br>
-        <small> Admin may only be able to view other teacher's created module </small>
+        <small> Admin may only be able to view other teacher's created course requirement </small>
         <table class="table table-hover mt-3">
             <thead>
                 <th> Class Name </th>

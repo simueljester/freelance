@@ -70,7 +70,7 @@
                 </div>
             </div>
             <div class="form-group mt-3">
-                <span> Module Visibility </span>
+                <span> Course Requirements Visibility </span>
                 <br>
                 <input name="visibility" type="checkbox" {{$exam->groupModule->visibility == 1 ? 'checked' : null}} data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">
             </div>

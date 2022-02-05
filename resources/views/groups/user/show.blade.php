@@ -34,7 +34,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <strong> {{$group->name}} Modules </strong>
+        <strong> {{$group->name}} Course Requirements </strong>
         <ul class="nav nav-tabs mt-3" role="tablist">
        
             <li class="nav-item">
