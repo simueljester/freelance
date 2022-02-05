@@ -21,6 +21,17 @@
     <li class="nav-item">
         <a class="nav-link {{Route::is('school-management.academic-year.index') ? 'active' : ''}}"  href="{{route('school-management.academic-year.index')}}"> Academic Year </a>
     </li>
+    <li class="nav-item">
+        @if (Route::is('school-management.departments.index'))
+            <a class="nav-link active"  href="{{route('school-management.departments.index')}}"> Departments </a>
+        @elseif (Route::is('school-management.departments.create'))
+            <a class="nav-link active"  href="{{route('school-management.departments.index')}}"> Departments </a>
+        @elseif (Route::is('school-management.departments.show'))
+            <a class="nav-link active"  href="{{route('school-management.departments.index')}}"> Departments </a>
+        @else
+            <a class="nav-link "  href="{{route('school-management.departments.index')}}"> Departments </a>
+        @endif 
+    </li>
     <li class="nav-item ">
         @if (Route::is('school-management.subjects.index'))
             <a class="nav-link active"  href="{{route('school-management.subjects.index')}}"> Subjects </a>
@@ -34,17 +45,7 @@
             <a class="nav-link "  href="{{route('school-management.subjects.index')}}"> Subjects </a>
         @endif 
     </li>
-    <li class="nav-item">
-        @if (Route::is('school-management.departments.index'))
-            <a class="nav-link active"  href="{{route('school-management.departments.index')}}"> Departments </a>
-        @elseif (Route::is('school-management.departments.create'))
-            <a class="nav-link active"  href="{{route('school-management.departments.index')}}"> Departments </a>
-        @elseif (Route::is('school-management.departments.show'))
-            <a class="nav-link active"  href="{{route('school-management.departments.index')}}"> Departments </a>
-        @else
-            <a class="nav-link "  href="{{route('school-management.departments.index')}}"> Departments </a>
-        @endif 
-    </li>
+    
     <li class="nav-item">
         @if (Route::is('school-management.sections.index'))
             <a class="nav-link active"  href="{{route('school-management.sections.index')}}"> Programs </a>

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Subject;
 use App\AcademicYear;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Imports\SubjectImport;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\SubjectRepository;
+use App\Http\Repositories\DepartmentRepository;
 use App\Http\Repositories\AcademicYearRepository;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubjectController extends Controller
 {
@@ -18,9 +22,10 @@ class SubjectController extends Controller
 
     public function index(Request $request){
         $keyword = $request->keyword;
+        $department_filter = $request->department_filter;
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $subjects = app(SubjectRepository::class)->query()
-        ->with('activeAcademicYear')
+        ->with('activeAcademicYear','department')
         ->whereAcademicYearId($active_ac_id)
         ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
             $query->where('name', 'like', '%' . $keyword . '%')
@@ -28,16 +33,21 @@ class SubjectController extends Controller
             ->orWhere('course_code', 'like', '%' . $keyword . '%')
             ->whereAcademicYearId($active_ac_id);
         })
+        ->when($department_filter, function ($query) use ($department_filter) {
+            $query->where('department_id', $department_filter);
+        })
         ->paginate(20);
-        return view('school-management.subjects.index',compact('subjects','keyword'));
+        $departments = app(DepartmentRepository::class)->query()->get();
+        return view('school-management.subjects.index',compact('subjects','keyword','departments','department_filter'));
     }
 
     public function create(){
-        return view('school-management.subjects.create');
+        $departments = app(DepartmentRepository::class)->query()->get();
+        return view('school-management.subjects.create',compact('departments'));
     }
 
     public function save(Request $request){
-      
+    
         $request->validate([
             'name' => 'required'
         ]);
@@ -45,8 +55,9 @@ class SubjectController extends Controller
         $data = [
             'name'          => $request->name,
             'description'   => $request->description,
-            'course_code'   => $request->course_code,
-            'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id
+            'course_code'   => Str::slug($request->course_code),
+            'academic_year_id' => app(AcademicYearRepository::class)->getActiveAcademicYear()->id,
+            'department_id'     => $request->department
         ];
 
         $saved = app(SubjectRepository::class)->save($data);
@@ -81,6 +92,22 @@ class SubjectController extends Controller
         app(BaseRepository::class)->saveLog($subject,'delete');
         $subject->delete();
         return redirect()->route('school-management.subjects.index')->with('success', 'Subject successfully deleted');
+    }
+
+    public function saveBatchUpload(Request $request){
+    
+        $request->validate([
+            'file'=> 'required|mimes:xlsx,xls'
+        ]);
+
+        $rows = Excel::toArray(new SubjectImport, $request->file('file'));
+        $uploaded_subjects = $rows[0];
+     
+        $department = $request->department;
+        $data = app(SubjectRepository::class)->saveBatch($uploaded_subjects,$department);
+           
+        return redirect()->back()->with('success', 'Subjects successfully uploaded');
+
     }
     
 

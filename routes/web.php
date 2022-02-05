@@ -63,12 +63,13 @@ Route::group(['prefix' => 'school-management', 'as' => 'school-management.'], fu
     });
 
     Route::group(['prefix' => 'subjects', 'as' => 'subjects.'], function() {
-        Route::get('/',                 ['as' => 'index',       'uses' => 'SubjectController@index']);
-        Route::get('/create',           ['as' => 'create',      'uses' => 'SubjectController@create']);
-        Route::post('/save',            ['as' => 'save',        'uses' => 'SubjectController@save']);
-        Route::get('/show/{subject}',   ['as' => 'show',        'uses' => 'SubjectController@show']);
-        Route::post('/update',          ['as' => 'update',      'uses' => 'SubjectController@update']);
-        Route::get('/delete/{subject}', ['as' => 'delete',      'uses' => 'SubjectController@delete']);
+        Route::get('/',                     ['as' => 'index',               'uses' => 'SubjectController@index']);
+        Route::get('/create',               ['as' => 'create',              'uses' => 'SubjectController@create']);
+        Route::post('/save',                ['as' => 'save',                'uses' => 'SubjectController@save']);
+        Route::get('/show/{subject}',       ['as' => 'show',                'uses' => 'SubjectController@show']);
+        Route::post('/update',              ['as' => 'update',              'uses' => 'SubjectController@update']);
+        Route::get('/delete/{subject}',     ['as' => 'delete',              'uses' => 'SubjectController@delete']);
+        Route::post('/batch-upload-save',   ['as' => 'save-batch-upload',   'uses' => 'SubjectController@saveBatchUpload']);
     });
 
     Route::group(['prefix' => 'sections', 'as' => 'sections.'], function() {
