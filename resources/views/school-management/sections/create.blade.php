@@ -18,15 +18,6 @@
         <span> Description (optional) </span>
         <textarea name="section_description" id="section_description" cols="30" rows="10" class="form-control"></textarea>
     </div>
-
-    <div class="form-group">
-        <span> Department</span> <span class="text-danger"> * </span>
-        <select name="department" id="department" class="form-control" required>
-            @foreach ($departments as $department)
-                <option value="{{$department->id}}"> {{$department->name}} </option>
-            @endforeach
-        </select>
-    </div>
     
     <div>
         <a href="{{route('school-management.sections.index')}}" class="btn btn-outline-secondary"> Cancel </a>

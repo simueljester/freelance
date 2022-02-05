@@ -10,7 +10,7 @@ class Section extends Model
     protected $table = 'sections';
     
     protected $fillable = [
-        'id', 'name','description','academic_year_id','department_id'
+        'id', 'name','description','academic_year_id'
     ];
 
     public function activeAcademicYear()
@@ -18,11 +18,7 @@ class Section extends Model
         return $this->belongsTo('App\AcademicYear', 'academic_year_id', 'id');
     }
 
-    public function department()
-    {
-        return $this->belongsTo('App\Department', 'department_id', 'id');
-    }
-
+  
     public function user_instances()
     {
         return $this->HasMany('App\UserInstance', 'section_id', 'id');

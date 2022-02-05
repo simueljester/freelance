@@ -6,7 +6,7 @@ use App\Section;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\SectionRepository;
-use App\Http\Repositories\DepartmentRepository;
+
 use App\Http\Repositories\AcademicYearRepository;
 
 class SectionController extends Controller
@@ -20,7 +20,7 @@ class SectionController extends Controller
         $keyword = $request->keyword;
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $sections = app(SectionRepository::class)->query()
-        ->with('activeAcademicYear','department')
+        ->with('activeAcademicYear')
         ->whereAcademicYearId($active_ac_id)
         ->when($keyword, function ($query) use ($keyword,$active_ac_id) {
             $query->where('name', 'like', '%' . $keyword . '%')
@@ -34,8 +34,8 @@ class SectionController extends Controller
 
     public function create(){
         // $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
-        $departments = app(DepartmentRepository::class)->query()->get();
-        return view('school-management.sections.create',compact('departments'));
+    
+        return view('school-management.sections.create');
     }
 
     public function save(Request $request){
@@ -48,7 +48,6 @@ class SectionController extends Controller
             'name'              => $request->section_name,
             'description'       => $request->section_description,
             'academic_year_id'  => app(AcademicYearRepository::class)->getActiveAcademicYear()->id,
-            'department_id'     => $request->department
         ];
 
         $saved = app(SectionRepository::class)->save($data);
