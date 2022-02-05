@@ -10,7 +10,7 @@ class Discussion extends Model
     protected $table = 'discussions';
 
     protected $fillable = [
-        'name', 'description','attachment','total_score','group_id','group_module_id','creator','user_instance_id'
+        'name', 'description','attachment','total_score','group_id','group_module_id','creator','user_instance_id','accessible_at','expired_at'
     ];
 
     public function group()

@@ -10,7 +10,7 @@ class Link extends Model
     protected $table = 'links';
 
     protected $fillable = [
-        'name', 'description','link','group_id','group_module_id','creator','user_instance_id'
+        'name', 'description','link','group_id','group_module_id','creator','user_instance_id','accessible_at','expired_at'
     ];
 
     public function group()

@@ -45,6 +45,31 @@
                 <input type="text" value="{{$group->name}}" class="form-control" disabled>
             </div>
             <div class="form-group mt-3">
+                <span> Accessible Date <span class="text-danger"> * </span> </span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="date" name="accessible_date" id="accessible_date"  class="form-control" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="time" name="accessible_time" id="accessible_time"  class="form-control" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <span> Expiration Date <span class="text-danger"> * </span></span>
+                <br>
+                <small class="text-muted"> Students may not be able to access this exam after set expiration date </small>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="date" name="expiration_date" id="expiration_date"  class="form-control" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="time" name="expiration_time" id="expiration_time"  class="form-control" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
                 <span> Course Requirements Visibility </span>
                 <br>
                 <input name="visibility" type="checkbox"  data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-offstyle="secondary">

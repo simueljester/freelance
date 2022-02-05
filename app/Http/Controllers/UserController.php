@@ -56,7 +56,8 @@ class UserController extends Controller
        
         // $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $departments = app(DepartmentRepository::class)->query()->get();
-        return view('user-management.create',compact('departments'));
+        $sections = app(SectionRepository::class)->query()->get();
+        return view('user-management.create',compact('departments','sections'));
     }
     
     public function saveUser(Request $request){
@@ -71,9 +72,19 @@ class UserController extends Controller
             'password' => 'required|min:10',
             'department' => 'required',
             'section' => 'required_if:role,3',
-            'student_id' => 'required_if:role,3|unique:users'
+            'student_id' => 'required_if:role,3'
         ]);
 
+        $student_id =  User::whereHas('user_instance', function($q){
+            $q->where('role_id', 3);
+        })
+        ->whereStudentId($request->student_id)
+        ->first();
+
+
+        if($student_id){
+            return redirect()->back()->with('error','Student ID already exists.');
+        }
         $user_data = [
             'first_name'        => $request->first_name,
             'last_name'         => $request->last_name,
@@ -106,10 +117,11 @@ class UserController extends Controller
     }
 
     public function edit(User $user){
-
+        $user->load('user_instance');
         // $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         $departments = app(DepartmentRepository::class)->query()->get();
-        return view('user-management.edit',compact('user','departments'));
+        $sections = app(SectionRepository::class)->query()->get();
+        return view('user-management.edit',compact('user','departments','sections'));
 
     }
 

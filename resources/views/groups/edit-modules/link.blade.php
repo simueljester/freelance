@@ -45,6 +45,30 @@
                 <input type="text" class="form-control" value="{{$link->group->name}}" disabled>
             </div>
             <div class="form-group mt-3">
+                <span> Accessible Date </span>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="date" name="accessible_date" id="accessible_date"  class="form-control" value="{{Carbon\Carbon::parse($link->accessible_at)->format('Y-m-d')}}" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="time" name="accessible_time" id="accessible_time"  class="form-control" value="{{Carbon\Carbon::parse($link->accessible_at)->format('H:i')}}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <span> Expiration Date </span>
+                <br>
+                <small class="text-muted"> Students may not be able to access this exam after set expiration date </small>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="date" name="expiration_date" id="expiration_date"  class="form-control" value="{{Carbon\Carbon::parse($link->expired_at)->format('Y-m-d')}}" required>
+                    </div>
+                    <div class="col-sm-6">
+                        <input type="time" name="expiration_time" id="expiration_time"  class="form-control" value="{{Carbon\Carbon::parse($link->expired_at)->format('H:i')}}" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-3">
                 <span> Course Requirements Visibility </span>
                 <br>
                 <input name="visibility" type="checkbox" {{$link->groupModule->visibility == 1 ? 'checked' : null}} data-toggle="toggle" data-on="Visible" data-off="Hidden" data-onstyle="success" data-off-style="secondary">

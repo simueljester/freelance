@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Group;
 use App\GroupModule;
+use Carbon\Carbon;
 use App\LearningMaterial;
 use Illuminate\Http\Request;
 use App\Helpers\UploadHelper;
@@ -29,6 +30,8 @@ class LearningMaterialController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required',
             'attachment' => 'required'
         ]);
 
@@ -45,6 +48,8 @@ class LearningMaterialController extends Controller
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
 
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
         $attachment = $request->attachment ? UploadHelper::uploadLearningMaterial($request->attachment) : null;
 
         //create exam based in created group module
@@ -55,7 +60,9 @@ class LearningMaterialController extends Controller
             'group_id'          => $request->group,
             'group_module_id'   => $saved_group_module->id,
             'creator'           => Auth::user()->id,
-            'user_instance_id'  => Auth::user()->user_instance->id
+            'user_instance_id'  => Auth::user()->user_instance->id,
+            'accessible_at'     => $accessible_at,
+            'expired_at'        => $expired_at
         ];
 
         //assign learning material to users
@@ -96,11 +103,16 @@ class LearningMaterialController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
-            'attachment' => 'required_without:old_attachment'
+            'attachment' => 'required_without:old_attachment',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required',
+            'expiration_date' => 'required',
+            'expiration_time' => 'required'
         ]);
 
         $attachment = $request->attachment ? UploadHelper::uploadLearningMaterial($request->attachment) : ($request->old_attachment ?? null);
-
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
         $data = [
             'name'              => $request->name,
             'description'       => $request->description,
@@ -108,6 +120,8 @@ class LearningMaterialController extends Controller
             'group_id'          => $request->group,
             'creator'           => Auth::user()->id,
             'user_instance_id'  => Auth::user()->user_instance->id,
+            'accessible_at'     => $accessible_at,
+            'expired_at'        => $expired_at
         ];
 
         $learning_material_data = app(LearningMaterialRepository::class)->update($request->learning_material_id,$data);

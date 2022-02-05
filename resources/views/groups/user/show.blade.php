@@ -28,6 +28,9 @@
             <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#exampleModal">
                 View Grades
             </button>
+            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#showOtherEnrolled">
+                Class List
+            </button>
         </div>
     </div>
 </div>
@@ -94,6 +97,30 @@
   </div>
 
 
+
+  <!-- Modal -->
+<div class="modal fade" id="showOtherEnrolled" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"> Class List </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <ul>
+                @foreach ($group->members as $group_assignment)
+                    <li class="text-uppercase"> <i class="fas fa-user"></i> {{$group_assignment->user->name}} </li>
+                @endforeach
+            </ul>
+        </div>
+        <div class="modal-footer">
+    
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 

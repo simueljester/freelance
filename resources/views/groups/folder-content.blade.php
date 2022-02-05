@@ -90,7 +90,7 @@
                                 &nbsp&nbsp 
                                 <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->exam->accessible_at)->format('F d, Y h:i a')}} -
                                 &nbsp&nbsp 
-                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->exam->expired_at)->format('F d, Y h:i a')}}
+                                <i class="far fa-calendar-check"></i> {{ $module->exam->expired_at ? Carbon\Carbon::parse($module->exam->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
                                 &nbsp&nbsp
                                 <i class="fas fa-star text-warning"></i> {{$module->exam->total_score}} Total score
                              
@@ -115,6 +115,10 @@
                             </div>
                             <div class="card-footer">
                                 <i class="fas fa-calendar-alt"></i> {{$module->discussion->created_at->format('Y-m-d')}}
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->discussion->accessible_at)->format('F d, Y h:i a')}} -
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->discussion->expired_at)->format('F d, Y h:i a')}}
                                 &nbsp&nbsp
                                 <i class="fas fa-star text-warning"></i> {{$module->discussion->total_score}} Total score
                             </div>
@@ -138,6 +142,10 @@
                             </div>
                             <div class="card-footer">
                                 <i class="fas fa-calendar-alt"></i> {{$module->learning_material->created_at->format('Y-m-d')}}
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->learning_material->accessible_at)->format('F d, Y h:i a')}} -
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->learning_material->expired_at)->format('F d, Y h:i a')}}
                             </div>
                         </div>
                         @break
@@ -159,6 +167,10 @@
                             </div>
                             <div class="card-footer">
                                 <i class="fas fa-calendar-alt"></i> {{$module->link->created_at->format('Y-m-d')}}
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->link->accessible_at)->format('F d, Y h:i a')}} -
+                                &nbsp&nbsp 
+                                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->link->expired_at)->format('F d, Y h:i a')}}
                             </div>
                         </div>
                         @break

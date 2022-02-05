@@ -31,7 +31,6 @@
         <thead>
             <th> Name </th>
             <th> Academic Year </th>
-            <th> Department </th>
             <th></th>
         </thead>
         <tbody>
@@ -39,7 +38,7 @@
                 <tr>
                     <td> <a href="{{route('school-management.sections.show',$section)}}"> <i class="fas fa-users"></i> {{$section->name}} </a> </td>
                     <td> {{$section->activeAcademicYear->name}} </td>
-                    <td> {{$section->department->name}} </td>
+
                 </tr>
             @empty
                 <tr>

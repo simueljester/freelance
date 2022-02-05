@@ -87,15 +87,18 @@
                     @endforeach
                 </select>
             </div>
+            @if ($user->user_instance->role_id == 3)
             <div class="form-group">
-                <small class="text-capialize"> Program </small>
-                <select name="section" id="section" class="form-control" {{$user->user_instance->role_id == 2 ? 'disabled':null}}>
+                <small class="text-capialize"> Program </small> <span class="text-danger"> * </span>
+                <select name="section" id="section" class="form-control" required>
                     <option value=""> Select Program </option>
-                    @if ($user->user_instance->section)
-                        <option value="{{$user->user_instance->section_id}}"> {{ $user->user_instance->section->name }} (Current) </option>
-                    @endif
+                    @foreach ($sections as $section)
+                        <option value="{{$section->id}}" {{$section->id == $user->user_instance->section_id ? 'selected' : null}}> {{$section->name}} </option>
+                    @endforeach
                 </select>
             </div>
+            @endif
+     
         </div>
     </div>
 
@@ -163,30 +166,30 @@
       }
     }
 
-    $('#department').on('change', function() {
-        console.log(this.value);
-        department_id = this.value
+    // $('#department').on('change', function() {
+    //     console.log(this.value);
+    //     department_id = this.value
 
-        $.ajax({
-            url: '/user-management/fetch-section/'+department_id  ,
-            type: 'get',
-            datetype:"json",
-            beforeSend: function () {
+    //     $.ajax({
+    //         url: '/user-management/fetch-section/'+department_id  ,
+    //         type: 'get',
+    //         datetype:"json",
+    //         beforeSend: function () {
      
-            },
-            success: function(data){
+    //         },
+    //         success: function(data){
                 
-               console.log(data.sections);
-               var fetched_sections = data.sections
-               var select = document.getElementById('section');
-               $("#section option").remove(); // remove all values first before feeding new data
-               $(select).append('<option  name="section"> Select Section </option>');
-               fetched_sections.forEach(element => {
-                    $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
-                });
-            }
-        })
-    });
+    //            console.log(data.sections);
+    //            var fetched_sections = data.sections
+    //            var select = document.getElementById('section');
+    //            $("#section option").remove(); // remove all values first before feeding new data
+    //            $(select).append('<option  name="section"> Select Section </option>');
+    //            fetched_sections.forEach(element => {
+    //                 $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
+    //             });
+    //         }
+    //     })
+    // });
 
 
 </script>

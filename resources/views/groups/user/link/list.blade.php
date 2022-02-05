@@ -10,10 +10,19 @@
             <div class="card-body">
                 {!! $assignment->link->description ?? 'No description provided' !!}
                 <hr>
-                <a href="{{$assignment->link->link}}" class="btn btn-primary btn-sm" target="_blank"> Open Link </a>
+                @if (Carbon\Carbon::now()->gt(Carbon\Carbon::parse($assignment->link->accessible_at)) && Carbon\Carbon::now()->lt(Carbon\Carbon::parse($assignment->link->expired_at)))
+                    <a href="{{$assignment->link->link}}" class="btn btn-primary btn-sm" target="_blank"> Open Link </a>
+                @else
+                You may access this link between set dates
+                @endif
+         
             </div>
             <div class="card-footer">
-    
+                &nbsp&nbsp
+                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($assignment->link->accessible_at)->format('F d, Y h:i:s a')}}
+                -
+                &nbsp&nbsp
+                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($assignment->link->expired_at)->format('F d, Y h:i:s a')}}
             </div>
         </div>
         @empty

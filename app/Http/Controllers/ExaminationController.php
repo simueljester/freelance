@@ -43,9 +43,7 @@ class ExaminationController extends Controller
             'duration' => 'required',
             'description' => 'required',
             'accessible_date' => 'required',
-            'accessible_time' => 'required',
-            'expiration_date' => 'required|after_or_equal:start_date',
-            'expiration_time' => 'required'
+            'accessible_time' => 'required'
         ]);
 
         //create group module
@@ -61,7 +59,7 @@ class ExaminationController extends Controller
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
-        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
+        $expired_at = $request->expiration_date || $request->expiration_time ? Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s') : null;
         //create exam based in created group module
         $data = [
             'name'              => $request->name,
@@ -72,7 +70,7 @@ class ExaminationController extends Controller
             'duration'          => $request->duration,
             'user_instance_id'  => Auth::user()->user_instance->id,
             'accessible_at'     => $accessible_at,
-            'expired_at'        => $expired_at,
+            'expired_at'        => $expired_at
          
         ];
 
@@ -123,12 +121,10 @@ class ExaminationController extends Controller
             'group' => 'required',
             'duration' => 'required',
             'accessible_date' => 'required',
-            'accessible_time' => 'required',
-            'expiration_date' => 'required',
-            'expiration_time' => 'required'
+            'accessible_time' => 'required'
         ]);
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
-        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
+        $expired_at = $request->expiration_date || $request->expiration_time ? Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s') : null;
         $data = [
             'name'              => $request->name,
             'description'       => $request->description,

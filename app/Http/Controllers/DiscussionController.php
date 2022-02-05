@@ -15,6 +15,7 @@ use App\Http\Repositories\DiscussionRepository;
 use App\Http\Repositories\GroupModuleRepository;
 use App\Http\Repositories\DiscussionPostRepository;
 use App\Http\Repositories\DiscussionAssignmentRepository;
+use Carbon\Carbon;
 
 class DiscussionController extends Controller
 {
@@ -32,7 +33,9 @@ class DiscussionController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
-            'total_score' => 'required'
+            'total_score' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required'
         ]);
 
         //create group module
@@ -48,6 +51,9 @@ class DiscussionController extends Controller
 
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
 
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
+
         $attachment = $request->attachment ? UploadHelper::uploadDiscussionPostAttachment($request->attachment) : null;
 
         //create exam based in created group module
@@ -59,7 +65,9 @@ class DiscussionController extends Controller
             'group_id'          => $request->group,
             'group_module_id'   => $saved_group_module->id,
             'creator'           => Auth::user()->id,
-            'user_instance_id'  => Auth::user()->user_instance->id
+            'user_instance_id'  => Auth::user()->user_instance->id,
+            'accessible_at'     => $accessible_at,
+            'expired_at'        => $expired_at,
         ];
 
         //assign discussion to users
@@ -100,11 +108,14 @@ class DiscussionController extends Controller
         $request->validate([
             'name' => 'required',
             'group' => 'required',
+            'accessible_date' => 'required',
+            'accessible_time' => 'required',
             'total_score' => 'required'
         ]);
 
         $attachment = $request->attachment ? UploadHelper::uploadDiscussionPostAttachment($request->attachment) : ($request->old_attachment ?? null);
-
+        $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
+        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
         $data = [
             'name'              => $request->name,
             'description'       => $request->description,
@@ -113,6 +124,8 @@ class DiscussionController extends Controller
             'group_id'          => $request->group,
             'creator'           => Auth::user()->id,
             'user_instance_id'  => Auth::user()->user_instance->id,
+            'accessible_at'     => $accessible_at,
+            'expired_at'        => $expired_at
         ];
 
         $discussion_data = app(DiscussionRepository::class)->update($request->discussion_id,$data);

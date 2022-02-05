@@ -10,7 +10,7 @@ class LearningMaterial extends Model
     protected $table = 'learning_materials';
 
     protected $fillable = [
-        'name', 'description','file','group_id','group_module_id','creator','user_instance_id'
+        'name', 'description','file','group_id','group_module_id','creator','user_instance_id','accessible_at','expired_at'
     ];
 
     public function group()

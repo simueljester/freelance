@@ -167,7 +167,8 @@ class GroupController extends Controller
     }
 
     public function listExam(Group $group){
-   
+        $group->load('members.user');
+       
         $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_exam_assignments = app(ExamAssignmentRepository::class)->query()
         ->with('exam')
@@ -183,7 +184,7 @@ class GroupController extends Controller
     }
 
     public function listDiscussion(Group $group){
-
+        $group->load('members.user');
         $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_discussion_assignments = app(DiscussionAssignmentRepository::class)->query()
         ->with('discussion')
@@ -198,7 +199,7 @@ class GroupController extends Controller
     }
 
     public function listLearningMaterial(Group $group){
-
+        $group->load('members.user');
         $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_learning_material_assignments = app(LearningMaterialAssignmentRepository::class)->query()
         ->with('learning_material')
@@ -213,7 +214,7 @@ class GroupController extends Controller
     }
 
     public function listLink(Group $group){
-
+        $group->load('members.user');
         $my_grade = Grade::whereUserId(Auth::user()->id)->whereUserInstanceId(Auth::user()->user_instance->id)->whereGroupId($group->id)->get();
         $my_link_assignments = app(LinkAssignmentRepository::class)->query()
         ->with('link')

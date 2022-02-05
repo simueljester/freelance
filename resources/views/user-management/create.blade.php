@@ -55,8 +55,8 @@
             <strong> <i> Account Information </i> </strong>
             <hr>
             <div class="form-group">
-                <small class="text-capitalize"> Student ID </small> <span class="text-danger"> * </span>
-                <input type="number" name="student_id" id="student_id" class="form-control p-3" required>
+                <small class="text-capitalize"> Student ID (Applicable to students only) </small> <span class="text-danger"> * </span>
+                <input type="number" name="student_id" id="student_id" class="form-control p-3" value="000000">
             </div>
             <div class="form-group">
                 <small class="text-capitalize"> Email Address </small> <span class="text-danger"> * </span>
@@ -87,7 +87,12 @@
             </div>
             <div class="form-group">
                 <small class="text-capialize"> Program </small> <span class="text-danger"> * </span>
-                <select name="section" id="section" class="form-control" required></select>
+                <select name="section" id="section" class="form-control" required>
+                    <option value=""> Select Program </option>
+                    @foreach ($sections as $section)
+                        <option value="{{$section->id}}"> {{$section->name}} </option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>
@@ -123,29 +128,29 @@
         }
         
     });
-    $('#department').on('change', function() {
+    // $('#department').on('change', function() {
    
-        department_id = this.value
+    //     department_id = this.value
 
-        $.ajax({
-            url: '/user-management/fetch-section/'+department_id  ,
-            type: 'get',
-            datetype:"json",
-            // data: { user_id: user_id, group_id: group_id},
-            beforeSend: function () {
+    //     $.ajax({
+    //         url: '/user-management/fetch-section/'+department_id  ,
+    //         type: 'get',
+    //         datetype:"json",
+    //         // data: { user_id: user_id, group_id: group_id},
+    //         beforeSend: function () {
      
-            },
-            success: function(data){
-               var fetched_sections = data.sections
-               var select = document.getElementById('section');
-               $("#section option").remove(); // remove all values first before feeding new data
-               $(select).append('<option  name="section"> Select Program </option>');
-               fetched_sections.forEach(element => {
-                    $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
-                });
-            }
-        })
-    });
+    //         },
+    //         success: function(data){
+    //            var fetched_sections = data.sections
+    //            var select = document.getElementById('section');
+    //            $("#section option").remove(); // remove all values first before feeding new data
+    //            $(select).append('<option  name="section"> Select Program </option>');
+    //            fetched_sections.forEach(element => {
+    //                 $(select).append('<option  name="section" value=' + element.id + '>' + element.name + '</option>');
+    //             });
+    //         }
+    //     })
+    // });
 
     function generateRandom(length) {
         var result           = '';
