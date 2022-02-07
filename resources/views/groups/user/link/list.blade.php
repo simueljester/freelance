@@ -22,7 +22,7 @@
                 <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($assignment->link->accessible_at)->format('F d, Y h:i:s a')}}
                 -
                 &nbsp&nbsp
-                <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($assignment->link->expired_at)->format('F d, Y h:i:s a')}}
+                <i class="far fa-calendar-check"></i> {{ $assignment->link->expired_at ? Carbon\Carbon::parse($assignment->link->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
             </div>
         </div>
         @empty

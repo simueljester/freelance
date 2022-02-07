@@ -39,7 +39,7 @@
             &nbsp&nbsp <br>
             <i class="far fa-calendar-check"></i> Date Start: <strong> {{Carbon\Carbon::parse($exam->accessible_at)->format('M d, Y | h:i a')}}  </strong> 
             &nbsp&nbsp <br>
-            <i class="far fa-calendar-times"></i> Date End: <strong> {{Carbon\Carbon::parse($exam->expired_at)->format('M d, Y | h:i a')}} </strong> 
+            <i class="far fa-calendar-times"></i> Date End: <strong>  {{ $exam->expired_at ? Carbon\Carbon::parse($exam->expired_at)->format('M d, Y | h:i a') : 'No expiration'}} </strong> 
             &nbsp&nbsp <br>
            
         </div>

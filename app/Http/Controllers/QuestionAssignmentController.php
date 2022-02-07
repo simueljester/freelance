@@ -12,7 +12,7 @@ class QuestionAssignmentController extends Controller
 {
     //
     public function index(Exam $exam){
-
+        
         $assigned_questions = app(QuestionAssignmentRepository::class)->query()->whereExamId($exam->id)->pluck('question_id')->toArray();
      
         $questions = app(QuestionBankRepository::class)->query()->with('subject')->orderBy('created_at','DESC')->where('subject_id',$exam->group->subject->id)->get();

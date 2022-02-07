@@ -76,7 +76,9 @@
 
         <div class="p-3 border mt-3 rounded">
             <strong> Correct Answer : </strong>
-            {{$question->answer ?? 'Not Available'}}
+            {{$question->answer ?? 'Not Available'}} 
+            <br>
+            <span class="text-warning">{{$question->case_sensitive == 1 ? 'This answer is case sensitive' : null}} </span>
         </div>
     </div>
 </div>

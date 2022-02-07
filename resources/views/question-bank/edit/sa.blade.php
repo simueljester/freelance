@@ -70,7 +70,20 @@
                 <div class="form-group mt-3">
                     <span>  Correct Answer </span> <br>
                     <input type="text" name="correct_answer" id="correct_answer" class="form-control" value="{{$question->answer}}" required>
+                 
+                    <div class="form-check">
+                        <input type="checkbox" {{$question->case_sensitive == 1 ? 'checked' : null}} class="form-check-input" id="case_sensitive" name="case_sensitive" value=1>
+                        <label class="form-check-label" for="exampleCheck1"> Case Sensitive </label>
+                    </div>
                 </div>
+            </div>
+            <div class="form-group mt-3">
+                Example: <br>
+                <i>
+                    For single answer: <strong> letran </strong> <br>
+                    For multiple answer: <strong> letran,calamba </strong> <br>
+                    <strong class="text-warning"> White space after comma is not allowed </strong>
+                </i>
             </div>
             
             <div class="mt-5">

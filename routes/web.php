@@ -42,6 +42,26 @@ Route::get('/flush', function () {
     Session::flush();
 });
 
+Route::get('/test', function () {
+
+    // $case_sensitive = 1;
+    // $string1 = 'Jester Simuel';
+    // $string2 = 'jester simuel';
+
+    // if($case_sensitive == 1){
+    //     $points = $string1 === $string2 ? 1 : 0;
+    // }else{
+    //    $points = strtolower($string1) == strtolower($string2) ? 1 : 0;
+    // }
+
+    // echo $points;
+
+    $arr = ['Demon Slayer','One Piece'];
+    $test = array_map('strtolower', $arr);
+    return $test;
+    
+});
+
 
 
 

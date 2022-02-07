@@ -61,10 +61,10 @@
                 <small class="text-muted"> Students may not be able to access this exam after set expiration date </small>
                 <div class="row">
                     <div class="col-sm-6">
-                        <input type="date" name="expiration_date" id="expiration_date"  class="form-control" value="{{Carbon\Carbon::parse($link->expired_at)->format('Y-m-d')}}" required>
+                        <input type="date" name="expiration_date" id="expiration_date"  class="form-control" value="{{ $link->expired_at ? Carbon\Carbon::parse($link->expired_at)->format('Y-m-d') : null}}" >
                     </div>
                     <div class="col-sm-6">
-                        <input type="time" name="expiration_time" id="expiration_time"  class="form-control" value="{{Carbon\Carbon::parse($link->expired_at)->format('H:i')}}" required>
+                        <input type="time" name="expiration_time" id="expiration_time"  class="form-control" value="{{ $link->expired_at ? Carbon\Carbon::parse($link->expired_at)->format('H:i') : null }}" >
                     </div>
                 </div>
             </div>

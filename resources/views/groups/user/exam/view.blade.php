@@ -86,11 +86,11 @@
                                             <li> True </li>
                                             <li> False </li>
                                         </ol>
-                                        @break
+                                    @break
                                 @endswitch
                          
                                 <small class="text-uppercase"> User Answer  
-                                    @if ($user_answer->user_answer == $user_answer->question->answer)
+                                    @if ($user_answer->user_answer == $user_answer->question->answer || $user_answer->points == 1)
                                         - <i class="fas fa-check-circle text-success"></i>  
                                     @elseif($user_answer->question->question_type == 'essay')
                                         - <strong> To override </strong> 

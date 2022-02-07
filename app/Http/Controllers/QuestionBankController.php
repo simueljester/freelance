@@ -182,7 +182,7 @@ class QuestionBankController extends Controller
     }
 
     public function save(Request $request){
-
+      
         $request->validate([
             'instruction' => 'required',
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
@@ -204,6 +204,7 @@ class QuestionBankController extends Controller
             'option_6'          => $request->option_6,
             'answer'            => $request->correct_answer,
             'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
+            'case_sensitive'    => $request->case_sensitive ? 1 : 0,
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id,
             'subject_id'        => $request->subject,
@@ -227,8 +228,10 @@ class QuestionBankController extends Controller
     }
 
     public function show(Question $question){
+
         $question->load('subject');
         return view('question-bank.show',compact('question'));
+
     }
 
     
@@ -261,6 +264,7 @@ class QuestionBankController extends Controller
             'option_6'          => $request->option_6,
             'answer'            => $request->correct_answer,
             'max_points'        => $request->question_type == 'essay' ? $request->max_points : 1,
+            'case_sensitive'    => $request->case_sensitive ? 1 : 0,
             'attachment'        => $attachment,
             'creator'           => Auth::user()->id,
             'subject_id'        => $request->subject,

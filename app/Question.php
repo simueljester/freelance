@@ -20,6 +20,7 @@ class Question extends Model
         'option_6',
         'answer',
         'max_points',
+        'case_sensitive',
         'attachment',
         'creator',
         'subject_id',

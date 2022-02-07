@@ -52,8 +52,7 @@ class DiscussionController extends Controller
         $saved_group_module = app(GroupModuleRepository::class)->save($group_module_data);
 
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
-        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
-
+        $expired_at = $request->expiration_date || $request->expiration_time ? Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s') : null;
         $attachment = $request->attachment ? UploadHelper::uploadDiscussionPostAttachment($request->attachment) : null;
 
         //create exam based in created group module
@@ -115,7 +114,7 @@ class DiscussionController extends Controller
 
         $attachment = $request->attachment ? UploadHelper::uploadDiscussionPostAttachment($request->attachment) : ($request->old_attachment ?? null);
         $accessible_at = Carbon::parse($request->accessible_date.''.$request->accessible_time)->format('Y-m-d H:i:s');
-        $expired_at = Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s');
+        $expired_at = $request->expiration_date || $request->expiration_time ? Carbon::parse($request->expiration_date.''.$request->expiration_time)->format('Y-m-d H:i:s') : null;
         $data = [
             'name'              => $request->name,
             'description'       => $request->description,

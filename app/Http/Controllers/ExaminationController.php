@@ -171,17 +171,17 @@ class ExaminationController extends Controller
     }
 
     public function saveFinishedExam(Request $request){
-   
+      
         $exam_answers = app(ExamAnswerRepository::class)->saveAnswers($request);
-
-           //record activity
-           $exam = Exam::find($request->exam_id);
-           $saved = app(UserActivityRepository::class)->save([
-               'module_type'           => 'exam',
-               'details'               => Auth::user()->name.' submitted an exam named '.$exam->name,
-               'group_id'              => $exam->group_id,
-               'user_id'               => Auth::user()->id,
-           ]);
+        
+        //record activity
+        $exam = Exam::find($request->exam_id);
+        $saved = app(UserActivityRepository::class)->save([
+            'module_type'           => 'exam',
+            'details'               => Auth::user()->name.' submitted an exam named '.$exam->name,
+            'group_id'              => $exam->group_id,
+            'user_id'               => Auth::user()->id,
+        ]);
 
         return redirect()->route('groups.user-group.list-exam', $request->group_id)->with('success', 'Exam submitted!');
 

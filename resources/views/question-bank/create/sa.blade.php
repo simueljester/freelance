@@ -42,21 +42,34 @@
             <div class="form-group mt-3">
                 <span> <i class="fas fa-question-circle"></i>  Instruction </span>
                 <textarea name="instruction" id="instruction" cols="30" rows="10" class="instruction"></textarea>
+              
             </div>
 
-            <div class="form-group mt-3">
+            <div class="form-group mt-3" hidden>
                 <span> <i class="fas fa-paperclip"></i> Attachment </span> <br>
                 <input type="file" name="attachment" id="attachment" class="mt-3">
             </div>
 
-            <div class="mt-5">
-                
+            <div class="mt-3">
                 <div class="form-group mt-3">
-                    <span>  Correct Answer </span> <br>
+                    <span>  Correct Answer (add comma for multiple answer) </span> <br>
                     <input type="text" name="correct_answer" id="correct_answer" class="form-control" required>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="case_sensitive" name="case_sensitive" value=1>
+                        <label class="form-check-label" for="exampleCheck1"> Case Sensitive </label>
+                    </div>
                 </div>
-
             </div>
+
+            <div class="form-group mt-3">
+                Example: <br>
+                <i>
+                    For single answer: <strong> letran </strong> <br>
+                    For multiple answer: <strong> letran,calamba </strong> <br>
+                    <strong class="text-warning"> <i class="fas fa-info-circle"></i> White space after comma is not allowed </strong>
+                </i>
+            </div>
+
             
             <div class="mt-5">
                 <input type="hidden" name="exam" value="{{$exam}}">

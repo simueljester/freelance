@@ -19,11 +19,14 @@ class ExamAnswerRepository extends BaseRepository
     }
 
     public function saveAnswers($request){
+        
         $duration_status = $request->duration_status;
         $answers = $request->answer;
+
         $exam_id = $request->exam_id;
         $exam_assignment_id = $request->exam_assignment_id;
         $group_id = $request->group_id;
+    
 
         DB::beginTransaction();
 
@@ -34,9 +37,24 @@ class ExamAnswerRepository extends BaseRepository
                 $question = Question::find($key);
                 $correct_answer = $question->answer;
                 $user_answer = $answer;
+
+                if($question->question_type == 'sa'){
+
+                    $myArray = explode(',', $correct_answer);
+                    
+                    $case_sensitive = $question->case_sensitive;
+                    
+                    if($case_sensitive == 1){
+                        $points = in_array($user_answer, $myArray) ? 1 : 0;
+                    }else{
+                        $myArray = array_map('strtolower', $myArray);
+                        $points = in_array($user_answer, $myArray) ? 1 : 0;
+                    }
+
+                }else{
+                    $points = $correct_answer == $user_answer ? $question->max_points : 0;
+                }
                
-                $points = $correct_answer == $user_answer ? $question->max_points : 0;
-    
                 $get_points[] = ExamAnswers::firstOrCreate(
                     [
                         'exam_id'               => $exam_id,

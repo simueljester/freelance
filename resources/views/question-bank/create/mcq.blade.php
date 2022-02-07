@@ -56,7 +56,7 @@
                 <textarea name="instruction" id="instruction" cols="30" rows="10" class="instruction mt-3"></textarea>
             </div>
     
-            <div class="form-group mt-3">
+            <div class="form-group mt-3" hidden>
                 <span> <i class="fas fa-paperclip"></i> Attachment </span> <br>
                 <input type="file" name="attachment" id="attachment" class="mt-3">
             </div>
