@@ -171,9 +171,9 @@ class ExaminationController extends Controller
     }
 
     public function saveFinishedExam(Request $request){
-      
-        $exam_answers = app(ExamAnswerRepository::class)->saveAnswers($request);
         
+        $exam_answers = app(ExamAnswerRepository::class)->saveAnswers($request);
+   
         //record activity
         $exam = Exam::find($request->exam_id);
         $saved = app(UserActivityRepository::class)->save([
@@ -218,5 +218,11 @@ class ExaminationController extends Controller
 
         return $pdf->stream('Examination.pdf');
         
+    }
+
+    public function markComplete(ExamAssignment $exam_assignment){
+        $exam_assignment->status = 1;
+        $exam_assignment->save();
+        return redirect()->back();
     }
 }

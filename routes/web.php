@@ -188,6 +188,7 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
         Route::post('/update',                          ['as' => 'update',              'uses' => 'ExaminationController@update']);
         Route::get('/delete/{exam}',                    ['as' => 'delete',              'uses' => 'ExaminationController@delete']);
         Route::post('/override-score',                  ['as' => 'override',            'uses' => 'ExaminationController@override']);
+        Route::get('/mark-complete/{exam_assignment}',                    ['as' => 'mark-complete',       'uses' => 'ExaminationController@markComplete']);
         Route::get('/generate-pdf/{exam_assignment}',   ['as' => 'generate-pdf',        'uses' => 'ExaminationController@generatePdf']);
         
 

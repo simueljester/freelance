@@ -27,6 +27,9 @@
                     @if ($exam_assignment->status == 2)
                         <span class="badge badge-danger"> Late Submission </span>
                     @endif
+                    @if ($exam_assignment->status == 4)
+                        <span class="badge badge-warning"> Incomplete </span> <small> Some questions requires manual checking </small>
+                    @endif
                     &nbsp&nbsp
                     Attempt No. {{$exam_assignment->attempt}} 
                     {{-- <span class="text-primary" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span> --}}
@@ -117,7 +120,11 @@
                 <div class="card-footer">
                     {{-- <a href="{{route('groups.user-group.show',$exam_assignment->group_id)}}" class="btn btn-outline-seconday btn-block"> <i class="fas fa-arrow-alt-circle-left"></i> Back to Group </a> --}}
                     {{-- <a href="{{ url()->previous() }}" class="btn btn-outline-seconday btn-block"> <i class="fas fa-arrow-alt-circle-left"></i> Back to Group </a> --}}
-          
+               
+                    @if (Auth::user()->user_instance->role_id == 2)
+                        <a href="{{route('groups.exam.mark-complete',$exam_assignment)}}" class="btn btn-success btn-fill"  onclick="return confirm('Are you sure you want to mark this exam as complete? ')"> Mark as complete </a>
+                    @endif
+                    
                 </div>
             </div>
         </div>

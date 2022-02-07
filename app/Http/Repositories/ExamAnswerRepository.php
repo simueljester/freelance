@@ -21,13 +21,13 @@ class ExamAnswerRepository extends BaseRepository
     public function saveAnswers($request){
         
         $duration_status = $request->duration_status;
+ 
         $answers = $request->answer;
 
         $exam_id = $request->exam_id;
         $exam_assignment_id = $request->exam_assignment_id;
         $group_id = $request->group_id;
     
-
         DB::beginTransaction();
 
         try {
@@ -37,6 +37,7 @@ class ExamAnswerRepository extends BaseRepository
                 $question = Question::find($key);
                 $correct_answer = $question->answer;
                 $user_answer = $answer;
+                $duration_status = $question->question_type == 'essay' ? 4 : $duration_status;
 
                 if($question->question_type == 'sa'){
 

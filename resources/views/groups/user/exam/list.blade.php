@@ -10,6 +10,8 @@
                     <span class="badge badge-success">Completed</span>
                 @elseif ($assignment->status == 2)
                     <span class="badge badge-danger">Late Submission</span>
+                @elseif ($assignment->status == 4)
+                    <span class="badge badge-warning"> Incomplete </span>
                 @else
                     <span class="badge badge-secondary">Pending</span>
                 @endif
@@ -17,7 +19,7 @@
             <div class="card-body">
                 {{$assignment->exam->description ?? 'No description provided'}}
                 <hr>
-                @if ($assignment->status == 1 || $assignment->status == 2)
+                @if ($assignment->status == 1 || $assignment->status == 2 || $assignment->status == 4)
                     <a href="{{route('groups.user-group.view-exam-result',$assignment)}}" class="btn btn-primary btn-sm"> View Exam </a>   
                 @else
                     @if (Carbon\Carbon::now()->gt(Carbon\Carbon::parse($assignment->exam->accessible_at)) && Carbon\Carbon::now()->lt(Carbon\Carbon::parse($assignment->exam->expired_at)))
