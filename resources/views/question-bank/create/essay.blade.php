@@ -48,7 +48,8 @@
 
             <div class="form-group mt-3">
                 <span> <i class="fas fa-paperclip"></i> Attachment </span> <br>
-                <input type="file" name="attachment" id="attachment" class="mt-3">
+                <input type="file" name="attachment" id="attachment" class="mt-3"  accept="application/pdf"> <br>
+                <span class="text-warning"> Maximum file is 2 MB </span>
             </div>
 
             <div class="mt-5">
@@ -68,7 +69,7 @@
                 @else
                     <a href="{{route('question-bank.index')}}" class="btn btn-outline-secondary"> Cancel </a>
                 @endif
-                <button class="btn btn-primary"> Save Question</button>
+                <button class="btn btn-primary" id="submit"> Save Question</button>
             </div>
         </div>
     </div>
@@ -90,6 +91,19 @@
         evt.cancel();
         });
     });
+
+
+    document.forms[0].addEventListener('submit', function( evt ) {
+    var file = document.getElementById('attachment').files[0];
+
+    if(file && file.size < 10000) { // 10 MB (this size is in bytes)
+        //Submit form        
+    } else {
+        //Prevent default and display error
+        evt.preventDefault();
+        alert('Exceed File')
+    }
+}, false);
 
 </script>
 @endsection

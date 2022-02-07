@@ -182,7 +182,7 @@ class QuestionBankController extends Controller
     }
 
     public function save(Request $request){
-      
+        
         $request->validate([
             'instruction' => 'required',
             'correct_answer' => 'required_if:question_type,mcq,tf,sa',
@@ -191,7 +191,19 @@ class QuestionBankController extends Controller
             'subject'   => 'required'
         ]);
 
-        $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : null;
+        if($request->attachment){
+            $file_size = $request->file('attachment')->getSize();
+            if($file_size > 2097152){
+                return redirect()->back()->with('error','File size must not exceed');
+            }else{
+                $attachment = UploadHelper::uploadFile($request->attachment);
+            }
+        }else{
+            $attachment = null;
+        }
+
+        // return $request->file('attachment')->getSize();
+        // $attachment = $request->attachment ? UploadHelper::uploadFile($request->attachment) : null;
   
         $data = [
             'instruction'       => $request->instruction,
