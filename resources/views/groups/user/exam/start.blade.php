@@ -153,7 +153,7 @@
                     <input type="hidden" name="exam_assignment_id" id="exam_assignment_id" value="{{$exam_assignment->id}}">
                     <input type="hidden" name="group_id" id="group_id" value="{{$exam_assignment->group_id}}">
                     <input type="hidden" name="duration_status" id="duration_status" value="1">
-                    <button class="btn btn-success btn-block"> Finish Exam </button>
+                    <button class="btn btn-success btn-block" onclick="return confirm('Are you sure you want to submit this exam? ')"> Finish Exam </button>
                 </div>
             </div>
         </div>
