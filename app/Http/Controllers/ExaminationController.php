@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Excel;
 use PDF;
 use Auth;
 use App\Exam;
@@ -11,6 +12,7 @@ use App\ExamAnswers;
 use App\GroupModule;
 use App\ExamAssignment;
 use App\GroupAssignment;
+use App\Exports\ExamExport;
 use Illuminate\Http\Request;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\ExamRepository;
@@ -218,6 +220,13 @@ class ExaminationController extends Controller
 
         return $pdf->stream('Examination.pdf');
         
+    }
+
+    public function generateExcel(ExamAssignment $exam_assignment){
+        $exam_assignment->load('exam.questionAssignments.question','user_answers.question','user','group','webShots');
+        // dd($exam_assignment);
+        return Excel::download(new ExamExport($exam_assignment), 'ExamExport.xlsx');
+
     }
 
     public function markComplete(ExamAssignment $exam_assignment){

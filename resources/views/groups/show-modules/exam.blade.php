@@ -65,7 +65,7 @@
 </div>
 
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-sm-8">
         <div class="card shadow-sm mt-3">
             <div class="card-body">
                 <strong> <i class="fas fa-users"></i> User Exam Assignments </strong>
@@ -102,7 +102,9 @@
                              
                                 <td> 
                                     @if ($assignment->status != 0)
-                                        <a href="{{route('groups.exam.generate-pdf',$assignment)}}" target="_blank" class="btn btn-primary btn-sm"> <i class="fas fa-download"></i> Download Result </a> 
+                                        <a href="{{route('groups.exam.generate-pdf',$assignment)}}" target="_blank" class="btn btn-primary btn-sm"> <i class="fas fa-download"></i> PDF </a> 
+                                   
+                                        <a href="{{route('groups.exam.generate-excel',$assignment)}}" class="btn btn-sm btn-primary" target="_blank"> <i class="fas fa-cloud-download-alt"></i> Excel </a>
                                     @endif
                                 </td>
                             </tr>
@@ -116,7 +118,7 @@
             </div>
         </div>
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-4">
         <form action="{{route('groups.exam.examination-assignment.unassign-questions')}}" method="POST" >
             @csrf
             @method("POST")
@@ -136,7 +138,7 @@
                             <th> Question </th>
                             <th> Type </th>
                             {{-- <th> Difficulty </th> --}}
-                            <th> Points </th>
+                            {{-- <th> Points </th> --}}
                             <th> Remove </th>
                         </thead>
                         <tbody>
@@ -164,7 +166,7 @@
                                             <span class="text-danger"> Hard </span>
                                     @endif
                                     </td> --}}
-                                    <td> {{$assignment->question->max_points}} </td>
+                                    {{-- <td> {{$assignment->question->max_points}} </td> --}}
                                     <td>
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" name="question_assignment_ids[]" value="{{$assignment->id}}" id="defaultCheck1">
