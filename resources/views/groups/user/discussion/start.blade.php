@@ -41,7 +41,7 @@
                   
                         <h4> <strong> <i class="fas fa-comment-dots"></i> {{$discussion->name}} </strong>  
                             <hr>
-                            @if ($discussion->creator == Auth::user()->id)
+                            @if (Auth::user()->user_instance->role_id == 2)
                                 <a href="{{route('groups.discussion.show',$discussion)}}" class="btn btn-outline-secondary btn-sm"> Back to groups </a> 
                             @else
                                 <a href="{{route('groups.user-group.list-discussion',$discussion->group)}}" class="btn btn-outline-secondary btn-sm"> Back to groups </a> 
@@ -55,7 +55,7 @@
                             <i class="fas fa-paperclip"></i> <a href="{{route('downloads.question-attachment',$discussion->attachment)}}" class="text-primary"> {{$discussion->attachment}} </a>
                         @endif
           
-                        @if ($discussion->creator == Auth::user()->id)
+                        @if (Auth::user()->user_instance->role_id == 2)
                             &nbsp&nbsp
                             <a class="text-success" data-toggle="collapse" href="#collapseUserAssignment" role="button" > <i class="fas fa-users-cog"></i> Score Users </a>
                         @endif

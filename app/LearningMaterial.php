@@ -28,4 +28,9 @@ class LearningMaterial extends Model
     {
         return $this->belongsTo('App\User', 'creator', 'id');
     }
+    
+    public function userCreator() // same with creator, i decided to create new to not change creator() function because it might used in other codes
+    {
+        return $this->belongsTo('App\User', 'creator', 'id');
+    }
 }

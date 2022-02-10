@@ -10,6 +10,7 @@ use App\Folder;
 use App\Subject;
 use App\UserInstance;
 use Illuminate\Http\Request;
+use App\GroupInstructorAssignments;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Repositories\GroupRepository;
 use App\Http\Repositories\FolderRepository;
@@ -21,6 +22,7 @@ use App\Http\Repositories\ExamAssignmentRepository;
 use App\Http\Repositories\LinkAssignmentRepository;
 use App\Http\Repositories\GroupAssignmentRepository;
 use App\Http\Repositories\DiscussionAssignmentRepository;
+use App\Http\Repositories\GroupInstructorAssignmentRepository;
 use App\Http\Repositories\LearningMaterialAssignmentRepository;
 
 class GroupController extends Controller
@@ -34,19 +36,29 @@ class GroupController extends Controller
     public function index(){
         $active_ac_id = app(AcademicYearRepository::class)->getActiveAcademicYear()->id;
         if(Auth::user()->user_instance->role_id == 1){
-            $groups = app(GroupRepository::class)->query()->with('user_creator','subject','activeAcademicYear','section')
+            $groups = app(GroupRepository::class)->query()->with('user_creator','subject','activeAcademicYear','section','instructorAssignments.instuctor')
             ->whereAcademicYearId($active_ac_id)
             ->get();
+            $other_groups = null;
         }
         if(Auth::user()->user_instance->role_id == 2){
-            $groups = app(GroupRepository::class)->query()->with('user_creator','subject','activeAcademicYear','section')
+            $groups = app(GroupRepository::class)->query()->with('user_creator','subject','activeAcademicYear','section','instructorAssignments.instuctor')
             ->whereCreatorId(Auth::user()->id)
             ->whereCreatorInstanceId(Auth::user()->user_instance->id)
             ->whereAcademicYearId($active_ac_id)
             ->get();
+
+            $other_groups =  app(GroupInstructorAssignments::class)->query()->with('group')
+            ->whereInstructorId(Auth::user()->id)
+            ->whereInstructorInstanceId(Auth::user()->user_instance->id)
+            ->whereAcademicYearId($active_ac_id)
+            ->get();
+            
         }
+
+      
            
-        return view('groups.index',compact('groups'));
+        return view('groups.index',compact('groups','other_groups'));
 
     }
 
@@ -88,9 +100,41 @@ class GroupController extends Controller
     }
 
     public function edit(Group $group){
-    
-        return view('groups.edit',compact('group'));
+        $group->load('user_creator','instructorAssignments.instuctor');
+       
+        $instructors = UserInstance::with('user')->whereActive(1)->whereRoleId(2)->get();
+        return view('groups.edit',compact('group','instructors'));
 
+    }
+
+    public function addInstructor(Request $request){
+     
+        $user = User::with('user_instance')->find($request->instructor_id);
+        $group = Group::find($request->group_id);
+
+        $instructor_assigned = GroupInstructorAssignments::whereInstructor_id($user->id)->whereGroupId($group->id)->whereAcademicYearId($group->academic_year_id)->first() ?? null;
+        
+        if($instructor_assigned == null){
+
+            $data = [
+                'instructor_id'             =>  $user->id,
+                'instructor_instance_id'    =>  $user->user_instance->id,
+                'group_id'                  =>  $group->id,
+                'subject_id'                =>  $group->subject_id,
+                'academic_year_id'          =>  app(AcademicYearRepository::class)->getActiveAcademicYear()->id,
+            ];
+    
+            app(GroupInstructorAssignmentRepository::class)->save($data);
+            return redirect()->back()->with('success', 'Instructor successfully assigned');
+        }else{
+            return redirect()->back()->with('error', 'Instructor already assigned in this class');
+        }
+     
+    }
+
+    public function removeInstructor(GroupInstructorAssignments $group_instructor_assignment){
+        $group_instructor_assignment->delete();
+        return redirect()->back()->with('success', 'Instructor successfully removed');
     }
 
     public function update(Request $request){
@@ -111,7 +155,7 @@ class GroupController extends Controller
     }
 
     public function show(Group $group){
-
+       
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($group->id)->get();
         $folders = app(FolderRepository::class)->query()->whereGroupId($group->id)->whereParentId(0)->get();
         $this_folder = null;
@@ -136,8 +180,8 @@ class GroupController extends Controller
         $assigned_users = app(GroupAssignmentRepository::class)->query()->with('group','user.user_instance')->whereGroupId($this_folder->group_id)->get();
         $created_exam = Exam::whereGroupId($this_folder->group_id)->get();
 
-        $group_modules = app(GroupModuleRepository::class)->query()->with('exam','discussion','learning_material','link')->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
-        
+        $group_modules = app(GroupModuleRepository::class)->query()->with('exam.userCreator','discussion.userCreator','learning_material.userCreator','link.userCreator')->whereGroupId($group->id)->whereFolderId($this_folder->id)->get();
+        // dd($group_modules);
         return view('groups.folder-content',compact('group','this_folder','assigned_users','created_exam','get_depth','group_modules'));
     }
 

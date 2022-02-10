@@ -41,11 +41,17 @@
             &nbsp&nbsp <br>
             <i class="far fa-calendar-times"></i> Date End: <strong>  {{ $exam->expired_at ? Carbon\Carbon::parse($exam->expired_at)->format('M d, Y | h:i a') : 'No expiration'}} </strong> 
             &nbsp&nbsp <br>
-           
+            <i class="fas fa-user"></i> Created By: <strong> {{$exam->userCreator->name}} </strong> 
+            &nbsp&nbsp <br>
         </div>
         <hr>
         <div>
             <a href="{{route('groups.show',$exam->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$exam->group->name}} </a>
+            @if ($exam_answers > 0) 
+                &nbsp&nbsp
+                <a href="{{route('groups.exam.show-exam-analysis',$exam)}}" class="text-primary" style="cursor:pointer;"> <i class="fas fa-chart-bar"></i>  Exam Questions Analysis </a>
+            @endif
+
             &nbsp&nbsp
             @if ($exam_answers == 0)
                 <span class="float-right">
@@ -57,9 +63,6 @@
             @else
                 <strong class="text-danger float-right"> <i class="fas fa-exclamation-circle"></i> Students already answered in this exam. Modification of this exam is unavailable </strong> 
             @endif
-            
-          
-           
         </div>
     </div>
 </div>
@@ -67,8 +70,10 @@
 <div class="row">
     <div class="col-sm-8">
         <div class="card shadow-sm mt-3">
-            <div class="card-body">
+            <div class="card-header">
                 <strong> <i class="fas fa-users"></i> User Exam Assignments </strong>
+            </div>
+            <div class="card-body">
                 <table class="table table-hover mt-3">
                     <thead>
                         <th></th>
@@ -123,8 +128,10 @@
             @csrf
             @method("POST")
             <div class="card shadow-sm mt-3">
-                <div class="card-body">
+                <div class="card-header">
                     <strong> <i class="fas fa-question-circle"></i> Questions </strong>
+                </div>
+                <div class="card-body">
                     @if ($exam_answers == 0)
                     <div class="mt-3">
                         <input type="hidden" name="exam_id" id="exam_id" value="{{$exam->id}}">

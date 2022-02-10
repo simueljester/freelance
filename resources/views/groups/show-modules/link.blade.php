@@ -24,6 +24,13 @@
         <h5 class="text-muted"> <i class="fas fa-link fa-2x text-danger"></i> <strong> {{$link->name}} </strong> &nbsp&nbsp   </h5>
         <small> {!! $link->description ?? 'No details provided' !!} </small>
         <hr>
+        <i class="far fa-calendar-check"></i> Date Start: <strong> {{Carbon\Carbon::parse($link->accessible_at)->format('M d, Y | h:i a')}}  </strong> 
+        &nbsp&nbsp <br>
+        <i class="far fa-calendar-times"></i> Date End: <strong>  {{ $link->expired_at ? Carbon\Carbon::parse($link->expired_at)->format('M d, Y | h:i a') : 'No expiration'}} </strong> 
+        &nbsp&nbsp <br>
+        <i class="fas fa-user"></i> Created By: <strong> {{$link->userCreator->name}} </strong> 
+        &nbsp&nbsp <br>
+        <hr>
         <div>
    
             <a href="{{route('groups.show',$link->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$link->group->name}} </a>

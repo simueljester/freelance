@@ -40,6 +40,8 @@
                 <i class="fas fa-star text-warning"></i> {{$assignment->score }} / {{$assignment->exam->total_score}} points
                 &nbsp&nbsp
                 No. of Attempts <strong> {{$assignment->attempt}} </strong> 
+                &nbsp&nbsp
+                <i class="fas fa-user"></i> {{$assignment->exam->userCreator->name}}
             </div>
         </div>
         @empty

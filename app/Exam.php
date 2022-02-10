@@ -18,6 +18,11 @@ class Exam extends Model
         return $this->belongsTo('App\Group', 'group_id', 'id');
     }
 
+    public function userCreator()
+    {
+        return $this->belongsTo('App\User', 'creator', 'id');
+    }
+
     public function questionAssignments()
     {
         return $this->HasMany('App\QuestionExamAssignment', 'exam_id', 'id')->orderBy('level','ASC');

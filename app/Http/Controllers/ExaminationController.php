@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Excel;
+use DB;
 use PDF;
 use Auth;
+use Excel;
 use App\Exam;
 use App\Group;
+use App\Question;
 use Carbon\Carbon;
 use App\ExamAnswers;
 use App\GroupModule;
@@ -14,6 +16,7 @@ use App\ExamAssignment;
 use App\GroupAssignment;
 use App\Exports\ExamExport;
 use Illuminate\Http\Request;
+use App\QuestionExamAssignment;
 use App\Http\Repositories\BaseRepository;
 use App\Http\Repositories\ExamRepository;
 use App\Http\Repositories\ExamAnswerRepository;
@@ -95,7 +98,7 @@ class ExaminationController extends Controller
 
 
     public function show(Exam $exam){
-       
+  
         $exam = $exam->load('group');
         $questions_assigned = app(QuestionAssignmentRepository::class)->query()
         ->with('question')
@@ -105,7 +108,8 @@ class ExaminationController extends Controller
    
         $exam_assignments = app(ExamAssignmentRepository::class)->query()->with('exam','user','group')->whereExamId($exam->id)->whereGroupId($exam->group_id)->get();
         $exam_answers = ExamAnswers::whereExamId($exam->id)->count();
-  
+    
+       
         return view('groups.show-modules.exam',compact('exam','questions_assigned','exam_assignments','exam_answers'));
 
     }
@@ -233,5 +237,43 @@ class ExaminationController extends Controller
         $exam_assignment->status = 1;
         $exam_assignment->save();
         return redirect()->back();
+    }
+
+    public function showAnalysis(Exam $exam){
+
+        $exam_assignments = app(ExamAssignmentRepository::class)->query()->whereExamId($exam->id)->whereGroupId($exam->group_id)->count();
+        
+        $student_answers_detailed = ExamAnswers::with('user:id,name,avatar')->whereExamId($exam->id) //this is for detailed questions
+        ->get()
+        ->groupBy('question_id')
+        ->toArray();
+
+        $student_answers_correct =  ExamAnswers::whereExamId($exam->id) //this is for table view
+        ->wherePoints(1)
+        ->select('question_id', DB::raw('count(*) as total_correct'))
+        ->orderBy('question_id','DESC')
+        ->groupBy('question_id')
+        ->get()->keyBy('question_id')->toArray();
+
+        $student_answers_wrong =  ExamAnswers::whereExamId($exam->id) //this is for table view
+        ->wherePoints(0)
+        ->select('question_id', DB::raw('count(*) as total_wrong'))
+        ->orderBy('question_id','DESC')
+        ->groupBy('question_id')
+        ->get()->keyBy('question_id')->toArray();
+
+
+        $questions = QuestionExamAssignment::with('question')->whereExamId($exam->id)->get();
+
+        foreach($questions as $q){
+            $analysis[] = [
+                'question' => $q->question->instruction,
+                'correct' => $student_answers_correct[$q->question_id]['total_correct'] ?? 0,
+                'wrong' => $student_answers_wrong[$q->question_id]['total_wrong'] ?? 0
+            ];
+        }
+    
+        // dd($analysis);
+        return view('groups.show-modules.exam-question-analysis',compact('exam','analysis','exam_assignments','student_answers_detailed'));
     }
 }

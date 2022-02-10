@@ -373,6 +373,13 @@ class QuestionBankController extends Controller
      
     }
 
+    public function corrects(Request $request){
+        $keyword = $request->keyword;
+        $exam_answers = ExamAnswer::all();
+        dd($exam_answers);
+        return view('question-bank.corrects',compact('keyword'));
+    }
+
     
 
     

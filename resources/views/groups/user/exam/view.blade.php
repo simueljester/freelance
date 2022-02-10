@@ -32,6 +32,8 @@
                     @endif
                     &nbsp&nbsp
                     Attempt No. {{$exam_assignment->attempt}} 
+                    &nbsp&nbsp
+                    Duration: {{ gmdate("H:i:s", $exam_assignment->duration) }} 
                     {{-- <span class="text-primary" style="cursor:pointer" data-toggle="modal" data-target="#exampleModal"> <i class="fas fa-camera"></i> Captured Shots  </span> --}}
                  
                    

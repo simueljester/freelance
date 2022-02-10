@@ -24,6 +24,8 @@
                 -
                 &nbsp&nbsp
                 <i class="far fa-calendar-check"></i> {{ $assignment->discussion->expired_at ? Carbon\Carbon::parse($assignment->discussion->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
+                &nbsp&nbsp
+                <i class="fas fa-user"></i> {{$assignment->discussion->userCreator->name}}
             </div>
         </div>
         @empty

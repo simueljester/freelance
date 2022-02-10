@@ -34,7 +34,7 @@
                     @endforeach
                 @else
                     @foreach ($folders as $folder)
-                    <div class="col-sm-2">
+                    <div class="col-sm-3">
                         <div class="card bg-light" >
                             <div class="card-body">
                                 <a style="text-decoration: none;" href="{{route('groups.show-folder',$folder)}}"> 
@@ -59,12 +59,11 @@
             </div>
         </div>
 
-        <div class="mt-3 p-3 " >
-            @if ($group->creator_id == Auth::user()->id && Route::is('groups.show-folder'))
+        <div class="mt-1 p-3 " >
+            @if (Auth::user()->user_instance->role_id == 2 && Route::is('groups.show-folder'))
             <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addResource"> <i class="fas fa-plus"></i> Add New Course Requirement </button>
-            <hr>
+      
             @endif
-       
 
             @forelse ($group_modules as $module)
                 @switch($module->module_type)
@@ -93,7 +92,8 @@
                                 <i class="far fa-calendar-check"></i> {{ $module->exam->expired_at ? Carbon\Carbon::parse($module->exam->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
                                 &nbsp&nbsp
                                 <i class="fas fa-star text-warning"></i> {{$module->exam->total_score}} Total score
-                             
+                                &nbsp&nbsp
+                                <i class="fas fa-user"></i> {{$module->exam->userCreator->name}}
                             </div>
                         </div>
                         @break
@@ -121,6 +121,8 @@
                                 <i class="far fa-calendar-check"></i> {{ $module->discussion->expired_at ? Carbon\Carbon::parse($module->discussion->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
                                 &nbsp&nbsp
                                 <i class="fas fa-star text-warning"></i> {{$module->discussion->total_score}} Total score
+                                &nbsp&nbsp
+                                <i class="fas fa-user"></i> {{$module->discussion->userCreator->name}}
                             </div>
                         </div>
                         @break
@@ -146,6 +148,8 @@
                                 <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->learning_material->accessible_at)->format('F d, Y h:i a')}} -
                                 &nbsp&nbsp 
                                 <i class="far fa-calendar-check"></i> {{ $module->learning_material->expired_at ? Carbon\Carbon::parse($module->learning_material->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
+                                &nbsp&nbsp
+                                <i class="fas fa-user"></i> {{$module->learning_material->userCreator->name}}
                             </div>
                         </div>
                         @break
@@ -171,6 +175,8 @@
                                 <i class="far fa-calendar-check"></i> {{Carbon\Carbon::parse($module->link->accessible_at)->format('F d, Y h:i a')}} -
                                 &nbsp&nbsp 
                                 <i class="far fa-calendar-check"></i> {{ $module->link->expired_at ? Carbon\Carbon::parse($module->link->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
+                                &nbsp&nbsp
+                                <i class="fas fa-user"></i> {{$module->link->userCreator->name}}
                             </div>
                         </div>
                         @break

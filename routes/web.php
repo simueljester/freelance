@@ -116,8 +116,8 @@ Route::group(['prefix' => 'school-management', 'as' => 'school-management.'], fu
 
 //Question Bank Routes
 Route::group(['prefix' => 'question-bank', 'as' => 'question-bank.'], function() {
-    Route::get('/',             ['as' => 'index',           'uses' => 'QuestionBankController@index']);
-    Route::get('/my-questions', ['as' => 'my-questions',    'uses' => 'QuestionBankController@myQuestionBank']);
+    Route::get('/',                     ['as' => 'index',               'uses' => 'QuestionBankController@index']);
+    Route::get('/my-questions',         ['as' => 'my-questions',        'uses' => 'QuestionBankController@myQuestionBank']);
 
     Route::post('/batch-upload',        ['as' => 'batch-upload',            'uses' => 'QuestionBankController@batchUpload']);
     Route::post('/batch-upload-save',   ['as' => 'save-batch-upload',       'uses' => 'QuestionBankController@saveBatchUpload']);
@@ -143,6 +143,8 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
     Route::get('/create',                                   ['as' => 'create',                  'uses' => 'GroupController@create']);
     Route::post('/save',                                    ['as' => 'save',                    'uses' => 'GroupController@save']);
     Route::get('/edit/{group}',                             ['as' => 'edit',                    'uses' => 'GroupController@edit']);
+    Route::post('/add-instructor',                          ['as' => 'add-instructor',          'uses' => 'GroupController@addInstructor']);
+    Route::get('/remove-instructor/{group_instructor_assignment}',['as' => 'remove-instructor', 'uses' => 'GroupController@removeInstructor']);
     Route::post('/update',                                  ['as' => 'update',                  'uses' => 'GroupController@update']);
     Route::get('/show/{group}',                             ['as' => 'show',                    'uses' => 'GroupController@show']);
     Route::get('/view-user-exam-assignment/group/{group}/user/{user}',  ['as' => 'user-exam-assignments', 'uses' => 'GroupController@userExamAssignments']);
@@ -184,6 +186,7 @@ Route::group(['prefix' => 'groups', 'as' => 'groups.'], function() {
         Route::get('/group/{group}/folder/{folder}',    ['as' => 'create',              'uses' => 'ExaminationController@create']);
         Route::post('/save',                            ['as' => 'save',                'uses' => 'ExaminationController@save']);
         Route::get('/show/exam/{exam}',                 ['as' => 'show',                'uses' => 'ExaminationController@show']);
+        Route::get('/show/exam-analysis/{exam}',         ['as' => 'show-exam-analysis',  'uses' => 'ExaminationController@showAnalysis']);
         Route::get('/edit/exam/{exam}',                 ['as' => 'edit',                'uses' => 'ExaminationController@edit']);
         Route::post('/update',                          ['as' => 'update',              'uses' => 'ExaminationController@update']);
         Route::get('/delete/{exam}',                    ['as' => 'delete',              'uses' => 'ExaminationController@delete']);

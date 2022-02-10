@@ -19,7 +19,7 @@
 
 <div class="card shadow-sm mt-3">
     <div class="card-body">
-        <h5 class="text-muted"> <strong> {{$group->name}} </strong> </h5>
+        <h5 class="text-muted"> <strong> <i class="fas fa-cube text-primary"></i> {{$group->name}} </strong> </h5>
         <small> {{$group->description}} </small>
         <hr>
         <div> Instructor: {{$group->user_creator->name}} </div>

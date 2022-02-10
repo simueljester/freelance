@@ -21,7 +21,7 @@ class ExamAnswerRepository extends BaseRepository
     public function saveAnswers($request){
         
         $duration_status = $request->duration_status;
- 
+        $student_duration = $request->seconds;
         $answers = $request->answer;
 
         $exam_id = $request->exam_id;
@@ -77,7 +77,7 @@ class ExamAnswerRepository extends BaseRepository
             }
     
             //update exam assignment
-            $this->updateExamAssignment($exam_assignment_id,$total_score,$duration_status);
+            $this->updateExamAssignment($exam_assignment_id,$total_score,$duration_status,$student_duration);
             
             //save logs
             app(BaseRepository::class)->customSaveLog('exam_answers','create','Answered examination',$answers);
@@ -94,9 +94,9 @@ class ExamAnswerRepository extends BaseRepository
 
     }
 
-    public function updateExamAssignment($exam_assignment_id,$total_score,$duration_status){
+    public function updateExamAssignment($exam_assignment_id,$total_score,$duration_status,$student_duration){
         $exam_assignment = ExamAssignment::find($exam_assignment_id);
-        $exam_assignment->duration = 0;
+        $exam_assignment->duration = $student_duration;
         $exam_assignment->score = $total_score;
         $exam_assignment->status = $duration_status;
         $exam_assignment->save();

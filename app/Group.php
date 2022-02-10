@@ -22,6 +22,11 @@ class Group extends Model
         return $this->belongsTo('App\UserInstance', 'creator_instance_id', 'id');
     }
 
+    public function instructorAssignments() //other instructors
+    {
+        return $this->HasMany('App\GroupInstructorAssignments', 'group_id', 'id');
+    }
+
     public function members()
     {
         return $this->HasMany('App\GroupAssignment', 'group_id', 'id');

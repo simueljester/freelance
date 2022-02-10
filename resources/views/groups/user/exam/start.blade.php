@@ -149,6 +149,8 @@
                     @endforeach
                 </div>
                 <div class="card-footer">
+                    {{-- <label id="minutes">00</label>:<label id="seconds">00</label> --}}
+                    <input type="hidden" name="seconds" id="seconds">
                     <input type="hidden" name="exam_id" id="exam_id" value="{{$exam_assignment->exam_id}}">
                     <input type="hidden" name="exam_assignment_id" id="exam_assignment_id" value="{{$exam_assignment->id}}">
                     <input type="hidden" name="group_id" id="group_id" value="{{$exam_assignment->group_id}}">
@@ -182,6 +184,27 @@
             });
         });
 
+        function studentDuration(){ //get seconds of student
+            var secondsLabel = document.getElementById("seconds");
+            var totalSeconds = 0;
+            setInterval(setTime, 1000);
+
+            function setTime() {
+                ++totalSeconds;
+                secondsLabel.value = pad(totalSeconds);
+                // minutesLabel.value = pad(parseInt(totalSeconds / 60));
+            }
+
+            function pad(val) {
+                var valString = val + "";
+                if (valString.length < 2) {
+                    return "0" + valString;
+                } else {
+                    return valString;
+                }
+            }
+        }
+
 
         function startTimer(duration, display) {
             var timer = duration, minutes, seconds;
@@ -211,6 +234,7 @@
             var fiveMinutes = 60 * duration,
                 display = document.querySelector('#time');
             startTimer(fiveMinutes, display);
+            studentDuration();
 
         };
 

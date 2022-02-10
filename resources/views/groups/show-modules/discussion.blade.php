@@ -24,6 +24,13 @@
         <h5 class="text-muted"> <i class="fas fa-comments fa-2x text-success m-1"></i>  <strong> {{$discussion->name}} </strong> &nbsp&nbsp   </h5>
         <small> {!! $discussion->description ?? 'No details provided' !!} </small>
         <hr>
+        <i class="far fa-calendar-check"></i> Date Start: <strong> {{Carbon\Carbon::parse($discussion->accessible_at)->format('M d, Y | h:i a')}}  </strong> 
+        &nbsp&nbsp <br>
+        <i class="far fa-calendar-times"></i> Date End: <strong>  {{ $discussion->expired_at ? Carbon\Carbon::parse($discussion->expired_at)->format('M d, Y | h:i a') : 'No expiration'}} </strong> 
+        &nbsp&nbsp <br>
+        <i class="fas fa-user"></i> Created By: <strong> {{$discussion->userCreator->name}} </strong> 
+        &nbsp&nbsp <br>
+        <hr>
         <div>
             <i class="fas fa-star text-warning"></i> {{$discussion->total_score}} Total Score
             &nbsp&nbsp

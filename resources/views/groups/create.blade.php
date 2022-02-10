@@ -51,7 +51,7 @@
             </div>
 
             <div class="form-group">
-                <small class="text-capitalize"> Teacher </small> <span class="text-danger"> * </span>
+                <small class="text-capitalize"> Main Instructor </small> <span class="text-danger"> * </span>
                 <select name="teacher" id="teacher" class="form-control" required>
                     @foreach ($teachers as $teacher)
                         <option value="{{$teacher}}"> {{$teacher->user->name}} </option>

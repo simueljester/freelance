@@ -24,6 +24,13 @@
         <h5 class="text-muted"> <i class="fas fa-file-signature fa-2x text-warning m-1"></i>  <strong> {{$learning_material->name}} </strong> &nbsp&nbsp   </h5>
         <small> {!! $learning_material->description ?? 'No details provided' !!} </small>
         <hr>
+        <i class="far fa-calendar-check"></i> Date Start: <strong> {{Carbon\Carbon::parse($learning_material->accessible_at)->format('M d, Y | h:i a')}}  </strong> 
+        &nbsp&nbsp <br>
+        <i class="far fa-calendar-times"></i> Date End: <strong>  {{ $learning_material->expired_at ? Carbon\Carbon::parse($exam->expired_at)->format('M d, Y | h:i a') : 'No expiration'}} </strong> 
+        &nbsp&nbsp <br>
+        <i class="fas fa-user"></i> Created By: <strong> {{$learning_material->userCreator->name}} </strong> 
+        &nbsp&nbsp <br>
+        <hr>
         <div>
    
             <a href="{{route('groups.show',$learning_material->group_id)}}" class="text-primary"> <i class="fas fa-cube"></i> {{$learning_material->group->name}} </a>

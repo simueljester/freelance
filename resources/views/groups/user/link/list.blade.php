@@ -23,6 +23,8 @@
                 -
                 &nbsp&nbsp
                 <i class="far fa-calendar-check"></i> {{ $assignment->link->expired_at ? Carbon\Carbon::parse($assignment->link->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
+                &nbsp&nbsp
+                <i class="fas fa-user"></i> {{$assignment->link->userCreator->name}}
             </div>
         </div>
         @empty

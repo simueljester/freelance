@@ -26,6 +26,8 @@
                 -
                 &nbsp&nbsp
                 <i class="far fa-calendar-check"></i> {{ $assignment->learning_material->expired_at ? Carbon\Carbon::parse($assignment->learning_material->expired_at)->format('F d, Y h:i a') : 'No expiration'}}
+                &nbsp&nbsp
+                <i class="fas fa-user"></i> {{$assignment->learning_material->userCreator->name}}
             </div>
         </div>
         @empty
