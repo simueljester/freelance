@@ -67,6 +67,9 @@
                                     @if ($assignment->status == 2)
                                          <h6> <span class="badge badge-danger"> Late Submission </span></h6>
                                     @endif
+                                    @if ($assignment->status == 3)
+                                        <h6> <span class="badge badge-warning"> Attempted </span></h6>
+                                    @endif
                                 </td>
                                 <td> 
                                     @if ($assignment->status != 0)

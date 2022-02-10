@@ -10,6 +10,8 @@
                     <span class="badge badge-success">Completed</span>
                 @elseif ($assignment->status == 2)
                     <span class="badge badge-danger">Late Submission</span>
+                @elseif ($assignment->status == 3)
+                    <span class="badge badge-warning"> Attempted </span>
                 @else
                     <span class="badge badge-secondary">Pending</span>
                 @endif

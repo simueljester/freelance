@@ -159,6 +159,8 @@ class ExaminationController extends Controller
 
     public function start(ExamAssignment $exam_assignment){
 
+        $exam_assignment->status = 3;
+        $exam_assignment->save();
         $exam_assignment = $exam_assignment->load('exam.questionAssignments.question');
     
         return view('groups.user.exam.start',compact('exam_assignment'));
