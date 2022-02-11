@@ -185,7 +185,9 @@
         
             @empty
                 @if (Route::is('groups.show-folder'))
-                    No resource found 
+                    <br>
+                    <br>
+                    <span class="mt-5"> No resource found </span>  
                 @endif
             @endforelse
       

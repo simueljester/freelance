@@ -229,8 +229,19 @@ class QuestionBankController extends Controller
         //if creation of question is inside exam, then automatically assign to that exam
         if($request->exam){
             $exam = json_decode($request->exam);
-            app(QuestionAssignmentRepository::class)->assignSingleQuestions($exam,$saved);
-            return redirect()->route('groups.exam.examination-assignment.index',$exam->id)->with('success', 'Question successfully created');
+            $exam_found = Exam::with('group')->find($exam->id);
+       
+
+            if($saved->subject_id == $exam_found->group->subject_id){
+                $exam_found->total_score =   $exam_found->total_score + $saved->max_points;
+                $exam_found->save();
+                app(QuestionAssignmentRepository::class)->assignSingleQuestions($exam,$saved);
+                return redirect()->route('groups.exam.examination-assignment.index',$exam->id)->with('success', 'Question successfully created');
+            }else{
+                return redirect()->route('groups.exam.examination-assignment.index',$exam->id)->with('error', 'Question you are trying to create is not from this subject.');
+            }
+       
+        
         }else{
             return redirect()->route('question-bank.show',$saved->id)->with('success', 'Question successfully created');
         }
